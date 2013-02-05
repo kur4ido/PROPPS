@@ -20,22 +20,25 @@ public class TestJDBC {
 		/* Ici, nous placerons le code de nos manipulations */
 		try {
 			messages.add( "Chargement du driver..." );
+			System.out.println("Chargement du driver...");
 			Class.forName( "com.mysql.jdbc.Driver" );
 			messages.add( "Driver chargé !" );
+			System.out.println("Driver chargé !");
 		} catch ( ClassNotFoundException e ) { 
 			e.printStackTrace();
 			messages.add( "Erreur lors du chargement : le driver n'a pas été trouvé dans le classpath ! <br/>"+ e.getMessage() );
+			System.out.println("Erreur lors du chargement : le driver n'a pas été trouvé dans le classpath ! <br/>");
 		}
 		/* Connexion à la base de données */
-		String url = "jdbc:mysql://localhost:8888/PROPPS_DB";
+		String url = "jdbc:mysql://localhost:8889/PROPPS_DB";
 		String utilisateur = "root"; 
 		String motDePasse = "root"; 
 		Connection connexion = null;
 		Statement statement = null; 
 		ResultSet resultat = null; 
 		try {
-			messages.add( "Connexion à la base de données..." );
-			System.out.println("Connexion à la base de données...");
+			messages.add( "Connexion à la base de données..." );
+			System.out.println("Connexion à la base de données...");
 			connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
 			messages.add( "Connexion réussie !" );
 			System.out.println("Connexion réussie !");
@@ -43,6 +46,7 @@ public class TestJDBC {
 			messages.add( "Erreur lors de la connexion : <br/>" + e.getMessage() );
 		} finally {
 			messages.add( "Fermeture de l'objet ResultSet." ); 
+			System.out.println("Fermeture de l'objet ResultSet.");
 			if ( resultat != null ) {
 				try { 
 					resultat.close();
@@ -51,6 +55,7 @@ public class TestJDBC {
 				}
 			}
 			messages.add( "Fermeture de l'objet Statement." ); 
+			System.out.println("Fermeture de l'objet Statement.");
 			if ( statement != null ) {
 				try { 
 					statement.close();
@@ -59,6 +64,7 @@ public class TestJDBC {
 				}
 			} 
 			messages.add( "Fermeture de l'objet Connection." );
+			System.out.println("Fermeture de l'objet Connection.");
 			if ( connexion != null ) {
 				try { 
 					connexion.close();
