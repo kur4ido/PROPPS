@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <title>PROPPS - John Doe</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+
+     html, body {
+        height: 100%;
+
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+       
+         background-color: #f5f5f5;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    #footer {
+      	margin-top:20px;
+        height: 60px;
+        background-color: #f5f5f5;
+      }
+      #wrap {
+
+        height: auto !important;
+        height: 100%;
+		padding-top:60px;
+      }
+
+      .container .credit {
+        margin: 20px 0;
+      }
+      
+      #fiche_user{
+      	float:left;
+      	width:100%;
+      }
+      
+      #fiche_user img{
+      	float:left;
+
+      }
+      
+      #detail_user{
+      	float:left;
+      	padding:10px;
+      }
+      
+      #parcours{
+      	float:left;
+      	margin-top: 10px;
+      	width:100%;
+      	}
+      	
+      #contact{
+      	float:left;
+      	width:100%;
+      	padding: 5px 0px;
+      }
+      #contact img{
+      	float:left;
+      }	
+      #description_contact{
+      float:left;
+      padding:10px;
+      }
+	/* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      }
+      
+
+
+    </style>
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="./ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="./ico/favicon.png">
+  </head>
+
+  <body>
+  <!-- Navbar
+    ================================================== -->
+   
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+        	<div class="container">
+          		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+			  	</button>
+          		<a class="brand" href="../index.html">ProPPS</a>
+          		<div class="nav-collapse collapse navbar-responsive-collapse">
+                	<form action="result_recherche_membre.html" class="navbar-search pull-left">
+                    	<input type="text" placeholder="Recherches" class="search-query span2">
+                    </form>
+                    <ul class="nav">
+                    	<li><a href="recherche_membre.html"><i class="icon-search"></i> Recherche Avancée</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                    	<li class="dropdown">
+                        	<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-home"></i> John Doe <b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                        		<li><a href="compte.html"><i class="icon-user"></i> Mon compte</a></li>
+                        		<li class="divider"></li>
+                          		<li><a href="#"><i class="icon-envelope"></i> Messagerie</a></li>
+                          		<li><a href="#"><i class="icon-comment"></i> Notifications</a></li>
+                        	</ul>
+                      	</li>
+                      	<li class="divider-vertical"></li>
+                    	
+                    	<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
+                     </ul>
+				</div>
+        	</div>
+      	</div>
+    </div>
+    
+    <div id="wrap">
+    
+		<div class="container">
+			<div class="row">
+				<div class="span9">
+					<div id="fiche_user">
+						<img src="../img/oneil.jpeg" width="140" class="img-polaroid">
+						<div id="detail_user">
+						<h2>John Doe</h2><br>
+						<p><i class="icon-briefcase"></i> Profession, Entreprise courante<br>
+						<i class="icon-home"></i> Ville, Pays</p>
+						<a href="#" class="btn btn-primary btn-small" type="button"><i class="icon-plus icon-white"></i> Editer mon profi</a>
+						</div>
+						
+					</div>
+					<div id="parcours">
+					<h2>A propos de John Doe</h2>
+						<dl class="dl-horizontal">
+							<dt>Domaines d'expertise :</dt>
+							<dd>...</dd>	
+							<dt>Profil Actuel :</dt>
+							<dd>...</dd>
+							<dt>Expériences professionnelles :</dt>
+								<table class="table table-striped">
+								  <thead>
+									<tr>
+									  <th>De</th>
+									  <th>à</th>
+									  <th>Entreprise</th>
+									  <th>Poste/description du poste</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td>2008</td>
+										<td>Aujourd'hui</td>
+										<td>Dassault</td>
+										<td>Chef de Projet</td>
+									</tr>
+									<tr>
+										<td>2002</td>
+										<td>2008</td>
+										<td>Amadeus</td>
+										<td>Developpeur</td>
+									</tr>
+								  </tbody>
+								</table>			
+							<dt>Disponibilité professionnelle :</dt>
+							<dd></dd>
+						</dl>	
+					</div>
+				</div>
+				<div class="span3">
+					
+				</div>
+			</div>
+		</div>
+ 	</div>
+    <div id="footer">
+		<div class="container">
+			<p class="muted credit">&copy;PROPPS 2013</p>
+		</div>
+	</div>
+	
+     <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+    <script src="../js/jquery-1.9.0.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+  
+		<script>
+	$(document).off('touchstart.dropdown.data-api');
+	$('.dropdown-toggle').dropdown();</script>
+  </body>
+</html>
