@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.polytech.bdd.TestJDBC;
+
 
 
 public class test {
@@ -13,12 +15,8 @@ public class test {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		try {
-			Connection con = DriverManager.getConnection("url", "login", "pass");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			TestJDBC test = new TestJDBC();
+			test.executerTests(null);
 	}
 
 }
