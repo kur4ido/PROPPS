@@ -80,7 +80,23 @@
       	width:100%;
       	}
       	
-      #contact{
+      #notification{
+      	float:left;
+      	width:100%;
+      	padding: 5px 0px;
+      }
+      
+      #invit {
+      	float:left;
+      	width:100%;
+      	padding: 5px 0px;
+      }
+      #last-Add{
+      	float:left;
+      	width:100%;
+      		padding: 5px 0px;
+      }
+     #contact{
       	float:left;
       	width:100%;
       	padding: 5px 0px;
@@ -88,6 +104,7 @@
       #contact img{
       	float:left;
       }	
+	
       #description_contact{
       float:left;
       padding:10px;
@@ -151,8 +168,7 @@
                         	<ul class="dropdown-menu">
                         		<li><a href="compte.html"><i class="icon-user"></i> Mon compte</a></li>
                         		<li class="divider"></li>
-                          		<li><a href="#"><i class="icon-envelope"></i> Messagerie</a></li>
-                          		<li><a href="#"><i class="icon-comment"></i> Notifications</a></li>
+                          		<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>
                         	</ul>
                       	</li>
                       	<li class="divider-vertical"></li>
@@ -217,7 +233,56 @@
 					</div>
 				</div>
 				<div class="span3">
-					
+					<div id="invit">
+						<h2>Invitations</h2>
+						<div id="notification">
+							<div id="notif_contact">
+								Nom, prénom</br>
+								<button class="btn btn-small btn-success" type="button">Accepter</button>
+								<button class="btn btn-small btn-danger" type="button">Refuser</button>
+							</div>
+						</div>
+						<div id="notification">
+							<div id="notif_contact">
+								Nom, prénom</br>
+								<button class="btn btn-small btn-success" type="button">Accepter</button>
+								<button class="btn btn-small btn-danger" type="button">Refuser</button>
+							</div>
+						</div>
+						<div id="notification">
+							<div id="notif_contact">
+								Nom, prénom</br>
+								<button class="btn btn-small btn-success" type="button">Accepter</button>
+								<button class="btn btn-small btn-danger" type="button">Refuser</button>
+							</div>
+						</div>
+					</div>
+					<div id="last-add">
+						<h2>Derniers ajouts</h2>
+						<div id="contact">
+							<img src="../img/people.png" width="64">
+							<div id="description_contact">
+								Contact 1<br>
+								Profession, Entreprise
+							</div>
+						</div>
+						
+						<div id="contact">
+							<img src="../img/people.png" width="64">
+							<div id="description_contact">
+								Contact 2<br>
+								Profession, Entreprise
+							</div>
+						</div>
+						
+						<div id="contact">
+							<img src="../img/people.png" width="64">
+							<div id="description_contact">
+								Contact 3<br>
+								Profession, Entreprise
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
