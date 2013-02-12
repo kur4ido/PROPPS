@@ -47,15 +47,20 @@
 
 						<form class="form-horizontal" action="compte.html">
 							<fieldset>
+								<div class="alert alert-info">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<h4>Information!</h4>
+									Pour vous inscrire, merci de remplir le formulaire ci-dessous :
+								</div>
 								<legend>Formulaire d'inscription</legend>
 								<div class="control-group">
-									<label class="control-label" for="inputNom">Nom *</label>
+									<label class="control-label" for="inputNom">Nom</label>
 									<div class="controls">
 										<input type="text" name="nom" id="inputNom" placeholder="Doe">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="inputPrenom">Prénom *</label>
+									<label class="control-label" for="inputPrenom">Prénom</label>
 									<div class="controls">
 										<input type="text" name="prenom" id="inputPrenom"
 											placeholder="John">
@@ -63,7 +68,7 @@
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputEmail">Adresse
-										e-mail *</label>
+										e-mail</label>
 									<div class="controls">
 										<input type="email" name="email" id="inputEmail"
 											placeholder="johndoe@yahoo.fr">
@@ -71,11 +76,11 @@
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputPassword">Mot de
-										passe *</label>
+										passe</label>
 									<div class="controls">
 										<input type="password" name="password" id="inputPassword"
 											placeholder="Password"> <a href="#" rel="tooltip"
-											data-placement="top"
+											data-placement="right"
 											title="Le mot de passe doit contenir au minimum une majuscule 
 									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 											class="icon-info-sign"></i></a>
@@ -83,13 +88,13 @@
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputConfirmPassword">Confirmez
-										le mot de passe *</label>
+										le mot de passe</label>
 									<div class="controls">
 										<input type="password" name="confirmPassword"
 											id="inputConfirmPassword" placeholder="Password">
 									</div>
 								</div>
-								
+
 								<div class="control-group">
 									<label class="control-label" for="inputVille">Ville</label>
 									<div class="controls">
@@ -125,6 +130,10 @@
 	<script src="../js/jquery-1.9.0.js"></script>
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
-
+	<script type="text/javascript">
+		$(function() {
+			$("[rel='tooltip']").tooltip();
+		});
+	</script>
 </body>
 </html>
