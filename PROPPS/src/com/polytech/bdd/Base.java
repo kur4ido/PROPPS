@@ -27,7 +27,7 @@ public class Base {
 	}
 	
 	/**
-	 * Méthode de connection
+	 * Methode de connection
 	 * 
 	 * @throws SQLException
 	 */
@@ -36,10 +36,10 @@ public class Base {
 	}
 	
 	/**
-	 * Méthode d'initialisation de l'appel à une procédure stockée.
+	 * Methode d'initialisation de l'appel a une procedure stockee.
 	 * 
-	 * @param name le nom de la procédure
-	 * @param nbArg le nombre d'arguments de la procédure
+	 * @param name le nom de la procedure
+	 * @param nbArg le nombre d'arguments de la procedure
 	 * @throws SQLException
 	 */
 	public void procedureInit(String name,int nbArg) throws SQLException {
@@ -52,11 +52,11 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant de modifier un paramètre de type String pour la 
-	 * procédure initialisée
+	 * Methode permettant de modifier un parametre de type String pour la 
+	 * procedure initialisee
 	 * 
-	 * @param key le nom du paramètre
-	 * @param value la valeur du paramètre
+	 * @param key le nom du parametre
+	 * @param value la valeur du parametre
 	 * @throws SQLException
 	 */
 	public void setParamString(String key, String value) throws SQLException {
@@ -64,11 +64,11 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant de modifier un paramètre de type int pour la 
-	 * procédure initialisée
+	 * Methode permettant de modifier un parametre de type int pour la 
+	 * procedure initialisee
 	 * 
-	 * @param key le nom du paramètre
-	 * @param value la valeur du paramètre
+	 * @param key le nom du parametre
+	 * @param value la valeur du parametre
 	 * @throws SQLException
 	 */
 	public void setParamInt(String key, int value) throws SQLException {
@@ -76,11 +76,11 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant de modifier un paramètre de type Boolean pour la 
-	 * procédure initialisée
+	 * Methode permettant de modifier un parametre de type Boolean pour la 
+	 * procedure initialisee
 	 * 
-	 * @param key le nom du paramètre
-	 * @param value la valeur du paramètre
+	 * @param key le nom du parametre
+	 * @param value la valeur du parametre
 	 * @throws SQLException
 	 */
 	public void setParamBool(String key, boolean value) throws SQLException {
@@ -88,11 +88,11 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant de modifier un paramètre de type Date pour la 
-	 * procédure initialisée
+	 * Methode permettant de modifier un parametre de type Date pour la 
+	 * procedure initialisee
 	 * 
-	 * @param key le nom du paramètre
-	 * @param value la valeur du paramètre
+	 * @param key le nom du parametre
+	 * @param value la valeur du parametre
 	 * @throws SQLException
 	 */
 	public void setParamDate(String key, Date date) throws SQLException {
@@ -100,10 +100,10 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettand d'exécuter une requête SQL et de récupérer son
-	 * résultat sous la forme d'un resultSet
+	 * Methode permettand d'executer une requete SQL et de recuperer son
+	 * resultat sous la forme d'un resultSet
 	 * 
-	 * @return le résultat de la procédure appelée
+	 * @return le resultat de la procedure appelee
 	 * @throws SQLException
 	 */
 	public ResultSet executeQuery() throws SQLException {
@@ -111,8 +111,8 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant d'exécuter une requête SQL sans récupérer
-	 * son résultat
+	 * Methode permettant d'executer une requete SQL sans recuperer
+	 * son resultat
 	 * 
 	 * @throws SQLException
 	 */
@@ -121,10 +121,10 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant d'exécuter une requête SQL en récupérant son résutat;
+	 * Methode permettant d'executer une requete SQL en recuperant son resutat;
 	 * 
-	 * @param sql la requête à exécuter
-	 * @return le résultat de la requête
+	 * @param sql la requete a executer
+	 * @return le resultat de la requete
 	 * @throws SQLException
 	 */
 	public ResultSet executeSQLQuery(String sql) throws SQLException {
@@ -136,10 +136,10 @@ public class Base {
 	}
 	
 	/**
-	 * Methode permettant d'exécuter une requête SQL sans récupérer
-	 * son résultat
+	 * Methode permettant d'executer une requete SQL sans recuperer
+	 * son resultat
 	 * 
-	 * @param sql la requête à exécuter
+	 * @param sql la requete a executer
 	 * @throws SQLException
 	 */
 	public void executeSQL(String sql) throws SQLException {
@@ -149,7 +149,7 @@ public class Base {
 	}
 	
 	/**
-	 * Methode utilisée pour fermer la connection
+	 * Methode utilisee pour fermer la connection
 	 * 
 	 * @throws SQLException
 	 */
