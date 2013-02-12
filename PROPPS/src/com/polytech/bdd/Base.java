@@ -19,13 +19,6 @@ public class Base {
 	private CallableStatement call;
 	
 	
-	public static void initBase(String url,String usr, String pass) throws ClassNotFoundException {
-		urlMySQL = url;
-		user = usr;
-		password = pass;
-		Class.forName( "com.mysql.jdbc.Driver" );
-	}
-	
 	/**
 	 * Methode de connection
 	 * 
@@ -181,5 +174,28 @@ public class Base {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static void setURL(String url) {
+		urlMySQL = url;
+	}
+	
+	public static void initBase() throws ClassNotFoundException {
+		Class.forName( "com.mysql.jdbc.Driver" );
+	}
+	
+	public static void initBase(String url,String usr, String pass) throws ClassNotFoundException {
+		urlMySQL = url;
+		user = usr;
+		password = pass;
+		Class.forName( "com.mysql.jdbc.Driver" );
+	}
+
+	public static void setUser(String usr) {
+		user = usr;
+	}
+
+	public static void setPassWord(String pass) {
+		password = pass;	
 	}
 }
