@@ -39,6 +39,13 @@ public class Base {
 		call = connection.prepareCall(sql);
 	}
 	
+	/**
+	 * Methode permettant
+	 * 
+	 * @param key le nom du paramètre
+	 * @param value la valeur du paramètre
+	 * @throws SQLException
+	 */
 	public void setParamString(String key, String value) throws SQLException {
 		call.setString(key, value);
 	}
@@ -63,7 +70,7 @@ public class Base {
 		return call.execute();
 	}
 	
-	public ResultSet executeSQLWithQuery(String sql) throws SQLException {
+	public ResultSet executeSQLQuery(String sql) throws SQLException {
 		Statement st = connection.createStatement();
 		st.execute(sql);
 		ResultSet result = st.getResultSet();
