@@ -11,104 +11,7 @@
 
     <!-- Le styles -->
     <link href="../css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-
-     html, body {
-        height: 100%;
-
-      }
-
-      .form-signin {
-        max-width: 300px;
-        padding: 19px 29px 29px;
-       
-         background-color: #f5f5f5;
-        border: 1px solid #e5e5e5;
-        -webkit-border-radius: 5px;
-           -moz-border-radius: 5px;
-                border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-                box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      }
-      .form-signin .form-signin-heading,
-      .form-signin .checkbox {
-        margin-bottom: 10px;
-      }
-      .form-signin input[type="text"],
-      .form-signin input[type="password"] {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
-      }
-
-    #footer {
-      	margin-top:20px;
-        height: 60px;
-        background-color: #f5f5f5;
-      }
-      #wrap {
-
-        height: auto !important;
-        height: 100%;
-		padding-top:60px;
-      }
-
-      .container .credit {
-        margin: 20px 0;
-      }
-      
-      #fiche_user{
-      	float:left;
-      	width:100%;
-      }
-      
-      #fiche_user img{
-      	float:left;
-
-      }
-      
-      #detail_user{
-      	float:left;
-      	padding:10px;
-      }
-      
-      #parcours{
-      	float:left;
-      	margin-top: 10px;
-      	width:100%;
-      	}
-      	
-      #contact{
-      	float:left;
-      	width:100%;
-      	padding: 5px 0px;
-      }
-      #contact img{
-      	float:left;
-      }	
-      #description_contact{
-      float:left;
-      padding:10px;
-      }
-	/* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      }
-      
-
-
-    </style>
+    <link href="../css/style.css" rel="stylesheet">
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -142,16 +45,43 @@
                     </ul>
                     <ul class="nav pull-right">
                     	<li class="dropdown">
-                        	<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-home"></i> John Doe <b class="caret"></b></a>
+                        	<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt"></i> Invitations  <span class="badge badge-info">2</span> </a>
                         	<ul class="dropdown-menu">
-                        		<li><a href="compte.html"><i class="icon-user"></i> Mon compte</a></li>
+                        		<li>
+	                        		<div id="notification">
+										<div id="notif_contact">
+											Nom, prénom</br>
+											<button class="btn btn-mini btn-success" type="button">Accepter</button>
+											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
+										</div>
+									</div>
+								</li>
                         		<li class="divider"></li>
-                          		<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>
+                          		<li>
+	                        		<div id="notification">
+										<div id="notif_contact">
+											Nom, prénom</br>
+											<button class="btn btn-mini btn-success" type="button">Accepter</button>
+											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
+										</div>
+									</div>
+								</li>
                         	</ul>
                       	</li>
                       	<li class="divider-vertical"></li>
+                    	<li class="dropdown">
+                        	<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-home"></i> John Doe <b class="caret"></b></a>
+                        	<ul class="dropdown-menu">
+                        		<li><a href="compte.html"><i class="icon-user"></i> Mon compte</a></li>
+                        		<li><a href="parametre.html"><i class="icon-wrench"></i> Paramètre</a></li>
+                        		<li class="divider"></li>
+                          		<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
+                          		<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
+                        	</ul>
+                      	</li>
+                      	
                     	
-                    	<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
+                    	
                      </ul>
 				</div>
         	</div>
@@ -170,7 +100,7 @@
 						<h2>John Doe</h2><br>
 						<p><i class="icon-briefcase"></i> Profession, Entreprise courante<br>
 						<i class="icon-home"></i> Ville, Pays</p>
-						<a href="#" class="btn btn-primary btn-small" type="button"><i class="icon-plus icon-white"></i> Ajouter à mes contacts</a>
+						<a href="#" class="btn btn-primary btn-small" type="button"><i class="icon-plus-sign icon-white"></i> Ajouter à mes contacts</a>
 						</div>
 						
 					</div>
