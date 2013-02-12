@@ -113,6 +113,10 @@ html, body {
 	padding:10px;
 }
 
+.experience{
+	padding:5px 0px;
+}
+
 /*Entreprise.html */
  #fiche_entreprise{
 	float:left;
