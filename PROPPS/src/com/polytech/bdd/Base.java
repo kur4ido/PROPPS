@@ -19,13 +19,6 @@ public class Base {
 	private CallableStatement call;
 	
 	
-	public static void initBase(String url,String usr, String pass) throws ClassNotFoundException {
-		urlMySQL = url;
-		user = usr;
-		password = pass;
-		Class.forName( "com.mysql.jdbc.Driver" );
-	}
-	
 	/**
 	 * Methode de connection
 	 * 
@@ -160,26 +153,29 @@ public class Base {
 		call = null;
 	}
 	
-	public static void main(String[] args) {
-		Base base = new Base();
-		try {
-			Base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
-			base.connect();
-			base.procedureInit("ajouterUtilisateur", 4);
-			base.setParamString("_sNom", "Nom");
-			base.setParamString("_sPrenom", "Prenom");
-			base.setParamString("_sEmail", "prenom.nom@email.fr");
-			base.setParamString("_sHashPW", "1234");
-			base.execute();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				base.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+/*------------------------------------------
+ * Methodes statiques d'initialisation
+ -----------------------------------------*/
+	public static void setURL(String url) {
+		urlMySQL = url;
+	}
+	
+	public static void initBase() throws ClassNotFoundException {
+		Class.forName( "com.mysql.jdbc.Driver" );
+	}
+	
+	public static void initBase(String url,String usr, String pass) throws ClassNotFoundException {
+		urlMySQL = url;
+		user = usr;
+		password = pass;
+		Class.forName( "com.mysql.jdbc.Driver" );
+	}
+
+	public static void setUser(String usr) {
+		user = usr;
+	}
+
+	public static void setPassWord(String pass) {
+		password = pass;	
 	}
 }
