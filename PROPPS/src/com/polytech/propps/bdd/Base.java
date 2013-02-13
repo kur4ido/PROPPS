@@ -1,4 +1,4 @@
-package com.polytech.bdd;
+package com.polytech.propps.bdd;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

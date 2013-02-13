@@ -1,10 +1,10 @@
-package com.polytech.html;
+package com.polytech.propps.html;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.polytech.bdd.TestJDBC;
+import com.polytech.propps.bdd.TestJDBC;
 
 
 

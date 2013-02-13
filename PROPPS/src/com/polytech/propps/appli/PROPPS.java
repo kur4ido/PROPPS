@@ -1,10 +1,10 @@
-package com.polytech.appli;
+package com.polytech.propps.appli;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.polytech.bdd.Base;
+import com.polytech.propps.bdd.Base;
 
 public class PROPPS {
 	private static final String fileConfig = "propps.conf";

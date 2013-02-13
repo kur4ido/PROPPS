@@ -1,4 +1,4 @@
-package com.polytech.bdd;
+package com.polytech.propps.bdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
