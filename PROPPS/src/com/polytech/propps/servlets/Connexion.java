@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Connexion extends HttpServlet {
 
 	/**
-	 * 
+	 *  connexion classe 
 	 */
 	private static final long serialVersionUID = 1L;
 
