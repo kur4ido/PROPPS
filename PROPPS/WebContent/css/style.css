@@ -1,154 +1,161 @@
-html, body {
+html,body {
 	height: 100%;
 }
-  /*HEADER & FOOTER*/
-#header{
-	height:15%;
+/*HEADER & FOOTER*/
+#header {
+	height: 15%;
 	background-color: #4682B4;
-	padding-top:2%;
+	padding-top: 2%;
 }
-#header .container h1{
-	color:white;
 
+#header .container h1 {
+	color: white;
 }
+
 #footer {
-	margin-top:20px;
-  	height: 60px;
-  	background-color: #f5f5f5;
-	position: relative;
+	margin-top: 10px;
+	height: 60px;
+	background-color: #f5f5f5;
+	position: relative; bottom : 0;
+	width: 100%;
 	bottom: 0;
-   
-	width:100%;
-
 }
 
 /* Formulaire */
 .form-signin {
 	max-width: 300px;
-    padding: 19px 29px 29px;
-     
-    background-color: #f5f5f5;
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	padding: 19px 29px 29px;
+	background-color: #f5f5f5;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
+
+.form-signin .form-signin-heading,.form-signin .checkbox {
 	margin-bottom: 10px;
 }
-.form-signin input[type="text"],
-.form-signin input[type="password"] {
+
+.form-signin input[type="text"],.form-signin input[type="password"] {
 	font-size: 16px;
 	height: auto;
 	margin-bottom: 15px;
 	padding: 7px 9px;
 }
-.form-inline{
-	padding-top:10px;
+
+.form-inline {
+	padding-top: 10px;
 }
-.form-inline .checkbox{
-	color:white;
+
+.form-inline .checkbox {
+	color: white;
 }
 
 /*Content HTML*/
-#wrap {
-	position:relative;
-	min-height: 80%;
-	padding-top:60px;
+#header-compte {
+	padding: 70px 0px 30px 0px;
+	background-color: #C7C7C7;
 }
+
+#wrap {
+	position: relative;
+	min-height: 70%;
+	padding: 20px 0px;
+}
+
 .container .credit {
 	margin: 20px 0;
 }
-    
+
 /*Compte.html */
-#fiche_user{
-	float:left;
-	width:100%;
-}
-    
-#fiche_user img{
-	float:left;
+#fiche_user {
+	float: left;
+	width: 100%;
 }
 
-#detail_user{
-	float:left;
-	padding:10px 30px;
+#fiche_user img {
+	float: left;
 }
-    
-#parcours{
-	float:left;
+
+#detail_user {
+	float: left;
+	padding: 10px 40px;
+}
+
+#parcours {
+	float: left;
 	margin-top: 10px;
-	width:100%;
+	width: 100%;
 }
-    	
-#notification{
+
+#notification {
 	padding: 5px 5px;
 }
-    
+
 #invit {
-	float:left;
-	width:100%;
+	float: left;
+	width: 100%;
 	padding: 5px 0px;
 }
-#last-Add{
- 	float:left;
- 	width:100%;
- 	padding: 5px 0px;
-}
-#contact{
- 	float:left;
- 	width:100%;
- 	padding: 5px 0px;
-}
-#contact img{
- 	float:left;
-}	
 
-#description_contact{
-	float:left;
-	padding:10px;
+#last-Add {
+	float: left;
+	width: 100%;
+	padding: 5px 0px;
 }
 
-.experience{
-	padding:5px 0px;
+#contact {
+	float: left;
+	width: 100%;
+	padding: 5px 0px;
+}
+
+#contact img {
+	float: left;
+}
+
+#description_contact {
+	float: left;
+	padding: 10px;
+}
+
+.experience {
+	padding: 5px 0px;
 }
 
 /*Entreprise.html */
- #fiche_entreprise{
-	float:left;
-	width:100%;
+#fiche_entreprise {
+	float: left;
+	width: 100%;
 }
 
-#fiche_entreprise img{
-	float:left;
+#fiche_entreprise img {
+	float: left;
 }
 
-#detail_entreprise{
-	float:left;
-	padding:10px;
+#detail_entreprise {
+	float: left;
+	padding: 10px;
 }
 
-      	
-     
-  
 /*Responsive */
-@media (max-width: 767px) {
+@media ( max-width : 980px) {
 	#footer {
 		margin-left: -20px;
 		margin-right: -20px;
 		padding-left: 20px;
 		padding-right: 20px;
 	}
-	.form-signin h2{
-      	font-size: 22px;
-    }
+	#header-compte {
+	clear:both;
+		margin-left: -20px;
+		margin-right: -20px;
+		padding: 20px 20px;
+	}
+	.form-signin h2 {
+		font-size: 22px;
+	}
 }
-
-
-
-
-      
