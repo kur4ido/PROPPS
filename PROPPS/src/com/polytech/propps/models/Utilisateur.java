@@ -6,20 +6,30 @@ import java.sql.SQLException;
 import com.polytech.propps.bdd.Base;
 
 public abstract class Utilisateur implements IModel {
-	private final static String colID = "ID_Utilisateur";
-	private final static String colNom = "sNom";
-	private final static String colPrenom = "sPrenom";
-	private final static String colEmail = "sEmail";
-	private final static String colPassword = "sPassword";
+	protected final static String colID = "ID_Utilisateur";
+	protected final static String colNom = "sNom";
+	protected final static String colPrenom = "sPrenom";
+	protected final static String colEmail = "sEmail";
+	protected final static String colPassword = "sPassword";
 	
 	protected int ID_Utilisateur;
 	protected String sNom, sPrenom,sEmail,sPassword;
 	protected Adresse adresse;
+	private boolean bFill;
 
 	public Utilisateur(int ID) {
 		ID_Utilisateur = ID;
+		bFill = false;
 	}
 	
+	public Utilisateur(String sNom,String sPrenom,String sEmail,String sPassword) {
+		ID_Utilisateur = -1;
+		this.sNom = sNom;
+		this.sPrenom = sPrenom;
+		this.sEmail = sEmail;
+		this.sPassword = sPassword;
+		bFill = true;
+	}
 	
 	public void insertOrUpdate() {
 		Base b = new Base();
