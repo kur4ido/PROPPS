@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet("/InscriptionUtilisateur")
 public class InscriptionUtilisateur extends HttpServlet {
@@ -51,7 +54,28 @@ public class InscriptionUtilisateur extends HttpServlet {
 					base.setParamString("_sPrenom", prenom);
 					base.setParamString("_sEmail", email);
 					base.setParamString("_sPassWord", mdp);
+					int id = 0;
+					ResultSet result = base.executeQuery();
+					while(result.next()){
+						id = result.getInt("ID_Utilisateur");
+					}
+					base.procedureInit("Utilisateur_modifierAdresse", 5);
+					base.setParamInt("_ID_Utilisateur",id);
+					base.setParamString("_sVille",ville);
+					base.setParamString("_sCodePostal",null);
+					base.setParamString("_sPays",null);
+					base.setParamString("_sAdresse",null);
 					base.execute();
+					base.procedureInit("Membre_ajouter", 1);
+					base.setParamInt("_ID_Utilisateur", id);
+					base.execute();
+					request.setAttribute("email", email);
+					request.setAttribute("nom", name);
+					request.setAttribute("prenom", prenom);
+					request.setAttribute("ville", ville);
+					//response.setContentType("text/html");
+					//response.encodeRedirectURL("file://../WebContent/pages/compte.html");
+					getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
 				}else{
 					throw new FormValidationException("Le mail est deja utilise");					
 				}
