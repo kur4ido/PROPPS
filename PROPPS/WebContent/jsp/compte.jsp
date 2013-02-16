@@ -12,23 +12,25 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
+<!--[if lt IE 9]>ageContext.request.contextPath}
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="icon" href="../img/propps.ico">
+<link rel="icon" href="${pageContext.request.contextPath}/img/propps.ico">
 </head>
 
 <body>
 	<!-- Navbar
     ================================================== -->
-
+<% String prenom= (String) request.getAttribute("prenom"); %>
+<% String nom= (String) request.getAttribute("nom"); %>
+<% String ville= (String) request.getAttribute("ville"); %>
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
@@ -38,7 +40,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="../index.html">ProPPS</a>
+				<a class="brand" href="${pageContext.request.contextPath}/index.html">ProPPS</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<form action="result_recherche_membre.html"
 						class="navbar-search pull-left">
@@ -47,7 +49,7 @@
 					</form>
 					<ul class="nav">
 						<li><a href="recherche_membre.html"><i
-								class="icon-search"></i> Recherche AvancÃ©e</a></li>
+								class="icon-search"></i> Recherche Avancée</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
@@ -57,7 +59,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prÃ©nom</br>
+											Nom, prénom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -67,7 +69,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prÃ©nom</br>
+											Nom, prénom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -77,13 +79,13 @@
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
-								John Doe <b class="caret"></b></a>
+								<%=nom %> <%=prenom %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="compte.html"><i class="icon-user"></i> Mon
 										compte</a></li>
 								<li><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										ParamÃ¨tres</a></li>
+										Paramètres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -101,14 +103,14 @@
 				<div class="span12">
 
 					<div id="fiche_user">
-						<img src="../img/oneil.jpeg" height="140" class="img-polaroid">
+						<img src="${pageContext.request.contextPath}/img/oneil.jpeg" height="140" class="img-polaroid">
 						<div id="detail_user">
-							<h2><% String prenom= (String) request.getAttribute("prenom"); %><%=prenom %> <% String nom= (String) request.getAttribute("nom"); %><%=nom %></h2>
+							<h2><%=prenom %> <%=nom %></h2>
 							<br>
 							<p class="lead">
 								<i class="icon-briefcase"></i> Poste (profil), Entreprise<br>
-								<i class="icon-calendar"></i> DisponibilitÃ© <br> <i
-									class="icon-home"></i> Ville
+								<i class="icon-calendar"></i> Disponibilité <br> <i
+									class="icon-home"></i> <%=ville %>
 
 							</p>
 							<a href="parametre.html#profil" class="btn btn-primary btn-small"
@@ -127,8 +129,8 @@
 				<div class="span9">
 					<div id="parcours">
 						<div id="title">
-							<img src="../img/experience.png">
-							<h3>ExpÃ©riences professionnelles</h3>
+							<img src="${pageContext.request.contextPath}/img/experience.png">
+							<h3>Expériences professionnelles</h3>
 						</div>
 
 						<div class="row">
@@ -192,7 +194,7 @@
 						</div>
 						<hr class="bs-docs-separator">
 						<div id="title">
-							<img src="../img/expertise.png">
+							<img src="${pageContext.request.contextPath}/img/expertise.png">
 							<h3>Domaines d'expertise</h3>
 						</div>
 						<div class="expertise">
@@ -206,25 +208,25 @@
 
 					<div id="last-add">
 						<div id="title">
-							<img src="../img/contact.png">
+							<img src="${pageContext.request.contextPath}/img/contact.png">
 							<h3>Derniers ajouts</h3>
 						</div>
 						<div id="contact">
-							<img src="../img/people.png" width="64">
+							<img src="${pageContext.request.contextPath}/img/people.png" width="64">
 							<div id="description_contact">
 								Contact 1<br> Profession, Entreprise
 							</div>
 						</div>
 
 						<div id="contact">
-							<img src="../img/people.png" width="64">
+							<img src="${pageContext.request.contextPath}/img/people.png" width="64">
 							<div id="description_contact">
 								Contact 2<br> Profession, Entreprise
 							</div>
 						</div>
 
 						<div id="contact">
-							<img src="../img/people.png" width="64">
+							<img src="${pageContext.request.contextPath}/img/people.png" width="64">
 							<div id="description_contact">
 								Contact 3<br> Profession, Entreprise
 							</div>
@@ -245,9 +247,9 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="http://platform.twitter.com/widgets.js"
 		type="text/javascript"></script>
-	<script src="../js/jquery-1.9.0.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.0.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<script>
 		$(document).off('touchstart.dropdown.data-api');
