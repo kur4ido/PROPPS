@@ -62,12 +62,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				base.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			base.close();
 		}
 	}
 
