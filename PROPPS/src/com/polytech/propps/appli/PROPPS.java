@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.Recruteur;
 
 public class PROPPS {
 	private static final String fileConfig = "propps.conf";

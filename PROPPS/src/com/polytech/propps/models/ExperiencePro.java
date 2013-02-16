@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class ExperiencePro {
+	
 	protected String sPosteOccupe;
 	protected String sDescription;
 	protected String sDirection;

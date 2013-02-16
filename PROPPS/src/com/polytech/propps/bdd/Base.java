@@ -144,11 +144,14 @@ public class Base {
 	/**
 	 * Methode utilisee pour fermer la connection
 	 * 
-	 * @throws SQLException
 	 */
-	public void close() throws SQLException {
+	public void close() {
 		if(connection != null) {
-			connection.close();
+			try {
+				connection.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		call = null;
 	}
