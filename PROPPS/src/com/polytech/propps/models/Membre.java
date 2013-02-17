@@ -19,6 +19,7 @@ public class Membre extends Utilisateur{
 	protected Date dtFinPresta;
 	protected ArrayList<Membre> lstContacts;
 	protected ArrayList<ExperiencePro> lstExperiencePro;
+	protected ArrayList<Expertise> lstExpertise;
 	
 	private boolean bFill; 
 	
@@ -27,6 +28,7 @@ public class Membre extends Utilisateur{
 		bFill = false;
 		lstContacts = new ArrayList<Membre>();
 		lstExperiencePro = new ArrayList<ExperiencePro>();
+		lstExpertise = new ArrayList<Expertise>();
 	}
 	
 	public Membre(String sNom,String sPrenom,String sEmail, String sPassword,Profil profil, boolean bContrat,boolean bPresta,
@@ -36,6 +38,9 @@ public class Membre extends Utilisateur{
 		this.bContrat = bContrat;
 		this.bPresta = bPresta;
 		this.dtFinPresta = dtFinPresta;
+		lstContacts = new ArrayList<Membre>();
+		lstExperiencePro = new ArrayList<ExperiencePro>();
+		lstExpertise = new ArrayList<Expertise>();
 		bFill = true;
 	}
 	
@@ -84,6 +89,10 @@ public class Membre extends Utilisateur{
 			b.setParamBool("_" + colPresta, bPresta);
 			b.setParamInt("_" + colProfil, profil.getID());
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
+			ResultSet result = b.executeQuery();
+			if(result.next()) {
+				super.ID_Utilisateur = result.getInt(colID);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,7 +108,8 @@ public class Membre extends Utilisateur{
 		try {
 			b.connect();
 			b.procedureInit("Membre_delete", 1);
-			b.setParamInt("_" + colID, super.ID_Utilisateur);			
+			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.execute();
 			super.delete();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
