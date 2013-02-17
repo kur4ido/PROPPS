@@ -47,4 +47,20 @@ public class Recruteur extends Utilisateur {
 		
 	}
 
+	public int getID_Societe() {
+		return ID_Societe;
+	}
+
+	public void setID_Societe(int iD_Societe) {
+		ID_Societe = iD_Societe;
+	}
+
+	public static String getColid() {
+		return colID;
+	}
+
+	public static String getColsociete() {
+		return colSociete;
+	}
+
 }

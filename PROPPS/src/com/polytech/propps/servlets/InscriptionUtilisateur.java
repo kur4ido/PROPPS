@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Utilisateur;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -49,11 +51,13 @@ public class InscriptionUtilisateur extends HttpServlet {
 				boolean EmailAlreadyExists = testEmailAlreadyExists.first();
 				if(!EmailAlreadyExists){
 					System.out.println("Le mail est disponible");
-					base.procedureInit("Utilisateur_ajouter", 4);
-					base.setParamString("_sNom", name);
-					base.setParamString("_sPrenom", prenom);
-					base.setParamString("_sEmail", email);
-					base.setParamString("_sPassWord", mdp);
+					Membre newUser = new Membre(name, prenom, email, mdp, null, false, false, null);
+					newUser.insertOrUpdate();
+//					base.procedureInit("Utilisateur_ajouter", 4);
+//					base.setParamString("_sNom", name);
+//					base.setParamString("_sPrenom", prenom);
+//					base.setParamString("_sEmail", email);
+//					base.setParamString("_sPassWord", mdp);
 					int id = 0;
 					ResultSet result = base.executeQuery();
 					while(result.next()){

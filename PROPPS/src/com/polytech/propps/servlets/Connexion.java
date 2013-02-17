@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Recruteur;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet("/Connexion")
@@ -25,27 +28,33 @@ public class Connexion extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		System.out.println("EMAIL : "+email+"\tPASSWORD : "+password);
-//		Base base = new Base();
-//		try {
-//			Base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
-//			base.connect();
-//			base.procedureInit("Utilisateur_modifierAdresse", 5);
-//			base.setParamInt("_ID_Utilisateur", 3);
-//			base.setParamString("_sCodePostal", "94120");
-//			base.setParamString("_sVille", "Coucou");
-//			base.setParamString("_sPays", "Tu veux");
-//			base.setParamString("_sAdresse", "voir ma bite?");
-//			base.execute();
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			try {
-//				base.close();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
+		Base base = new Base();
+		try {
+			Base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
+			base.connect();
+			
+			base.procedureInit("Membre_getIDByLoginPW", 2);
+			base.setParamString("_sEmail", email);
+			base.setParamString("_sPassword", password);
+			ResultSet result = base.executeQuery();
+			if(result.next()){
+				Membre membre = new Membre(result.getInt("ID_Utilisateur"));
+				membre.fill();
+				
+			}else{
+				base.procedureInit("Recruteur_getIDByLoginPW", 2);
+				base.setParamString("_sEmail", email);
+				base.setParamString("_sPassword", password);
+				result = base.executeQuery();
+				if(result.next()){
+					Recruteur recruteur = new Recruteur(result.getInt("ID_Utilisateur"));
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			base.close();
+		}
 	}
 
 }

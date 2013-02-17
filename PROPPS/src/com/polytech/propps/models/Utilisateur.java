@@ -85,4 +85,80 @@ public abstract class Utilisateur implements IModel {
 			b.close();
 		}
 	}
+
+	public int getID_Utilisateur() {
+		return ID_Utilisateur;
+	}
+
+	public void setID_Utilisateur(int iD_Utilisateur) {
+		ID_Utilisateur = iD_Utilisateur;
+	}
+
+	public String getsNom() {
+		return sNom;
+	}
+
+	public void setsNom(String sNom) {
+		this.sNom = sNom;
+	}
+
+	public String getsPrenom() {
+		return sPrenom;
+	}
+
+	public void setsPrenom(String sPrenom) {
+		this.sPrenom = sPrenom;
+	}
+
+	public String getsEmail() {
+		return sEmail;
+	}
+
+	public void setsEmail(String sEmail) {
+		this.sEmail = sEmail;
+	}
+
+	public String getsPassword() {
+		return sPassword;
+	}
+
+	public void setsPassword(String sPassword) {
+		this.sPassword = sPassword;
+	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
+	public boolean isbFill() {
+		return bFill;
+	}
+
+	public void setbFill(boolean bFill) {
+		this.bFill = bFill;
+	}
+
+	public static String getColid() {
+		return colID;
+	}
+
+	public static String getColnom() {
+		return colNom;
+	}
+
+	public static String getColprenom() {
+		return colPrenom;
+	}
+
+	public static String getColemail() {
+		return colEmail;
+	}
+
+	public static String getColpassword() {
+		return colPassword;
+	}
 }

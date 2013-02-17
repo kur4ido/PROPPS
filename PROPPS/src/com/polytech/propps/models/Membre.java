@@ -120,4 +120,88 @@ public class Membre extends Utilisateur{
 		
 	}
 
+	public Profil getProfil() {
+		return profil;
+	}
+
+	public void setProfil(Profil profil) {
+		this.profil = profil;
+	}
+
+	public boolean isbContrat() {
+		return bContrat;
+	}
+
+	public void setbContrat(boolean bContrat) {
+		this.bContrat = bContrat;
+	}
+
+	public boolean isbPresta() {
+		return bPresta;
+	}
+
+	public void setbPresta(boolean bPresta) {
+		this.bPresta = bPresta;
+	}
+
+	public Date getDtFinPresta() {
+		return dtFinPresta;
+	}
+
+	public void setDtFinPresta(Date dtFinPresta) {
+		this.dtFinPresta = dtFinPresta;
+	}
+
+	public ArrayList<Membre> getLstContacts() {
+		return lstContacts;
+	}
+
+	public void setLstContacts(ArrayList<Membre> lstContacts) {
+		this.lstContacts = lstContacts;
+	}
+
+	public ArrayList<ExperiencePro> getLstExperiencePro() {
+		return lstExperiencePro;
+	}
+
+	public void setLstExperiencePro(ArrayList<ExperiencePro> lstExperiencePro) {
+		this.lstExperiencePro = lstExperiencePro;
+	}
+
+	public ArrayList<Expertise> getLstExpertise() {
+		return lstExpertise;
+	}
+
+	public void setLstExpertise(ArrayList<Expertise> lstExpertise) {
+		this.lstExpertise = lstExpertise;
+	}
+
+	public boolean isbFill() {
+		return bFill;
+	}
+
+	public void setbFill(boolean bFill) {
+		this.bFill = bFill;
+	}
+
+	public static String getColprofil() {
+		return colProfil;
+	}
+
+	public static String getColpresta() {
+		return colPresta;
+	}
+
+	public static String getColdtpresta() {
+		return colDtPresta;
+	}
+
+	public static String getColcontrat() {
+		return colContrat;
+	}
+
+	public static String getColnbexp() {
+		return colNbExp;
+	}
+
 }
