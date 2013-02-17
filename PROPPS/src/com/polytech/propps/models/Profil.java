@@ -27,7 +27,8 @@ public class Profil {
 		sNom = sProfil;
 	}
 	
-	protected static void fillList() {
+	public static void fillList() {
+		listOfProfil = new HashMap<Integer,Profil>();
 		Base b = new Base();
 		try {
 			b.connect();

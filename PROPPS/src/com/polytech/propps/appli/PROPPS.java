@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.Expertise;
+import com.polytech.propps.models.Profil;
 import com.polytech.propps.models.Recruteur;
 
 public class PROPPS {
@@ -31,6 +33,8 @@ public class PROPPS {
 			buff.close();
 		}
 		Base.initBase();
+		Profil.fillList();
+		Expertise.fillList();
 	}
 	
 	private static void traiterLigne(String line) {

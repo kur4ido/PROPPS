@@ -40,7 +40,11 @@ public class Base {
 		for(int i = 0 ; i < nbArg - 1 ; i++) {
 			sql += "?,";
 		}
-		sql += "?)}";
+		if(nbArg > 0) {
+			sql += "?)}";
+		}else {
+			sql += ")}";
+		}
 		call = connection.prepareCall(sql);
 	}
 	

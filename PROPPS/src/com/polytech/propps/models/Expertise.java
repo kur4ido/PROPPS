@@ -31,11 +31,12 @@ public class Expertise {
 		this.sType = sType;
 	}
 	
-	protected static void fillList() {
+	public static void fillList() {
+		listOfExpertise = new HashMap<Integer, Expertise>();
 		Base b = new Base();
 		try {
 			b.connect();
-			b.procedureInit("Profil_getAll", 0);
+			b.procedureInit("Expertise_getAll", 0);
 			ResultSet result = b.executeQuery();
 			while(result.next()) {
 				int ID = result.getInt(colID);
