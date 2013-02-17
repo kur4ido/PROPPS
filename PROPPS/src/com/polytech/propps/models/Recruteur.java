@@ -45,7 +45,7 @@ public class Recruteur extends Utilisateur {
 			b.close();
 		}
 		
-	}
+	} 
 
 	public int getID_Societe() {
 		return ID_Societe;

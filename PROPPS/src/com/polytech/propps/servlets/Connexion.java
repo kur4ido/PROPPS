@@ -40,6 +40,12 @@ public class Connexion extends HttpServlet {
 			if(result.next()){
 				Membre membre = new Membre(result.getInt("ID_Utilisateur"));
 				membre.fill();
+				request.setAttribute("nom", membre.getsNom());
+				request.setAttribute("prenom", membre.getsPrenom());
+				request.removeAttribute("password");
+				request.removeAttribute("email");
+				getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
+				//request.setAttribute("ville", membre.getAdresse());
 				
 			}else{
 				base.procedureInit("Recruteur_getIDByLoginPW", 2);

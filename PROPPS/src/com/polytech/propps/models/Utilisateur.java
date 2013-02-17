@@ -160,5 +160,5 @@ public abstract class Utilisateur implements IModel {
 
 	public static String getColpassword() {
 		return colPassword;
-	}
+	} 
 }
