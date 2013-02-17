@@ -14,6 +14,7 @@ public class Membre extends Utilisateur{
 	private final static String colDtPresta = "dtFinPresta";
 	private final static String colContrat = "bContrat";
 	private final static String colNbExp = "nbExp";
+	public final static String colIDMembre = "ID_Membre";
 	
 	protected Profil profil;
 	protected boolean bContrat, bPresta;
@@ -75,7 +76,7 @@ public class Membre extends Utilisateur{
 				}
 				
 				b.procedureInit("Membre_getExpertiseByID", 1);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
 				result = b.executeQuery();
 				lstExpertise = new ArrayList<Expertise>();
 				while(result.next()) {
