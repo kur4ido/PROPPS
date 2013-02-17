@@ -36,12 +36,16 @@ public abstract class Utilisateur implements IModel {
 		Base b = new Base();
 		try {
 			b.connect();
-			b.procedureInit("Utilisateur_insertOrUpdate", 5);
+			b.procedureInit("Utilisateur_insertOrUpdate", 9);
 			b.setParamInt("_" + colID, ID_Utilisateur);
 			b.setParamString("_" + colNom, sNom);
 			b.setParamString("_" + colPrenom, sPrenom);
 			b.setParamString("_" + colEmail, sEmail);
 			b.setParamString("_" + colPassword, sPassword);
+			b.setParamString("_" + Adresse.colVille, adresse.getVille());
+			b.setParamString("_" + Adresse.colCP, adresse.getCodePostal());
+			b.setParamString("_" + Adresse.colAdresse, adresse.getAdresse());
+			b.setParamString("_" + Adresse.colPays, adresse.getPays());
 			ResultSet result = b.executeQuery();
 			if(ID_Utilisateur < 0 && result.next()) {
 				ID_Utilisateur = result.getInt(colID);
