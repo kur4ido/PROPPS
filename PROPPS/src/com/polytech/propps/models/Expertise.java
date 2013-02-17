@@ -8,9 +8,9 @@ import com.polytech.propps.bdd.Base;
 
 public class Expertise {
 	protected static HashMap<Integer,Expertise> listOfExpertise;
-	private final static String colID = "ID_Domaine";
-	private final static String colDomaine= "sDomaine";
-	private final static String colType = "sType";
+	public final static String colID = "ID_Domaine";
+	public final static String colDomaine= "sDomaine";
+	public final static String colType = "sType";
 	
 	protected int ID_Expertise;
 	protected String sDomaine, sType;

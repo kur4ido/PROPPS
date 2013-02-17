@@ -64,8 +64,12 @@ public class Base {
 	 * @param value la valeur du parametre
 	 * @throws SQLException
 	 */
-	public void setParamInt(String key, int value) throws SQLException {
-		call.setInt(key, value);
+	public void setParamInt(String key, Integer value) throws SQLException {
+		if(value != null) {
+			call.setInt(key, value);
+		} else {
+			call.setNull(key,java.sql.Types.INTEGER);
+		}
 	}
 	
 	/**
@@ -76,8 +80,12 @@ public class Base {
 	 * @param value la valeur du parametre
 	 * @throws SQLException
 	 */
-	public void setParamBool(String key, boolean value) throws SQLException {
-		call.setBoolean(key, value);
+	public void setParamBool(String key, Boolean value) throws SQLException {
+		if(value != null) {
+			call.setBoolean(key, value);
+		}else {
+			call.setNull(key,java.sql.Types.BOOLEAN);
+		}
 	}
 	
 	/**

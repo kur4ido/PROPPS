@@ -9,8 +9,8 @@ import com.polytech.propps.bdd.Base;
 
 public class Societe  {
 	protected static HashMap<Integer,Societe> listOfSociete;
-	private final static String colID = "ID_Societe";
-	private final static String colNom = "sNom";
+	public final static String colID = "ID_Societe";
+	public final static String colNom = "sNom";
 	
 	protected int ID_Societe;
 	protected String sNom;

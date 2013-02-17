@@ -8,8 +8,8 @@ import com.polytech.propps.bdd.Base;
 
 public class Profil {
 	protected static HashMap<Integer,Profil> listOfProfil;
-	private final static String colID = "ID_Profil";
-	private final static String colNom = "sProfil";
+	public final static String colID = "ID_Profil";
+	public final static String colNom = "sProfil";
 	
 	protected int ID_Profil;
 	protected String sNom;

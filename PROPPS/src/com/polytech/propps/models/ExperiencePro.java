@@ -54,4 +54,8 @@ public class ExperiencePro {
 			b.close();
 		}
 	}
+
+	public Integer getID() {
+		return ID_ExpPro;
+	}
 }
