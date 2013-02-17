@@ -73,9 +73,13 @@ public class InscriptionUtilisateur extends HttpServlet {
 					request.setAttribute("nom", name);
 					request.setAttribute("prenom", prenom);
 					request.setAttribute("ville", ville);
-					//response.setContentType("text/html");
-					//response.encodeRedirectURL("file://../WebContent/pages/compte.html");
+					request.setAttribute("password", null);
+					request.setAttribute("confirmPassword", null);
+					request.removeAttribute("password");
+					request.removeAttribute("confirmPassword");
 					getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
+//					String attributes = "?nom="+name+"&prenom="+prenom+"&ville="+ville;
+//					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/jsp/compte.jsp"));
 				}else{
 					throw new FormValidationException("Le mail est deja utilise");					
 				}
