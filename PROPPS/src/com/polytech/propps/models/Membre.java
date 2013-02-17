@@ -59,6 +59,11 @@ public class Membre extends Utilisateur{
 					super.sPrenom = result.getString(colPrenom);
 					super.sEmail = result.getString(colEmail);
 					super.sPassword = result.getString(colPassword);
+					super.adresse.setAdresse(result.getString(Adresse.colAdresse));
+					super.adresse.setVille(result.getString(Adresse.colVille));
+					super.adresse.setCodePostal(result.getString(Adresse.colCP));
+					super.adresse.setPays(result.getString(Adresse.colPays));
+					
 					profil = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
 					
 					bContrat = result.getBoolean(colContrat);
