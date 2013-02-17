@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.polytech.propps.bdd.Base;
 
@@ -49,7 +50,6 @@ public class Membre extends Utilisateur{
 		if(!bFill) {
 			Base b = new Base();
 			try {
-				super.insertOrUpdate();
 				b.connect();
 				b.procedureInit("Membre_getByID", 1);
 				b.setParamInt("_" + colID, super.ID_Utilisateur);
@@ -102,7 +102,18 @@ public class Membre extends Utilisateur{
 			b.setParamBool("_" + colPresta, bPresta);
 			b.setParamInt("_" + colProfil, (profil == null ? null : profil.getID()));
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
-			
+			b.execute();
+			for(Map.Entry<Integer, ExperiencePro> entre : lstExperiencePro.entrySet()) {
+				b.procedureInit("Membre_ajouterExperiencePro", 8);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
