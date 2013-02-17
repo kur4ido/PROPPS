@@ -18,6 +18,7 @@ public class ExperiencePro {
 	protected Date dtFin;
 	protected Profil profil;
 	protected ArrayList<Expertise> lstExpertise;
+	protected Societe societe;
 	protected int ID_ExpPro;
 	
 	private boolean bFill;
@@ -28,6 +29,82 @@ public class ExperiencePro {
 		lstExpertise = new ArrayList<Expertise>();
 	}
 	
+	
+	public String getsPosteOccupe() {
+		return sPosteOccupe;
+	}
+
+
+	public void setsPosteOccupe(String sPosteOccupe) {
+		this.sPosteOccupe = sPosteOccupe;
+	}
+
+
+	public String getsDescription() {
+		return sDescription;
+	}
+
+
+	public void setsDescription(String sDescription) {
+		this.sDescription = sDescription;
+	}
+
+
+	public String getsDirection() {
+		return sDirection;
+	}
+
+
+	public void setsDirection(String sDirection) {
+		this.sDirection = sDirection;
+	}
+
+
+	public Date getDtDebut() {
+		return dtDebut;
+	}
+
+
+	public void setDtDebut(Date dtDebut) {
+		this.dtDebut = dtDebut;
+	}
+
+
+	public Date getDtFin() {
+		return dtFin;
+	}
+
+
+	public void setDtFin(Date dtFin) {
+		this.dtFin = dtFin;
+	}
+
+
+	public Profil getProfil() {
+		return profil;
+	}
+
+
+	public void setProfil(Profil profil) {
+		this.profil = profil;
+	}
+
+
+	public Societe getSociete() {
+		return societe;
+	}
+
+
+	public void setSociete(Societe societe) {
+		this.societe = societe;
+	}
+
+
+	public int getID_ExpPro() {
+		return ID_ExpPro;
+	}
+
+
 	public void addExpertise(Expertise e) {
 		if(!lstExpertise.contains(e)) {
 			lstExpertise.add(e);

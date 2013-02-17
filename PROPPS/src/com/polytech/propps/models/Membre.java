@@ -102,10 +102,7 @@ public class Membre extends Utilisateur{
 			b.setParamBool("_" + colPresta, bPresta);
 			b.setParamInt("_" + colProfil, (profil == null ? null : profil.getID()));
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
-			ResultSet result = b.executeQuery();
-			if(result.next()) {
-				super.ID_Utilisateur = result.getInt(colID);
-			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
