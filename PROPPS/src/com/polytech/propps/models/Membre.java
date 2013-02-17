@@ -15,6 +15,7 @@ public class Membre extends Utilisateur{
 	private final static String colContrat = "bContrat";
 	private final static String colNbExp = "nbExp";
 	public final static String colIDMembre = "ID_Membre";
+	public final static String colIDContact = "ID_Contact";
 	
 	protected Profil profil;
 	protected boolean bContrat, bPresta;
@@ -87,6 +88,14 @@ public class Membre extends Utilisateur{
 				while(result.next()) {
 					lstExpertise.add(new Expertise(result.getInt(Expertise.colID)));
 				}
+				
+				b.procedureInit("Membre_getContactByID", 1);
+				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
+				result = b.executeQuery();
+				lstContacts = new ArrayList<Membre>();
+				while(result.next()) {
+					lstContacts.add(new Membre(result.getInt(colIDContact)));
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -109,6 +118,7 @@ public class Membre extends Utilisateur{
 			b.setParamInt("_" + Profil.colID, (profil == null ? null : profil.getID()));
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
 			b.execute();
+			HashMap<Integer, ExperiencePro> lstExpProTemp = new HashMap<Integer, ExperiencePro>();
 			for(Map.Entry<Integer, ExperiencePro> entre : lstExperiencePro.entrySet()) {
 				ExperiencePro ep = entre.getValue();
 				b.procedureInit("Membre_ajouterExperiencePro", 8);
@@ -117,12 +127,17 @@ public class Membre extends Utilisateur{
 				b.setParamInt("_" + Societe.colID, ep.getSociete().getID());
 				b.setParamDate("_" + ExperiencePro.colDtDebut, ep.getDtDebut());
 				b.setParamDate("_" +  ExperiencePro.colDtFin, ep.getDtFin());
-				b.setParamString("_" + ExperiencePro.colDescription, ep.getsDescription());
-				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getsPosteOccupe());
-				b.setParamString("_" + ExperiencePro.colDirection, ep.getsDirection());
+				b.setParamString("_" + ExperiencePro.colDescription, ep.getDescription());
+				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getPosteOccupe());
+				b.setParamString("_" + ExperiencePro.colDirection, ep.getDirection());
 				ResultSet result = b.executeQuery();
-				
+				if(result.next()) {
+					int ID = result.getInt(ExperiencePro.colID);
+					ep.setID(ID);
+					lstExpProTemp.put(ID, ep);
+				}
 			}
+			lstExperiencePro = lstExpProTemp;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
