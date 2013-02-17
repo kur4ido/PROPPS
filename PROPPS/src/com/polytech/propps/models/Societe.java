@@ -54,4 +54,8 @@ public class Societe  {
 		return sNom;
 	}
 	
+	public int getID() {
+		return ID_Societe;
+	}
+	
 }

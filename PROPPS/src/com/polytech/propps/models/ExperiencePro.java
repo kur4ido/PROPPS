@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import com.polytech.propps.bdd.Base;
 
 public class ExperiencePro {
-	public static String colID = "ID_ExperiencePro";
-	public static String colNbExpertise = "NbExpertise";
+	public static final String colID = "ID_ExperiencePro";
+	public static final String colNbExpertise = "NbExpertise";
+	public static final String colDtDebut = "dtDebut";
+	public static final String colDtFin = "dtFin";
+	public static final String colDirection = "sDirection";
+	public static final String colPosteOccupe = "sPosteOccupe";
+	public static final String colDescription = "sDescription";
 	
 	protected String sPosteOccupe;
 	protected String sDescription;

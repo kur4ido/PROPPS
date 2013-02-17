@@ -10,7 +10,6 @@ import java.util.Map;
 import com.polytech.propps.bdd.Base;
 
 public class Membre extends Utilisateur{
-	private final static String colProfil = "ID_Profil";
 	private final static String colPresta = "bPresta";
 	private final static String colDtPresta = "dtFinPresta";
 	private final static String colContrat = "bContrat";
@@ -59,7 +58,8 @@ public class Membre extends Utilisateur{
 					super.sPrenom = result.getString(colPrenom);
 					super.sEmail = result.getString(colEmail);
 					super.sPassword = result.getString(colPassword);
-					profil = new Profil(result.getInt(colProfil));
+					profil = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
+					
 					bContrat = result.getBoolean(colContrat);
 					bPresta = result.getBoolean(colPresta);
 					dtFinPresta = result.getDate(colDtPresta);
@@ -100,16 +100,17 @@ public class Membre extends Utilisateur{
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
 			b.setParamBool("_" + colContrat, bContrat);
 			b.setParamBool("_" + colPresta, bPresta);
-			b.setParamInt("_" + colProfil, (profil == null ? null : profil.getID()));
+			b.setParamInt("_" + Profil.colID, (profil == null ? null : profil.getID()));
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
 			b.execute();
 			for(Map.Entry<Integer, ExperiencePro> entre : lstExperiencePro.entrySet()) {
+				ExperiencePro ep = entre.getValue();
 				b.procedureInit("Membre_ajouterExperiencePro", 8);
 				b.setParamInt("_" + colID, super.ID_Utilisateur);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + Profil.colID, (ep.getProfil() == null ? null : ep.getProfil().getID()));
+				b.setParamInt("_" + Societe.colID, ep.getSociete().getID());
+				b.setParamDate("_" + ExperiencePro.colDtDebut, ep.getDtDebut());
+				b.setParamDate("_" +  ExperiencePro.colDtFin, ep.getDtFin());
 				b.setParamInt("_" + colID, super.ID_Utilisateur);
 				b.setParamInt("_" + colID, super.ID_Utilisateur);
 				b.setParamInt("_" + colID, super.ID_Utilisateur);
@@ -199,10 +200,6 @@ public class Membre extends Utilisateur{
 
 	public void setbFill(boolean bFill) {
 		this.bFill = bFill;
-	}
-
-	public static String getColprofil() {
-		return colProfil;
 	}
 
 	public static String getColpresta() {
