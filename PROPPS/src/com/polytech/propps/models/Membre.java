@@ -112,9 +112,10 @@ public class Membre extends Utilisateur{
 				b.setParamInt("_" + Societe.colID, ep.getSociete().getID());
 				b.setParamDate("_" + ExperiencePro.colDtDebut, ep.getDtDebut());
 				b.setParamDate("_" +  ExperiencePro.colDtFin, ep.getDtFin());
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamString("_" + ExperiencePro.colDescription, ep.getsDescription());
+				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getsPosteOccupe());
+				b.setParamString("_" + ExperiencePro.colDirection, ep.getsDirection());
+				ResultSet result = b.executeQuery();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
