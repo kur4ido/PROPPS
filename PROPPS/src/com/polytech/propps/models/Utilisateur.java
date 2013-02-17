@@ -29,6 +29,7 @@ public abstract class Utilisateur implements IModel {
 		this.sPrenom = sPrenom;
 		this.sEmail = sEmail;
 		this.sPassword = sPassword;
+		adresse = new Adresse(null,null,null,null);
 		bFill = true;
 	}
 	

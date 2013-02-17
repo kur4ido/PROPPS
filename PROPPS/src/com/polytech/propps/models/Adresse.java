@@ -13,8 +13,7 @@ public class Adresse {
 	protected String sAdresse;
 	protected String sPays;
 
-	public Adresse(String sVille, String sCodePostal, String sAdresse,
-			String sPays) {
+	public Adresse(String sVille, String sCodePostal, String sAdresse, String sPays) {
 		this.sAdresse = sAdresse;
 		this.sCodePostal = sCodePostal;
 		this.sPays = sPays;

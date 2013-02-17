@@ -121,6 +121,7 @@ public class Membre extends Utilisateur{
 				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getsPosteOccupe());
 				b.setParamString("_" + ExperiencePro.colDirection, ep.getsDirection());
 				ResultSet result = b.executeQuery();
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
