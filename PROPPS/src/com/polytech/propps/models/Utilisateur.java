@@ -15,7 +15,7 @@ public abstract class Utilisateur implements IModel {
 	protected int ID_Utilisateur;
 	protected String sNom, sPrenom,sEmail,sPassword;
 	protected Adresse adresse;
-	private boolean bFill;
+	protected boolean bFill;
 
 	public Utilisateur(int ID) {
 		ID_Utilisateur = ID;
@@ -92,6 +92,7 @@ public abstract class Utilisateur implements IModel {
 		}
 	}
 
+	public abstract void fill();
 	public int getID_Utilisateur() {
 		return ID_Utilisateur;
 	}
@@ -148,23 +149,4 @@ public abstract class Utilisateur implements IModel {
 		this.bFill = bFill;
 	}
 
-	public static String getColid() {
-		return colID;
-	}
-
-	public static String getColnom() {
-		return colNom;
-	}
-
-	public static String getColprenom() {
-		return colPrenom;
-	}
-
-	public static String getColemail() {
-		return colEmail;
-	}
-
-	public static String getColpassword() {
-		return colPassword;
-	} 
 }

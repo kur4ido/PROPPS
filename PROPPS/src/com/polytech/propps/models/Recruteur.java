@@ -63,4 +63,10 @@ public class Recruteur extends Utilisateur {
 		return colSociete;
 	}
 
+	@Override
+	public void fill() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

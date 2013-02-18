@@ -23,12 +23,16 @@ public class Membre extends Utilisateur{
 	protected ArrayList<Membre> lstContacts;
 	protected HashMap<Integer,ExperiencePro> lstExperiencePro;
 	protected ArrayList<Expertise> lstExpertise;
+	protected ArrayList<Notification> lstNotifEnvoi;
+	protected ArrayList<Notification> lstNotifRecept;
 	
-	private boolean bFill; 
+	private boolean bFillExpertise,bFillContact; 
 	
 	public Membre(int ID) {
 		super(ID);
-		bFill = false;
+		super.bFill = false;
+		bFillExpertise = false;
+		bFillContact = false;
 		lstContacts = new ArrayList<Membre>();
 		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
@@ -44,11 +48,55 @@ public class Membre extends Utilisateur{
 		lstContacts = new ArrayList<Membre>();
 		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
-		bFill = true;
+		super.bFill = true;
+		bFillExpertise = true;
+		bFillContact = false;
+	}
+	
+	public void fillExpertise() {
+		if(!bFillExpertise) {
+			Base b = new Base();
+			try {
+				b.connect();
+				b.procedureInit("Membre_getExpertiseByID", 1);
+				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
+				ResultSet result = b.executeQuery();
+				lstExpertise = new ArrayList<Expertise>();
+				while(result.next()) {
+					lstExpertise.add(new Expertise(result.getInt(Expertise.colID)));
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				b.close();
+			}
+			bFillExpertise = true;
+		}
+	}
+	
+	public void fillContact() {
+		if(!bFillExpertise) {
+			Base b = new Base();
+			try {
+				b.connect();
+				b.procedureInit("Membre_getContactByID", 1);
+				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
+				ResultSet result = b.executeQuery();
+				lstContacts = new ArrayList<Membre>();
+				while(result.next()) {
+					lstContacts.add(new Membre(result.getInt(colIDContact)));
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				b.close();
+			}
+			bFillExpertise = true;
+		}
 	}
 	
 	public void fill() {
-		if(!bFill) {
+		if(!super.bFill) {
 			Base b = new Base();
 			try {
 				b.connect();
@@ -79,22 +127,6 @@ public class Membre extends Utilisateur{
 				while(result.next()) {
 					ExperiencePro ep = new ExperiencePro(result.getInt(ExperiencePro.colID));
 					lstExperiencePro.put(ep.getID(), ep);
-				}
-				
-				b.procedureInit("Membre_getExpertiseByID", 1);
-				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
-				result = b.executeQuery();
-				lstExpertise = new ArrayList<Expertise>();
-				while(result.next()) {
-					lstExpertise.add(new Expertise(result.getInt(Expertise.colID)));
-				}
-				
-				b.procedureInit("Membre_getContactByID", 1);
-				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
-				result = b.executeQuery();
-				lstContacts = new ArrayList<Membre>();
-				while(result.next()) {
-					lstContacts.add(new Membre(result.getInt(colIDContact)));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -166,79 +198,73 @@ public class Membre extends Utilisateur{
 	}
 
 	public Profil getProfil() {
+		if(!super.bFill) {
+			fill();
+		}
 		return profil;
 	}
 
 	public void setProfil(Profil profil) {
 		this.profil = profil;
+		super.bFill = true;
 	}
 
-	public boolean isbContrat() {
+	public boolean hasContrat() {
 		return bContrat;
 	}
 
-	public void setbContrat(boolean bContrat) {
+	public void setHasContrat(boolean bContrat) {
 		this.bContrat = bContrat;
+		
 	}
 
-	public boolean isbPresta() {
+	public boolean isPresta() {
+		if(!super.bFill) {
+			fill();
+		}
 		return bPresta;
 	}
 
-	public void setbPresta(boolean bPresta) {
+	public void setIsPresta(boolean bPresta) {
 		this.bPresta = bPresta;
+		super.bFill = true;
 	}
 
 	public Date getDtFinPresta() {
+		if(!super.bFill) {
+			fill();
+		}
 		return dtFinPresta;
 	}
 
 	public void setDtFinPresta(Date dtFinPresta) {
 		this.dtFinPresta = dtFinPresta;
+		super.bFill = true;
 	}
 
 	public ArrayList<Membre> getLstContacts() {
+		if(!bFillContact) {
+			fillContact();
+		}
 		return lstContacts;
 	}
 
-	public void setLstContacts(ArrayList<Membre> lstContacts) {
-		this.lstContacts = lstContacts;
-	}
-
 	public HashMap<Integer, ExperiencePro> getLstExperiencePro() {
+		if(!super.bFill) {
+			fill();
+		}
 		return lstExperiencePro;
 	}
 
 	public ArrayList<Expertise> getLstExpertise() {
+		if(!bFillExpertise) {
+			fillExpertise();
+		}
 		return lstExpertise;
 	}
 
-	public void setLstExpertise(ArrayList<Expertise> lstExpertise) {
-		this.lstExpertise = lstExpertise;
-	}
-
-	public boolean isbFill() {
-		return bFill;
-	}
-
-	public void setbFill(boolean bFill) {
-		this.bFill = bFill;
-	}
-
-	public static String getColpresta() {
-		return colPresta;
-	}
-
-	public static String getColdtpresta() {
-		return colDtPresta;
-	}
-
-	public static String getColcontrat() {
-		return colContrat;
-	}
-
-	public static String getColnbexp() {
-		return colNbExp;
+	public void addExpertise(Expertise e) {
+		this.lstExpertise.add(e);
 	}
 
 }
