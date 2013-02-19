@@ -26,7 +26,7 @@ public class Membre extends Utilisateur{
 	protected ArrayList<Notification> lstNotifEnvoi;
 	protected ArrayList<Notification> lstNotifRecept;
 	
-	private boolean bFillExpertise,bFillContact; 
+	private boolean bFillExpertise,bFillContact,bFillExperiencePro; 
 	
 	public Membre(int ID) {
 		super(ID);
@@ -50,9 +50,31 @@ public class Membre extends Utilisateur{
 		lstExpertise = new ArrayList<Expertise>();
 		super.bFill = true;
 		bFillExpertise = true;
-		bFillContact = false;
+		bFillContact = true;
 	}
 	
+	private Membre(int ID_Utilisateur,String sNom,String sPrenom,String sEmail,Profil profil, boolean bContrat,boolean bPresta,
+			Date dtFinPresta) {
+		super(sNom,sPrenom,sEmail,null);
+		super.ID_Utilisateur = ID_Utilisateur;
+		this.profil = profil;
+		this.bContrat = bContrat;
+		this.bPresta = bPresta;
+		this.dtFinPresta = dtFinPresta;
+		lstContacts = new ArrayList<Membre>();
+		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
+		lstExpertise = new ArrayList<Expertise>();
+		super.bFill = true;
+		bFillExpertise = false;
+		bFillContact = false;
+		bFillExperiencePro = false;
+	}
+	
+	/**
+	 * Methode permettant de remplir la liste d'expertise du membre
+	 * 
+	 * Nombre de requêtes SQL : 1
+	 */
 	public void fillExpertise() {
 		if(!bFillExpertise) {
 			Base b = new Base();
@@ -74,8 +96,20 @@ public class Membre extends Utilisateur{
 		}
 	}
 	
+	/**
+	 * Methode permettant de remplir la liste de contact du membre.
+	 * 
+	 * Les informations remplies sont les suivantes :
+	 * 		Nom, prénom, email, adresse (Données utilisateur)
+	 * 		Profil, disponibilité (bPresta, bContrat, dtFinPresta)
+	 * 
+	 * Les informations type liste ne sont pas remplies (expertise, experiences pro et contacts), elles ne
+	 * le seront qu'au moment de l'appel à leurs getter respectifs.
+	 * 
+	 * Nombre de requêtes SQL : 1
+	 */
 	public void fillContact() {
-		if(!bFillExpertise) {
+		if(!bFillContact) {
 			Base b = new Base();
 			try {
 				b.connect();
@@ -84,19 +118,102 @@ public class Membre extends Utilisateur{
 				ResultSet result = b.executeQuery();
 				lstContacts = new ArrayList<Membre>();
 				while(result.next()) {
-					lstContacts.add(new Membre(result.getInt(colIDContact)));
+					//Instanciation du profil
+					Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
+					
+					//Instanciation du membre
+					Membre m = new Membre(result.getInt(colIDContact), result.getString(colNom),result.getString(colPrenom),
+							 result.getString(colEmail),p,result.getBoolean(colContrat),result.getBoolean(colPresta),result.getDate(colDtPresta));
+					//Instanciaion de l'adresse
+					Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
+							result.getString(Adresse.colAdresse), result.getString(Adresse.colPays));
+					m.setAdresse(a);
+					
+					//Ajout dans la liste de contact
+					lstContacts.add(m);
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
 				b.close();
 			}
-			bFillExpertise = true;
+			bFillContact = true;
 		}
 	}
 	
+	/**
+	 * Methode permettant le remplissage des listes de notifications (reçues et envoyées)
+	 * 
+	 * Nombre de requêtes SQL : 2
+	 */
+	public void fillNotification() {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Membre_getNotif", 2);
+			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.setParamBool("_" + Notification.colBRecue,true);
+			ResultSet result = b.executeQuery();
+			lstNotifRecept = new ArrayList<Notification>();
+			while (result.next()) {
+				//Remplissage du profil
+				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
+				//Instanciation du membre source (celui qui a envoyé la notification)
+				Membre m = new Membre(result.getInt(Notification.colID_Source), result.getString(colNom),result.getString(colPrenom),
+						 result.getString(colEmail),p,result.getBoolean(colContrat),result.getBoolean(colPresta),result.getDate(colDtPresta));
+				//Instanciation de l'adresse du membre source
+				Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
+						result.getString(Adresse.colAdresse), result.getString(Adresse.colPays));
+				m.setAdresse(a);
+				
+				//Instanciation de l'objet notification
+				Notification n = new Notification(m, this, result.getDate(Notification.colDtNotif),
+						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
+						result.getBoolean(Notification.colAccept));
+				//Ajout dans la liste concernée
+				lstNotifRecept.add(n);
+			}
+			
+			/*On réitère le processus pour les notifications envoyées*/
+			
+			b.procedureInit("Membre_getNotif", 2);
+			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.setParamBool("_" + Notification.colBRecue,false);
+			result = b.executeQuery();
+			lstNotifRecept = new ArrayList<Notification>();
+			while (result.next()) {
+				//Remplissage du profil
+				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
+				//Instanciation du membre source (celui qui a envoyé la notification)
+				Membre m = new Membre(result.getInt(Notification.colID_Source), result.getString(colNom),result.getString(colPrenom),
+						 result.getString(colEmail),p,result.getBoolean(colContrat),result.getBoolean(colPresta),result.getDate(colDtPresta));
+				//Instanciation de l'adresse du membre source
+				Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
+						result.getString(Adresse.colAdresse), result.getString(Adresse.colPays));
+				m.setAdresse(a);
+				
+				//Instanciation de l'objet notification
+				Notification n = new Notification(this, m, result.getDate(Notification.colDtNotif),
+						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
+						result.getBoolean(Notification.colAccept));
+				//Ajout dans la liste concernée
+				lstNotifEnvoi.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+	}
+	
+	/**
+	 * Methode permettant de remplir les informations générales du membre, ainsi que ses données utilisateur.
+	 * Le remplissage d'expérience professionnelles se fait également ici.
+	 * 
+	 * Nombre de requêtes SQL : 1
+	 */
 	public void fill() {
-		if(!super.bFill) {
+		if(!super.bFill || !bFillExperiencePro) {
 			Base b = new Base();
 			try {
 				b.connect();
@@ -134,9 +251,16 @@ public class Membre extends Utilisateur{
 			}finally {
 				b.close();
 			}
+			bFill = true;
+			bFillExperiencePro = true;
 		}
 	}
 	
+	/**
+	 * Méthode permettant l'insertion ou la mise à jour dans la base de données du membre instancié.
+	 * 
+	 * Nombre de requêtes SQL : 1 + nbExpPro + nbExperise
+	 */
 	@Override
 	public void insertOrUpdate() {
 		Base b = new Base();
@@ -170,6 +294,12 @@ public class Membre extends Utilisateur{
 				}
 			}
 			lstExperiencePro = lstExpProTemp;
+			for(Expertise e : lstExpertise) {
+				b.procedureInit("Membre_ajouterExpertise", 2);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				b.setParamInt("_" + Expertise.colID,e.getID());
+				b.execute();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -250,7 +380,7 @@ public class Membre extends Utilisateur{
 	}
 
 	public HashMap<Integer, ExperiencePro> getLstExperiencePro() {
-		if(!super.bFill) {
+		if(!bFillExperiencePro) {
 			fill();
 		}
 		return lstExperiencePro;

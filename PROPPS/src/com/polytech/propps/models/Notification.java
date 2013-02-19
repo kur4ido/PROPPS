@@ -3,6 +3,14 @@ package com.polytech.propps.models;
 import java.sql.Date;
 
 public class Notification {
+	public static final String colBRecue = "bNotifRecues";
+	public static final String colVuSource = "bVuSource";
+	public static final String colVuDest = "bVuDest";
+	public static final String colAccept = "bAccept";
+	public static final String colDtNotif = "dtNotif";
+	public static final String colID_Source = "ID_Source";
+	public static final String colID_Dest = "ID_Destinataire";
+	
 	protected Membre source,destinataire;
 	protected Date dtDemande;
 	protected boolean bVuSource, bVuDest,bAccept;
