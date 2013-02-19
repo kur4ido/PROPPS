@@ -32,7 +32,7 @@ public class Societe  {
 	
 	
 	
-	protected static void fillList() {
+	public static void fillList() {
 		Base b = new Base();
 		try {
 			b.connect();
@@ -48,6 +48,25 @@ public class Societe  {
 		}finally {
 			b.close();
 		}
+	}
+	
+	public static Societe addSociete(String nomSociete) {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Societe_insertOrUpdate", 0);
+			ResultSet result = b.executeQuery();
+			while(result.next()) {
+				int ID = result.getInt(colID);
+				listOfSociete.put(ID, new Societe(ID,result.getString(colNom)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+		return null;
 	}
 	
 	public String getNom() {

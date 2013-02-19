@@ -327,6 +327,71 @@ public class Membre extends Utilisateur{
 		
 	}
 
+	public void addExperiencePro(ExperiencePro e) {
+		lstExperiencePro.put(e.getID(),e);
+	}
+	
+	public void demanderContact(Membre m) {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Membre_envoyerNotif", 2);
+			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.execute();
+			super.delete();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+	}
+	
+	public void addContact(Membre m) {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Membre_ajouterContact", 2);
+			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.execute();
+			super.delete();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+		add(m);
+		m.add(this);
+	}
+	
+	private void add(Membre m) {
+		lstContacts.add(m);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Membre) {
+			Membre m = (Membre) o;
+			return (m.getID_Utilisateur() == super.ID_Utilisateur);
+		}
+		return false;
+	}
+	
+	/*---Getters & Setters---*/
+	
+	public boolean isbFillExpertise() {
+		return bFillExpertise;
+	}
+
+	public boolean isbFillContact() {
+		return bFillContact;
+	}
+
+	public boolean isbFillExperiencePro() {
+		return bFillExperiencePro;
+	}
+
 	public Profil getProfil() {
 		if(!super.bFill) {
 			fill();
