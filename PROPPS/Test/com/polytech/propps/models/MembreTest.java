@@ -17,6 +17,7 @@ public class MembreTest {
 	@BeforeClass
 	public static void setUpClass() throws IOException, ClassNotFoundException {
 		PROPPS.init();
+		
 	}
 	
 	@AfterClass
@@ -58,6 +59,7 @@ public class MembreTest {
 		Assert.assertEquals("lstExperience n'est pas vide.", m2.getLstExpertise().size(), 0);
 	}
 	
+	@Test
 	public void Constructeur2Test() {
 		
 		// Test de super(sNom, sPrenom, sEmail, sPassword)
@@ -68,8 +70,8 @@ public class MembreTest {
 		
 		// Test de l'initialisation de profil, bContrat, b.Presta, dtFinPresta
 		Assert.assertEquals("La valeur de profil n'est pas initialisée correctement.", m1.getProfil(), new Profil(1));
-		Assert.assertFalse("La valeur de bContrat n'est pas initialisée correctement.", m1.hasContrat());
-		Assert.assertTrue("La valeur de bPresta n'est pas initialisée correctement.", m1.isPresta());
+		Assert.assertTrue("La valeur de bContrat n'est pas initialisée correctement.", m1.hasContrat());
+		Assert.assertFalse("La valeur de bPresta n'est pas initialisée correctement.", m1.isPresta());
 		Assert.assertEquals("La valeur de btFinPresta n'est pas initialisée correctement.", m1.getDtFinPresta(), date);
 		
 		// Test de l'initialisation de lstContact
@@ -85,9 +87,10 @@ public class MembreTest {
 		Assert.assertEquals("lstExperience n'est pas vide.", m1.getLstExpertise().size(), 0);
 		
 		// Test de l'initialisation de bFill
-		Assert.assertTrue("bFill n'est pas initialisé à False.", m1.isbFill());
+		Assert.assertTrue("bFill n'est pas initialisé à True.", m1.isbFill());
 	}
 	
+	@Test
 	public void fillTest() {
 		Membre m4 = new Membre(m1.getID_Utilisateur());
 		m4.fill();
@@ -95,10 +98,13 @@ public class MembreTest {
 		m4.delete();
 	}
 	
+	/*@Test
 	public void insertOrUpdateTest() {
 		m1.insertOrUpdate();
 	}
+	*/
 	
+	@Test
 	public void deleteTest() {
 		m1.delete();
 	}
