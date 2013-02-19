@@ -41,14 +41,14 @@
 						</h1>
 					</div>
 					<div id="contents">
-						<p>En vous inscrivant à ce site, vous aurez accès à touts les
+						<p>En vous inscrivant à ce site, vous aurez accès à tous les
 							postes ouverts par les recruteurs membre de ce site. Ceux-ci
 							pourront accéder librement à votre profil.</p>
 
-						<form class="form-horizontal" action="../registUser">
+						<form id="formInscription" class="form-horizontal" action="../registUser">
 							<fieldset>
 								<div class="alert alert-info">
-									
+
 									<h4>Information !</h4>
 									Pour vous inscrire, merci de remplir le formulaire ci-dessous
 								</div>
@@ -71,7 +71,10 @@
 									<div class="controls">
 										<input type="email" name="email" id="inputEmail"
 											placeholder="johndoe@yahoo.fr">
+											<!-- Message d'erreur -->
+										<p class="text-error">Adresse email déjà utilisée</p>
 									</div>
+
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputPassword">Mot de
