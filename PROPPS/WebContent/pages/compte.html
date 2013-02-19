@@ -11,6 +11,7 @@
 
 <!-- Le styles -->
 <link href="../css/bootstrap.css" rel="stylesheet">
+<link href="../css/datepicker.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -107,7 +108,7 @@
 									class="icon-home"></i> Ville
 
 							</p>
-							<a href="parametre.html#profil" class="btn btn-primary btn-small"
+							<a href="parametre.html" class="btn btn-primary btn-small"
 								type="button"><i class="icon-plus icon-white"></i> Editer
 								mon profil</a>
 						</div>
@@ -125,36 +126,35 @@
 						<div id="title">
 							<img src="../img/experience.png">
 							<h3>Expériences professionnelles</h3>
-							<button type="button" class="btn btn-mini pull-right"
-								data-toggle="collapse" data-target="#addExperience">
-								<i class="icon-pencil"></i>
-							</button>
+							<a class="pull-right" data-toggle="collapse"
+								data-target="#experience"> <i class="icon-pencil"></i>
+							</a>
 						</div>
 
-						<div id="addExperience" class="collapse in">
-							<form id="formAddExp" class="form-horizontal" action="">
+						<div id="experience" class="collapse in">
+							<form id="formAddExp" class="" action="">
 								<fieldset>
 									<legend>Ajouter une nouvelle expérience
 										professionnelle</legend>
 									<div class="row">
 										<div class="span4">
 											<div class="control-group">
-												<label class="control-label" for="inputSociété">Société</label>
+												<label class="control-label" for="inputSociété"><b>Société</b></label>
 												<div class="controls">
 													<input type="text" name="societe" id="inputSociété"
-														placeholder="Thales">
+														value="Dassault">
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="expertise">
-													Domaines d'expertise </label>
+												<label class="control-label" for="expertise"> <b>Domaines
+														d'expertise</b></label>
 												<div class="controls">
 													<label class="checkbox"> <input type="checkbox"
-														name="expertise1" value="EmissionFront" checked>
-														Emission - Front office
+														name="expertise1" value="EmissionFront"> Emission
+														- Front office
 													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise2" value="EmissionBack"> Emission -
-														Back office
+														name="expertise2" value="EmissionBack" checked>
+														Emission - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise3" value="CommercantFront">
 														Commerçant - Front office
@@ -171,12 +171,13 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="profil"> Profil </label>
+												<label class="control-label" for="profil"><b>Profil</b>
+												</label>
 												<div class="controls">
-													<label class="radio"> <input type="radio"
+													<label class="radio inline"> <input type="radio"
 														name="profil" id="optionsRadios1" value="MOA" checked>
 														MOA
-													</label> <label class="radio"> <input type="radio"
+													</label> <label class="radio inline"> <input type="radio"
 														name="profil" id="optionsRadios2" value="MOE"> MOE
 													</label> <label class="radio"> <input type="radio"
 														name="profil" id="optionsRadios3" value="DCompetence">
@@ -184,16 +185,29 @@
 													</label>
 												</div>
 											</div>
-										</div>
-										<div class="span4">
-
 
 											<div class="control-group">
-												<label class="control-label" for="dateDebut">Date de
-													début</label>
+												<label class="control-label" for="dispo"><b>Disponibilité</b>
+												</label>
+												<div class="controls">
+													<label class="radio inline"> <input type="radio"
+														name="dispo" id="optionsRadios1" value="Prestation">
+														Prestation
+													</label> <label class="radio inline"> <input type="radio"
+														name="dispo" id="optionsRadios2" value="Contrat" checked>
+														Contrat
+													</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="span4">
+											<div class="control-group">
+												<label class="control-label" for="dateDebut"><b>De</b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
-														data-date="04/02/2013" data-date-format="dd/mm/yyyy">
+														data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+														class="span1">
 														<input class="span2" size="16" type="text"
 															value="04/02/2013"> <span class="add-on"><i
 															class="icon-calendar"></i></span>
@@ -202,14 +216,13 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="dateFin">Date de
-													fin</label>
+												<label class="control-label" for="dateFin"><b>à</b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
-														data-date="04/02/2013" data-date-format="dd/mm/yyyy">
-														<input class="span2" size="16" type="text"
-															value="04/02/2013"> <span class="add-on"><i
-															class="icon-calendar"></i></span>
+														data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+														class="span1">
+														<input class="span2" size="16" type="text" value="">
+														<span class="add-on"><i class="icon-calendar"></i></span>
 													</div>
 													<a href="#" rel="tooltip" data-placement="top"
 														title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
@@ -217,16 +230,16 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="inputDirection">Direction
-													au sein de la société</label>
+												<label class="control-label" for="inputDirection"><b>Direction
+														au sein de la société</b></label>
 												<div class="controls">
 													<input type="text" name="direction" id="inputDirection"
 														placeholder="...">
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="inputPoste">Poste
-													occupé</label>
+												<label class="control-label" for="inputPoste"><b>Poste
+														occupé</b></label>
 												<div class="controls">
 													<input type="email" name="poste" id="inputPoste"
 														placeholder="Ingénieur d'étude">
@@ -235,36 +248,29 @@
 											</div>
 
 											<div class="control-group">
-												<label class="control-label" for="inputDescription">Description</label>
+												<label class="control-label" for="inputDescription"><b>Description</b></label>
 												<div class="controls">
 													<textarea row="3" name="description" id="inputDescription"
 														placeholder="Description"></textarea>
 												</div>
 											</div>
-										</div>
-
-
-
-									</div>
-
-
-
-
-
-									<div class="control-group">
-										<div class="controls">
-											<button type="submit" class="btn btn-primary">Ajouter</button>
+											<div class="control-group">
+												<div class="controls">
+													<button type="submit" class="btn btn-primary">Ajouter</button>
+												</div>
+											</div>
 										</div>
 									</div>
 								</fieldset>
 							</form>
 						</div>
 
-
-
 						<div class="row">
 							<div class="span2">
 								<p>
+									<a data-toggle="collapse" data-target="#modifExperience1">
+										<i class="icon-pencil"></i>
+									</a>
 								<h4>Chef de projet (profil)</h4>
 								Dassault
 								</p>
@@ -300,12 +306,149 @@
 								</p>
 
 							</div>
+							<div class="span9">
+								<div id="modifExperience1" class="modifExperience collapse in">
+									<form id="formAddExp" class="" action="">
+										<fieldset>
+											<div class="row">
+												<div class="span4">
+													<div class="control-group">
+														<label class="control-label" for="inputSociété"><b>Société</b></label>
+														<div class="controls">
+															<input type="text" name="societe" id="inputSociété"
+																value="Dassault">
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="expertise"> <b>Domaines
+																d'expertise</b></label>
+														<div class="controls">
+															<label class="checkbox"> <input type="checkbox"
+																name="expertise1" value="EmissionFront">
+																Emission - Front office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise2" value="EmissionBack" checked>
+																Emission - Back office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise3" value="CommercantFront">
+																Commerçant - Front office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise4" value="CommercantBack">
+																Commerçant - Back office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise5" value="AutomatesFront">
+																Automates - Front office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise6" value="AutomatesBack">
+																Automates - Back office
+															</label>
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="profil"><b>Profil</b>
+														</label>
+														<div class="controls">
+															<label class="radio inline"> <input type="radio"
+																name="profil" id="optionsRadios1" value="MOA" checked>
+																MOA
+															</label> <label class="radio inline"> <input type="radio"
+																name="profil" id="optionsRadios2" value="MOE">
+																MOE
+															</label> <label class="radio"> <input type="radio"
+																name="profil" id="optionsRadios3" value="DCompetence">
+																Double Compétence
+															</label>
+														</div>
+													</div>
+
+													<div class="control-group">
+														<label class="control-label" for="dispo"><b>Disponibilité</b>
+														</label>
+														<div class="controls">
+															<label class="radio inline"> <input type="radio"
+																name="dispo" id="optionsRadios1" value="Prestation">
+																Prestation
+															</label> <label class="radio inline"> <input type="radio"
+																name="dispo" id="optionsRadios2" value="Contrat" checked>
+																Contrat
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="span4">
+													<div class="control-group">
+														<label class="control-label" for="dateDebut"><b>De</b></label>
+														<div class="controls">
+															<div class="input-append date" id="dp3"
+																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+																class="span1">
+																<input class="span2" size="16" type="text"
+																	value="04/02/2013"> <span class="add-on"><i
+																	class="icon-calendar"></i></span>
+															</div>
+
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="dateFin"><b>à</b></label>
+														<div class="controls">
+															<div class="input-append date" id="dp3"
+																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+																class="span1">
+																<input class="span2" size="16" type="text" value="">
+																<span class="add-on"><i class="icon-calendar"></i></span>
+															</div>
+															<a href="#" rel="tooltip" data-placement="top"
+																title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
+																class="icon-info-sign"></i></a>
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="inputDirection"><b>Direction
+																au sein de la société</b></label>
+														<div class="controls">
+															<input type="text" name="direction" id="inputDirection"
+																placeholder="...">
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="inputPoste"><b>Poste
+																occupé</b></label>
+														<div class="controls">
+															<input type="email" name="poste" id="inputPoste"
+																placeholder="Ingénieur d'étude">
+														</div>
+
+													</div>
+
+													<div class="control-group">
+														<label class="control-label" for="inputDescription"><b>Description</b></label>
+														<div class="controls">
+															<textarea row="3" name="description"
+																id="inputDescription" placeholder="Description"></textarea>
+														</div>
+													</div>
+													<div class="control-group">
+														<div class="controls">
+															<button type="submit" class="btn btn-primary">Ajouter</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
 
 						</div>
 
 						<div class="row">
 							<div class="span2">
 								<p>
+									<a data-toggle="collapse" data-target="#modifExperience2">
+										<i class="icon-pencil"></i>
+									</a>
 								<h4>Developpeur (profil)</h4>
 								Amadeus
 								</p>
@@ -319,20 +462,188 @@
 								<p>Description du poste</p>
 
 							</div>
+							<div class="span9">
+								<div id="modifExperience2" class="modifExperience collapse in">
+									<form id="formAddExp" class="" action="">
+										<fieldset>
+											<div class="row">
+												<div class="span4">
+													<div class="control-group">
+														<label class="control-label" for="inputSociété"><b>Société</b></label>
+														<div class="controls">
+															<input type="text" name="societe" id="inputSociété"
+																value="Dassault">
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="expertise"> <b>Domaines
+																d'expertise</b></label>
+														<div class="controls">
+															<label class="checkbox"> <input type="checkbox"
+																name="expertise1" value="EmissionFront">
+																Emission - Front office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise2" value="EmissionBack" checked>
+																Emission - Back office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise3" value="CommercantFront">
+																Commerçant - Front office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise4" value="CommercantBack">
+																Commerçant - Back office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise5" value="AutomatesFront">
+																Automates - Front office
+															</label> <label class="checkbox"> <input type="checkbox"
+																name="expertise6" value="AutomatesBack">
+																Automates - Back office
+															</label>
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="profil"><b>Profil</b>
+														</label>
+														<div class="controls">
+															<label class="radio inline"> <input type="radio"
+																name="profil" id="optionsRadios1" value="MOA" checked>
+																MOA
+															</label> <label class="radio inline"> <input type="radio"
+																name="profil" id="optionsRadios2" value="MOE">
+																MOE
+															</label> <label class="radio"> <input type="radio"
+																name="profil" id="optionsRadios3" value="DCompetence">
+																Double Compétence
+															</label>
+														</div>
+													</div>
+
+													<div class="control-group">
+														<label class="control-label" for="dispo"><b>Disponibilité</b>
+														</label>
+														<div class="controls">
+															<label class="radio inline"> <input type="radio"
+																name="dispo" id="optionsRadios1" value="Prestation">
+																Prestation
+															</label> <label class="radio inline"> <input type="radio"
+																name="dispo" id="optionsRadios2" value="Contrat" checked>
+																Contrat
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="span4">
+													<div class="control-group">
+														<label class="control-label" for="dateDebut"><b>De</b></label>
+														<div class="controls">
+															<div class="input-append date" id="dp3"
+																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+																class="span1">
+																<input class="span2" size="16" type="text"
+																	value="04/02/2013"> <span class="add-on"><i
+																	class="icon-calendar"></i></span>
+															</div>
+
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="dateFin"><b>à</b></label>
+														<div class="controls">
+															<div class="input-append date" id="dp3"
+																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+																class="span1">
+																<input class="span2" size="16" type="text" value="">
+																<span class="add-on"><i class="icon-calendar"></i></span>
+															</div>
+															<a href="#" rel="tooltip" data-placement="top"
+																title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
+																class="icon-info-sign"></i></a>
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="inputDirection"><b>Direction
+																au sein de la société</b></label>
+														<div class="controls">
+															<input type="text" name="direction" id="inputDirection"
+																placeholder="...">
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="inputPoste"><b>Poste
+																occupé</b></label>
+														<div class="controls">
+															<input type="email" name="poste" id="inputPoste"
+																placeholder="Ingénieur d'étude">
+														</div>
+
+													</div>
+
+													<div class="control-group">
+														<label class="control-label" for="inputDescription"><b>Description</b></label>
+														<div class="controls">
+															<textarea row="3" name="description"
+																id="inputDescription" placeholder="Description"></textarea>
+														</div>
+													</div>
+													<div class="control-group">
+														<div class="controls">
+															<button type="submit" class="btn btn-primary">Ajouter</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
 
 						</div>
 						<hr class="bs-docs-separator">
 						<div id="title">
 							<img src="../img/expertise.png">
 							<h3>Domaines d'expertise</h3>
-							<button type="button" class="btn btn-mini pull-right"
-								data-toggle="collapse" data-target="#addExpertise">
-								<i class="icon-pencil"></i>
-							</button>
+							<a class="pull-right" data-toggle="collapse"
+								data-target="#expertise"> <i class="icon-pencil"></i>
+							</a>
+
+						</div>
+
+						<div id="expertise" class="collapse in">
+							<form id="formAddDomExp" class="form-horizontal" action="">
+								<fieldset>
+									<legend>Ajouter un nouveau domaine d'expertise</legend>
+
+									<div class="control-group">
+										<label class="control-label" for="domaine">Domaine</label>
+										<div class="controls">
+											<select name="domaine">
+												<option>Emission</option>
+												<option>Commerçant</option>
+												<option>Automates</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label" for="type">Type</label>
+										<div class="controls">
+											<select name="type">
+												<option>Front Office</option>
+												<option>Back Office</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<div class="controls">
+											<button type="submit" class="btn btn-primary">Ajouter</button>
+										</div>
+									</div>
+								</fieldset>
+							</form>
 						</div>
 
 
-						<div id="addExpertise" class="collapse in">teztetzeatazet</div>
 						<div class="expertise">
 							<span class="label label-info">Emission - Back Office</span> <span
 								class="label label-info">Commerçant - Front Office</span> <span
@@ -372,6 +683,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 	<div id="footer">
 		<div class="container">
 			<p class="muted credit">&copy;PROPPS 2013</p>
@@ -386,14 +700,23 @@
 	<script src="../js/jquery-1.9.0.js"></script>
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap-datepicker.js"></script>
 
 	<script>
 		$(document).off('touchstart.dropdown.data-api');
 		$('.dropdown-toggle').dropdown();
-		$(".collapse").collapse();
-		$(function() {
-			$("[rel='tooltip']").tooltip();
-		});
+		$('.date').datepicker();
+		$('#expertise').collapse({
+			toggle : true
+		})
+
+		$('#experience').collapse({
+			toggle : true
+		})
+
+		$('.modifExperience').collapse({
+			toggle : true
+		})
 	</script>
 </body>
 </html>
