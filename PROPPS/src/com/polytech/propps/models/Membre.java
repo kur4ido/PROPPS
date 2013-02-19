@@ -17,6 +17,7 @@ public class Membre extends Utilisateur{
 	public final static String colIDMembre = "ID_Membre";
 	public final static String colIDContact = "ID_Contact";
 	
+	
 	protected Profil profil;
 	protected boolean bContrat, bPresta;
 	protected Date dtFinPresta;
@@ -27,6 +28,7 @@ public class Membre extends Utilisateur{
 	protected ArrayList<Notification> lstNotifRecept;
 	
 	private boolean bFillExpertise,bFillContact,bFillExperiencePro; 
+	
 	
 	public Membre(int ID) {
 		super(ID);
@@ -481,6 +483,37 @@ public class Membre extends Utilisateur{
 
 	public void addExpertise(Expertise e) {
 		this.lstExpertise.add(e);
+	}
+	
+	/*-------Methodes statiques--------*/
+	public ArrayList<Membre> rechercheRapide(String s) {
+		ArrayList<Membre> resultat = new ArrayList<Membre>();
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("rechercheRapide", 1);
+			b.setParamString("_Str", s);
+			ResultSet result = b.executeQuery();
+			while(result.next()) {
+				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
+				
+				//Instanciation du membre
+				Membre m = new Membre(result.getInt(colIDContact), result.getString(colNom),result.getString(colPrenom),
+						 result.getString(colEmail),p,result.getBoolean(colContrat),result.getBoolean(colPresta),result.getDate(colDtPresta));
+				//Instanciaion de l'adresse
+				Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
+						result.getString(Adresse.colAdresse), result.getString(Adresse.colPays));
+				m.setAdresse(a);
+				resultat.add(m);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+		return resultat;
 	}
 
 }

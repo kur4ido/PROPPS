@@ -259,6 +259,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `PROPPS_DB`.`Messages`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Messages` (
+  `ID_Message` INT NOT NULL ,
+  `ID_Utilisateur` INT NOT NULL ,
+  `dtMessage` DATETIME NOT NULL ,
+  `sMessage` TEXT NOT NULL ,
+  PRIMARY KEY (`ID_Message`) ,
+  INDEX `fk_Messages_Membre1` (`ID_Utilisateur` ASC) ,
+  CONSTRAINT `fk_Messages_Membre1`
+    FOREIGN KEY (`ID_Utilisateur` )
+    REFERENCES `PROPPS_DB`.`Membre` (`ID_Utilisateur` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- procedure Utilisateur_insertOrUpdate
 -- -----------------------------------------------------
 
@@ -696,9 +714,20 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-CREATE PROCEDURE `PROPPS_DB`.`Recruteur_rechercher` (IN ID_Domaine INT, IN ID_Profil INT)
+CREATE PROCEDURE `PROPPS_DB`.`Recruteur_rechercher` (IN _ID_Domaine INT, IN _ID_Profil INT,IN _bPresta BOOL,
+IN _dtDispo DATETIME)
 BEGIN
-
+    IF _bPresta THEN
+        SELECT M.*
+        FROM Membre
+        WHERE ID_Profil = _ID_Profil
+            AND dtFinPresta < _dtDispo;
+    ELSE
+        SELECT M.*
+        FROM Membre
+        WHERE ID_Profil = _ID_Profil
+            AND bPresta = _bPresta;
+    END IF;
 END$$
 
 DELIMITER ;
@@ -808,6 +837,24 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Expertise_getAll` ()
 BEGIN
     SELECT * FROM DomaineExpertise;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure rechercheRapide
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`rechercheRapide` (IN _Str VARCHAR(250))
+BEGIN
+    SELECT *
+    FROM Utilisateur as U inner join Membre as M on U.ID_Uilisateur = M.ID_Utilisateur
+        inner join Adresse as A on A.ID_Adresse = U.ID_Adresse
+    WHERE U.sNom + U.sPrenom like CONCAT("%",_Str,"%")
+        OR U.sPrenom + U.sNom like CONCAT("%",_Str,"%")
+    Order by U.sNom, U.sPrenom;
 END$$
 
 DELIMITER ;
