@@ -43,7 +43,7 @@
 						<input type="text" placeholder="Recherches"
 							class="search-query span2">
 					</form>
-					
+
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-list-alt"></i>
@@ -76,7 +76,8 @@
 							<ul class="dropdown-menu">
 								<li><a href="compte.html"><i class="icon-user"></i> Mon
 										compte</a></li>
-								<li><a href="messagerie.html"><i class="icon-inbox"></i> Inbox</a></li>
+								<li><a href="messagerie.html"><i class="icon-inbox"></i>
+										Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
 										Paramètres</a></li>
 								<li class="divider"></li>
@@ -95,32 +96,88 @@
 			<div class="row">
 				<div class="span12">
 					<div class="page-header">
-						<h2>Paramètres</h2>
+						<h2>Paramètres généraux du compte</h2>
 					</div>
-					<div class="tabbable tabs-left">
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#tab1" data-toggle="tab">Information
-									du compte</a></li>
-							<li><a href="#tab2" data-toggle="tab">Information
-									professionnelle</a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane active" id="tab1">
-								<div id="content">
 
-									Modifier son mot de passe</br> Modifier son lieu de résidence</br>
-									Modifier son nom</br>
+					<form id="modificationIdentite" class="form-horizontal" action="">
+						<fieldset>
+							<legend>Modification des informations personnelles</legend>
+							<div class="control-group">
+								<label class="control-label" for="inputNom">Nom</label>
+								<div class="controls">
+									<input type="text" name="nom" id="inputNom" placeholder="Doe">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputPrenom">Prénom</label>
+								<div class="controls">
+									<input type="text" name="prenom" id="inputPrenom"
+										placeholder="John">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputVille">Ville</label>
+								<div class="controls">
+									<input type="text" name="ville" id="inputVille"
+										placeholder="Orsay">
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="inputPhoto">Photo de profil</label>
+								<div class="controls">
+									<input type="text" name="photoProfil" id="inputPhoto"
+										placeholder="Orsay">
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn btn-primary">Valider</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+					<!-- Voir à modifier peut-être le nom du formulaire pour qu'il soit plus explicite -->
+					<form id="modificationProfil" class="form-horizontal" action="">
+						<fieldset>
+							<legend>Modification des informations de connexion du compte</legend>
+							<div class="control-group">
+								<label class="control-label" for="inputEmail">Adresse
+									e-mail</label>
+								<div class="controls">
+									<input type="email" name="email" id="inputEmail"
+										placeholder="johndoe@yahoo.fr">
 								</div>
 
 							</div>
-							<div class="tab-pane" id="tab2">
-								<p>Howdy, I'm in Section 2.</p>
+							<div class="control-group">
+								<label class="control-label" for="inputPassword">Mot de
+									passe</label>
+								<div class="controls">
+									<input type="password" name="password" id="inputPassword"
+										placeholder="Password"> <a href="#" rel="tooltip"
+										data-placement="right"
+										title="Le mot de passe doit contenir au minimum une majuscule 
+									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
+										class="icon-info-sign"></i></a>
+								</div>
 							</div>
-						</div>
-					</div>
+							<div class="control-group">
+								<label class="control-label" for="inputConfirmPassword">Confirmez
+									le mot de passe</label>
+								<div class="controls">
+									<input type="password" name="confirmPassword"
+										id="inputConfirmPassword" placeholder="Password">
+								</div>
+							</div>
 
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn btn-primary">Valider</button>
+								</div>
+							</div>
 
-
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -144,6 +201,9 @@
 		$('.nav-list').scrollspy();
 		$(document).off('touchstart.dropdown.data-api');
 		$('.dropdown-toggle').dropdown();
+		$(function() {
+			$("[rel='tooltip']").tooltip();
+		});
 	</script>
 </body>
 </html>
