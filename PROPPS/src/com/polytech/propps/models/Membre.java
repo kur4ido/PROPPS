@@ -374,8 +374,8 @@ public class Membre extends Utilisateur{
 			b.connect();
 			b.procedureInit("Membre_ajouterContact", 2);
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.setParamInt("_" + colIDContact, m.ID_Utilisateur);
 			b.execute();
-			super.delete();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
