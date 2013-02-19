@@ -15,6 +15,11 @@ public class Recruteur extends Utilisateur {
 		super(ID);
 		societe = null;
 	}
+	
+	public Recruteur(String sNom, String sPrenom, String sEmail, String sPassword, Societe societe) {
+		super(sNom, sPrenom, sEmail, sPassword);
+		this.societe = societe;
+	}
 
 	@Override
 	public void insertOrUpdate() {
