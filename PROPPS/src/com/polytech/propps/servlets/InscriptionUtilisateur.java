@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.Adresse;
 import com.polytech.propps.models.Membre;
 import com.polytech.propps.models.Utilisateur;
 
@@ -27,7 +28,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doGet( HttpServletRequest request, HttpServletResponse
+	public void doPost( HttpServletRequest request, HttpServletResponse
 			response ) throws ServletException, IOException{
 		Base base = new Base();
 		try {
@@ -42,54 +43,90 @@ public class InscriptionUtilisateur extends HttpServlet {
 			String ville = request.getParameter("ville");
 			System.out.println("Nom : "+name+"\tPrenom : "+prenom+"\tMail : "+email);
 			System.out.println("Mdp : "+mdp+"\tConfirmMdp : "+confirmMdp+"\tVille : "+ville);
-			
-			if(mdp.contentEquals(confirmMdp)){
-				System.out.println("Les deux mots de passe sont identiques");
-				base.procedureInit("Utilisateur_getUtilisateurByEmail", 1);
-				base.setParamString("_sEmail", email);
-				ResultSet testEmailAlreadyExists = base.executeQuery();
-				boolean EmailAlreadyExists = testEmailAlreadyExists.first();
-				if(!EmailAlreadyExists){
-					System.out.println("Le mail est disponible");
-					Membre newUser = new Membre(name, prenom, email, mdp, null, false, false, null);
-					newUser.insertOrUpdate();
-//					base.procedureInit("Utilisateur_ajouter", 4);
-//					base.setParamString("_sNom", name);
-//					base.setParamString("_sPrenom", prenom);
-//					base.setParamString("_sEmail", email);
-//					base.setParamString("_sPassWord", mdp);
-					int id = 0;
-					ResultSet result = base.executeQuery();
-					while(result.next()){
-						id = result.getInt("ID_Utilisateur");
+			if(mdp.matches(".*[A-Z].*") && mdp.matches(".*[0-9].*") && mdp.matches(".*[a-z].*") && mdp.length()>=8){
+				
+				if(mdp.contentEquals(confirmMdp)){
+					
+					System.out.println("Les deux mots de passe sont identiques");
+					base.procedureInit("Utilisateur_getUtilisateurByEmail", 1);
+					base.setParamString("_sEmail", email);
+					ResultSet testEmailAlreadyExists = base.executeQuery();
+					boolean EmailAlreadyExists = testEmailAlreadyExists.first();
+					if(!EmailAlreadyExists){
+						System.out.println("Le mail est disponible");
+						Membre newUser = new Membre(name, prenom, email, mdp, null, false, false, null);
+						newUser.setAdresse(new Adresse(ville, null, null, null));
+						System.out.println(newUser.getAdresse().getVille());
+						newUser.insertOrUpdate();
+	//					base.procedureInit("Utilisateur_insertOrUpdate", 5);
+	//					base.setParamInt("_ID_Utilisateur", -1);
+	//					base.setParamString("_sNom", name);
+	//					base.setParamString("_sPrenom", prenom);
+	//					base.setParamString("_sEmail", email);
+	//					base.setParamString("_sPassWord", mdp);
+	//					int id = 0;
+	//					ResultSet result = base.executeQuery();
+	//					while(result.next()){
+	//						id = result.getInt("ID_Utilisateur");
+	//					}
+	//					base.procedureInit("Utilisateur_modifierAdresse", 5);
+	//					base.setParamInt("_ID_Utilisateur",id);
+	//					base.setParamString("_sVille",ville);
+	//					base.setParamString("_sCodePostal",null);
+	//					base.setParamString("_sPays",null);
+	//					base.setParamString("_sAdresse",null);
+	//					base.execute();
+	//					base.procedureInit("Membre_insertOrUpdate", 5);
+	//					base.setParamInt("_ID_Utilisateur", id);
+	//					base.setParamInt("_ID_Profil", id);
+	//					base.setParamInt("_ID_Utilisateur", id);
+	//					base.setParamInt("_ID_Utilisateur", id);
+	//					base.execute();
+						request.setAttribute("email", email);
+						request.setAttribute("nom", name);
+						request.setAttribute("prenom", prenom);
+						request.setAttribute("ville", ville);
+						request.setAttribute("password", null);
+						request.setAttribute("confirmPassword", null);
+						request.removeAttribute("password");
+						request.removeAttribute("confirmPassword");
+						getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
+	//					String attributes = "?nom="+name+"&prenom="+prenom+"&ville="+ville;
+	//					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/jsp/compte.jsp"));
+					}else{
+						request.setAttribute("email", email);
+						request.setAttribute("nom", name);
+						request.setAttribute("prenom", prenom);
+						request.setAttribute("ville", ville);
+						String error = "Cette adresse mail est deja utilisee";
+						request.setAttribute("errorMdpInvalide", "");
+						request.setAttribute("errorMail", error);
+						request.setAttribute("errorMdp", "");
+						getServletContext().getRequestDispatcher("/jsp/inscription1.jsp").forward(request, response);
 					}
-					base.procedureInit("Utilisateur_modifierAdresse", 5);
-					base.setParamInt("_ID_Utilisateur",id);
-					base.setParamString("_sVille",ville);
-					base.setParamString("_sCodePostal",null);
-					base.setParamString("_sPays",null);
-					base.setParamString("_sAdresse",null);
-					base.execute();
-					base.procedureInit("Membre_ajouter", 1);
-					base.setParamInt("_ID_Utilisateur", id);
-					base.execute();
+				}
+				else{
+					String error = "Les deux mots de passe tapes sont differents";
 					request.setAttribute("email", email);
 					request.setAttribute("nom", name);
 					request.setAttribute("prenom", prenom);
 					request.setAttribute("ville", ville);
-					request.setAttribute("password", null);
-					request.setAttribute("confirmPassword", null);
-					request.removeAttribute("password");
-					request.removeAttribute("confirmPassword");
-					getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
-//					String attributes = "?nom="+name+"&prenom="+prenom+"&ville="+ville;
-//					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/jsp/compte.jsp"));
-				}else{
-					throw new FormValidationException("Le mail est deja utilise");					
+					request.setAttribute("errorMdp", error);
+					request.setAttribute("errorMdpInvalide", "");
+					request.setAttribute("errorMail", "");
+					getServletContext().getRequestDispatcher("/jsp/inscription1.jsp").forward(request, response);
 				}
-			}
-			else{
-				throw new FormValidationException("Veuillez resaisir votre mot de passe.");
+			}else{
+				String error = "Le mot de passe n'est pas valide";
+				request.setAttribute("email", email);
+				request.setAttribute("nom", name);
+				request.setAttribute("prenom", prenom);
+				request.setAttribute("ville", ville);
+				request.setAttribute("errorMdpInvalide", error);
+				request.setAttribute("errorMdp", "");
+				request.setAttribute("errorMail", "");
+				getServletContext().getRequestDispatcher("/jsp/inscription1.jsp").forward(request, response);
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

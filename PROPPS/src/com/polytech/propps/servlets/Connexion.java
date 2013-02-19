@@ -23,7 +23,7 @@ public class Connexion extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doGet( HttpServletRequest request, HttpServletResponse
+	public void doPost( HttpServletRequest request, HttpServletResponse
 			response ) throws ServletException, IOException{
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -38,14 +38,16 @@ public class Connexion extends HttpServlet {
 			base.setParamString("_sPassword", password);
 			ResultSet result = base.executeQuery();
 			if(result.next()){
+				System.out.println("Il existe un membre avec cette adresse email : "+result.getInt("ID_Utilisateur"));
 				Membre membre = new Membre(result.getInt("ID_Utilisateur"));
 				membre.fill();
 				request.setAttribute("nom", membre.getsNom());
 				request.setAttribute("prenom", membre.getsPrenom());
 				request.removeAttribute("password");
 				request.removeAttribute("email");
+				System.out.println(membre.getAdresse().getVille());
+				request.setAttribute("ville", membre.getAdresse().getVille());
 				getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
-				//request.setAttribute("ville", membre.getAdresse());
 				
 			}else{
 				base.procedureInit("Recruteur_getIDByLoginPW", 2);
@@ -54,6 +56,11 @@ public class Connexion extends HttpServlet {
 				result = base.executeQuery();
 				if(result.next()){
 					Recruteur recruteur = new Recruteur(result.getInt("ID_Utilisateur"));
+				}else{
+					String error = "Mot de passe ou login incorrect";
+					request.setAttribute("error", error);
+					request.setAttribute("email", email);
+					getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);					
 				}
 			}
 		}catch(Exception e) {
