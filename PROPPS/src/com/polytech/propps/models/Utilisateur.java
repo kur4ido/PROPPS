@@ -82,7 +82,8 @@ public abstract class Utilisateur implements IModel {
 		Base b = new Base();
 		try {
 			b.connect();
-			b.procedureInit("Utilisateur_delete", 0);
+			b.procedureInit("Utilisateur_delete", 1);
+			b.setParamInt("_" + colID, ID_Utilisateur);
 			b.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
