@@ -53,6 +53,7 @@ public class Membre extends Utilisateur{
 		bFillContact = true;
 	}
 	
+	
 	private Membre(int ID_Utilisateur,String sNom,String sPrenom,String sEmail,Profil profil, boolean bContrat,boolean bPresta,
 			Date dtFinPresta) {
 		super(sNom,sPrenom,sEmail,null);
@@ -331,14 +332,27 @@ public class Membre extends Utilisateur{
 		lstExperiencePro.put(e.getID(),e);
 	}
 	
+	/**
+	 * Méthode modélisant la demande de mise en relation par le membre courant
+	 * au membre donné en paramètre. Cette demande est enregistrée uniquement dans
+	 * la base de données pour le membre destinataire.
+	 * 
+	 * @param m : le membre destinataire
+	 */
 	public void demanderContact(Membre m) {
 		Base b = new Base();
 		try {
 			b.connect();
 			b.procedureInit("Membre_envoyerNotif", 2);
-			b.setParamInt("_" + colID, super.ID_Utilisateur);
-			b.execute();
-			super.delete();
+			b.setParamInt("_" + Notification.colID_Source, super.ID_Utilisateur);
+			b.setParamInt("_" + Notification.colID_Dest,m.getID_Utilisateur());
+			ResultSet result = b.executeQuery();
+			if(result.next()) {
+				Notification n = new Notification(this, m,result.getDate(Notification.colDtNotif)
+						, false, false, false);
+				lstNotifEnvoi.add(n);
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -347,6 +361,13 @@ public class Membre extends Utilisateur{
 		}
 	}
 	
+	/**
+	 * Méthode permettant d'ajouter une relation entre deux membres (dans la base
+	 * ainsi que dans les instances locales au système)
+	 * 
+	 * Nombre de requêtes SQL : 1
+	 * @param m le membre à ajouter
+	 */
 	public void addContact(Membre m) {
 		Base b = new Base();
 		try {
