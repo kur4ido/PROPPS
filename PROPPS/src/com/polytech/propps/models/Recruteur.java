@@ -1,18 +1,19 @@
 package com.polytech.propps.models;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.polytech.propps.bdd.Base;
 
 public class Recruteur extends Utilisateur {
 	
 	private final static String colID = "ID_Utilisateur";
-	private final static String colSociete = "ID_Societe";
+
 	
-	protected int ID_Societe;
+	protected Societe societe;
 
 	public Recruteur(int ID) {
 		super(ID);
+		societe = null;
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class Recruteur extends Utilisateur {
 			b.connect();
 			b.procedureInit("Recruteur_insertOrUpdate", 2);
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
-			b.setParamInt("_" + colSociete, ID_Societe);
+			b.setParamInt("_" + Societe.colID, societe.getID());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -47,25 +48,47 @@ public class Recruteur extends Utilisateur {
 		
 	} 
 
-	public int getID_Societe() {
-		return ID_Societe;
+	public Societe getSociete() {
+		if(!super.bFill) {
+			fill();
+		}
+		return societe;
 	}
 
-	public void setID_Societe(int iD_Societe) {
-		ID_Societe = iD_Societe;
+	public void setSociete(Societe newSociete) {
+		this.societe = newSociete;
+		super.bFill = true;
 	}
 
-	public static String getColid() {
-		return colID;
-	}
-
-	public static String getColsociete() {
-		return colSociete;
-	}
 
 	@Override
 	public void fill() {
-		// TODO Auto-generated method stub
+		if(!super.bFill) {
+			Base b = new Base();
+			try {
+				b.connect();
+				b.procedureInit("Recruteur_getByID", 1);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				ResultSet result = b.executeQuery();
+				if(result.next()) {
+					super.sNom = result.getString(colNom);
+					super.sPrenom = result.getString(colPrenom);
+					super.sEmail = result.getString(colEmail);
+					super.sPassword = result.getString(colPassword);
+					super.adresse.setAdresse(result.getString(Adresse.colAdresse));
+					super.adresse.setVille(result.getString(Adresse.colVille));
+					super.adresse.setCodePostal(result.getString(Adresse.colCP));
+					super.adresse.setPays(result.getString(Adresse.colPays));
+					
+					societe = new Societe(result.getInt(Societe.colID));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				b.close();
+			}
+			bFill = true;
+		}
 		
 	}
 
