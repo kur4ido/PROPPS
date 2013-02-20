@@ -39,8 +39,8 @@
 				</button>
 				<a class="brand" href="../index.html">ProPPS</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
-					<form action="quickSearch"
-						class="navbar-search pull-left" method="post">
+					<form action="quickSearch" class="navbar-search pull-left"
+						method="post">
 						<input type="text" name="quicksearch" placeholder="Recherches"
 							class="search-query span2">
 					</form>
@@ -435,6 +435,7 @@
 													<div class="control-group">
 														<div class="controls">
 															<button type="submit" class="btn btn-primary">Modifier</button>
+															<a href="" type="button" class="btn">Supprimer</a>
 														</div>
 													</div>
 												</div>
@@ -593,6 +594,7 @@
 													<div class="control-group">
 														<div class="controls">
 															<button type="submit" class="btn btn-primary">Ajouter</button>
+															<a href="" type="button" class="btn">Supprimer</a>
 														</div>
 													</div>
 												</div>
@@ -623,30 +625,47 @@
 										<label class="control-label" for="domaine">Domaine</label>
 										<div class="controls">
 											<select name="domaine">
-												<option>Emission</option>
-												<option>Commerçant</option>
-												<option>Automates</option>
+												<option>Emission - Front Office</option>
+												<option>Emission - Back Office</option>
+												<option>Commerçant - Front Office</option>
+												<option>Commerçant - Back Office</option>
+												<option>Automates - Front Office</option>
+												<option>Automates - Back Office</option>
 											</select>
 										</div>
 									</div>
-
-									<div class="control-group">
-										<label class="control-label" for="type">Type</label>
-										<div class="controls">
-											<select name="type">
-												<option>Front Office</option>
-												<option>Back Office</option>
-											</select>
-										</div>
-									</div>
-
 									<div class="control-group">
 										<div class="controls">
 											<button type="submit" class="btn btn-primary">Ajouter</button>
 										</div>
 									</div>
 								</fieldset>
+									<legend>Modifier vos domaines d'expertise</legend>
+								<!-- L'adresse du lien contient l'identifiant du domaine d'expertise à supprimer -->
+								<table>
+									<tbody>
+										<tr>
+											<td>Emission - Back Office</td>
+											<td><a href="deleteDomaineId1.html"><i
+													class="icon-remove-sign"></i></a></td>
+										</tr>
+										<tr>
+											<td>Commerçant - Front Office</td>
+											<td><a href="deleteDomaineId2.html"><i
+													class="icon-remove-sign"></i></a></td>
+										</tr>
+										<tr>
+											<td>Automates - Front Office</td>
+											<td><a href="deleteDomaineId3.html"><i
+													class="icon-remove-sign"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
 							</form>
+
+
+
+
 						</div>
 
 
