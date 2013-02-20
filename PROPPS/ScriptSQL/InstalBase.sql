@@ -360,12 +360,12 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
--- procedure Recruteur_ajouter
+-- procedure Recruteur_insertOrUpdate
 -- -----------------------------------------------------
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-CREATE PROCEDURE `PROPPS_DB`.`Recruteur_ajouter` (IN _ID_Utilisateur INT, IN _ID_Societe INT)
+CREATE PROCEDURE `PROPPS_DB`.`Recruteur_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Societe INT)
 BEGIN
     INSERT INTO Recruteur (`ID_Utilisateur`,`ID_Societe`)
     Values(_ID_Utilisateur,_ID_Societe);
@@ -384,11 +384,14 @@ BEGIN
     IF(_ID_Societe = -1) THEN
         INSERT INTO Societe(sNom)
         VALUES (_sNom);
+        SELECT * FROM Societe WHERE ID_Societe = @@IDENTITY;
     ELSE
         UPDATE Societe
         SET sNom = _sNom
         WHERE ID_Societe = _ID_Societe;
+        SELECT * FROM Societe WHERE ID_Societe = _ID_Societe;
     END IF;
+    
 END$$
 
 DELIMITER ;
