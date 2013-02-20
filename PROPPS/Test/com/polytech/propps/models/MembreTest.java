@@ -30,19 +30,20 @@ public class MembreTest {
 	public void setUp() {
 		date = new Date(2013, 02, 19);
 		m1 = new Membre("Test", "Clément", "clement.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
-		m2 = new Membre(2);
+		m2 = new Membre(m1.getID_Utilisateur());
 	}
 	
 	@After
 	public void tearDown() {
 		m1.delete();
+		m2.delete();
 	}
 	
 	@Test
 	public void Constructeur1Test() {
 		
 		// Test de super(ID)
-		Assert.assertEquals("La valeur ID n'est pas initialisée correctement.", m2.getID_Utilisateur(), 2);
+		Assert.assertEquals("La valeur ID n'est pas initialisée correctement.", m2.getID_Utilisateur(), m1.getID_Utilisateur());
 		
 		// Test de l'initialisation de bFill
 		Assert.assertFalse("bFill n'est pas initialisé à False.", m2.isbFill());
