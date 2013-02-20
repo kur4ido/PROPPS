@@ -30,6 +30,7 @@ public class Recruteur extends Utilisateur {
 			b.procedureInit("Recruteur_insertOrUpdate", 2);
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
 			b.setParamInt("_" + Societe.colID, societe.getID());
+			b.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

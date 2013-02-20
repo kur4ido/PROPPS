@@ -69,11 +69,13 @@ public class RecruteurTest {
 		r1.insertOrUpdate();
 
 		Recruteur r4 = new Recruteur(r1.getID_Utilisateur());
+		
+		Assert.assertFalse("bfill pas a false", r4.isbFill());
 		r4.fill();
 		
 		Comparaison.comparerDeuxRecruteurs(r1, r4);
 		
-		r4.delete();
+		//r4.delete();
 	}
 	
 	
