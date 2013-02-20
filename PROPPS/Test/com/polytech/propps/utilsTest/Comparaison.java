@@ -11,10 +11,10 @@ public class Comparaison {
 	
 	public static void comparerDeuxMembres(Membre mX, Membre mY) {
 		Assert.assertEquals("L'ID du membre est mal insérée.", mX, mY);
-		Assert.assertEquals("L'email du membre est mal insérée.", mX.getEmail(), mY.getEmail());
-		Assert.assertEquals("Le nom du membre est mal inséré.", mX.getNom(), mY.getNom());
+		Assert.assertEquals("L'email du membre est mal insérée.", mX.getsEmail(), mY.getsEmail());
+		Assert.assertEquals("Le nom du membre est mal inséré.", mX.getsNom(), mY.getsNom());
 		//Assert.assertEquals("Le mot de passe du membre est mal inséré.", mX.getsPassword(), mY.getsPassword());
-		Assert.assertEquals("Le prénom du membre est mal inséré.", mX.getPrenom(), mY.getPrenom());
+		Assert.assertEquals("Le prénom du membre est mal inséré.", mX.getsPrenom(), mY.getsPrenom());
 		//Assert.assertEquals("L'adresse du membre est mal insérée.", mX.getAdresse(), mY.getAdresse());
 		//@TODO comparer champ à champ pour l'adresse sinon @objets differentes !
 		//Assert.assertEquals("La date de fin de prestation est mal insérée.", mX.getDtFinPresta(), mY.getDtFinPresta());
@@ -42,10 +42,10 @@ public class Comparaison {
 	}
 	
 	public static void membreEstVide(Membre mX) {
-		Assert.assertNull("L'email du membre a mal été supprimée.", mX.getEmail());
-		Assert.assertNull("Le nom du membre a mal été supprimé.", mX.getNom());
+		Assert.assertNull("L'email du membre a mal été supprimée.", mX.getsEmail());
+		Assert.assertNull("Le nom du membre a mal été supprimé.", mX.getsNom());
 		Assert.assertNull("Le mot de passe du membre a mal été supprimé.", mX.getsPassword());
-		Assert.assertNull("Le prénom du membre a mal été supprimé.", mX.getPrenom());
+		Assert.assertNull("Le prénom du membre a mal été supprimé.", mX.getsPrenom());
 		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getAdresse());
 		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getCodePostal());
 		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getPays());
@@ -82,10 +82,10 @@ public class Comparaison {
 	
 	public static void comparerDeuxRecruteurs(Recruteur rX, Recruteur rY) {
 		//Assert.assertEquals("L'ID du recruteur est mal insérée.", rX, rY);
-		Assert.assertEquals("L'email du recruteur est mal inséré.", rX.getEmail(), rY.getEmail());
-		Assert.assertEquals("Le nom du recruteur est mal inséré.", rX.getNom(), rY.getNom());
+		Assert.assertEquals("L'email du recruteur est mal inséré.", rX.getsEmail(), rY.getsEmail());
+		Assert.assertEquals("Le nom du recruteur est mal inséré.", rX.getsNom(), rY.getsNom());
 		//Assert.assertEquals("Le mot de passe du recruteur est mal inséré.", rX.getsPassword(), rY.getsPassword());
-		Assert.assertEquals("Le prénom du recruteur est mal inséré.", rX.getPrenom(), rY.getPrenom());
+		Assert.assertEquals("Le prénom du recruteur est mal inséré.", rX.getsPrenom(), rY.getsPrenom());
 		//Assert.assertEquals("L'adresse du recruteur est mal insérée.", rX.getAdresse(), rY.getAdresse());
 		//TODO:
 		//idem membre champ a champ
@@ -96,10 +96,10 @@ public class Comparaison {
 	}
 	
 	public static void RecruteurEstVide(Recruteur rX) {
-		Assert.assertNull("L'email du membre a mal été supprimée.", rX.getEmail());
-		Assert.assertNull("Le nom du membre a mal été supprimé.", rX.getNom());
+		Assert.assertNull("L'email du membre a mal été supprimée.", rX.getsEmail());
+		Assert.assertNull("Le nom du membre a mal été supprimé.", rX.getsNom());
 		Assert.assertNull("Le mot de passe du membre a mal été supprimé.", rX.getsPassword());
-		Assert.assertNull("Le prénom du membre a mal été supprimé.", rX.getPrenom());
+		Assert.assertNull("Le prénom du membre a mal été supprimé.", rX.getsPrenom());
 		Assert.assertNull("L'adresse du membre a mal été supprimée.", rX.getAdresse().getAdresse());
 		Assert.assertNull("La société du recruteur a été mal supprimée", rX.getSociete());
 	}

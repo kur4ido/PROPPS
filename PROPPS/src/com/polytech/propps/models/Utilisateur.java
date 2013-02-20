@@ -107,38 +107,38 @@ public abstract class Utilisateur implements IModel {
 		ID_Utilisateur = iD_Utilisateur;
 	}
 
-	public String getNom() {
+	public String getsNom() {
 		if(!bFill) {
 			fill();
 		}
 		return sNom;
 	}
 
-	public void setNom(String Nom) {
+	public void setsNom(String Nom) {
 		this.sNom = Nom;
 		bFill = true;
 	}
 
-	public String getPrenom() {
+	public String getsPrenom() {
 		if(!bFill) {
 			fill();
 		}
 		return sPrenom;
 	}
 
-	public void setPrenom(String Prenom) {
+	public void setsPrenom(String Prenom) {
 		this.sPrenom = Prenom;
 		bFill = true;
 	}
 
-	public String getEmail() {
+	public String getsEmail() {
 		if(!bFill) {
 			fill();
 		}
 		return sEmail;
 	}
 
-	public void setEmail(String Email) {
+	public void setsEmail(String Email) {
 		this.sEmail = Email;
 		bFill = true;
 	}

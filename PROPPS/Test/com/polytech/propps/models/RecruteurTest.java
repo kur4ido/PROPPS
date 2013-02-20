@@ -48,16 +48,16 @@ public class RecruteurTest {
 		Assert.assertEquals("La valeur ID n'est pas initialisée correctement.", r.getID_Utilisateur(), fake_id);
 	
 		// Test de l'initialisation de societe
-		//Assert.assertNull("La société n'est pas initialisée à NULL.",r.getSociete());
+		Assert.assertNull("La société n'est pas initialisée à NULL.",r.getSociete());
 	}
 	
 	@Test
 	public void Constructeur2Test() {
 		
 		// Test de super(sNom, sPrenom, sEmail, sPassword)
-		Assert.assertEquals("La valeur sNom n'est pas initalisée correctement.", r1.getNom(), "Test");
-		Assert.assertEquals("La valeur de sPrenom n'est pas initialisée correctement.", r1.getPrenom(), "Mathieu");
-		Assert.assertEquals("La valeur de sEmail n'est pas initialisée correctement.", r1.getEmail(), "mathieu.test@u-psud.fr");
+		Assert.assertEquals("La valeur sNom n'est pas initalisée correctement.", r1.getsNom(), "Test");
+		Assert.assertEquals("La valeur de sPrenom n'est pas initialisée correctement.", r1.getsPrenom(), "Mathieu");
+		Assert.assertEquals("La valeur de sEmail n'est pas initialisée correctement.", r1.getsEmail(), "mathieu.test@u-psud.fr");
 		Assert.assertEquals("La valeur de sPassword n'est pas initialisée correctement.", r1.getsPassword(), "kubor");
 		
 		// Test de l'initialisation de societe
@@ -89,27 +89,31 @@ public class RecruteurTest {
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
 		
 		//test Update
-		r1.setPrenom("Clement");
+		r1.setsPrenom("Clement");
 		r1.insertOrUpdate();
 		r3 = new Recruteur(r1.getID_Utilisateur());
 		r3.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
 	}
 	
-	/*@Test
+	@Test
 	public void deleteTest() {
+		
 		// Vérifier qu'il est bien dans la base
 		Integer indiceBase = r1.getID_Utilisateur();
+		r1.insertOrUpdate();
 		Recruteur r6 = new Recruteur(r1.getID_Utilisateur());
+		r6.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r6);
-		r6.delete();
+		//r6.delete();
 		
 		// delete
 		r1.delete();
 		
 		// checker à l'indice de m1 il n'y a plus rien
-		Recruteur r7 = new Recruteur(indiceBase);
-		Comparaison.RecruteurEstVide(r7);
+		r6 = new Recruteur(indiceBase);
+		r6.fill();
+		Comparaison.RecruteurEstVide(r6);
 			
-	}*/
+	}
 }
