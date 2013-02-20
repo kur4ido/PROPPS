@@ -98,6 +98,7 @@ public abstract class Utilisateur implements IModel {
 	}
 
 	public abstract void fill();
+	
 	public int getID_Utilisateur() {
 		return ID_Utilisateur;
 	}

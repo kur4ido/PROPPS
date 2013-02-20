@@ -367,14 +367,9 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Societe INT)
 BEGIN
-    IF(_ID_Utilisateur < 0) THEN
-        INSERT INTO Recruteur (`ID_Utilisateur`,`ID_Societe`)
-        Values(_ID_Utilisateur,_ID_Societe);
-    ELSE
-        UPDATE Recruteur
-        SET ID_Societe = _ID_Societe
-        WHERE ID_Utilisateur = _ID_Utilisateur;
-    END IF;
+    DELETE FROM Recruteur WHERE ID_Utilisateur = _ID_Utilisateur;
+    INSERT INTO Recruteur (`ID_Utilisateur`,`ID_Societe`)
+    VALUES(_ID_Utilisateur,_ID_Societe);
 END$$
 
 DELIMITER ;
