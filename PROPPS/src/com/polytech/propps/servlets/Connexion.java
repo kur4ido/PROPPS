@@ -40,8 +40,8 @@ public class Connexion extends HttpServlet {
 				System.out.println("Il existe un membre avec cette adresse email : "+result.getInt("ID_Utilisateur"));
 				Membre membre = new Membre(result.getInt("ID_Utilisateur"));
 				membre.fill();
-				request.setAttribute("nom", membre.getsNom());
-				request.setAttribute("prenom", membre.getsPrenom());
+				request.setAttribute("nom", membre.getNom());
+				request.setAttribute("prenom", membre.getPrenom());
 				request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(result.getInt("ID_Utilisateur")));
 				request.removeAttribute("password");
 				request.removeAttribute("email");

@@ -65,9 +65,9 @@ public class MembreTest {
 	public void Constructeur2Test() {
 		
 		// Test de super(sNom, sPrenom, sEmail, sPassword)
-		Assert.assertEquals("La valeur sNom n'est pas initalisée correctement.", m1.getsNom(), "Test");
-		Assert.assertEquals("La valeur de sPrenom n'est pas initialisée correctement.", m1.getsPrenom(), "Clément");
-		Assert.assertEquals("La valeur de sEmail n'est pas initialisée correctement.", m1.getsEmail(), "clement.test@u-psud.fr");
+		Assert.assertEquals("La valeur sNom n'est pas initalisée correctement.", m1.getNom(), "Test");
+		Assert.assertEquals("La valeur de sPrenom n'est pas initialisée correctement.", m1.getPrenom(), "Clément");
+		Assert.assertEquals("La valeur de sEmail n'est pas initialisée correctement.", m1.getEmail(), "clement.test@u-psud.fr");
 		Assert.assertEquals("La valeur de sPassword n'est pas initialisée correctement.", m1.getsPassword(), "kubor");
 		
 		// Test de l'initialisation de profil, bContrat, b.Presta, dtFinPresta
@@ -112,7 +112,7 @@ public class MembreTest {
 		Comparaison.comparerDeuxMembres(m1, m5);
 		
 		//tests update
-		m1.setsPrenom("Mathieu");
+		m1.setPrenom("Mathieu");
 		m1.insertOrUpdate();
 		Membre m7 = new Membre(m1.getID_Utilisateur());
 		m7.fill();
