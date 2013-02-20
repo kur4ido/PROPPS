@@ -267,10 +267,10 @@ CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Messages` (
   `dtMessage` DATETIME NOT NULL ,
   `sMessage` TEXT NOT NULL ,
   PRIMARY KEY (`ID_Message`) ,
-  INDEX `fk_Messages_Membre1` (`ID_Utilisateur` ASC) ,
-  CONSTRAINT `fk_Messages_Membre1`
+  INDEX `fk_Messages_Utilisateur1` (`ID_Utilisateur` ASC) ,
+  CONSTRAINT `fk_Messages_Utilisateur1`
     FOREIGN KEY (`ID_Utilisateur` )
-    REFERENCES `PROPPS_DB`.`Membre` (`ID_Utilisateur` )
+    REFERENCES `PROPPS_DB`.`Utilisateur` (`ID_Utilisateur` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -669,6 +669,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_getIDByLoginPW` (IN _sEmail VARCHAR(250),IN _sPassword VARCHAR(250))
 BEGIN
     SELECT Recruteur.ID_Utilisateur
@@ -792,6 +794,8 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_delete` (IN _ID_Utilisateur INT)
 BEGIN
+    DELETE FROM Message WHERE ID_Utilisateur = _ID_Utilisateur;
+
     declare varID_Adresse INT;
     SET varID_Adresse = (SELECT ID_Adresse FROM Utilisateur WHERE ID_Utilisateur = _ID_Utilisateur);
 
@@ -855,6 +859,19 @@ BEGIN
     WHERE CONCAT(U.sNom, U.sPrenom) like CONCAT("%",_Str,"%")
         OR CONCAT(U.sPrenom, U.sNom) like CONCAT("%",_Str,"%")
     Order by U.sNom, U.sPrenom;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Recruteur_delete
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Recruteur_delete` (IN _ID_Utilisateur INT)
+BEGIN
+    DELETE FROM Recruteur WHERE ID_Utilisateur = _ID_Utilisateur;
 END$$
 
 DELIMITER ;
