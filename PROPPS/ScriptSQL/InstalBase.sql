@@ -209,9 +209,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PROPPS_DB`.`Notifications`
+-- Table `PROPPS_DB`.`Notification`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Notifications` (
+CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Notification` (
   `ID_Notification` INT NOT NULL AUTO_INCREMENT ,
   `dtNotif` DATETIME NOT NULL ,
   `bVuDest` TINYINT(1) NOT NULL ,
@@ -817,6 +817,14 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Membre_delete` (IN _ID_Utilisateur INT)
 BEGIN
+    DELETE FROM DomaineExperiencePro 
+    WHERE ID_ExperiencePro IN (SELECT ID_ExperiencePro 
+                               FROM ExperiencePro 
+                                WHERE ID_Utilisateur = _ID_Utilisateur);
+
+    DELETE FROM ExperiencePro WHERE ID_Utilisateur = _ID_Utilisateur;
+    DELETE FROM Notification WHERE ID_Utilisateur = _ID_Utilisateur;
+    DELETE FROM ExpertiseMembre WHERE ID_Utilisateur = _ID_Utilisateur;
     DELETE FROM Membre WHERE ID_Utilisateur = _ID_Utilisateur;
 END$$
 

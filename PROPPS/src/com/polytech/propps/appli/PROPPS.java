@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import com.polytech.propps.bdd.Base;
 import com.polytech.propps.models.Expertise;
+import com.polytech.propps.models.Membre;
 import com.polytech.propps.models.Profil;
 import com.polytech.propps.models.Recruteur;
 import com.polytech.propps.models.Societe;
@@ -63,6 +64,9 @@ public class PROPPS {
 	public static void main(String[] args) {
 		try {
 			init();
+			Membre m = new Membre(1);
+			Membre m2 = new Membre(2);
+			m.demanderContact(m2);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

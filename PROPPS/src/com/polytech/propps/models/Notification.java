@@ -10,6 +10,7 @@ public class Notification {
 	public static final String colDtNotif = "dtNotif";
 	public static final String colID_Source = "ID_Source";
 	public static final String colID_Dest = "ID_Destinataire";
+	public static final String colID_Notif = "ID_Notification";
 	
 	protected Membre source,destinataire;
 	protected Date dtDemande;

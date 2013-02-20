@@ -24,8 +24,8 @@ public class Membre extends Utilisateur{
 	protected ArrayList<Membre> lstContacts;
 	protected HashMap<Integer,ExperiencePro> lstExperiencePro;
 	protected ArrayList<Expertise> lstExpertise;
-	protected ArrayList<Notification> lstNotifEnvoi;
-	protected ArrayList<Notification> lstNotifRecept;
+	protected HashMap<Integer,Notification> lstNotifEnvoi;
+	protected HashMap<Integer,Notification> lstNotifRecept;
 	
 	private boolean bFillExpertise,bFillContact,bFillExperiencePro; 
 	
@@ -38,6 +38,8 @@ public class Membre extends Utilisateur{
 		lstContacts = new ArrayList<Membre>();
 		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
+		lstNotifEnvoi = new HashMap<Integer, Notification>();
+		lstNotifRecept = new HashMap<Integer, Notification>();
 	}
 	
 	public Membre(String sNom,String sPrenom,String sEmail, String sPassword,Profil profil, boolean bContrat,boolean bPresta,
@@ -50,6 +52,8 @@ public class Membre extends Utilisateur{
 		lstContacts = new ArrayList<Membre>();
 		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
+		lstNotifEnvoi = new HashMap<Integer, Notification>();
+		lstNotifRecept = new HashMap<Integer, Notification>();
 		super.bFill = true;
 		bFillExpertise = true;
 		bFillContact = true;
@@ -157,7 +161,7 @@ public class Membre extends Utilisateur{
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
 			b.setParamBool("_" + Notification.colBRecue,true);
 			ResultSet result = b.executeQuery();
-			lstNotifRecept = new ArrayList<Notification>();
+			lstNotifRecept = new HashMap<Integer, Notification>();
 			while (result.next()) {
 				//Remplissage du profil
 				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
@@ -174,7 +178,7 @@ public class Membre extends Utilisateur{
 						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
 						result.getBoolean(Notification.colAccept));
 				//Ajout dans la liste concernée
-				lstNotifRecept.add(n);
+				lstNotifRecept.put(result.getInt(Notification.colID_Notif),n);
 			}
 			
 			/*On réitère le processus pour les notifications envoyées*/
@@ -183,7 +187,7 @@ public class Membre extends Utilisateur{
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
 			b.setParamBool("_" + Notification.colBRecue,false);
 			result = b.executeQuery();
-			lstNotifRecept = new ArrayList<Notification>();
+			lstNotifRecept = new HashMap<Integer, Notification>();
 			while (result.next()) {
 				//Remplissage du profil
 				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
@@ -200,7 +204,7 @@ public class Membre extends Utilisateur{
 						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
 						result.getBoolean(Notification.colAccept));
 				//Ajout dans la liste concernée
-				lstNotifEnvoi.add(n);
+				lstNotifEnvoi.put(result.getInt(Notification.colID_Notif),n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -352,7 +356,7 @@ public class Membre extends Utilisateur{
 			if(result.next()) {
 				Notification n = new Notification(this, m,result.getDate(Notification.colDtNotif)
 						, false, false, false);
-				lstNotifEnvoi.add(n);
+				lstNotifEnvoi.put(result.getInt(Notification.colID_Notif),n);
 			}
 			
 		} catch (SQLException e) {
@@ -360,6 +364,15 @@ public class Membre extends Utilisateur{
 			e.printStackTrace();
 		}finally {
 			b.close();
+		}
+	}
+	
+	
+	public void reponseDemande(int ID_Notif, boolean bAccept) {
+		if(bAccept) {
+			
+		}else {
+			
 		}
 	}
 	

@@ -16,9 +16,6 @@ INSERT INTO Adresse(sAdresse,sVille,sCodePostal,sPays)
 VALUES("Adresse2","Ville2","CodePostal2","Pays2");
 
 
-SET @varID_Adresse = @@IDENTITY;
-
-
 INSERT INTO Utilisateur(sNom,sPrenom,sEmail,sPassword,ID_Adresse)
 VALUES("Nom2","Prenom2","Email2@lol.fr","Password2",@@IDENTITY);
 
@@ -46,8 +43,10 @@ VALUES("Adresse4","Ville4","CodePostal4","Pays4");
 
 
 INSERT INTO Utilisateur(sNom,sPrenom,sEmail,sPassword,ID_Adresse)
-VALUES("Nom4","Prenom4","Email4","Password4",@@IDENTITY);
+VALUES("Nom4","Prenom4","Email4@lol.fr","Password4",@@IDENTITY);
 
 
 INSERT INTO Membre(ID_Utilisateur,ID_Profil,dtFinPresta,bPresta,bContrat)
 VALUES (@@IDENTITY,2,NULL,FALSE,FALSE);
+
+
