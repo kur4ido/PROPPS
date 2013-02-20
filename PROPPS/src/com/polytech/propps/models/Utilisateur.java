@@ -20,6 +20,10 @@ public abstract class Utilisateur implements IModel {
 	public Utilisateur(int ID) {
 		ID_Utilisateur = ID;
 		adresse = new Adresse(null,null,null,null);
+		sNom = null;
+		sPrenom = null;
+		sEmail = null;
+		sPassword = null;
 		bFill = false;
 	}
 	
