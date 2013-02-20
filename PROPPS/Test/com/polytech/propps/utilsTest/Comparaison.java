@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.junit.Assert;
 
 import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Recruteur;
 
 public class Comparaison {
 	
@@ -43,10 +44,10 @@ public class Comparaison {
 		Assert.assertNull("Le nom du membre a mal été supprimé.", mX.getsNom());
 		Assert.assertNull("Le mot de passe du membre a mal été supprimé.", mX.getsPassword());
 		Assert.assertNull("Le prénom du membre a mal été supprimé.", mX.getsPrenom());
-		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse());
-		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse());
-		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse());
-		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse());
+		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getAdresse());
+		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getCodePostal());
+		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getPays());
+		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse().getVille());
 
 		Assert.assertNull("La date de fin de prestation a mal été supprimée.", mX.getDtFinPresta());
 		Assert.assertNull("Le profil du membre a mal été supprimé.", mX.getProfil());
@@ -75,5 +76,24 @@ public class Comparaison {
 		Assert.assertEquals("Les dates sont différentes (jour)",d1.getDay(), d2.getDay());
 		Assert.assertEquals("Les dates sont différentes (mois)",d1.getMonth(), d2.getMonth());
 		Assert.assertEquals("Les dates sont différentes (année)",d1.getYear(), d2.getYear());
+	}
+	
+	public static void comparerDeuxRecruteurs(Recruteur rX, Recruteur rY) {
+		Assert.assertEquals("L'ID du recruteur est mal insérée.", rX, rY);
+		Assert.assertEquals("L'email du recruteur est mal inséré.", rX.getsEmail(), rY.getsEmail());
+		Assert.assertEquals("Le nom du recruteur est mal inséré.", rX.getsNom(), rY.getsNom());
+		Assert.assertEquals("Le mot de passe du recruteur est mal inséré.", rX.getsPassword(), rY.getsPassword());
+		Assert.assertEquals("Le prénom du recruteur est mal inséré.", rX.getsPrenom(), rY.getsPrenom());
+		Assert.assertEquals("L'adresse du recruteur est mal insérée.", rX.getAdresse(), rY.getAdresse());
+		Assert.assertEquals("La société du recruteur est mal insérée.", rX.getSociete(), rY.getSociete());
+	}
+	
+	public static void RecruteurEstVide(Recruteur rX) {
+		Assert.assertNull("L'email du membre a mal été supprimée.", rX.getsEmail());
+		Assert.assertNull("Le nom du membre a mal été supprimé.", rX.getsNom());
+		Assert.assertNull("Le mot de passe du membre a mal été supprimé.", rX.getsPassword());
+		Assert.assertNull("Le prénom du membre a mal été supprimé.", rX.getsPrenom());
+		Assert.assertNull("L'adresse du membre a mal été supprimée.", rX.getAdresse().getAdresse());
+		Assert.assertNull("La société du recruteur a été mal supprimée", rX.getSociete());
 	}
 }
