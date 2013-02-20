@@ -69,15 +69,17 @@ public class RecruteurTest {
 		r1.insertOrUpdate();
 
 		Recruteur r4 = new Recruteur(r1.getID_Utilisateur());
+		
+		Assert.assertFalse("bfill pas a false", r4.isbFill());
 		r4.fill();
 		
 		Comparaison.comparerDeuxRecruteurs(r1, r4);
 		
-		r4.delete();
+		//r4.delete();
 	}
 	
 	
-	/*@Test
+	@Test
 	public void insertOrUpdateTest() {
 	
 		//test insertion
@@ -85,18 +87,16 @@ public class RecruteurTest {
 		Recruteur r3 = new Recruteur(r1.getID_Utilisateur());
 		r3.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
-		r3.delete();
 		
 		//test Update
-		//TODO :
-		 * r1.setSMTHG
-		 * r3 = new Recruteur(r1.getID_Utilisateur());
-		 * r3.fill();
-		 * Comparaison.comparerDeuxRecruteurs(r1, r3);
-		 * r3.delete();
+		r1.setsPrenom("Clement");
+		r1.insertOrUpdate();
+		r3 = new Recruteur(r1.getID_Utilisateur());
+		r3.fill();
+		Comparaison.comparerDeuxRecruteurs(r1, r3);
 	}
 	
-	@Test
+	/*@Test
 	public void deleteTest() {
 		// Vérifier qu'il est bien dans la base
 		Integer indiceBase = r1.getID_Utilisateur();

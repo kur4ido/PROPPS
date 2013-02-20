@@ -367,8 +367,9 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Societe INT)
 BEGIN
+    DELETE FROM Recruteur WHERE ID_Utilisateur = _ID_Utilisateur;
     INSERT INTO Recruteur (`ID_Utilisateur`,`ID_Societe`)
-    Values(_ID_Utilisateur,_ID_Societe);
+    VALUES(_ID_Utilisateur,_ID_Societe);
 END$$
 
 DELIMITER ;
@@ -888,6 +889,7 @@ CREATE PROCEDURE `PROPPS_DB`.`Recruteur_getByID` (IN _ID_Utilisateur INT)
 BEGIN
     SELECT * 
     FROM Utilisateur inner join Recruteur on Utilisateur.ID_Utilisateur = Recruteur.ID_Utilisateur
+        inner join Adresse on Adresse.ID_Adresse = Utilisateur.ID_Adresse
     WHERE Recruteur.ID_Utilisateur = _ID_Utilisateur;
 END$$
 

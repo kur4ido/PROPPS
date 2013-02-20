@@ -117,8 +117,7 @@ public class MembreTest {
 		Membre m7 = new Membre(m1.getID_Utilisateur());
 		m7.fill();
 		Comparaison.comparerDeuxMembres(m1, m7);
-		m5.delete();
-		m7.delete();
+		
 		
 	}
 	
@@ -132,7 +131,7 @@ public class MembreTest {
 		Membre m6 = new Membre(m1.getID_Utilisateur());
 		m6.fill();
 		Comparaison.comparerDeuxMembres(m1, m6);
-		m6.delete();
+		
 		
 		// delete
 		m1.delete();
