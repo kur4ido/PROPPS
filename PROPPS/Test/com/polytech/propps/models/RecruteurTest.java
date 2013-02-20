@@ -13,7 +13,7 @@ import com.polytech.propps.utilsTest.Comparaison;
 public class RecruteurTest {
 	private Recruteur r1;
 	private Date date;
-	private Societe nintendo;
+	private Societe societe;
 	
 	@BeforeClass
 	public static void setUpClass() throws IOException, ClassNotFoundException {
@@ -28,7 +28,8 @@ public class RecruteurTest {
 	@Before
 	public void setUp() {
 		date = new Date(2013, 02, 19);
-		r1 = new Recruteur("Test", "Mathieu", "mathieu.test@u-psud.fr", "kubor", nintendo);
+		societe = new Societe(1);
+		r1 = new Recruteur("Test", "Mathieu", "mathieu.test@u-psud.fr", "kubor", societe);
 		
 	}
 	
@@ -60,7 +61,7 @@ public class RecruteurTest {
 		Assert.assertEquals("La valeur de sPassword n'est pas initialisée correctement.", r1.getsPassword(), "kubor");
 		
 		// Test de l'initialisation de societe
-		Assert.assertEquals("La valeur de societe n'est pas initialisée correctement.", r1.getSociete(), nintendo);
+		Assert.assertEquals("La valeur de societe n'est pas initialisée correctement.", r1.getSociete(), societe);
 	}
 	
 	@Test
