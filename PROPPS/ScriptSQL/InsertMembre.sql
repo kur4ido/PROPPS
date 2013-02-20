@@ -4,7 +4,7 @@ VALUES("Adresse1","Ville1","CodePostal1","Pays1");# 1 ligne affectée.
 
 
 INSERT INTO Utilisateur(sNom,sPrenom,sEmail,sPassword,ID_Adresse)
-VALUES("Nom1","Prenom1","Email1@lol.fr","Password1",@@Identity);# 1 ligne affectée.
+VALUES("Nom1","Prenom1","Email1@lol.fr",SHA1("Password1"),@@Identity);# 1 ligne affectée.
 
 
 INSERT INTO Membre(ID_Utilisateur,ID_Profil,dtFinPresta,bPresta,bContrat)
