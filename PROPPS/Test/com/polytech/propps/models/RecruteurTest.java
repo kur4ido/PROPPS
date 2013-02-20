@@ -77,7 +77,7 @@ public class RecruteurTest {
 	}
 	
 	
-	/*@Test
+	@Test
 	public void insertOrUpdateTest() {
 	
 		//test insertion
@@ -88,15 +88,14 @@ public class RecruteurTest {
 		r3.delete();
 		
 		//test Update
-		//TODO :
-		 * r1.setSMTHG
-		 * r3 = new Recruteur(r1.getID_Utilisateur());
-		 * r3.fill();
-		 * Comparaison.comparerDeuxRecruteurs(r1, r3);
-		 * r3.delete();
+		r1.setsPrenom("Clement");
+		r3 = new Recruteur(r1.getID_Utilisateur());
+		r3.fill();
+		Comparaison.comparerDeuxRecruteurs(r1, r3);
+		r3.delete();
 	}
 	
-	@Test
+	/*@Test
 	public void deleteTest() {
 		// Vérifier qu'il est bien dans la base
 		Integer indiceBase = r1.getID_Utilisateur();
