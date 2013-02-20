@@ -49,7 +49,7 @@ public class RecruteurTest {
 		// Test de l'initialisation de societe
 		//Assert.assertNull("La société n'est pas initialisée à NULL.",r.getSociete());
 	}
-	/*
+	
 	@Test
 	public void Constructeur2Test() {
 		
@@ -65,18 +65,34 @@ public class RecruteurTest {
 	
 	@Test
 	public void fillTest() {
+		r1.insertOrUpdate();
+
 		Recruteur r4 = new Recruteur(r1.getID_Utilisateur());
 		r4.fill();
+		
 		Comparaison.comparerDeuxRecruteurs(r1, r4);
+		
 		r4.delete();
 	}
 	
-	@Test
+	
+	/*@Test
 	public void insertOrUpdateTest() {
+	
+		//test insertion
 		r1.insertOrUpdate();
 		Recruteur r3 = new Recruteur(r1.getID_Utilisateur());
+		r3.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
 		r3.delete();
+		
+		//test Update
+		//TODO :
+		 * r1.setSMTHG
+		 * r3 = new Recruteur(r1.getID_Utilisateur());
+		 * r3.fill();
+		 * Comparaison.comparerDeuxRecruteurs(r1, r3);
+		 * r3.delete();
 	}
 	
 	@Test
