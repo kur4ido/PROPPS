@@ -1,6 +1,10 @@
 package com.polytech.propps.models;
 
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.polytech.propps.bdd.Base;
 
 public class Notification {
 	public static final String colBRecue = "bNotifRecues";
@@ -15,9 +19,19 @@ public class Notification {
 	protected Membre source,destinataire;
 	protected Date dtDemande;
 	protected boolean bVuSource, bVuDest,bAccept;
+	protected int ID_Notification;
 	
-	public Notification(Membre source, Membre destinataire, Date dtDemande, boolean bVuSource,
+	public Notification(Membre source, Membre destinataire) {
+		this.source = source;
+		this.destinataire = destinataire;
+		bVuDest = false;
+		bVuSource = false;
+		bAccept = false;
+	}
+	
+	public Notification(int ID_Notification,Membre source, Membre destinataire, Date dtDemande, boolean bVuSource,
 			boolean bVuDest	, boolean bAccept) {
+		this.ID_Notification = ID_Notification;
 		this.source = source;
 		this.destinataire = destinataire;
 		this.dtDemande = dtDemande;
@@ -60,5 +74,35 @@ public class Notification {
 
 	public Date getDtDemande() {
 		return dtDemande;
+	}
+
+	public int getID() {
+		return ID_Notification;
+	}
+
+	public void fill() {
+		
+	}
+	
+	public void insertOrUpdate() {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Notification_insertOrUpdate", 6);
+			b.setParamInt("_" + Notification.colID_Source, source.getID_Utilisateur());
+			b.setParamInt("_" + Notification.colID_Dest,destinataire.getID_Utilisateur());
+			ResultSet result = b.executeQuery();
+			if(result.next()) {
+				dtDemande = result.getDate(colDtNotif);
+				ID_Notification = result.getInt(colID_Notif);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+		
 	}
 }

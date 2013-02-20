@@ -282,6 +282,8 @@ ENGINE = InnoDB;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_insertOrUpdate`(IN _ID_Utilisateur INT, IN _sNom VARCHAR(250),IN _sPrenom VARCHAR(250),
     IN _sEmail VARCHAR(250), IN _sPassword VARCHAR(250),IN _sVille VARCHAR(250), IN _sCodePostal VARCHAR(250),
     IN _sAdresse VARCHAR(250), IN _sPays VARCHAR(250))
@@ -326,6 +328,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_ajouterExpertise` (IN _ID_Utilisateur INT, IN _ID_Domaine INT)
 
 BEGIN
@@ -345,6 +349,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getByID` (IN _ID_Utilisateur INT)
 BEGIN
     declare varNbExp INT;
@@ -365,6 +371,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Societe INT)
 BEGIN
     DELETE FROM Recruteur WHERE ID_Utilisateur = _ID_Utilisateur;
@@ -380,6 +388,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Societe_insertOrUpdate` (IN _ID_Societe INT, IN _sNom VARCHAR(250))
 BEGIN
     IF(_ID_Societe = -1) THEN
@@ -403,6 +413,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Societe_getAll` ()
 BEGIN
     SELECT *
@@ -417,6 +429,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_ajouterExperiencePro` (IN _ID_Membre INT, IN _ID_Profil INT, IN _ID_Societe INT,
 IN _dtDebut DATETIME, IN _dtFin DATETIME, IN _sDirection VARCHAR(250), IN _sPosteOccupe VARCHAR(250), IN _sDescription TEXT)
 BEGIN
@@ -436,6 +450,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`ExperiencePro_ajouterExpertise` (IN _ID_ExperiencePro INT, IN _ID_Domaine INT)
 BEGIN
     DELETE
@@ -454,6 +470,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getContactByID` (IN _ID_Membre INT)
 BEGIN
     SELECT Membre.*
@@ -471,6 +489,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_ajouterContact` (IN _ID_Membre INT, IN _ID_Contact INT)
 -- --------------------------------------------------------------------------------
 -- Membre_ajouterContact
@@ -494,17 +514,28 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
--- procedure Membre_envoyerNotif
+-- procedure Notification_insertOrUpdate
 -- -----------------------------------------------------
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-CREATE PROCEDURE `PROPPS_DB`.`Membre_envoyerNotif` (IN _ID_Source INT, IN _ID_Destinataire INT)
+CREATE PROCEDURE `PROPPS_DB`.`Notification_insertOrUpdate` (IN _ID_Notification INT,IN _ID_Source INT, IN _ID_Destinataire INT,
+                    IN _bVuSource BOOL, IN _bVuDest BOOL, IN _bAccept BOOL)
 BEGIN
-    INSERT INTO Notification(ID_Source,ID_Destinataire,dtNotif,bVuSource,bVuDest,bAccepte)
-    VALUES(_ID_Source,_ID_Destinataire,NOW(),FALSE,FALSE,FALSE);
+    IF(_ID_Notification < 0) THEN
+        INSERT INTO Notification(ID_Source,ID_Destinataire,dtNotif,bVuSource,bVuDest,bAccepte)
+        VALUES(_ID_Source,_ID_Destinataire,NOW(),FALSE,FALSE,FALSE);
 
-    SELECT * FROM Notification WHERE ID_Notification = @@Identity;
+        SELECT * FROM Notification WHERE ID_Notification = @@Identity;
+    ELSE
+        UPDATE Notification
+        SET    bVuSource = _bVuSource,
+               bVuDest   = _bVuDest,
+               bAccept   = _bAccept
+        WHERE ID_Notification = _ID_Notification;
+
+         SELECT * FROM Notification WHERE ID_Notification = _ID_Notification;
+    END IF;
 END$$
 
 DELIMITER ;
@@ -515,6 +546,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`rechercheContact` (IN _ID_Membre INT, IN _sNom VARCHAR(250),IN _sPrenom VARCHAR(250),
     IN _sEmail VARCHAR(250), IN _ID_Societe INT)
 BEGIN
@@ -545,6 +578,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getNotif` (IN _ID_Membre INT, IN _bNotifRecues BOOL)
 BEGIN
 -- ----------------------------------------------------------------------------------
@@ -575,6 +610,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_modifier` (IN _ID_Membre INT, IN _ID_Profil INT,IN _bPresta BOOL,
     IN _bEstSousContrat BOOL, IN _dtFinPresta DATETIME)
 
@@ -602,6 +639,8 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 
 
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_modifierAdresse` (IN _ID_Utilisateur INT, IN _sCodePostal VARCHAR(250),
     IN _sVille VARCHAR(250), IN _sPays VARCHAR(250), IN _sAdresse VARCHAR(250))
 BEGIN
@@ -625,6 +664,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getExpertiseByID` (IN _ID_Membre INT)
 BEGIN
     SELECT *
@@ -640,6 +681,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getExperienceProByID` (IN _ID_Membre INT)
 BEGIN
     SELECT *
@@ -655,6 +698,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`ExperiencePro_getByID` (IN _ID_ExperiencePro INT)
 BEGIN
     declare varNbExpertise INT;
@@ -673,6 +718,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_getIDByLoginPW` (IN _sEmail VARCHAR(250),IN _sPassword VARCHAR(250))
 BEGIN
     SELECT Recruteur.ID_Utilisateur
@@ -688,6 +735,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getIDByLoginPW` (IN _sEmail VARCHAR(250),IN _sPassword VARCHAR(250))
 BEGIN
     SELECT Membre.ID_Utilisateur
@@ -703,6 +752,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_getUtilisateurByEmail` (IN _sEmail VARCHAR(250))
 BEGIN
     SELECT *
@@ -718,6 +769,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_rechercher` (IN _ID_Domaine INT, IN _ID_Profil INT,IN _bPresta BOOL,
 IN _dtDispo DATETIME)
 BEGIN
@@ -742,6 +795,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Societe_getByID` (IN _ID_Societe INT)
 BEGIN
     SELECT *
@@ -757,6 +812,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Profil INT,
 IN _bContrat BOOL, IN _bPresta BOOL, IN _dtFinPresta DATETIME)
 BEGIN
@@ -774,6 +831,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_updatePassword` (IN _ID_Utilisateur INT, IN _sPassword VARCHAR(255))
 BEGIN
     declare varHash VARCHAR(40);
@@ -794,6 +853,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_delete` (IN _ID_Utilisateur INT)
 BEGIN
     declare varID_Adresse INT;
@@ -815,6 +876,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Membre_delete` (IN _ID_Utilisateur INT)
 BEGIN
     DELETE FROM DomaineExperiencePro 
@@ -836,6 +899,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Profil_getAll` ()
 BEGIN
     SELECT * FROM Profil;
@@ -849,6 +914,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Expertise_getAll` ()
 BEGIN
     SELECT * FROM DomaineExpertise;
@@ -862,6 +929,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`rechercheRapide` (IN _Str VARCHAR(250))
 BEGIN
     SELECT *
@@ -880,6 +949,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_delete` (IN _ID_Utilisateur INT)
 BEGIN
     DELETE FROM Recruteur WHERE ID_Utilisateur = _ID_Utilisateur;
@@ -893,6 +964,8 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
+
+
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_getByID` (IN _ID_Utilisateur INT)
 BEGIN
     SELECT * 

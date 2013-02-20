@@ -174,11 +174,11 @@ public class Membre extends Utilisateur{
 				m.setAdresse(a);
 				
 				//Instanciation de l'objet notification
-				Notification n = new Notification(m, this, result.getDate(Notification.colDtNotif),
+				Notification n = new Notification(result.getInt(Notification.colID_Notif),m, this, result.getDate(Notification.colDtNotif),
 						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
 						result.getBoolean(Notification.colAccept));
 				//Ajout dans la liste concernée
-				lstNotifRecept.put(result.getInt(Notification.colID_Notif),n);
+				lstNotifRecept.put(n.getID(),n);
 			}
 			
 			/*On réitère le processus pour les notifications envoyées*/
@@ -200,11 +200,11 @@ public class Membre extends Utilisateur{
 				m.setAdresse(a);
 				
 				//Instanciation de l'objet notification
-				Notification n = new Notification(this, m, result.getDate(Notification.colDtNotif),
+				Notification n = new Notification(result.getInt(Notification.colID_Notif),this, m, result.getDate(Notification.colDtNotif),
 						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
 						result.getBoolean(Notification.colAccept));
 				//Ajout dans la liste concernée
-				lstNotifEnvoi.put(result.getInt(Notification.colID_Notif),n);
+				lstNotifEnvoi.put(n.getID(),n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -346,33 +346,22 @@ public class Membre extends Utilisateur{
 	 * @param m : le membre destinataire
 	 */
 	public void demanderContact(Membre m) {
-		Base b = new Base();
-		try {
-			b.connect();
-			b.procedureInit("Membre_envoyerNotif", 2);
-			b.setParamInt("_" + Notification.colID_Source, super.ID_Utilisateur);
-			b.setParamInt("_" + Notification.colID_Dest,m.getID_Utilisateur());
-			ResultSet result = b.executeQuery();
-			if(result.next()) {
-				Notification n = new Notification(this, m,result.getDate(Notification.colDtNotif)
-						, false, false, false);
-				lstNotifEnvoi.put(result.getInt(Notification.colID_Notif),n);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			b.close();
-		}
+		Notification n = new Notification(this,m);
+		n.insertOrUpdate();
+		lstNotifEnvoi.put(n.getID(),n);
 	}
 	
 	
 	public void reponseDemande(int ID_Notif, boolean bAccept) {
-		if(bAccept) {
-			
-		}else {
-			
+		if(lstNotifRecept.containsKey(ID_Notif)) {
+			Notification n = lstNotifRecept.get(ID_Notif);
+			if(bAccept) {
+				addContact(n.getSource());
+				
+			}
+			n.setbAccept(bAccept);
+			n.setbVuDest(true);
+			n.insertOrUpdate();
 		}
 	}
 	

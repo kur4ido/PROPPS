@@ -11,4 +11,5 @@ public class ParametresServlet {
 	public static final String MotDePasse = "password";
 	public static final String ConfirmerMotDePasse = "confirmPassword";
 	public static final String Ville = "ville";
+	public static final String demandeAccepte = "estAccepte";
 }
