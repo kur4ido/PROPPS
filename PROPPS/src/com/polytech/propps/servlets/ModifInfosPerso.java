@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet("/RechercheRapide")
-public class RechercheRapide extends HttpServlet {
+@WebServlet("/ModifInfosPerso")
+public class ModifInfosPerso extends HttpServlet {
 
 	/**
 	 * 
@@ -35,11 +35,7 @@ public class RechercheRapide extends HttpServlet {
 		Base base = new Base();
 		try {
 			base.connect();
-			String recherche = request.getParameter("quicksearch");
-			ArrayList<Membre> resultList = Membre.rechercheRapide(recherche);
-			List servResultList = Arrays.asList(resultList.toArray());
-			request.setAttribute("memberList", servResultList);
-			getServletContext().getRequestDispatcher("/jsp/result_recherche_membre.jsp").forward(request, response);			
+			int id = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre));		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

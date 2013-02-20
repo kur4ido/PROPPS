@@ -42,7 +42,7 @@
 				</button>
 				<a class="brand" href="${pageContext.request.contextPath}/index.html">ProPPS</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
-					<form action="quickSearch"
+					<form action="${pageContext.request.contextPath}/quickSearch"
 						class="navbar-search pull-left" method="post">
 						<input type="text" name="quicksearch" placeholder="Recherches"
 							class="search-query span2">
