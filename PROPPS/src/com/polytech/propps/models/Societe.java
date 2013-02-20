@@ -9,6 +9,7 @@ import com.polytech.propps.bdd.Base;
 
 public class Societe  {
 	protected static HashMap<Integer,Societe> listOfSociete;
+	protected static HashMap<String,Societe> listOfSocieteString;
 	public final static String colID = "ID_Societe";
 	public final static String colNom = "sNom";
 	
@@ -30,6 +31,13 @@ public class Societe  {
 		}
 	}
 	
+	public Societe(String nom) {
+		ID_Societe = - 1;
+		sNom = nom;
+		if(listOfSocieteString.containsKey(nom)) {
+			ID_Societe = listOfSociete.get(nom).getID();
+		}
+	}
 	/**
 	 * Constructeur privé remplissant tous les champs. Ce constructeur doit uniquement être appelé par 
 	 * la méthode de remplissage de la map statique (fillList)
@@ -50,13 +58,16 @@ public class Societe  {
 	public static void fillList() {
 		Base b = new Base();
 		listOfSociete = new  HashMap<Integer, Societe>();
+		listOfSocieteString = new HashMap<String, Societe>();
 		try {
 			b.connect();
 			b.procedureInit("Societe_getAll", 0);
 			ResultSet result = b.executeQuery();
 			while(result.next()) {
 				int ID = result.getInt(colID);
-				listOfSociete.put(ID, new Societe(ID,result.getString(colNom)));
+				String nom = result.getString(colNom);
+				listOfSociete.put(ID, new Societe(ID,nom));
+				listOfSocieteString.put(nom, new Societe(ID,nom));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
