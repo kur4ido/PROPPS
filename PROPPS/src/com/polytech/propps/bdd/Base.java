@@ -1,5 +1,6 @@
 package com.polytech.propps.bdd;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,12 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.polytech.propps.appli.PROPPS;
+
 
 
 public class Base {
 	private static String urlMySQL;
 	private static String user;
 	private static String password;
+	private static boolean bFill = false;
 	
 	private Connection connection;
 	private CallableStatement call;
@@ -25,6 +29,18 @@ public class Base {
 	 * @throws SQLException
 	 */
 	public void connect() throws SQLException {
+		if(!bFill) {
+			try {
+				PROPPS.init();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			bFill = true;
+		}
 		connection = DriverManager.getConnection( urlMySQL, user,password); 
 	}
 	
