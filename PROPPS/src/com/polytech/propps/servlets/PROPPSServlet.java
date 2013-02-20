@@ -31,6 +31,8 @@ public class PROPPSServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, 
 		      		  HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getContextPath());
+		File f = new File(".");
+		System.out.println(f.getAbsolutePath());
 		BufferedReader buff = new BufferedReader(new FileReader(request.getContextPath() + File.separator+fileConfig));
 		try {
 			String line;
