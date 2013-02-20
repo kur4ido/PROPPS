@@ -49,6 +49,7 @@ public class Societe  {
 	 */
 	public static void fillList() {
 		Base b = new Base();
+		listOfSociete = new  HashMap<Integer, Societe>();
 		try {
 			b.connect();
 			b.procedureInit("Societe_getAll", 0);
