@@ -1,6 +1,7 @@
 package com.polytech.propps.appli;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import com.polytech.propps.models.Profil;
 import com.polytech.propps.models.Recruteur;
 
 public class PROPPS {
-	private static final String fileConfig = "propps.conf";
+	private static final String fileConfig = "WebContent" + File.separator + "propps.conf";
 	private static final String TOKEN_COMMENTAIRE = ";";
 	private static final String TOKEN_SPEC = "-";
 	private static final String TOKEN_VALUE = ":";
