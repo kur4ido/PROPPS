@@ -489,8 +489,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_ajouterContact` (IN _ID_Membre INT, IN _ID_Contact INT)
 -- --------------------------------------------------------------------------------
 -- Membre_ajouterContact
@@ -853,8 +851,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_delete` (IN _ID_Utilisateur INT)
 BEGIN
     declare varID_Adresse INT;
@@ -881,9 +877,9 @@ BEGIN
     DELETE FROM DomaineExperiencePro 
     WHERE ID_ExperiencePro IN (SELECT ID_ExperiencePro 
                                FROM ExperiencePro 
-                                WHERE ID_Utilisateur = _ID_Utilisateur);
+                                WHERE ID_Membre = _ID_Utilisateur);
 
-    DELETE FROM ExperiencePro WHERE ID_Utilisateur = _ID_Utilisateur;
+    DELETE FROM ExperiencePro WHERE ID_Membre = _ID_Utilisateur;
     DELETE FROM Notification WHERE ID_Source = _ID_Utilisateur;
     DELETE FROM Notification WHERE ID_Destinataire = _ID_Utilisateur;
 
@@ -1011,7 +1007,7 @@ BEGIN
         SET sMessage = _sMessage
         WHERE ID_Message = _ID_Message;
         
-        ELECT * FROM Message WHERE ID_Message = _ID_Message;
+        SELECT * FROM Message WHERE ID_Message = _ID_Message;
     END IF;
 END$$
 
