@@ -100,7 +100,6 @@ public class MembreTest {
 		Comparaison.comparerDeuxMembres(m1, m4);
 		m4.delete();
 		
-		//@TODO retirer m1 de la base
 	}
 	
 	@Test
@@ -111,15 +110,16 @@ public class MembreTest {
 		Membre m5 = new Membre(m1.getID_Utilisateur());
 		m5.fill();
 		Comparaison.comparerDeuxMembres(m1, m5);
-		m5.delete();
+		
 		//tests update
-		//m1.setSOMTHG
-		//m1.insertOrUpdate();
-		//recup ds m5 les infos de m1
-		//on recompare
+		m1.setsPrenom("Mathieu");
+		m1.insertOrUpdate();
+		Membre m7 = new Membre(m1.getID_Utilisateur());
+		m7.fill();
+		Comparaison.comparerDeuxMembres(m1, m7);
+		m5.delete();
+		m7.delete();
 		
-		
-		//@TODO retirer m1 de la base
 	}
 	
 	
@@ -141,8 +141,6 @@ public class MembreTest {
 		Membre m7 = new Membre(indiceBase);
 		m7.fill();
 		Comparaison.membreEstVide(m7);
-		
-		//@TODO retirer m1 de la base ICI DEJA FAIT
 			
 	}
 }
