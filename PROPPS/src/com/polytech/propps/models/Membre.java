@@ -486,7 +486,7 @@ public class Membre extends Utilisateur{
 	}
 	
 	/*-------Methodes statiques--------*/
-	public ArrayList<Membre> rechercheRapide(String s) {
+	public static ArrayList<Membre> rechercheRapide(String s) {
 		ArrayList<Membre> resultat = new ArrayList<Membre>();
 		Base b = new Base();
 		try {
