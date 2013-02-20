@@ -4,10 +4,12 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.utils.Pair;
 
 public class Membre extends Utilisateur{
 	private final static String colPresta = "bPresta";
@@ -35,7 +37,7 @@ public class Membre extends Utilisateur{
 		super.bFill = false;
 		bFillExpertise = false;
 		bFillContact = false;
-		lstContacts = new ArrayList<Membre>();
+		lstContacts = null;
 		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
 		lstNotifEnvoi = new HashMap<Integer, Notification>();
@@ -213,6 +215,7 @@ public class Membre extends Utilisateur{
 		}
 	}
 	
+	
 	/**
 	 * Methode permettant de remplir les informations générales du membre, ainsi que ses données utilisateur.
 	 * Le remplissage d'expérience professionnelles se fait également ici.
@@ -352,6 +355,17 @@ public class Membre extends Utilisateur{
 	}
 	
 	
+	/**
+	 * Méthode modélisant la réponse à une demande de mise en relation.
+	 * Cette réponse entraine la mise à jour suivante :
+	 * 	Si la réponse est positive, une relation est établie.
+	 * Dans tous les cas, la ligne correspondant à la notification concernée est
+	 * mise à jour (bAccept prend le résultat de la réponse et bVuDestinataire
+	 * est fixé à vrai)
+	 * 
+	 * @param ID_Notif : l'identifiant de la notification concernée
+	 * @param bAccept : la réponse formulée par le membre courant
+	 */
 	public void reponseDemande(int ID_Notif, boolean bAccept) {
 		if(lstNotifRecept.containsKey(ID_Notif)) {
 			Notification n = lstNotifRecept.get(ID_Notif);
@@ -392,6 +406,48 @@ public class Membre extends Utilisateur{
 	
 	private void add(Membre m) {
 		lstContacts.add(m);
+	}
+	
+	
+	/**
+	 * Algorithme de calcul de l'expérience (le cumul des période est pris en
+	 * compte)
+	 * 
+	 * @return un objet Date.sql correspondant à la durée passéd à travailler
+	 */
+	public Date getExperience() {
+		if(!bFillExperiencePro) {
+			fill();
+		}
+		ArrayList<Pair<Date,Date>> lstIntervalles = new ArrayList<Pair<Date,Date>>();
+		long date = 0;
+		for(Map.Entry<Integer, ExperiencePro> entre : lstExperiencePro.entrySet()) {
+			ExperiencePro e = entre.getValue();
+			Date tmp = (e.getDtFin() == null ? new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH) : e.getDtFin());
+			lstIntervalles.add(new Pair<Date, Date>(e.getDtDebut(), tmp));
+		}
+		for(int i = lstIntervalles.size() - 1  ; i > 0 ; i--) {
+			Date d1 = lstIntervalles.get(i).first;
+			Date d2 = lstIntervalles.get(i).second;
+			for(int j = i - 1; j > 0 ; j--) {
+				Pair<Date,Date> p = lstIntervalles.get(j);
+				if(p.first.compareTo(d1) >= 0 && p.first.compareTo(d2) <= 0) {
+					p.first = d1;
+					p.second = (p.second.compareTo(d2) > 0 ? p.second : d2);
+					lstIntervalles.remove(i);
+					j = -1;
+				} else if(p.second.compareTo(d1) >= 0 && p.second.compareTo(d2) <= 0) {
+					p.second = d2;
+					p.first = (p.first.compareTo(d1) < 0 ? p.second : d1);
+					lstIntervalles.remove(i);
+					j = -1;
+				}
+			}
+		}
+		for(Pair<Date,Date> p : lstIntervalles) {
+			date += p.second.getTime() - p.first.getTime();
+		}
+		return new Date(date);
 	}
 	
 	@Override
