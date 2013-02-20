@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -48,7 +49,7 @@
 							class="search-query span2">
 					</form>
 					<ul class="nav">
-						<li><a href="recherche_membre.html"><i
+						<li><a href="pages/recherche_membre.html"><i
 								class="icon-search"></i> Recherche Avancée</a></li>
 					</ul>
 					<ul class="nav pull-right">
