@@ -45,6 +45,7 @@ public class Recruteur extends Utilisateur {
 			b.connect();
 			b.procedureInit("Recruteur_delete", 1);
 			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.execute();
 			super.delete();
 		} catch (SQLException e) {
 			e.printStackTrace();

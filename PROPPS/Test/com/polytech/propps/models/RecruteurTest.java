@@ -87,14 +87,13 @@ public class RecruteurTest {
 		Recruteur r3 = new Recruteur(r1.getID_Utilisateur());
 		r3.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
-		r3.delete();
 		
 		//test Update
 		r1.setsPrenom("Clement");
+		r1.insertOrUpdate();
 		r3 = new Recruteur(r1.getID_Utilisateur());
 		r3.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
-		r3.delete();
 	}
 	
 	/*@Test
