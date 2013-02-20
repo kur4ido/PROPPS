@@ -672,8 +672,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_getIDByLoginPW` (IN _sEmail VARCHAR(250),IN _sPassword VARCHAR(250))
 BEGIN
     SELECT Recruteur.ID_Utilisateur
@@ -876,6 +874,21 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_delete` (IN _ID_Utilisateur INT)
 BEGIN
     DELETE FROM Recruteur WHERE ID_Utilisateur = _ID_Utilisateur;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Recruteur_getByID
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Recruteur_getByID` (IN _ID_Utilisateur INT)
+BEGIN
+    SELECT * 
+    FROM Utilisateur inner join Recruteur on Utilisateur.ID_Utilisateur = Recruteur.ID_Utilisateur
+    WHERE Recruteur.ID_Utilisateur = _ID_Utilisateur;
 END$$
 
 DELIMITER ;
