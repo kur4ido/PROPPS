@@ -2,6 +2,7 @@ package com.polytech.propps.models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.polytech.propps.bdd.Base;
 
@@ -15,6 +16,7 @@ public abstract class Utilisateur implements IModel {
 	protected int ID_Utilisateur;
 	protected String sNom, sPrenom,sEmail,sPassword;
 	protected Adresse adresse;
+	protected ArrayList<Message> lstMessage;
 	protected boolean bFill;
 
 	public Utilisateur(int ID) {
@@ -25,6 +27,7 @@ public abstract class Utilisateur implements IModel {
 		sEmail = null;
 		sPassword = null;
 		bFill = false;
+		lstMessage = new ArrayList<Message>();
 	}
 	
 	public Utilisateur(String sNom,String sPrenom,String sEmail,String sPassword) {
@@ -35,6 +38,7 @@ public abstract class Utilisateur implements IModel {
 		this.sPassword = sPassword;
 		adresse = new Adresse(null,null,null,null);
 		bFill = true;
+		lstMessage = new ArrayList<Message>();
 	}
 	
 	public void insertOrUpdate() {
@@ -97,6 +101,26 @@ public abstract class Utilisateur implements IModel {
 		}
 	}
 
+	public void fillMessages() {
+		Base b = new Base();
+		try {
+			lstMessage = new ArrayList<Message>();
+			b.connect();
+			b.procedureInit("Utilisateur_getMessages", 1);
+			b.setParamInt("_" + colID, ID_Utilisateur);
+			ResultSet result = b.executeQuery();
+			while(result.next()) {
+				Message m = new Message(result.getInt(Message.colID), result.getString(Message.colMessage),
+						ID_Utilisateur, result.getDate(Message.colDtMessage));
+				lstMessage.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+	}
+	
 	public abstract void fill();
 	
 	public int getID_Utilisateur() {
