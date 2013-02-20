@@ -36,6 +36,17 @@ version="3.0">
 		<url-pattern>/registRecruiter</url-pattern><!-- pattern de la classe dans l'url-->
 	</servlet-mapping>
 <!-- Fin Servlet -->
+
+<!-- Debut Servlet -->
+	<servlet>
+		<servlet-name>RechercheRapide</servlet-name> <!-- nom de la classe -->
+		<servlet-class>com.polytech.propps.servlets.RechercheRapide</servlet-class><!-- arborescence de la classe : avec le package -->
+	</servlet>
+	<servlet-mapping> 
+		<servlet-name>RechercheRapide</servlet-name> <!-- nom de la classe -->
+		<url-pattern>/quickSearch</url-pattern><!-- pattern de la classe dans l'url-->
+	</servlet-mapping>
+<!-- Fin Servlet -->
 	
 	 
 	

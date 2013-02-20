@@ -30,7 +30,6 @@ public class Connexion extends HttpServlet {
 		System.out.println("EMAIL : "+email+"\tPASSWORD : "+password);
 		Base base = new Base();
 		try {
-			Base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
 			base.connect();
 			
 			base.procedureInit("Membre_getIDByLoginPW", 2);

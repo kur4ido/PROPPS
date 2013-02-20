@@ -34,7 +34,6 @@ public class InscriptionRecruteur extends HttpServlet {
 			response ) throws ServletException, IOException{
 		Base base = new Base();
 		try {
-			Base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
 			base.connect();
 			
 			String compte = request.getParameter("inputCompte");

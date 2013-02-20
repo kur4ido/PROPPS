@@ -32,7 +32,6 @@ public class InscriptionUtilisateur extends HttpServlet {
 			response ) throws ServletException, IOException{
 		Base base = new Base();
 		try {
-			Base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
 			base.connect();
 			
 			String name = request.getParameter("nom");
@@ -58,30 +57,6 @@ public class InscriptionUtilisateur extends HttpServlet {
 						newUser.setAdresse(new Adresse(ville, null, null, null));
 						System.out.println(newUser.getAdresse().getVille());
 						newUser.insertOrUpdate();
-	//					base.procedureInit("Utilisateur_insertOrUpdate", 5);
-	//					base.setParamInt("_ID_Utilisateur", -1);
-	//					base.setParamString("_sNom", name);
-	//					base.setParamString("_sPrenom", prenom);
-	//					base.setParamString("_sEmail", email);
-	//					base.setParamString("_sPassWord", mdp);
-	//					int id = 0;
-	//					ResultSet result = base.executeQuery();
-	//					while(result.next()){
-	//						id = result.getInt("ID_Utilisateur");
-	//					}
-	//					base.procedureInit("Utilisateur_modifierAdresse", 5);
-	//					base.setParamInt("_ID_Utilisateur",id);
-	//					base.setParamString("_sVille",ville);
-	//					base.setParamString("_sCodePostal",null);
-	//					base.setParamString("_sPays",null);
-	//					base.setParamString("_sAdresse",null);
-	//					base.execute();
-	//					base.procedureInit("Membre_insertOrUpdate", 5);
-	//					base.setParamInt("_ID_Utilisateur", id);
-	//					base.setParamInt("_ID_Profil", id);
-	//					base.setParamInt("_ID_Utilisateur", id);
-	//					base.setParamInt("_ID_Utilisateur", id);
-	//					base.execute();
 						request.setAttribute("email", email);
 						request.setAttribute("nom", name);
 						request.setAttribute("prenom", prenom);
