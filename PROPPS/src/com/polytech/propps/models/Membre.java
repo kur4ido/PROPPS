@@ -346,7 +346,7 @@ public class Membre extends Utilisateur{
 	 * @param m : le membre destinataire
 	 */
 	public void demanderContact(Membre m) {
-		Notification n = new Notification(this,m);
+		Notification n = new Notification(-1,this,m,null,false,false,false);
 		n.insertOrUpdate();
 		lstNotifEnvoi.put(n.getID(),n);
 	}

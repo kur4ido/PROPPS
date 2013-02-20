@@ -21,13 +21,6 @@ public class Notification {
 	protected boolean bVuSource, bVuDest,bAccept;
 	protected int ID_Notification;
 	
-	public Notification(Membre source, Membre destinataire) {
-		this.source = source;
-		this.destinataire = destinataire;
-		bVuDest = false;
-		bVuSource = false;
-		bAccept = false;
-	}
 	
 	public Notification(int ID_Notification,Membre source, Membre destinataire, Date dtDemande, boolean bVuSource,
 			boolean bVuDest	, boolean bAccept) {
@@ -79,10 +72,6 @@ public class Notification {
 	public int getID() {
 		return ID_Notification;
 	}
-
-	public void fill() {
-		
-	}
 	
 	public void insertOrUpdate() {
 		Base b = new Base();
@@ -91,6 +80,10 @@ public class Notification {
 			b.procedureInit("Notification_insertOrUpdate", 6);
 			b.setParamInt("_" + Notification.colID_Source, source.getID_Utilisateur());
 			b.setParamInt("_" + Notification.colID_Dest,destinataire.getID_Utilisateur());
+			b.setParamInt("_" + colID_Notif, ID_Notification);
+			b.setParamBool("_" + colAccept, bAccept);
+			b.setParamBool("_" + colVuSource, bVuSource);
+			b.setParamBool("_" + colVuDest, bVuDest);
 			ResultSet result = b.executeQuery();
 			if(result.next()) {
 				dtDemande = result.getDate(colDtNotif);

@@ -876,8 +876,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_delete` (IN _ID_Utilisateur INT)
 BEGIN
     DELETE FROM DomaineExperiencePro 
@@ -886,7 +884,9 @@ BEGIN
                                 WHERE ID_Utilisateur = _ID_Utilisateur);
 
     DELETE FROM ExperiencePro WHERE ID_Utilisateur = _ID_Utilisateur;
-    DELETE FROM Notification WHERE ID_Utilisateur = _ID_Utilisateur;
+    DELETE FROM Notification WHERE ID_Source = _ID_Utilisateur;
+    DELETE FROM Notification WHERE ID_Destinataire = _ID_Utilisateur;
+
     DELETE FROM ExpertiseMembre WHERE ID_Utilisateur = _ID_Utilisateur;
     DELETE FROM Membre WHERE ID_Utilisateur = _ID_Utilisateur;
 END$$
@@ -972,6 +972,60 @@ BEGIN
     FROM Utilisateur inner join Recruteur on Utilisateur.ID_Utilisateur = Recruteur.ID_Utilisateur
         inner join Adresse on Adresse.ID_Adresse = Utilisateur.ID_Adresse
     WHERE Recruteur.ID_Utilisateur = _ID_Utilisateur;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Utilisateur_getMessages
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_getMessages` (IN _ID_Utilisateur INT)
+BEGIN
+    SELECT * 
+    FROM Message
+    WHERE ID_Utilisateur = _ID_Utilisateur
+    ORDER BY dtMessage DESC;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Message_insertOrUpdate
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Message_insertOrUpdate` (IN _ID_Message INT, IN _ID_Utilisateur INT,
+                IN _sMessage TEXT)
+BEGIN
+    IF _ID_Message < 0 THEN
+        INSERT INTO Message(ID_Utilisateur,dtMessage,sMessage)
+        VALUES (_ID_Utilisateur,NOW(),_sMessage);
+
+        SELECT * FROM Message WHERE ID_Message = @@IDENTITY;
+    ELSE
+        UPDATE Message
+        SET sMessage = _sMessage
+        WHERE ID_Message = _ID_Message;
+        
+        ELECT * FROM Message WHERE ID_Message = _ID_Message;
+    END IF;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Message_delete
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Message_delete` (IN _ID_Message INT)
+BEGIN
+    DELETE FROM Message WHERE ID_Message = _ID_Message;
 END$$
 
 DELIMITER ;
