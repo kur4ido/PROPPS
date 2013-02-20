@@ -55,9 +55,9 @@ public class RecruteurTest {
 	public void Constructeur2Test() {
 		
 		// Test de super(sNom, sPrenom, sEmail, sPassword)
-		Assert.assertEquals("La valeur sNom n'est pas initalisée correctement.", r1.getNom(), "Test");
-		Assert.assertEquals("La valeur de sPrenom n'est pas initialisée correctement.", r1.getPrenom(), "Mathieu");
-		Assert.assertEquals("La valeur de sEmail n'est pas initialisée correctement.", r1.getEmail(), "mathieu.test@u-psud.fr");
+		Assert.assertEquals("La valeur sNom n'est pas initalisée correctement.", r1.getsNom(), "Test");
+		Assert.assertEquals("La valeur de sPrenom n'est pas initialisée correctement.", r1.getsPrenom(), "Mathieu");
+		Assert.assertEquals("La valeur de sEmail n'est pas initialisée correctement.", r1.getsEmail(), "mathieu.test@u-psud.fr");
 		Assert.assertEquals("La valeur de sPassword n'est pas initialisée correctement.", r1.getsPassword(), "kubor");
 		
 		// Test de l'initialisation de societe
@@ -89,7 +89,7 @@ public class RecruteurTest {
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
 		
 		//test Update
-		r1.setPrenom("Clement");
+		r1.setsPrenom("Clement");
 		r1.insertOrUpdate();
 		r3 = new Recruteur(r1.getID_Utilisateur());
 		r3.fill();
