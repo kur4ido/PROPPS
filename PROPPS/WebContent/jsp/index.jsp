@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -68,7 +69,7 @@
 							placeholder="Adresse email" value=<%=email %>> <input type="password"
 							class="input-block-level" name="password"
 							placeholder="Mot de passe">
-							<c:if test="${request.getAttribute("error")!=''}">
+							<c:if test="${request.getAttribute('error')!=''}">
 								<span class="text-error"><%=error %></span>
 							</c:if> <label class="checkbox">
 							<input type="checkbox" name="remember" value="1"> Rester
