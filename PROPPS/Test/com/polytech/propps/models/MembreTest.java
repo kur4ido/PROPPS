@@ -94,18 +94,32 @@ public class MembreTest {
 	
 	@Test
 	public void fillTest() {
+		m1.insertOrUpdate();
 		Membre m4 = new Membre(m1.getID_Utilisateur());
 		m4.fill();
 		Comparaison.comparerDeuxMembres(m1, m4);
 		m4.delete();
+		
+		//@TODO retirer m1 de la base
 	}
 	
 	@Test
 	public void insertOrUpdateTest() {
+		
+		//test insertion
 		m1.insertOrUpdate();
 		Membre m5 = new Membre(m1.getID_Utilisateur());
+		m5.fill();
 		Comparaison.comparerDeuxMembres(m1, m5);
 		m5.delete();
+		//tests update
+		//m1.setSOMTHG
+		//m1.insertOrUpdate();
+		//recup ds m5 les infos de m1
+		//on recompare
+		
+		
+		//@TODO retirer m1 de la base
 	}
 	
 	
@@ -114,7 +128,9 @@ public class MembreTest {
 	public void deleteTest() {
 		// Vérifier qu'il est bien dans la base
 		Integer indiceBase = m1.getID_Utilisateur();
+		m1.insertOrUpdate();
 		Membre m6 = new Membre(m1.getID_Utilisateur());
+		m6.fill();
 		Comparaison.comparerDeuxMembres(m1, m6);
 		m6.delete();
 		
@@ -123,7 +139,10 @@ public class MembreTest {
 		
 		// checker à l'indice de m1 il n'y a plus rien
 		Membre m7 = new Membre(indiceBase);
+		m7.fill();
 		Comparaison.membreEstVide(m7);
+		
+		//@TODO retirer m1 de la base ICI DEJA FAIT
 			
 	}
 }
