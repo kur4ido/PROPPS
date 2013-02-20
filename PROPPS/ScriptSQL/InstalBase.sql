@@ -850,10 +850,10 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`rechercheRapide` (IN _Str VARCHAR(250))
 BEGIN
     SELECT *
-    FROM Utilisateur as U inner join Membre as M on U.ID_Uilisateur = M.ID_Utilisateur
+    FROM Utilisateur as U inner join Membre as M on U.ID_Utilisateur = M.ID_Utilisateur
         inner join Adresse as A on A.ID_Adresse = U.ID_Adresse
-    WHERE U.sNom + U.sPrenom like CONCAT("%",_Str,"%")
-        OR U.sPrenom + U.sNom like CONCAT("%",_Str,"%")
+    WHERE CONCAT(U.sNom, U.sPrenom) like CONCAT("%",_Str,"%")
+        OR CONCAT(U.sPrenom, U.sNom) like CONCAT("%",_Str,"%")
     Order by U.sNom, U.sPrenom;
 END$$
 

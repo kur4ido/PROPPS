@@ -45,13 +45,13 @@
 				<div class="span12">
 					<div class="page-header">
 						<h1>
-							RÃ©seau Professionnel Paris-Sud<small> Inscription membre</small>
+							Réseau Professionnel Paris-Sud<small> Inscription membre</small>
 						</h1>
 					</div>
 					<div id="contents">
-						<p>En vous inscrivant ÃƒÂ  ce site, vous aurez accÃ¨s ÃƒÂ  tous les
+						<p>En vous inscrivant à  ce site, vous aurez accès à  tous les
 							postes ouverts par les recruteurs membre de ce site. Ceux-ci
-							pourront accÃ©der librement ÃƒÂ  votre profil.</p>
+							pourront accéder librement à  votre profil.</p>
 
 						<form id="formInscription" class="form-horizontal" action="${pageContext.request.contextPath}/registUser" method="post">
 							<fieldset>
@@ -67,7 +67,7 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="inputPrenom">PrÃ©nom</label>
+									<label class="control-label" for="inputPrenom">Prénom</label>
 									<div class="controls">
 										<input type="text" name="prenom" id="inputPrenom"
 											placeholder="John" value=<%=prenom %>>
@@ -94,7 +94,7 @@
 											placeholder="Password"> <a href="#" rel="tooltip"
 											data-placement="right"
 											title="Le mot de passe doit contenir au minimum une majuscule 
-									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractÃ¨res"><i
+									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 											class="icon-info-sign"></i></a>
 											<c:if test="${request.getAttribute("errorMdpInvalide")!=''}">
 										<span class="text-error"><%=errorMdpInvalide %></span>

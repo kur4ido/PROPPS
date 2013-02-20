@@ -32,14 +32,15 @@ public class InscriptionUtilisateur extends HttpServlet {
 			response ) throws ServletException, IOException{
 		Base base = new Base();
 		try {
+			base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
 			base.connect();
 			
-			String name = request.getParameter("nom");
-			String prenom = request.getParameter("prenom");
-			String email = request.getParameter("email");
-			String mdp = request.getParameter("password");
-			String confirmMdp = request.getParameter("confirmPassword");
-			String ville = request.getParameter("ville");
+			String name = request.getParameter(ParametresServlet.Nom);
+			String prenom = request.getParameter(ParametresServlet.Prenom);
+			String email = request.getParameter(ParametresServlet.Email);
+			String mdp = request.getParameter(ParametresServlet.MotDePasse);
+			String confirmMdp = request.getParameter(ParametresServlet.ConfirmerMotDePasse);
+			String ville = request.getParameter(ParametresServlet.Ville);
 			System.out.println("Nom : "+name+"\tPrenom : "+prenom+"\tMail : "+email);
 			System.out.println("Mdp : "+mdp+"\tConfirmMdp : "+confirmMdp+"\tVille : "+ville);
 			if(mdp.matches(".*[A-Z].*") && mdp.matches(".*[0-9].*") && mdp.matches(".*[a-z].*") && mdp.length()>=8){
@@ -57,14 +58,15 @@ public class InscriptionUtilisateur extends HttpServlet {
 						newUser.setAdresse(new Adresse(ville, null, null, null));
 						System.out.println(newUser.getAdresse().getVille());
 						newUser.insertOrUpdate();
-						request.setAttribute("email", email);
-						request.setAttribute("nom", name);
-						request.setAttribute("prenom", prenom);
-						request.setAttribute("ville", ville);
-						request.setAttribute("password", null);
-						request.setAttribute("confirmPassword", null);
-						request.removeAttribute("password");
-						request.removeAttribute("confirmPassword");
+						request.setAttribute(ParametresServlet.Email, email);
+						request.setAttribute(ParametresServlet.Nom, name);
+						request.setAttribute(ParametresServlet.Prenom, prenom);
+						request.setAttribute(ParametresServlet.Ville, ville);
+						request.setAttribute(ParametresServlet.ID_Membre, newUser.getID_Utilisateur());
+						request.setAttribute(ParametresServlet.MotDePasse, null);
+						request.setAttribute(ParametresServlet.ConfirmerMotDePasse, null);
+						request.removeAttribute(ParametresServlet.MotDePasse);
+						request.removeAttribute(ParametresServlet.ConfirmerMotDePasse);
 						getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
 	//					String attributes = "?nom="+name+"&prenom="+prenom+"&ville="+ville;
 	//					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/jsp/compte.jsp"));
