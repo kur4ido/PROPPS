@@ -498,7 +498,7 @@ public class Membre extends Utilisateur{
 				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
 				
 				//Instanciation du membre
-				Membre m = new Membre(result.getInt(colIDContact), result.getString(colNom),result.getString(colPrenom),
+				Membre m = new Membre(result.getInt(Utilisateur.colID), result.getString(colNom),result.getString(colPrenom),
 						 result.getString(colEmail),p,result.getBoolean(colContrat),result.getBoolean(colPresta),result.getDate(colDtPresta));
 				//Instanciaion de l'adresse
 				Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
