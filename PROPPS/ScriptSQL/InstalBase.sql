@@ -794,9 +794,10 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Utilisateur_delete` (IN _ID_Utilisateur INT)
 BEGIN
+    declare varID_Adresse INT;
+
     DELETE FROM Message WHERE ID_Utilisateur = _ID_Utilisateur;
 
-    declare varID_Adresse INT;
     SET varID_Adresse = (SELECT ID_Adresse FROM Utilisateur WHERE ID_Utilisateur = _ID_Utilisateur);
 
     DELETE FROM Utilisateur WHERE ID_Utilisateur = _ID_Utilisateur;
