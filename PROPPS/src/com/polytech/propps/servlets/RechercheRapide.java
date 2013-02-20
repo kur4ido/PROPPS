@@ -36,6 +36,10 @@ public class RechercheRapide extends HttpServlet {
 		try {
 			base.connect();
 			String recherche = request.getParameter("quicksearch");
+			int idCourant = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
+			Membre membreCourant = new Membre(idCourant);
+			String prenomCourant = membreCourant.getsPrenom();
+			String nomCourant = membreCourant.getsNom();
 			ArrayList<Membre> resultList = Membre.rechercheRapide(recherche);
 			ArrayList<String> stringList = new ArrayList<String>();
 			List servResultList = Arrays.asList(resultList.toArray());
@@ -46,6 +50,10 @@ public class RechercheRapide extends HttpServlet {
 			List servStringList = Arrays.asList(stringList.toArray());
 			request.setAttribute("memberList", servResultList);
 			request.setAttribute("stringList", servStringList);
+			request.setAttribute(ParametresServlet.prenom_Membre_Courant, prenomCourant);
+			request.setAttribute(ParametresServlet.nom_Membre_Courant, nomCourant);
+			request.setAttribute("stringList", servStringList);
+			request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(idCourant));
 			getServletContext().getRequestDispatcher("/jsp/result_recherche_membre.jsp").forward(request, response);			
 		}catch(Exception e) {
 			e.printStackTrace();

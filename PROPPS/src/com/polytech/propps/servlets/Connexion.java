@@ -42,6 +42,7 @@ public class Connexion extends HttpServlet {
 				membre.fill();
 				request.setAttribute("nom", membre.getsNom());
 				request.setAttribute("prenom", membre.getsPrenom());
+				request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(result.getInt("ID_Utilisateur")));
 				request.removeAttribute("password");
 				request.removeAttribute("email");
 				System.out.println(membre.getAdresse().getVille());

@@ -62,7 +62,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 						request.setAttribute(ParametresServlet.Nom, name);
 						request.setAttribute(ParametresServlet.Prenom, prenom);
 						request.setAttribute(ParametresServlet.Ville, ville);
-						request.setAttribute(ParametresServlet.ID_Membre, newUser.getID_Utilisateur());
+						request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(newUser.getID_Utilisateur()));
 						request.setAttribute(ParametresServlet.MotDePasse, null);
 						request.setAttribute(ParametresServlet.ConfirmerMotDePasse, null);
 						request.removeAttribute(ParametresServlet.MotDePasse);

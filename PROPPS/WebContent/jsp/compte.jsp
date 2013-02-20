@@ -32,6 +32,7 @@
 <% String prenom= (String) request.getAttribute("prenom"); %>
 <% String nom= (String) request.getAttribute("nom"); %>
 <% String ville= (String) request.getAttribute("ville"); %>
+<% String ID_Membre_Courant = (String) request.getAttribute("ID_Membre_Courant"); %>
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
@@ -47,6 +48,7 @@
 						class="navbar-search pull-left" method="post">
 						<input type="text" name="quicksearch" placeholder="Recherches"
 							class="search-query span2">
+							<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
 					</form>
 					<ul class="nav">
 						<li><a href="pages/recherche_membre.html"><i

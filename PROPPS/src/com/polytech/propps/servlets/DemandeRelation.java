@@ -18,8 +18,8 @@ public class DemandeRelation extends HttpServlet {
 	
 	public void doPost( HttpServletRequest request, HttpServletResponse
 			response ) throws ServletException, IOException{
-		int ID_Membre = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre));
-		int ID_Destinataire = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre));
+		int ID_Membre = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
+		int ID_Destinataire = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
 		Membre current = new Membre(ID_Membre);
 		
 	}

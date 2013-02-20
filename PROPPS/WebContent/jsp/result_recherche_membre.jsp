@@ -29,6 +29,9 @@
 <body>
   <!-- Navbar
     ================================================== -->
+<% String prenom_Membre_Courant= (String) request.getAttribute("prenom_Membre_Courant"); %>
+<% String nom_Membre_Courant= (String) request.getAttribute("nom_Membre_Courant"); %>
+<% String ID_Membre_Courant = (String) request.getAttribute("ID_Membre_Courant"); %>
 
 
 	<div class="navbar navbar-fixed-top">
@@ -45,6 +48,7 @@
 						class="navbar-search pull-left" method="post">
 						<input type="text" name="quicksearch" placeholder="Recherches"
 							class="search-query span2">
+							<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %>>
 					</form>
 					<ul class="nav">
 						<li><a href="#"><i class="icon-search"></i> Recherche
@@ -78,7 +82,7 @@
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
-								John Doe <b class="caret"></b></a>
+								<%=prenom_Membre_Courant %> <%=nom_Membre_Courant %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="compte.html"><i class="icon-user"></i> Mon
 										compte</a></li>

@@ -54,13 +54,13 @@
 			<div class="row">
 				<div class="span8">
 					<div class="page-header">
-						<h1>RÃ©seau Professionnel Paris-Sud</h1>
+						<h1>Réseau Professionnel Paris-Sud</h1>
 					</div>
-					<p class="lead">Bienvenue sur le rÃ©seau Professionnel de
+					<p class="lead">Bienvenue sur le réseau Professionnel de
 						Polytech Paris-Sud.</p>
-					<p class="lead">Il s'agit d'un rÃ©seau social permettant de
+					<p class="lead">Il s'agit d'un réseau social permettant de
 						recenser des contacts professionnels dans le but d'obtenir un
-						emploi ou de la main d'oeuvre compÃ©tente.</p>
+						emploi ou de la main d'oeuvre compétente.</p>
 				</div>
 				<div class="span4">
 					<form class="form-signin" action="connect" method="post">
@@ -73,7 +73,7 @@
 								<span class="text-error"><%=error %></span>
 							</c:if> <label class="checkbox">
 							<input type="checkbox" name="remember" value="1"> Rester
-							connectÃ© - <a href="#">Mot de passe oubliÃ©?</a>
+							connecté - <a href="#">Mot de passe oublié?</a>
 						</label>
 						<button class="btn btn-large btn-primary" type="submit">Connexion</button>
 					</form>

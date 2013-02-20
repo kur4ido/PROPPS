@@ -35,7 +35,7 @@ public class ModifInfosPerso extends HttpServlet {
 		Base base = new Base();
 		try {
 			base.connect();
-			int id = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre));		
+			int id = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
