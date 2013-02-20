@@ -2,9 +2,13 @@ package com.polytech.propps.servlets;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +34,12 @@ public class PROPPSServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, 
 		      		  HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getContextPath());
-		File f = new File(".");
-		System.out.println(f.getAbsolutePath());
-		BufferedReader buff = new BufferedReader(new FileReader(request.getContextPath() + File.separator+fileConfig));
+		ServletContext context = getServletContext();
+        BufferedReader buff;
+        InputStream ips;
+        ips = new FileInputStream(context.getRealPath(fileConfig));
+        InputStreamReader ipsr=new InputStreamReader(ips);
+        buff = new BufferedReader(ipsr);
 		try {
 			String line;
 			while((line = buff.readLine()) != null) {
