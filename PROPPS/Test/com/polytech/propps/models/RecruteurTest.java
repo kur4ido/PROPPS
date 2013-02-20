@@ -48,7 +48,7 @@ public class RecruteurTest {
 		Assert.assertEquals("La valeur ID n'est pas initialisée correctement.", r.getID_Utilisateur(), fake_id);
 	
 		// Test de l'initialisation de societe
-		//Assert.assertNull("La société n'est pas initialisée à NULL.",r.getSociete());
+		Assert.assertNull("La société n'est pas initialisée à NULL.",r.getSociete());
 	}
 	
 	@Test
@@ -96,20 +96,24 @@ public class RecruteurTest {
 		Comparaison.comparerDeuxRecruteurs(r1, r3);
 	}
 	
-	/*@Test
+	@Test
 	public void deleteTest() {
+		
 		// Vérifier qu'il est bien dans la base
 		Integer indiceBase = r1.getID_Utilisateur();
+		r1.insertOrUpdate();
 		Recruteur r6 = new Recruteur(r1.getID_Utilisateur());
+		r6.fill();
 		Comparaison.comparerDeuxRecruteurs(r1, r6);
-		r6.delete();
+		//r6.delete();
 		
 		// delete
 		r1.delete();
 		
 		// checker à l'indice de m1 il n'y a plus rien
-		Recruteur r7 = new Recruteur(indiceBase);
-		Comparaison.RecruteurEstVide(r7);
+		r6 = new Recruteur(indiceBase);
+		r6.fill();
+		Comparaison.RecruteurEstVide(r6);
 			
-	}*/
+	}
 }
