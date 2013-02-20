@@ -48,7 +48,7 @@
 						class="navbar-search pull-left" method="post">
 						<input type="text" name="quicksearch" placeholder="Recherches"
 							class="search-query span2">
-							<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %>>
+							<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
 					</form>
 					<ul class="nav">
 						<li><a href="#"><i class="icon-search"></i> Recherche

@@ -38,8 +38,10 @@ public class RechercheRapide extends HttpServlet {
 			String recherche = request.getParameter("quicksearch");
 			int idCourant = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
 			Membre membreCourant = new Membre(idCourant);
+			
 			String prenomCourant = membreCourant.getsPrenom();
 			String nomCourant = membreCourant.getsNom();
+			
 			ArrayList<Membre> resultList = Membre.rechercheRapide(recherche);
 			ArrayList<String> stringList = new ArrayList<String>();
 			List servResultList = Arrays.asList(resultList.toArray());
