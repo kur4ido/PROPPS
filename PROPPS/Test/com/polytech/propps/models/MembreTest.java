@@ -122,39 +122,7 @@ public class MembreTest {
 		
 		// checker à l'indice de m1 il n'y a plus rien
 		Membre m7 = new Membre(indiceBase);
-		membreEstVide(m7);
+		Comparaison.membreEstVide(m7);
 			
-	}
-	
-	public void membreEstVide(Membre mX) {
-		Assert.assertNull("Le membre a mal été supprimé.", mX.getID_Utilisateur());
-		Assert.assertNull("L'email du membre a mal été supprimée.", mX.getsEmail());
-		Assert.assertNull("Le nom du membre a mal été supprimé.", mX.getsNom());
-		Assert.assertNull("Le mot de passe du membre a mal été supprimé.", mX.getsPassword());
-		Assert.assertNull("Le prénom du membre a mal été supprimé.", mX.getsPrenom());
-		Assert.assertNull("L'adresse du membre a mal été supprimée.", mX.getAdresse());
-		Assert.assertNull("La classe du membre a mal été supprimée.", mX.getClass());
-		Assert.assertNull("La date de fin de prestation a mal été supprimée.", mX.getDtFinPresta());
-		Assert.assertNull("Le profil du membre a mal été supprimé.", mX.getProfil());
-		
-		for(Integer i = 0; i < mX.getLstContacts().size(); i++) {
-			Assert.assertNull("La liste de contacts du membre a mal été supprimé.", mX.getLstContacts().get(i).getID_Utilisateur());
-		}
-		
-		for(Integer i = 0; i < mX.getLstExperiencePro().size(); i++) {
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (ID).", mX.getLstExperiencePro().get(i).getID());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Description).", mX.getLstExperiencePro().get(i).getDescription());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Direction).", mX.getLstExperiencePro().get(i).getDirection());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Poste occupé).", mX.getLstExperiencePro().get(i).getPosteOccupe());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Class).", mX.getLstExperiencePro().get(i).getClass());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Date début).", mX.getLstExperiencePro().get(i).getDtDebut());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Date fin).", mX.getLstExperiencePro().get(i).getDtFin());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Profil).", mX.getLstExperiencePro().get(i).getProfil());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Société).", mX.getLstExperiencePro().get(i).getSociete());
-		}
-		
-		for(Integer i = 0; i < mX.getLstExpertise().size(); i++) {
-			Assert.assertNull("La liste d'expertises du membre a mal été supprimé.", mX.getLstExpertise().get(i).getID());
-		}
 	}
 }
