@@ -162,7 +162,7 @@ public class Membre extends Utilisateur{
 		try {
 			b.connect();
 			b.procedureInit("Membre_getNotif", 2);
-			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
 			b.setParamBool("_" + Notification.colBRecue,true);
 			ResultSet result = b.executeQuery();
 			lstNotifRecept = new HashMap<Integer, Notification>();
@@ -345,6 +345,7 @@ public class Membre extends Utilisateur{
 			lstExperiencePro.add(e);
 		}
 		lstExperiencePro.add(e);
+		bFillExperiencePro = true;
 	}
 	
 	/**
