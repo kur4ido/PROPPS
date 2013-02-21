@@ -44,15 +44,25 @@ public class Comparaison {
 		}
 		
 		for(Integer i = 0; i < mX.getLstNotifEnvoi().size(); i++) {
-			
+			Assert.assertEquals("La liste de notifications d'envoi est mal insérée. (ID)", mX.getLstNotifEnvoi().get(i).getID(), mY.getLstNotifEnvoi().get(i).getID());
+			Assert.assertEquals("La liste de notifications d'envoi est mal insérée. (Destinataire)", mX.getLstNotifEnvoi().get(i).getDestinataire().getID_Utilisateur(), mY.getLstNotifEnvoi().get(i).getDestinataire().getID_Utilisateur());
+			Assert.assertEquals("La liste de notifications d'envoi est mal insérée. (DtDemande Année)", mX.getLstNotifEnvoi().get(i).getDtDemande().getYear(), mY.getLstNotifEnvoi().get(i).getDtDemande().getYear());
+			Assert.assertEquals("La liste de notifications d'envoi est mal insérée. (DtDemande Mois)", mX.getLstNotifEnvoi().get(i).getDtDemande().getMonth(), mY.getLstNotifEnvoi().get(i).getDtDemande().getMonth());
+			Assert.assertEquals("La liste de notifications d'envoi est mal insérée. (DtDemande Jour)", mX.getLstNotifEnvoi().get(i).getDtDemande().getDay(), mY.getLstNotifEnvoi().get(i).getDtDemande().getDay());
+			Assert.assertEquals("La liste de notifications d'envoi est mal insérée. (Source)", mX.getLstNotifEnvoi().get(i).getSource().getID_Utilisateur(), mY.getLstNotifEnvoi().get(i).getSource().getID_Utilisateur());
 		}
 		
 		for(Integer i = 0; i < mX.getLstNotifRecept().size(); i++) {
-			
+			Assert.assertEquals("La liste de notifactions de réception est mal insérée. (Destinataire)", mX.getLstNotifRecept().get(i).getDestinataire().getID_Utilisateur(), mY.getLstNotifRecept().get(i).getDestinataire().getID_Utilisateur());
+			Assert.assertEquals("La liste de notifactions de réception est mal insérée. (DtDemande Année)", mX.getLstNotifRecept().get(i).getDtDemande().getYear(), mY.getLstNotifRecept().get(i).getDtDemande().getYear());
+			Assert.assertEquals("La liste de notifactions de réception est mal insérée. (DtDemande Mois)", mX.getLstNotifRecept().get(i).getDtDemande().getMonth(), mY.getLstNotifRecept().get(i).getDtDemande().getMonth());
+			Assert.assertEquals("La liste de notifactions de réception est mal insérée. (DtDemande Jour)", mX.getLstNotifRecept().get(i).getDtDemande().getDay(), mY.getLstNotifRecept().get(i).getDtDemande().getDay());
+			Assert.assertEquals("La liste de notifactions de réception est mal insérée. (ID)", mX.getLstNotifRecept().get(i).getID(), mY.getLstNotifRecept().get(i).getID());
+			Assert.assertEquals("La liste de notifactions de réception est mal insérée. (Source)", mX.getLstNotifRecept().get(i).getSource().getID_Utilisateur(), mY.getLstNotifRecept().get(i).getSource().getID_Utilisateur());
 		}
 		
 		for(Integer i = 0; i < mX.getLstContacts().size(); i++) {
-			
+			Assert.assertEquals("La liste de contacts est mal insérée.", mX.getLstContacts().get(i).getID_Utilisateur(), mY.getLstContacts().get(i).getID_Utilisateur());
 		}
 	}
 	
@@ -109,7 +119,7 @@ public class Comparaison {
 		}
 		
 		for(Integer i = 0; i < mX.getLstContacts().size(); i++) {
-			Assert.assertNull("La liste de contacts de a mal été supprimée. ()", mX.getLstContacts().get(i).getID_Utilisateur());
+			Assert.assertNull("La liste de contacts de a mal été supprimée.", mX.getLstContacts().get(i).getID_Utilisateur());
 		}
 	}
 	
