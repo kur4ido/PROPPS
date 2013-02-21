@@ -24,7 +24,7 @@ public class Membre extends Utilisateur{
 	protected boolean bContrat, bPresta;
 	protected Date dtFinPresta;
 	protected ArrayList<Membre> lstContacts;
-	protected HashMap<Integer,ExperiencePro> lstExperiencePro;
+	protected ArrayList<ExperiencePro> lstExperiencePro;
 	protected ArrayList<Expertise> lstExpertise;
 	protected HashMap<Integer,Notification> lstNotifEnvoi;
 	protected HashMap<Integer,Notification> lstNotifRecept;
@@ -39,7 +39,7 @@ public class Membre extends Utilisateur{
 		bFillContact = false;
 		bFillNotif = false;
 		lstContacts = null;
-		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
+		lstExperiencePro = new ArrayList<ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
 		lstNotifEnvoi = new HashMap<Integer, Notification>();
 		lstNotifRecept = new HashMap<Integer, Notification>();
@@ -53,7 +53,7 @@ public class Membre extends Utilisateur{
 		this.bPresta = bPresta;
 		this.dtFinPresta = dtFinPresta;
 		lstContacts = new ArrayList<Membre>();
-		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
+		lstExperiencePro = new ArrayList<ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
 		lstNotifEnvoi = new HashMap<Integer, Notification>();
 		lstNotifRecept = new HashMap<Integer, Notification>();
@@ -73,7 +73,7 @@ public class Membre extends Utilisateur{
 		this.bPresta = bPresta;
 		this.dtFinPresta = dtFinPresta;
 		lstContacts = new ArrayList<Membre>();
-		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
+		lstExperiencePro = new ArrayList<ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
 		super.bFill = true;
 		bFillExpertise = false;
@@ -248,15 +248,15 @@ public class Membre extends Utilisateur{
 					bContrat = result.getBoolean(colContrat);
 					bPresta = result.getBoolean(colPresta);
 					dtFinPresta = result.getDate(colDtPresta);
+					lstExperiencePro = new ArrayList<ExperiencePro>();
 					if(result.getInt(colNbExp) > 0) {
 						ExperiencePro ep = new ExperiencePro(result.getInt(ExperiencePro.colID));
-						lstExperiencePro.put(ep.getID(), ep);
+						lstExperiencePro.add(ep);
 					}
 				}
-				lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 				while(result.next()) {
 					ExperiencePro ep = new ExperiencePro(result.getInt(ExperiencePro.colID));
-					lstExperiencePro.put(ep.getID(), ep);
+					lstExperiencePro.add(ep);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -287,9 +287,8 @@ public class Membre extends Utilisateur{
 			b.setParamInt("_" + Profil.colID, (profil == null ? null : profil.getID()));
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
 			b.execute();
-			HashMap<Integer, ExperiencePro> lstExpProTemp = new HashMap<Integer, ExperiencePro>();
-			for(Map.Entry<Integer, ExperiencePro> entre : lstExperiencePro.entrySet()) {
-				ExperiencePro ep = entre.getValue();
+			ArrayList<ExperiencePro> lstExpProTemp = new ArrayList<ExperiencePro>();
+			for(ExperiencePro ep : lstExperiencePro) {
 				b.procedureInit("Membre_ajouterExperiencePro", 8);
 				b.setParamInt("_" + colID, super.ID_Utilisateur);
 				b.setParamInt("_" + Profil.colID, (ep.getProfil() == null ? null : ep.getProfil().getID()));
@@ -303,7 +302,7 @@ public class Membre extends Utilisateur{
 				if(result.next()) {
 					int ID = result.getInt(ExperiencePro.colID);
 					ep.setID(ID);
-					lstExpProTemp.put(ID, ep);
+					lstExpProTemp.add(ep);
 				}
 			}
 			lstExperiencePro = lstExpProTemp;
@@ -341,7 +340,11 @@ public class Membre extends Utilisateur{
 	}
 
 	public void addExperiencePro(ExperiencePro e) {
-		lstExperiencePro.put(e.getID(),e);
+		if(lstExperiencePro.contains(e)) {
+			lstExperiencePro.remove(e);
+			lstExperiencePro.add(e);
+		}
+		lstExperiencePro.add(e);
 	}
 	
 	/**
@@ -380,6 +383,32 @@ public class Membre extends Utilisateur{
 			n.setbVuDest(true);
 			n.insertOrUpdate();
 		}
+	}
+	
+	/**
+	 * Méthode modélisant la réponse à une demande de mise en relation.
+	 * Cette réponse entraine la mise à jour suivante :
+	 * 	Si la réponse est positive, une relation est établie.
+	 * Dans tous les cas, la ligne correspondant à la notification concernée est
+	 * mise à jour (bAccept prend le résultat de la réponse et bVuDestinataire
+	 * est fixé à vrai)
+	 * 
+	 * @param m : le membre qui a envoyé l'invitation
+	 * @param bAccept : la réponse formulée par le membre courant
+	 */
+	public void reponseDemande(Membre m, boolean bAccept) {
+		Notification n = new Notification(-1,m,this,null,false,false,false);
+		for(Map.Entry<Integer, Notification> entre : lstNotifRecept.entrySet()) {
+			if(entre.getValue().getSource().getID_Utilisateur() == m.getID_Utilisateur()) {
+				n = entre.getValue();
+			}
+		}
+		if(bAccept) {
+			addContact(m);
+		}
+		n.setbAccept(bAccept);
+		n.setbVuDest(true);
+		n.insertOrUpdate();
 	}
 	
 	/**
@@ -475,8 +504,7 @@ public class Membre extends Utilisateur{
 		}
 		ArrayList<Pair<Date,Date>> lstIntervalles = new ArrayList<Pair<Date,Date>>();
 		long date = 0;
-		for(Map.Entry<Integer, ExperiencePro> entre : lstExperiencePro.entrySet()) {
-			ExperiencePro e = entre.getValue();
+		for(ExperiencePro e : lstExperiencePro) {
 			Date tmp = (e.getDtFin() == null ? new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH) : e.getDtFin());
 			lstIntervalles.add(new Pair<Date, Date>(e.getDtDebut(), tmp));
 		}
@@ -540,12 +568,15 @@ public class Membre extends Utilisateur{
 	}
 
 	public boolean hasContrat() {
+		if(!super.bFill) {
+			fill();
+		}
 		return bContrat;
 	}
 
 	public void setHasContrat(boolean bContrat) {
 		this.bContrat = bContrat;
-		
+		super.bFill = true;
 	}
 
 	public boolean isPresta() {
@@ -579,7 +610,7 @@ public class Membre extends Utilisateur{
 		return lstContacts;
 	}
 
-	public HashMap<Integer, ExperiencePro> getLstExperiencePro() {
+	public ArrayList<ExperiencePro> getLstExperiencePro() {
 		if(!bFillExperiencePro) {
 			fill();
 		}

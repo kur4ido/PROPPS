@@ -76,6 +76,22 @@ public class ExperiencePro {
 			bFill = true;
 		}
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof ExperiencePro) {
+			ExperiencePro e = (ExperiencePro) o;
+			if(ID_ExpPro > 0) {
+				return e.getID() == this.ID_ExpPro;
+			}else {
+				return (societe.getID() == e.societe.getID()) && (e.profil.equals(profil)) && (e.sPosteOccupe.equals(sPosteOccupe))
+						&& (e.sDirection.equals(sDirection)) && (e.dtDebut.equals(dtDebut)) && (e.dtFin.equals(dtFin));
+			}
+		}
+		return false;
+	}
+	
+	/*---Getters et Setters---*/
 
 	public Integer getID() {
 		return ID_ExpPro;
