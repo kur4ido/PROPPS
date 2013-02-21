@@ -14,6 +14,11 @@ public class MembreTest {
 	private Membre m1;
 	private Membre m2;
 	private Date date;
+	private Expertise expertise;
+	private ExperiencePro xpPro;
+	private Date dateDebutPro;
+	private Societe societeTest;
+	private Profil profilTest;
 	
 	@BeforeClass
 	public static void setUpClass() throws IOException, ClassNotFoundException {
@@ -29,8 +34,20 @@ public class MembreTest {
 	@Before
 	public void setUp() {
 		date = new Date(2013, 02, 19);
+		dateDebutPro = new Date(2013, 01, 21);
 		m1 = new Membre("Test", "Clément", "clement.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
 		m2 = new Membre(m1.getID_Utilisateur());
+		expertise = new Expertise(1);
+		societeTest = new Societe(1);
+		profilTest = new Profil(1);
+		xpPro = new ExperiencePro(-1);
+		xpPro.setDescription("Description test.");
+		xpPro.setDirection("Direction test.");
+		xpPro.setDtDebut(dateDebutPro);
+		xpPro.setDtFin(null);
+		xpPro.setPosteOccupe("Post occupé test.");
+		xpPro.setProfil(profilTest);
+		xpPro.setSociete(societeTest);
 	}
 	
 	@After
@@ -117,7 +134,7 @@ public class MembreTest {
 		Membre m7 = new Membre(m1.getID_Utilisateur());
 		m7.fill();
 		Comparaison.comparerDeuxMembres(m1, m7);
-		
+		m7.delete();
 		
 	}
 	
@@ -140,6 +157,29 @@ public class MembreTest {
 		Membre m7 = new Membre(indiceBase);
 		m7.fill();
 		Comparaison.membreEstVide(m7);
-			
+		m7.delete();
+	}
+	
+	@Test
+	public void ajoutExpertise() {
+		
+		m1.insertOrUpdate();
+		m1.addExpertise(expertise);
+		m1.insertOrUpdate();
+		Membre m7 = new Membre(m1.getID_Utilisateur());
+		m7.fill();
+		Comparaison.comparerDeuxMembres(m1, m7);
+		m7.delete();
+	}
+	
+	@Test
+	public void ajoutExperiencePro() {
+		m1.insertOrUpdate();
+		m1.addExperiencePro(xpPro);
+		m1.insertOrUpdate();
+		Membre m8 = new Membre(m1.getID_Utilisateur());
+		m8.fill();
+		Comparaison.comparerDeuxMembres(m1, m8);
+		m8.delete();
 	}
 }
