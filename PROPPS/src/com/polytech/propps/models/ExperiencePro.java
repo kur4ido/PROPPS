@@ -47,7 +47,7 @@ public class ExperiencePro {
 			try {
 				b.connect();
 				b.procedureInit("ExperiencePro_getByID", 1);
-				b.setParamInt(colID, ID_ExpPro);
+				b.setParamInt("_" + colID, ID_ExpPro);
 				ResultSet result = b.executeQuery();
 				if(result.next()) {
 					sPosteOccupe = result.getString(colPosteOccupe);

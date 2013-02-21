@@ -208,7 +208,7 @@ public class Membre extends Utilisateur{
 						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
 						result.getBoolean(Notification.colAccept));
 				//Ajout dans la liste concernée
-				lstNotifEnvoi.put(n.getID(),n);
+				lstNotifRecept.put(n.getID(),n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -287,10 +287,11 @@ public class Membre extends Utilisateur{
 			b.setParamInt("_" + Profil.colID, (profil == null ? null : profil.getID()));
 			b.setParamDate("_" + colDtPresta, dtFinPresta);
 			b.execute();
+			
 			ArrayList<ExperiencePro> lstExpProTemp = new ArrayList<ExperiencePro>();
 			for(ExperiencePro ep : lstExperiencePro) {
 				b.procedureInit("Membre_ajouterExperiencePro", 8);
-				b.setParamInt("_" + colID, super.ID_Utilisateur);
+				//b.setParamInt("_" + colID, super.ID_Utilisateur);
 				b.setParamInt("_" + Profil.colID, (ep.getProfil() == null ? null : ep.getProfil().getID()));
 				b.setParamInt("_" + Societe.colID, ep.getSociete().getID());
 				b.setParamDate("_" + ExperiencePro.colDtDebut, ep.getDtDebut());
@@ -298,6 +299,7 @@ public class Membre extends Utilisateur{
 				b.setParamString("_" + ExperiencePro.colDescription, ep.getDescription());
 				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getPosteOccupe());
 				b.setParamString("_" + ExperiencePro.colDirection, ep.getDirection());
+				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
 				ResultSet result = b.executeQuery();
 				if(result.next()) {
 					int ID = result.getInt(ExperiencePro.colID);

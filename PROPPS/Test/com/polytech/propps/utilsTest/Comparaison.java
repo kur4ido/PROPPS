@@ -26,7 +26,6 @@ public class Comparaison {
 		}
 		
 		for(Integer i = 0; i < mX.getLstExperiencePro().size(); i++) {
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (ID).", mX.getLstExperiencePro().get(i).getID(), mY.getLstExperiencePro().get(i).getID());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Description).", mX.getLstExperiencePro().get(i).getDescription(), mY.getLstExperiencePro().get(i).getDescription());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Direction).", mX.getLstExperiencePro().get(i).getDirection(), mY.getLstExperiencePro().get(i).getDirection());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Poste occupé).", mX.getLstExperiencePro().get(i).getPosteOccupe(), mY.getLstExperiencePro().get(i).getPosteOccupe());

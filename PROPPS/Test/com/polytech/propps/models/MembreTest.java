@@ -160,17 +160,7 @@ public class MembreTest {
 		m7.delete();
 	}
 	
-	@Test
-	public void ajoutExpertise() {
-		
-		m1.insertOrUpdate();
-		m1.addExpertise(expertise);
-		m1.insertOrUpdate();
-		Membre m7 = new Membre(m1.getID_Utilisateur());
-		m7.fill();
-		Comparaison.comparerDeuxMembres(m1, m7);
-		m7.delete();
-	}
+	
 	
 	@Test
 	public void ajoutExperiencePro() {
@@ -181,5 +171,17 @@ public class MembreTest {
 		m8.fill();
 		Comparaison.comparerDeuxMembres(m1, m8);
 		m8.delete();
+	}
+	
+	@Test
+	public void ajoutExpertise() {
+		
+		m1.insertOrUpdate();
+		m1.addExpertise(expertise);
+		m1.insertOrUpdate();
+		Membre m7 = new Membre(m1.getID_Utilisateur());
+		m7.fill();
+		Comparaison.comparerDeuxMembres(m1, m7);
+		m7.delete();
 	}
 }
