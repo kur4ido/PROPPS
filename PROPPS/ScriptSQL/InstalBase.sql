@@ -582,7 +582,7 @@ BEGIN
             inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur
             inner join Adresse on Utilisateur.ID_Adresse = Adresse.ID_Adresse
         WHERE ID_Destinataire = _ID_Membre
-            AND bVuDestinataire = FALSE
+            AND bVuDest = FALSE
         ORDER BY dtNotif DESC;
     ELSE
         #Cas où l'on veut les notification envoyées
