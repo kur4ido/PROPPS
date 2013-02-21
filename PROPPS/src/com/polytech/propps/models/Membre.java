@@ -29,7 +29,7 @@ public class Membre extends Utilisateur{
 	protected HashMap<Integer,Notification> lstNotifEnvoi;
 	protected HashMap<Integer,Notification> lstNotifRecept;
 	
-	private boolean bFillExpertise,bFillContact,bFillExperiencePro; 
+	private boolean bFillExpertise,bFillContact,bFillExperiencePro,bFillNotif; 
 	
 	
 	public Membre(int ID) {
@@ -37,6 +37,7 @@ public class Membre extends Utilisateur{
 		super.bFill = false;
 		bFillExpertise = false;
 		bFillContact = false;
+		bFillNotif = false;
 		lstContacts = null;
 		lstExperiencePro = new HashMap<Integer, ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
@@ -59,6 +60,7 @@ public class Membre extends Utilisateur{
 		super.bFill = true;
 		bFillExpertise = true;
 		bFillContact = true;
+		bFillNotif = true;
 	}
 	
 	
@@ -213,6 +215,7 @@ public class Membre extends Utilisateur{
 		}finally {
 			b.close();
 		}
+		bFillNotif = true;
 	}
 	
 	
@@ -408,6 +411,57 @@ public class Membre extends Utilisateur{
 		lstContacts.add(m);
 	}
 	
+	/**
+	 * Methode déstinée a savoir si le membre donnée en paramètre est
+	 * en relation avec le membre courant.
+	 * 
+	 * @param m : le membre à tester
+	 * @return Vrai si le membre fait partie des contacts du membre courant.
+	 */
+	public boolean aCommeAmi(Membre m) {
+		if(!bFillContact) {
+			fillContact();
+		}
+		return lstContacts.contains(m);
+	}
+	
+	/**
+	 * Methode permettant de savoir si le membre courant a demandé
+	 * au membre passé en paramètre de se mettre en relation avec lui.
+	 * 
+	 * @param m : le membre à tester
+	 * @return
+	 */
+	public boolean aEnvoyeInvit(Membre m) {
+		if(!bFillNotif) {
+			fillNotification();
+		}
+		for(Map.Entry<Integer, Notification> entre : lstNotifEnvoi.entrySet()) {
+			if(entre.getValue().getDestinataire().getID_Utilisateur() == m.getID_Utilisateur()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Methode permettant de savoir si le membre courat a été invité
+	 * par le membre passé en paramètre.
+	 * 
+	 * @param m : le membre à tester
+	 * @return
+	 */
+	public boolean aEteInvitePar(Membre m) {
+		if(!bFillNotif) {
+			fillNotification();
+		}
+		for(Map.Entry<Integer, Notification> entre : lstNotifRecept.entrySet()) {
+			if(entre.getValue().getSource().getID_Utilisateur() == m.getID_Utilisateur()) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	/**
 	 * Algorithme de calcul de l'expérience (le cumul des période est pris en
