@@ -323,6 +323,14 @@ public class Membre extends Utilisateur{
 		
 	}
 
+	public HashMap<Integer, Notification> getLstNotifEnvoi() {
+		return lstNotifEnvoi;
+	}
+
+	public HashMap<Integer, Notification> getLstNotifRecept() {
+		return lstNotifRecept;
+	}
+
 	@Override
 	public void delete() {
 		Base b = new Base();

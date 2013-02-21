@@ -432,7 +432,7 @@ BEGIN
         SET _dtFin := NULL;
     END IF;
     INSERT INTO ExperiencePro(dtDebut,dtFin,sDirection,sPosteOccupe,sDescription,ID_Profil,ID_Membre,ID_Societe)
-    VALUES(_dtDebut,_dtFin,_sDirection,_sPosteOccupe,sDescription,_ID_Profil,_ID_Membre,_ID_Societe);
+    VALUES(_dtDebut,_dtFin,_sDirection,_sPosteOccupe,_sDescription,_ID_Profil,_ID_Membre,_ID_Societe);
     SELECT @@Identity as ID_ExperiencePro;
 END$$
 
@@ -444,8 +444,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`ExperiencePro_ajouterExpertise` (IN _ID_ExperiencePro INT, IN _ID_Domaine INT)
 BEGIN
     DELETE
@@ -584,6 +582,7 @@ BEGIN
             inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur
             inner join Adresse on Utilisateur.ID_Adresse = Adresse.ID_Adresse
         WHERE ID_Destinataire = _ID_Membre
+            AND bVuDestinataire = FALSE
         ORDER BY dtNotif DESC;
     ELSE
         #Cas où l'on veut les notification envoyées
@@ -592,6 +591,7 @@ BEGIN
             inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur 
             inner join Adresse on Utilisateur.ID_Adresse = Adresse.ID_Adresse
         WHERE ID_Source = _ID_Membre
+            AND bAccept = FALSE
         ORDER BY dtNotif DESC;
     END IF;
 END$$
@@ -804,8 +804,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Profil INT,
 IN _bContrat BOOL, IN _bPresta BOOL, IN _dtFinPresta DATETIME)
 BEGIN
