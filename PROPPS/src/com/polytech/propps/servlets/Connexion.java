@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
 import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Notification;
 import com.polytech.propps.models.Recruteur;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
@@ -46,6 +50,18 @@ public class Connexion extends HttpServlet {
 				request.removeAttribute("email");
 				System.out.println(membre.getAdresse().getVille());
 				request.setAttribute("ville", membre.getAdresse().getVille());
+				List lstContacts = Arrays.asList(membre.getLstContacts().toArray());
+				HashMap<Integer,Notification> lstNotifRecept = membre.getLstNotifRecept();
+				System.out.println(lstNotifRecept.toString());
+				HashMap<String,Integer> mapNotifRecept = new HashMap<String,Integer>();
+				for(Notification n : lstNotifRecept.values()){
+					Membre tmp = n.getSource();
+					System.out.println(tmp.getsPrenom() + " "+ tmp.getsNom());
+					mapNotifRecept.put(tmp.getsPrenom() + " "+ tmp.getsNom(), n.getID());
+				}
+				request.setAttribute("mapNotifRecept", mapNotifRecept);
+				request.setAttribute("nbNotif", Integer.toString(lstNotifRecept.size()));
+				request.setAttribute("lstNotifRecept", lstNotifRecept);
 				getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
 				
 			}else{

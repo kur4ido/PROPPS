@@ -64,12 +64,30 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>CurrentUserProfileServlet</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.CurrentUserProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CurrentUserProfileServlet</servlet-name>
+    <url-pattern>/seeCurrentUserProfile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>DemandeRelation</servlet-name>
     <servlet-class>com.polytech.propps.servlets.DemandeRelation</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DemandeRelation</servlet-name>
     <url-pattern>/relationAsk</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ReponseDemande</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.ReponseDemande</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReponseDemande</servlet-name>
+    <url-pattern>/relationAnswer</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

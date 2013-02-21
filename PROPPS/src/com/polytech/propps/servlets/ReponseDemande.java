@@ -17,8 +17,11 @@ public class ReponseDemande extends HttpServlet{
 			response ) throws ServletException, IOException{
 		int ID_Membre = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
 		int ID_Notification = Integer.parseInt(request.getParameter(ParametresServlet.ID_Notification));
+		boolean demandeAcceptee = Boolean.parseBoolean(request.getParameter(ParametresServlet.demandeAccepte));
 		Membre current = new Membre(ID_Membre);
-		current.reponseDemande(ID_Notification, Boolean.parseBoolean(request.getParameter(ParametresServlet.demandeAccepte)));
+		current.reponseDemande(ID_Notification, demandeAcceptee);
+		request.setAttribute(ParametresServlet.ID_Membre_Courant, ID_Membre);
+		getServletContext().getRequestDispatcher("/seeCurrentUserProfile").forward(request, response);
 		
 	}
 }
