@@ -216,7 +216,7 @@ CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Notification` (
   `dtNotif` DATETIME NOT NULL ,
   `bVuDest` TINYINT(1) NOT NULL ,
   `bVuSource` TINYINT(1) NOT NULL ,
-  `bAccepte` TINYINT(1) NOT NULL ,
+  `bAccept` TINYINT(1) NOT NULL ,
   `ID_Source` INT NOT NULL ,
   `ID_Destinataire` INT NOT NULL ,
   PRIMARY KEY (`ID_Notification`) ,
@@ -328,8 +328,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_ajouterExpertise` (IN _ID_Utilisateur INT, IN _ID_Domaine INT)
 
 BEGIN
@@ -349,8 +347,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getByID` (IN _ID_Utilisateur INT)
 BEGIN
     declare varNbExp INT;
@@ -429,8 +425,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_ajouterExperiencePro` (IN _ID_Membre INT, IN _ID_Profil INT, IN _ID_Societe INT,
 IN _dtDebut DATETIME, IN _dtFin DATETIME, IN _sDirection VARCHAR(250), IN _sPosteOccupe VARCHAR(250), IN _sDescription TEXT)
 BEGIN
@@ -521,7 +515,7 @@ CREATE PROCEDURE `PROPPS_DB`.`Notification_insertOrUpdate` (IN _ID_Notification 
                     IN _bVuSource BOOL, IN _bVuDest BOOL, IN _bAccept BOOL)
 BEGIN
     IF(_ID_Notification < 0) THEN
-        INSERT INTO Notification(ID_Source,ID_Destinataire,dtNotif,bVuSource,bVuDest,bAccepte)
+        INSERT INTO Notification(ID_Source,ID_Destinataire,dtNotif,bVuSource,bVuDest,bAccept)
         VALUES(_ID_Source,_ID_Destinataire,NOW(),FALSE,FALSE,FALSE);
 
         SELECT * FROM Notification WHERE ID_Notification = @@Identity;
@@ -576,8 +570,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getNotif` (IN _ID_Membre INT, IN _bNotifRecues BOOL)
 BEGIN
 -- ----------------------------------------------------------------------------------
@@ -588,13 +580,17 @@ BEGIN
     IF _bNotifRecues THEN
         #Cas où l'on veut les notifications reçues
         SELECT *
-        FROM Notifications inner join Membre on Notifications.ID_Source = Membre.ID_Membre
+        FROM Notification inner join Membre on Notification.ID_Source = Membre.ID_Utilisateur
+            inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur
+            inner join Adresse on Utilisateur.ID_Adresse = Adresse.ID_Adresse
         WHERE ID_Destinataire = _ID_Membre
         ORDER BY dtNotif DESC;
     ELSE
         #Cas où l'on veut les notification envoyées
         SELECT *
-        FROM Notifications inner join Membre on Notifications.ID_Destinataire = Membre.ID_Membre
+        FROM Notification inner join Membre on Notification.ID_Destinataire = Membre.ID_Utilisateur
+            inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur 
+            inner join Adresse on Utilisateur.ID_Adresse = Adresse.ID_Adresse
         WHERE ID_Source = _ID_Membre
         ORDER BY dtNotif DESC;
     END IF;
@@ -696,15 +692,13 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`ExperiencePro_getByID` (IN _ID_ExperiencePro INT)
 BEGIN
     declare varNbExpertise INT;
     SET varNbExpertise = (SELECT Count(*) FROM DomaineExperiencePro WHERE ID_ExperiencePro = _ID_ExperiencePro);
     
     SELECT E.*,D.*,varNbExpertise as NbExpertise
-    FROM ExperiencePro as E inner join DomaineExperiencePro as D on E.ID_ExperiencePro = D.ID_ExperiencePro
+    FROM ExperiencePro as E left outer join DomaineExperiencePro as D on E.ID_ExperiencePro = D.ID_ExperiencePro
     WHERE E.ID_ExperiencePro = _ID_ExperiencePro;
 END$$
 

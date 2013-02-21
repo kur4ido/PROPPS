@@ -39,7 +39,6 @@ public class Base {
 	 * @throws SQLException
 	 */
 	public void procedureInit(String name,int nbArg) throws SQLException {
-		call = null;
 		String sql = "{call " + name + "(";
 		for(int i = 0 ; i < nbArg - 1 ; i++) {
 			sql += "?,";
@@ -73,7 +72,6 @@ public class Base {
 	 * @throws SQLException
 	 */
 	public void setParamInt(String key, Integer value) throws SQLException {
-		System.out.println(key + " : " + value);
 		if(value != null) {
 			call.setInt(key, value);
 		} else {
