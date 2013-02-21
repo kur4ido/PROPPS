@@ -188,10 +188,10 @@ public class Membre extends Utilisateur{
 			/*On réitère le processus pour les notifications envoyées*/
 			
 			b.procedureInit("Membre_getNotif", 2);
-			b.setParamInt("_" + colID, super.ID_Utilisateur);
+			b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
 			b.setParamBool("_" + Notification.colBRecue,false);
 			result = b.executeQuery();
-			lstNotifRecept = new HashMap<Integer, Notification>();
+			lstNotifEnvoi = new HashMap<Integer, Notification>();
 			while (result.next()) {
 				//Remplissage du profil
 				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
@@ -208,7 +208,7 @@ public class Membre extends Utilisateur{
 						result.getBoolean(Notification.colVuSource), result.getBoolean(Notification.colVuDest),
 						result.getBoolean(Notification.colAccept));
 				//Ajout dans la liste concernée
-				lstNotifRecept.put(n.getID(),n);
+				lstNotifEnvoi.put(n.getID(),n);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

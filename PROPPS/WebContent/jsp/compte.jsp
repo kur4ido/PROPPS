@@ -52,7 +52,7 @@
 					</form>
 					<ul class="nav">
 						<li><a href="pages/recherche_membre.html"><i
-								class="icon-search"></i> Recherche Avancée</a></li>
+								class="icon-search"></i> Recherche AvancÃ©e</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
@@ -62,7 +62,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prénom</br>
+											Nom, prÃ©nom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -72,7 +72,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prénom</br>
+											Nom, prÃ©nom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -82,13 +82,13 @@
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
-								<%=nom %> <%=prenom %> <b class="caret"></b></a>
+								<%=prenom %> <%=nom %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="compte.html"><i class="icon-user"></i> Mon
 										compte</a></li>
 								<li><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										Paramètres</a></li>
+										ParamÃ¨tres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -112,7 +112,7 @@
 							<br>
 							<p class="lead">
 								<i class="icon-briefcase"></i> Poste (profil), Entreprise<br>
-								<i class="icon-calendar"></i> Disponibilité <br> <i
+								<i class="icon-calendar"></i> DisponibilitÃ© <br> <i
 									class="icon-home"></i> <%=ville %>
 
 							</p>
@@ -133,24 +133,24 @@
 					<div id="parcours">
 						<div id="title">
 							<img src="../img/experience.png">
-							<h3>Expériences professionnelles</h3>
-							<!-- Bouton pour déclencher l'ouverture du div -->
+							<h3>ExpÃ©riences professionnelles</h3>
+							<!-- Bouton pour dÃ©clencher l'ouverture du div -->
 							<a class="pull-right" data-toggle="collapse"
 								data-target="#experience"> <i class="icon-pencil"></i>
 							</a>
 						</div>
-						<!-- Div qui permet de créer une nouvelle expérience -->
+						<!-- Div qui permet de crÃ©er une nouvelle expÃ©rience -->
 						<div id="experience" class="collapse in">
 							<form id="formAddExp" class="" action="${pageContext.request.contextPath}/addExpPro" method="post" >
 								<fieldset>
-									<legend>Ajouter une nouvelle expérience
+									<legend>Ajouter une nouvelle expÃ©rience
 										professionnelle</legend>
 									<div class="row">
 										<div class="span4">
 											<div class="control-group">
-												<label class="control-label" for="inputSociété"><b>Société</b></label>
+												<label class="control-label" for="inputSociÃ©tÃ©"><b>SociÃ©tÃ©</b></label>
 												<div class="controls">
-													<input type="text" name="societe" id="inputSociété"
+													<input type="text" name="societe" id="inputSociÃ©tÃ©"
 														value="Dassault">
 												</div>
 											</div>
@@ -166,10 +166,10 @@
 														Emission - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise3" value="CommercantFront">
-														Commerçant - Front office
+														CommerÃ§ant - Front office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise4" value="CommercantBack">
-														Commerçant - Back office
+														CommerÃ§ant - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise5" value="AutomatesFront">
 														Automates - Front office
@@ -190,13 +190,13 @@
 														name="profil" id="optionsRadios2" value="MOE"> MOE
 													</label> <label class="radio"> <input type="radio"
 														name="profil" id="optionsRadios3" value="DCompetence">
-														Double Compétence
+														Double CompÃ©tence
 													</label>
 												</div>
 											</div>
 
 											<div class="control-group">
-												<label class="control-label" for="dispo"><b>Disponibilité</b>
+												<label class="control-label" for="dispo"><b>DisponibilitÃ©</b>
 												</label>
 												<div class="controls">
 													<label class="radio inline"> <input type="radio"
@@ -225,7 +225,7 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="dateFin"><b>à</b></label>
+												<label class="control-label" for="dateFin"><b>Ã </b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
 														data-date="04/02/2013" data-date-format="dd/mm/yyyy"
@@ -234,13 +234,13 @@
 														<span class="add-on"><i class="icon-calendar"></i></span>
 													</div>
 													<a href="#" rel="tooltip" data-placement="right"
-														title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
+														title="Ne renseigner une date de fin que si l'expÃ©rience professionnelle est terminÃ©e"><i
 														class="icon-info-sign"></i></a>
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="control-label" for="inputDirection"><b>Direction
-														au sein de la société</b></label>
+														au sein de la sociÃ©tÃ©</b></label>
 												<div class="controls">
 													<input type="text" name="direction" id="inputDirection"
 														placeholder="...">
@@ -248,10 +248,10 @@
 											</div>
 											<div class="control-group">
 												<label class="control-label" for="inputPoste"><b>Poste
-														occupé</b></label>
+														occupÃ©</b></label>
 												<div class="controls">
 													<input type="text" name="poste" id="inputPoste"
-														placeholder="Ingénieur d'étude">
+														placeholder="IngÃ©nieur d'Ã©tude">
 												</div>
 
 											</div>
@@ -277,7 +277,7 @@
 						<div class="row">
 							<div class="span2">
 								<p>
-									<!-- Bouton pour déclencher l'ouverture du div -->
+									<!-- Bouton pour dÃ©clencher l'ouverture du div -->
 									<a data-toggle="collapse" data-target="#modifExperience1">
 										<i class="icon-pencil"></i>
 									</a>
@@ -317,16 +317,16 @@
 
 							</div>
 							<div class="span9">
-								<!-- Le div permet de modifier l'expérience pro sélectionné, il faut rajouter un numéro pour chaque div pour le différencier des autres -->
+								<!-- Le div permet de modifier l'expÃ©rience pro sÃ©lectionnÃ©, il faut rajouter un numÃ©ro pour chaque div pour le diffÃ©rencier des autres -->
 								<div id="modifExperience1" class="modifExperience collapse in">
 									<form id="formAddExp" class="" action="">
 										<fieldset>
 											<div class="row">
 												<div class="span4">
 													<div class="control-group">
-														<label class="control-label" for="inputSociété"><b>Société</b></label>
+														<label class="control-label" for="inputSociÃ©tÃ©"><b>SociÃ©tÃ©</b></label>
 														<div class="controls">
-															<input type="text" name="societe" id="inputSociété"
+															<input type="text" name="societe" id="inputSociÃ©tÃ©"
 																value="Dassault">
 														</div>
 													</div>
@@ -342,10 +342,10 @@
 																Emission - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise3" value="CommercantFront">
-																Commerçant - Front office
+																CommerÃ§ant - Front office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise4" value="CommercantBack">
-																Commerçant - Back office
+																CommerÃ§ant - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise5" value="AutomatesFront">
 																Automates - Front office
@@ -367,13 +367,13 @@
 																MOE
 															</label> <label class="radio"> <input type="radio"
 																name="profil" id="optionsRadios3" value="DCompetence">
-																Double Compétence
+																Double CompÃ©tence
 															</label>
 														</div>
 													</div>
 
 													<div class="control-group">
-														<label class="control-label" for="dispo"><b>Disponibilité</b>
+														<label class="control-label" for="dispo"><b>DisponibilitÃ©</b>
 														</label>
 														<div class="controls">
 															<label class="radio inline"> <input type="radio"
@@ -402,7 +402,7 @@
 														</div>
 													</div>
 													<div class="control-group">
-														<label class="control-label" for="dateFin"><b>à</b></label>
+														<label class="control-label" for="dateFin"><b>Ã </b></label>
 														<div class="controls">
 															<div class="input-append date" id="dp3"
 																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
@@ -411,13 +411,13 @@
 																<span class="add-on"><i class="icon-calendar"></i></span>
 															</div>
 															<a href="#" rel="tooltip" data-placement="right"
-																title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
+																title="Ne renseigner une date de fin que si l'expÃ©rience professionnelle est terminÃ©e"><i
 																class="icon-info-sign"></i></a>
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputDirection"><b>Direction
-																au sein de la société</b></label>
+																au sein de la sociÃ©tÃ©</b></label>
 														<div class="controls">
 															<input type="text" name="direction" id="inputDirection"
 																placeholder="...">
@@ -425,10 +425,10 @@
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputPoste"><b>Poste
-																occupé</b></label>
+																occupÃ©</b></label>
 														<div class="controls">
 															<input type="email" name="poste" id="inputPoste"
-																placeholder="Ingénieur d'étude">
+																placeholder="IngÃ©nieur d'Ã©tude">
 														</div>
 
 													</div>
@@ -458,7 +458,7 @@
 						<div class="row">
 							<div class="span2">
 								<p>
-									<!-- Bouton pour déclencher l'ouverture du div -->
+									<!-- Bouton pour dÃ©clencher l'ouverture du div -->
 									<a data-toggle="collapse" data-target="#modifExperience2">
 										<i class="icon-pencil"></i>
 									</a>
@@ -476,16 +476,16 @@
 
 							</div>
 							<div class="span9">
-								<!-- Le div permet de modifier l'expérience pro sélectionné, il faut rajouter un numéro pour chaque div pour le différencier des autres -->
+								<!-- Le div permet de modifier l'expÃ©rience pro sÃ©lectionnÃ©, il faut rajouter un numÃ©ro pour chaque div pour le diffÃ©rencier des autres -->
 								<div id="modifExperience2" class="modifExperience collapse in">
 									<form id="formAddExp" class="" action="">
 										<fieldset>
 											<div class="row">
 												<div class="span4">
 													<div class="control-group">
-														<label class="control-label" for="inputSociété"><b>Société</b></label>
+														<label class="control-label" for="inputSociÃ©tÃ©"><b>SociÃ©tÃ©</b></label>
 														<div class="controls">
-															<input type="text" name="societe" id="inputSociété"
+															<input type="text" name="societe" id="inputSociÃ©tÃ©"
 																value="Dassault">
 														</div>
 													</div>
@@ -501,10 +501,10 @@
 																Emission - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise3" value="CommercantFront">
-																Commerçant - Front office
+																CommerÃ§ant - Front office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise4" value="CommercantBack">
-																Commerçant - Back office
+																CommerÃ§ant - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise5" value="AutomatesFront">
 																Automates - Front office
@@ -526,13 +526,13 @@
 																MOE
 															</label> <label class="radio"> <input type="radio"
 																name="profil" id="optionsRadios3" value="DCompetence">
-																Double Compétence
+																Double CompÃ©tence
 															</label>
 														</div>
 													</div>
 
 													<div class="control-group">
-														<label class="control-label" for="dispo"><b>Disponibilité</b>
+														<label class="control-label" for="dispo"><b>DisponibilitÃ©</b>
 														</label>
 														<div class="controls">
 															<label class="radio inline"> <input type="radio"
@@ -561,7 +561,7 @@
 														</div>
 													</div>
 													<div class="control-group">
-														<label class="control-label" for="dateFin"><b>à</b></label>
+														<label class="control-label" for="dateFin"><b>Ã </b></label>
 														<div class="controls">
 															<div class="input-append date" id="dp3"
 																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
@@ -570,13 +570,13 @@
 																<span class="add-on"><i class="icon-calendar"></i></span>
 															</div>
 															<a href="#" rel="tooltip" data-placement="right"
-																title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
+																title="Ne renseigner une date de fin que si l'expÃ©rience professionnelle est terminÃ©e"><i
 																class="icon-info-sign"></i></a>
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputDirection"><b>Direction
-																au sein de la société</b></label>
+																au sein de la sociÃ©tÃ©</b></label>
 														<div class="controls">
 															<input type="text" name="direction" id="inputDirection"
 																placeholder="...">
@@ -584,10 +584,10 @@
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputPoste"><b>Poste
-																occupé</b></label>
+																occupÃ©</b></label>
 														<div class="controls">
 															<input type="email" name="poste" id="inputPoste"
-																placeholder="Ingénieur d'étude">
+																placeholder="IngÃ©nieur d'Ã©tude">
 														</div>
 
 													</div>
@@ -617,7 +617,7 @@
 						<div id="title">
 							<img src="../img/expertise.png">
 							<h3>Domaines d'expertise</h3>
-							<!-- Bouton pour déclencher l'ouverture du div -->
+							<!-- Bouton pour dÃ©clencher l'ouverture du div -->
 							<a class="pull-right" data-toggle="collapse"
 								data-target="#expertise"> <i class="icon-pencil"></i>
 							</a>
@@ -635,8 +635,8 @@
 											<select name="domaine">
 												<option>Emission - Front Office</option>
 												<option>Emission - Back Office</option>
-												<option>Commerçant - Front Office</option>
-												<option>Commerçant - Back Office</option>
+												<option>CommerÃ§ant - Front Office</option>
+												<option>CommerÃ§ant - Back Office</option>
 												<option>Automates - Front Office</option>
 												<option>Automates - Back Office</option>
 											</select>
@@ -649,7 +649,7 @@
 									</div>
 								</fieldset>
 								<legend>Modifier vos domaines d'expertise</legend>
-								<!-- L'adresse du lien contient l'identifiant du domaine d'expertise à supprimer -->
+								<!-- L'adresse du lien contient l'identifiant du domaine d'expertise Ã  supprimer -->
 								<table>
 									<tbody>
 										<tr>
@@ -658,7 +658,7 @@
 													class="icon-remove-sign"></i></a></td>
 										</tr>
 										<tr>
-											<td>Commerçant - Front Office</td>
+											<td>CommerÃ§ant - Front Office</td>
 											<td><a href="deleteDomaineId2.html"><i
 													class="icon-remove-sign"></i></a></td>
 										</tr>
@@ -679,7 +679,7 @@
 
 						<div class="expertise">
 							<span class="label label-info">Emission - Back Office</span> <span
-								class="label label-info">Commerçant - Front Office</span> <span
+								class="label label-info">CommerÃ§ant - Front Office</span> <span
 								class="label label-info">Automates - Front Office</span>
 						</div>
 					</div>

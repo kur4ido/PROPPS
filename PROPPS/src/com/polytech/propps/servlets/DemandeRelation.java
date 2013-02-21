@@ -22,6 +22,10 @@ public class DemandeRelation extends HttpServlet {
 		int ID_Destinataire = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Select));
 		Membre current = new Membre(ID_Membre);
 		current.demanderContact(new Membre(ID_Destinataire));
+		request.setAttribute(ParametresServlet.ID_Membre_Select, Integer.toString(ID_Destinataire));
+		request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(ID_Membre));
+		getServletContext().getRequestDispatcher("/seeUserProfile").forward(request, response);
+		
 		
 	}
 }
