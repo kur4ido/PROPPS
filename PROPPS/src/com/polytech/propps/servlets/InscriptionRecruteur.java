@@ -35,8 +35,8 @@ public class InscriptionRecruteur extends HttpServlet {
 		Base base = new Base();
 		try {
 			base.connect();
-			
-			String compte = request.getParameter("inputCompte");
+			String nom =  request.getParameter("inputNom");
+			String prenom = request.getParameter("inputPrenom");
 			String email = request.getParameter("inputEmail");
 			String mdp = request.getParameter("inputPassword");
 			String confirmMdp = request.getParameter("inputConfirmPassword");
@@ -46,7 +46,7 @@ public class InscriptionRecruteur extends HttpServlet {
 			String codePostal = request.getParameter("inputCodePostal");
 			String ville = request.getParameter("inputVille");
 			
-			System.out.println("Compte : "+compte+"\tSociete : "+societe+"\tMail : "+email);
+			System.out.println("Nom : "+nom +"\tPrenom : " +prenom +"\tSociete : "+societe+"\tMail : "+email);
 			System.out.println("Mdp : "+mdp+"\tConfirmMdp : "+confirmMdp+"\tVille : "+ville);
 			System.out.println("Adresse : "+adresse+"\tPays : "+pays+"\tCode Postal : "+codePostal);
 			if(mdp.matches(".*[A-Z].*") && mdp.matches(".*[0-9].*") && mdp.matches(".*[a-z].*") && mdp.length()>=8){
@@ -60,55 +60,61 @@ public class InscriptionRecruteur extends HttpServlet {
 					boolean EmailAlreadyExists = testEmailAlreadyExists.first();
 					if(!EmailAlreadyExists){
 						System.out.println("Le mail est disponible");
-//						Societe societe = new Societe();
-//						Recruteur recruteur = new Recruteur(-1);
-//						recruteur.setAdresse(new Adresse(ville, null, null, null));
-//						System.out.println(recruteur.getAdresse().getVille());
-//						recruteur.insertOrUpdate();
-//						request.setAttribute("email", email);
-//						request.setAttribute("nom", name);
-//						request.setAttribute("prenom", prenom);
-//						request.setAttribute("ville", ville);
-//						request.setAttribute("password", null);
-//						request.setAttribute("confirmPassword", null);
-//						request.removeAttribute("password");
-//						request.removeAttribute("confirmPassword");
-//						getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
-	//					String attributes = "?nom="+name+"&prenom="+prenom+"&ville="+ville;
-	//					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/jsp/compte.jsp"));
+						 Societe s = new Societe(societe);
+						 Recruteur recruteur = new Recruteur(nom,prenom,email,mdp,s);
+						 recruteur.setAdresse(new Adresse(ville, codePostal, null,
+						 pays));
+						 System.out.println(recruteur.getAdresse().getVille());
+						 recruteur.insertOrUpdate();
+						 request.setAttribute("email", email);
+						 request.setAttribute("nom", nom);
+						 request.setAttribute("prenom", prenom);
+						 request.setAttribute("ville", ville);
+						 request.setAttribute("codePostal", codePostal);
+						 request.setAttribute("pays", pays);
+						 request.setAttribute(ParametresServlet.ID_Membre_Courant,Integer.toString(recruteur.getID_Utilisateur()));
+						getServletContext().getRequestDispatcher("/jsp/entreprise.jsp").forward(request, response);
 					}else{
-//						request.setAttribute("email", email);
-//						request.setAttribute("nom", name);
-//						request.setAttribute("prenom", prenom);
-//						request.setAttribute("ville", ville);
-//						String error = "Cette adresse mail est deja utilisee";
-//						request.setAttribute("errorMdpInvalide", "");
-//						request.setAttribute("errorMail", error);
-//						request.setAttribute("errorMdp", "");
-//						getServletContext().getRequestDispatcher("/jsp/inscription1.jsp").forward(request, response);
+						request.setAttribute("email", email);
+						request.setAttribute("nom", nom);
+						request.setAttribute("prenom", prenom);
+						request.setAttribute("ville", ville);
+						request.setAttribute("codePostal", codePostal);
+						request.setAttribute("pays", pays);
+						request.setAttribute(ParametresServlet.NomSociete, societe);
+						String error = "Cette adresse mail est deja utilisee";
+						request.setAttribute("errorMdpInvalide", "");
+						request.setAttribute("errorMail", error);
+						request.setAttribute("errorMdp", "");
+						getServletContext().getRequestDispatcher("/jsp/inscription_ent.jsp").forward(request, response);
 					}
 				}
 				else{
-//					String error = "Les deux mots de passe tapes sont differents";
-//					request.setAttribute("email", email);
-//					request.setAttribute("nom", name);
-//					request.setAttribute("prenom", prenom);
-//					request.setAttribute("ville", ville);
-//					request.setAttribute("errorMdp", error);
-//					request.setAttribute("errorMdpInvalide", "");
-//					request.setAttribute("errorMail", "");
-//					getServletContext().getRequestDispatcher("/jsp/inscription1.jsp").forward(request, response);
+					String error = "Les deux mots de passe tapes sont differents";
+					request.setAttribute("email", email);
+					request.setAttribute("nom", nom);
+					request.setAttribute("prenom", prenom);
+					request.setAttribute("ville", ville);
+					request.setAttribute("codePostal", codePostal);
+					request.setAttribute("pays", pays);
+					request.setAttribute(ParametresServlet.NomSociete, societe);
+					request.setAttribute("errorMdp", error);
+					request.setAttribute("errorMdpInvalide", "");
+					request.setAttribute("errorMail", "");
+					getServletContext().getRequestDispatcher("/jsp/inscription_ent.jsp").forward(request, response);
 				}
 			}else{
-//				String error = "Le mot de passe n'est pas valide";
-//				request.setAttribute("email", email);
-//				request.setAttribute("nom", name);
-//				request.setAttribute("prenom", prenom);
-//				request.setAttribute("ville", ville);
-//				request.setAttribute("errorMdpInvalide", error);
-//				request.setAttribute("errorMdp", "");
-//				request.setAttribute("errorMail", "");
-//				getServletContext().getRequestDispatcher("/jsp/inscription1.jsp").forward(request, response);
+				String error = "Le mot de passe n'est pas valide";
+				request.setAttribute("email", email);
+				request.setAttribute("nom", nom);
+				request.setAttribute("prenom", prenom);
+				request.setAttribute("ville", ville);
+				request.setAttribute("codePostal", codePostal);
+				request.setAttribute("pays", pays);
+				request.setAttribute("errorMdpInvalide", error);
+				request.setAttribute("errorMdp", "");
+				request.setAttribute("errorMail", "");
+				getServletContext().getRequestDispatcher("/jsp/inscription_ent.jsp").forward(request, response);
 				
 			}
 		}catch(Exception e) {

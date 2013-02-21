@@ -383,11 +383,12 @@ public class Membre extends Utilisateur{
 			Notification n = lstNotifRecept.get(ID_Notif);
 			if(bAccept) {
 				addContact(n.getSource());
-				
 			}
 			n.setbAccept(bAccept);
 			n.setbVuDest(true);
 			n.insertOrUpdate();
+			lstNotifRecept.remove(ID_Notif);
+			lstNotifRecept.put(n.getID(), n);
 		}
 	}
 	

@@ -52,32 +52,43 @@
 					</form>
 					<ul class="nav">
 						<li><a href="pages/recherche_membre.html"><i
-								class="icon-search"></i> Recherche Avanc√©e</a></li>
+								class="icon-search"></i> Recherche AvancÈe</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-list-alt"></i>
-								Invitations <span class="badge badge-info">2</span> </b></a>
+								Invitations 
+								<c:if test="${requestScope.nbNotif>'0'}" ><span class="badge badge-info">${requestScope.nbNotif}</span></c:if> </b></a>
 							<ul class="dropdown-menu">
-								<li>
-									<div id="notification">
-										<div id="notif_contact">
-											Nom, pr√©nom</br>
-											<button class="btn btn-mini btn-success" type="button">Accepter</button>
-											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
+								<c:set var="count" value="0" scope="page" />
+								<c:forEach items="${requestScope.mapNotifRecept}" var="entry">
+									<c:set var="count" value="${count + 1}" scope="page"/>
+									<li>
+										<div id="notification">
+											<div id="notif_contact">
+												<form action="${pageContext.request.contextPath}/relationAnswer" method="post">
+													${entry.key}</br>
+													<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
+													<input type="hidden" name="ID_Notification" value="${entry.value}" >
+													<button class="btn btn-mini btn-success" name="estAccepte"  value="true" type="submit">Accepter</button>
+													<button class="btn btn-mini btn-danger" name="estAccepte"  value="false" type="submit">Refuser</button>
+												</form>
+											</div>
 										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div id="notification">
-										<div id="notif_contact">
-											Nom, pr√©nom</br>
-											<button class="btn btn-mini btn-success" type="button">Accepter</button>
-											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
-										</div>
-									</div>
-								</li>
+									</li>
+									<c:if test="${count <  requestScope.nbNotif}">
+										<li class="divider"></li>
+									</c:if>
+								</c:forEach>
+<!-- 								<li> -->
+<!-- 									<div id="notification"> -->
+<!-- 										<div id="notif_contact"> -->
+<!-- 											Nom, prÈnom</br> -->
+<!-- 											<button class="btn btn-mini btn-success" type="button">Accepter</button> -->
+<!-- 											<button class="btn btn-mini btn-danger" type="button">Refuser</button> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</li> -->
 							</ul></li>
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"
@@ -88,7 +99,7 @@
 										compte</a></li>
 								<li><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										Param√®tres</a></li>
+										ParamËtres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -112,7 +123,7 @@
 							<br>
 							<p class="lead">
 								<i class="icon-briefcase"></i> Poste (profil), Entreprise<br>
-								<i class="icon-calendar"></i> Disponibilit√© <br> <i
+								<i class="icon-calendar"></i> DisponibilitÈ <br> <i
 									class="icon-home"></i> <%=ville %>
 
 							</p>
@@ -132,25 +143,25 @@
 				<div class="span9">
 					<div id="parcours">
 						<div id="title">
-							<img src="../img/experience.png">
-							<h3>Exp√©riences professionnelles</h3>
-							<!-- Bouton pour d√©clencher l'ouverture du div -->
+							<img src="${pageContext.request.contextPath}/img/experience.png">
+							<h3>ExpÈriences professionnelles</h3>
+							<!-- Bouton pour dÈclencher l'ouverture du div -->
 							<a class="pull-right" data-toggle="collapse"
 								data-target="#experience"> <i class="icon-pencil"></i>
 							</a>
 						</div>
-						<!-- Div qui permet de cr√©er une nouvelle exp√©rience -->
+						<!-- Div qui permet de crÈer une nouvelle expÈrience -->
 						<div id="experience" class="collapse in">
 							<form id="formAddExp" class="" action="${pageContext.request.contextPath}/addExpPro" method="post" >
 								<fieldset>
-									<legend>Ajouter une nouvelle exp√©rience
+									<legend>Ajouter une nouvelle expÈrience
 										professionnelle</legend>
 									<div class="row">
 										<div class="span4">
 											<div class="control-group">
-												<label class="control-label" for="inputSoci√©t√©"><b>Soci√©t√©</b></label>
+												<label class="control-label" for="inputSociÈtÈ"><b>SociÈtÈ</b></label>
 												<div class="controls">
-													<input type="text" name="societe" id="inputSoci√©t√©"
+													<input type="text" name="societe" id="inputSociÈtÈ"
 														value="Dassault">
 												</div>
 											</div>
@@ -166,10 +177,10 @@
 														Emission - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise3" value="CommercantFront">
-														Commer√ßant - Front office
+														CommerÁant - Front office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise4" value="CommercantBack">
-														Commer√ßant - Back office
+														CommerÁant - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
 														name="expertise5" value="AutomatesFront">
 														Automates - Front office
@@ -190,13 +201,13 @@
 														name="profil" id="optionsRadios2" value="MOE"> MOE
 													</label> <label class="radio"> <input type="radio"
 														name="profil" id="optionsRadios3" value="DCompetence">
-														Double Comp√©tence
+														Double CompÈtence
 													</label>
 												</div>
 											</div>
 
 											<div class="control-group">
-												<label class="control-label" for="dispo"><b>Disponibilit√©</b>
+												<label class="control-label" for="dispo"><b>DisponibilitÈ</b>
 												</label>
 												<div class="controls">
 													<label class="radio inline"> <input type="radio"
@@ -234,13 +245,13 @@
 														<span class="add-on"><i class="icon-calendar"></i></span>
 													</div>
 													<a href="#" rel="tooltip" data-placement="right"
-														title="Ne renseigner une date de fin que si l'exp√©rience professionnelle est termin√©e"><i
+														title="Ne renseigner une date de fin que si l'expÈrience professionnelle est terminÈe"><i
 														class="icon-info-sign"></i></a>
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="control-label" for="inputDirection"><b>Direction
-														au sein de la soci√©t√©</b></label>
+														au sein de la sociÈtÈ</b></label>
 												<div class="controls">
 													<input type="text" name="direction" id="inputDirection"
 														placeholder="...">
@@ -248,10 +259,10 @@
 											</div>
 											<div class="control-group">
 												<label class="control-label" for="inputPoste"><b>Poste
-														occup√©</b></label>
+														occupÈ</b></label>
 												<div class="controls">
 													<input type="text" name="poste" id="inputPoste"
-														placeholder="Ing√©nieur d'√©tude">
+														placeholder="IngÈnieur d'Ètude">
 												</div>
 
 											</div>
@@ -277,7 +288,7 @@
 						<div class="row">
 							<div class="span2">
 								<p>
-									<!-- Bouton pour d√©clencher l'ouverture du div -->
+									<!-- Bouton pour dÈclencher l'ouverture du div -->
 									<a data-toggle="collapse" data-target="#modifExperience1">
 										<i class="icon-pencil"></i>
 									</a>
@@ -317,16 +328,16 @@
 
 							</div>
 							<div class="span9">
-								<!-- Le div permet de modifier l'exp√©rience pro s√©lectionn√©, il faut rajouter un num√©ro pour chaque div pour le diff√©rencier des autres -->
+								<!-- Le div permet de modifier l'expÈrience pro sÈlectionnÈ, il faut rajouter un numÈro pour chaque div pour le diffÈrencier des autres -->
 								<div id="modifExperience1" class="modifExperience collapse in">
 									<form id="formAddExp" class="" action="">
 										<fieldset>
 											<div class="row">
 												<div class="span4">
 													<div class="control-group">
-														<label class="control-label" for="inputSoci√©t√©"><b>Soci√©t√©</b></label>
+														<label class="control-label" for="inputSociÈtÈ"><b>SociÈtÈ</b></label>
 														<div class="controls">
-															<input type="text" name="societe" id="inputSoci√©t√©"
+															<input type="text" name="societe" id="inputSociÈtÈ"
 																value="Dassault">
 														</div>
 													</div>
@@ -342,10 +353,10 @@
 																Emission - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise3" value="CommercantFront">
-																Commer√ßant - Front office
+																CommerÁant - Front office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise4" value="CommercantBack">
-																Commer√ßant - Back office
+																CommerÁant - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise5" value="AutomatesFront">
 																Automates - Front office
@@ -367,13 +378,13 @@
 																MOE
 															</label> <label class="radio"> <input type="radio"
 																name="profil" id="optionsRadios3" value="DCompetence">
-																Double Comp√©tence
+																Double CompÈtence
 															</label>
 														</div>
 													</div>
 
 													<div class="control-group">
-														<label class="control-label" for="dispo"><b>Disponibilit√©</b>
+														<label class="control-label" for="dispo"><b>DisponibilitÈ</b>
 														</label>
 														<div class="controls">
 															<label class="radio inline"> <input type="radio"
@@ -411,13 +422,13 @@
 																<span class="add-on"><i class="icon-calendar"></i></span>
 															</div>
 															<a href="#" rel="tooltip" data-placement="right"
-																title="Ne renseigner une date de fin que si l'exp√©rience professionnelle est termin√©e"><i
+																title="Ne renseigner une date de fin que si l'expÈrience professionnelle est terminÈe"><i
 																class="icon-info-sign"></i></a>
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputDirection"><b>Direction
-																au sein de la soci√©t√©</b></label>
+																au sein de la sociÈtÈ</b></label>
 														<div class="controls">
 															<input type="text" name="direction" id="inputDirection"
 																placeholder="...">
@@ -425,10 +436,10 @@
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputPoste"><b>Poste
-																occup√©</b></label>
+																occupÈ</b></label>
 														<div class="controls">
 															<input type="email" name="poste" id="inputPoste"
-																placeholder="Ing√©nieur d'√©tude">
+																placeholder="IngÈnieur d'Ètude">
 														</div>
 
 													</div>
@@ -458,7 +469,7 @@
 						<div class="row">
 							<div class="span2">
 								<p>
-									<!-- Bouton pour d√©clencher l'ouverture du div -->
+									<!-- Bouton pour dÈclencher l'ouverture du div -->
 									<a data-toggle="collapse" data-target="#modifExperience2">
 										<i class="icon-pencil"></i>
 									</a>
@@ -476,16 +487,16 @@
 
 							</div>
 							<div class="span9">
-								<!-- Le div permet de modifier l'exp√©rience pro s√©lectionn√©, il faut rajouter un num√©ro pour chaque div pour le diff√©rencier des autres -->
+								<!-- Le div permet de modifier l'expÈrience pro sÈlectionnÈ, il faut rajouter un numÈro pour chaque div pour le diffÈrencier des autres -->
 								<div id="modifExperience2" class="modifExperience collapse in">
 									<form id="formAddExp" class="" action="">
 										<fieldset>
 											<div class="row">
 												<div class="span4">
 													<div class="control-group">
-														<label class="control-label" for="inputSoci√©t√©"><b>Soci√©t√©</b></label>
+														<label class="control-label" for="inputSociÈtÈ"><b>SociÈtÈ</b></label>
 														<div class="controls">
-															<input type="text" name="societe" id="inputSoci√©t√©"
+															<input type="text" name="societe" id="inputSociÈtÈ"
 																value="Dassault">
 														</div>
 													</div>
@@ -501,10 +512,10 @@
 																Emission - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise3" value="CommercantFront">
-																Commer√ßant - Front office
+																CommerÁant - Front office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise4" value="CommercantBack">
-																Commer√ßant - Back office
+																CommerÁant - Back office
 															</label> <label class="checkbox"> <input type="checkbox"
 																name="expertise5" value="AutomatesFront">
 																Automates - Front office
@@ -526,13 +537,13 @@
 																MOE
 															</label> <label class="radio"> <input type="radio"
 																name="profil" id="optionsRadios3" value="DCompetence">
-																Double Comp√©tence
+																Double CompÈtence
 															</label>
 														</div>
 													</div>
 
 													<div class="control-group">
-														<label class="control-label" for="dispo"><b>Disponibilit√©</b>
+														<label class="control-label" for="dispo"><b>DisponibilitÈ</b>
 														</label>
 														<div class="controls">
 															<label class="radio inline"> <input type="radio"
@@ -570,13 +581,13 @@
 																<span class="add-on"><i class="icon-calendar"></i></span>
 															</div>
 															<a href="#" rel="tooltip" data-placement="right"
-																title="Ne renseigner une date de fin que si l'exp√©rience professionnelle est termin√©e"><i
+																title="Ne renseigner une date de fin que si l'expÈrience professionnelle est terminÈe"><i
 																class="icon-info-sign"></i></a>
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputDirection"><b>Direction
-																au sein de la soci√©t√©</b></label>
+																au sein de la sociÈtÈ</b></label>
 														<div class="controls">
 															<input type="text" name="direction" id="inputDirection"
 																placeholder="...">
@@ -584,10 +595,10 @@
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="inputPoste"><b>Poste
-																occup√©</b></label>
+																occupÈ</b></label>
 														<div class="controls">
 															<input type="email" name="poste" id="inputPoste"
-																placeholder="Ing√©nieur d'√©tude">
+																placeholder="IngÈnieur d'Ètude">
 														</div>
 
 													</div>
@@ -615,9 +626,9 @@
 						</div>
 						<hr class="bs-docs-separator">
 						<div id="title">
-							<img src="../img/expertise.png">
+							<img src="${pageContext.request.contextPath}/img/expertise.png">
 							<h3>Domaines d'expertise</h3>
-							<!-- Bouton pour d√©clencher l'ouverture du div -->
+							<!-- Bouton pour dÈclencher l'ouverture du div -->
 							<a class="pull-right" data-toggle="collapse"
 								data-target="#expertise"> <i class="icon-pencil"></i>
 							</a>
@@ -635,8 +646,8 @@
 											<select name="domaine">
 												<option>Emission - Front Office</option>
 												<option>Emission - Back Office</option>
-												<option>Commer√ßant - Front Office</option>
-												<option>Commer√ßant - Back Office</option>
+												<option>CommerÁant - Front Office</option>
+												<option>CommerÁant - Back Office</option>
 												<option>Automates - Front Office</option>
 												<option>Automates - Back Office</option>
 											</select>
@@ -658,7 +669,7 @@
 													class="icon-remove-sign"></i></a></td>
 										</tr>
 										<tr>
-											<td>Commer√ßant - Front Office</td>
+											<td>CommerÁant - Front Office</td>
 											<td><a href="deleteDomaineId2.html"><i
 													class="icon-remove-sign"></i></a></td>
 										</tr>
@@ -679,7 +690,7 @@
 
 						<div class="expertise">
 							<span class="label label-info">Emission - Back Office</span> <span
-								class="label label-info">Commer√ßant - Front Office</span> <span
+								class="label label-info">CommerÁant - Front Office</span> <span
 								class="label label-info">Automates - Front Office</span>
 						</div>
 					</div>
@@ -688,29 +699,37 @@
 
 					<div id="last-add">
 						<div id="title">
-							<img src="../img/contact.png">
+							<img src="${pageContext.request.contextPath}/img/contact.png">
 							<h3>Derniers ajouts</h3>
 						</div>
-						<div id="contact">
-							<img src="../img/people.png" width="64">
-							<div id="description_contact">
-								Contact 1<br> Profession, Entreprise
-							</div>
-						</div>
+							<c:forEach var="member" items="${requestScope.LstContacts}" >
+								<div id="contact">
+									<img src="${pageContext.request.contextPath}/img/people.png" width="64">
+									<div id="description_contact">
+										${member.sPrenom } ${member.sNom }<br> Profession, Entreprise
+									</div>
+								</div>
+							</c:forEach>
+<!-- 						<div id="contact"> -->
+<!-- 							<img src="${pageContext.request.contextPath}/img/people.png" width="64"> -->
+<!-- 							<div id="description_contact"> -->
+<!-- 								Contact 1<br> Profession, Entreprise -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
-						<div id="contact">
-							<img src="../img/people.png" width="64">
-							<div id="description_contact">
-								Contact 2<br> Profession, Entreprise
-							</div>
-						</div>
+<!-- 						<div id="contact"> -->
+<!-- 							<img src="${pageContext.request.contextPath}/img/people.png" width="64"> -->
+<!-- 							<div id="description_contact"> -->
+<!-- 								Contact 2<br> Profession, Entreprise -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
-						<div id="contact">
-							<img src="../img/people.png" width="64">
-							<div id="description_contact">
-								Contact 3<br> Profession, Entreprise
-							</div>
-						</div>
+<!-- 						<div id="contact"> -->
+<!-- 							<img src="${pageContext.request.contextPath}/img/people.png" width="64"> -->
+<!-- 							<div id="description_contact"> -->
+<!-- 								Contact 3<br> Profession, Entreprise -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>
@@ -731,14 +750,14 @@
 
 	<script src="http://platform.twitter.com/widgets.js"
 		type="text/javascript"></script>
-	<script src="../js/jquery-1.9.0.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.0.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 
 
 	<!-- JS supplementaire -->
-	<script src="../js/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
 
 	<script>
 		$(document).off('touchstart.dropdown.data-api');

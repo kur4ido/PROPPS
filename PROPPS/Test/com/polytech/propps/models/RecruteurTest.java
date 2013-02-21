@@ -116,4 +116,5 @@ public class RecruteurTest {
 		Comparaison.RecruteurEstVide(r6);
 			
 	}
+	
 }

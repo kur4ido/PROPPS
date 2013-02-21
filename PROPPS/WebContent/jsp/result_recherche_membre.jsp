@@ -52,7 +52,7 @@
 					</form>
 					<ul class="nav">
 						<li><a href="#"><i class="icon-search"></i> Recherche
-								AvancÃ©e</a></li>
+								Avancée</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
@@ -62,7 +62,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prÃ©nom</br>
+											Nom, prénom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -72,7 +72,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prÃ©nom</br>
+											Nom, prénom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -87,7 +87,7 @@
 								<li><a href="compte.html"><i class="icon-user"></i> Mon
 										compte</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										ParamÃ¨tre</a></li>
+										Paramètre</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -113,7 +113,7 @@
 
 					<form action="result_recherche_membre.html">
 						<fieldset>
-							<legend>Selectionnez vos critÃ¨res de recherche</legend>
+							<legend>Selectionnez vos critères de recherche</legend>
 							<div class="container">
 								<div class="row">
 									<div class="span3">
@@ -121,7 +121,7 @@
 											type="text" name="nom" id="inputNom" placeholder="">
 									</div>
 									<div class="span3">
-										<label class="control-label" for="inputPrenom">PrÃ©nom</label>
+										<label class="control-label" for="inputPrenom">Prénom</label>
 										<input type="text" name="prenom" id="inputPreom"
 											placeholder="">
 									</div>
@@ -130,7 +130,7 @@
 											type="text" name="email" id="inputEmail" placeholder="">
 									</div>
 									<div class="span3">
-										<label class="control-label" for="inputSociete">SociÃ©tÃ©</label>
+										<label class="control-label" for="inputSociete">Société</label>
 										<input type="text" name="societe" id="inputSociete"
 											placeholder="">
 									</div>
@@ -144,9 +144,9 @@
 						<thead>
 							<tr>
 								<th>Nom</th>
-								<th>PrÃ©nom</th>
+								<th>Prénom</th>
 								<th>Email</th>
-								<th>SociÃ©tÃ©</th>
+								<th>Société</th>
 							</tr>
 						</thead>
 						<tbody>

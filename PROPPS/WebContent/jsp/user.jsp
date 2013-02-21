@@ -57,7 +57,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prÃ©nom</br>
+											Nom, prénom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -67,7 +67,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prÃ©nom</br>
+											Nom, prénom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -84,7 +84,7 @@
 								<li><a href="messagerie.html"><i class="icon-inbox"></i>
 										Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										ParamÃ¨tres</a></li>
+										Paramètres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -106,7 +106,7 @@
 							<br>
 							<p class="lead">
 								<i class="icon-briefcase"></i> Poste (profil), Entreprise<br>
-								<i class="icon-calendar"></i> DisponibilitÃ© <br> <i
+								<i class="icon-calendar"></i> Disponibilité <br> <i
 									class="icon-home"></i> <%=ville_Membre_Select %>
 
 							</p>
@@ -116,7 +116,7 @@
 									<input type="hidden" name="ID_Membre_Select" value=${membreSelect.ID_Utilisateur } >
 										<a href="#" class="btn btn-primary btn-small" type="button" 
 										onclick="javascript:document.forms[1].submit();return false;" ><i
-										class="icon-plus-sign icon-white"></i> Ajouter Ã  mes contacts</a>
+										class="icon-plus-sign icon-white"></i> Ajouter à  mes contacts</a>
 								</form>
 							</c:if>
 							<c:if test="${requestScope.isContact=='amis'}">
@@ -145,7 +145,7 @@
 					<div id="parcours">
 						<div id="title">
 							<img src="${pageContext.request.contextPath}/img/experience.png">
-							<h3>ExpÃ©riences professionnelles</h3>
+							<h3>Expériences professionnelles</h3>
 						</div>
 
 						<div class="row">
@@ -214,7 +214,7 @@
 						</div>
 						<div class="expertise">
 							<span class="label label-info">Emission - Back Office</span> <span
-								class="label label-info">CommerÃ§ant - Front Office</span> <span
+								class="label label-info">Commerçant - Front Office</span> <span
 								class="label label-info">Automates - Front Office</span>
 						</div>
 					</div>
