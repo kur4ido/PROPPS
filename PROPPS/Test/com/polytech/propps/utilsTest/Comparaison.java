@@ -15,10 +15,13 @@ public class Comparaison {
 		Assert.assertEquals("Le nom du membre est mal inséré.", mX.getsNom(), mY.getsNom());
 		//Assert.assertEquals("Le mot de passe du membre est mal inséré.", mX.getsPassword(), mY.getsPassword());
 		Assert.assertEquals("Le prénom du membre est mal inséré.", mX.getsPrenom(), mY.getsPrenom());
-		//Assert.assertEquals("L'adresse du membre est mal insérée.", mX.getAdresse(), mY.getAdresse());
-		//@TODO comparer champ à champ pour l'adresse sinon @objets differentes !
-		//Assert.assertEquals("La date de fin de prestation est mal insérée.", mX.getDtFinPresta(), mY.getDtFinPresta());
-		//@TODO idem qu'adresse
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Adresse)", mX.getAdresse().getAdresse(), mY.getAdresse().getAdresse());
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Code Postal)", mX.getAdresse().getCodePostal(), mY.getAdresse().getCodePostal());
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Pays)", mX.getAdresse().getPays(), mY.getAdresse().getPays());
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Ville)", mX.getAdresse().getVille(), mY.getAdresse().getVille());
+		Assert.assertEquals("La date de fin de prestation est mal insérée. (Année)", mX.getDtFinPresta().getYear(), mY.getDtFinPresta().getYear());
+		Assert.assertEquals("La date de fin de prestation est mal insérée. (Mois)", mX.getDtFinPresta().getMonth(), mY.getDtFinPresta().getMonth());
+		Assert.assertEquals("La date de fin de prestation est mal insérée. (Jour)", mX.getDtFinPresta().getDay(), mY.getDtFinPresta().getDay());
 		Assert.assertEquals("Le profil du membre est mal inséré.", mX.getProfil(), mY.getProfil());
 		
 		for(Integer i = 0; i < mX.getLstContacts().size(); i++) {
@@ -80,18 +83,15 @@ public class Comparaison {
 	}
 	
 	public static void comparerDeuxRecruteurs(Recruteur rX, Recruteur rY) {
-		//Assert.assertEquals("L'ID du recruteur est mal insérée.", rX, rY);
 		Assert.assertEquals("L'email du recruteur est mal inséré.", rX.getsEmail(), rY.getsEmail());
 		Assert.assertEquals("Le nom du recruteur est mal inséré.", rX.getsNom(), rY.getsNom());
-		//Assert.assertEquals("Le mot de passe du recruteur est mal inséré.", rX.getsPassword(), rY.getsPassword());
 		Assert.assertEquals("Le prénom du recruteur est mal inséré.", rX.getsPrenom(), rY.getsPrenom());
-		//Assert.assertEquals("L'adresse du recruteur est mal insérée.", rX.getAdresse(), rY.getAdresse());
-		//TODO:
-		//idem membre champ a champ
-		
-		//Assert.assertEquals("La société du recruteur est mal insérée.", rX.getSociete(), rY.getSociete());
-		//TODO:
-		//comparer nom de la societe
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Adresse)", rX.getAdresse().getAdresse(), rY.getAdresse().getAdresse());
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Code Postal)", rX.getAdresse().getCodePostal(), rY.getAdresse().getCodePostal());
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Pays)", rX.getAdresse().getPays(), rY.getAdresse().getPays());
+		Assert.assertEquals("L'adresse du membre est mal insérée. (Ville)", rX.getAdresse().getVille(), rY.getAdresse().getVille());
+		Assert.assertEquals("La société du recruteur est mal insérée. (ID)", rX.getSociete().getID(), rY.getSociete().getID());
+		Assert.assertEquals("La société du recruteur est mal insérée. (Nom)", rX.getSociete().getNom(), rY.getSociete().getNom());
 	}
 	
 	public static void RecruteurEstVide(Recruteur rX) {
