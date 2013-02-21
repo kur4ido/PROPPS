@@ -29,6 +29,7 @@ public class Membre extends Utilisateur{
 	protected HashMap<Integer,Notification> lstNotifEnvoi;
 	protected HashMap<Integer,Notification> lstNotifRecept;
 	
+	
 	private boolean bFillExpertise,bFillContact,bFillExperiencePro,bFillNotif; 
 	
 	
@@ -323,13 +324,7 @@ public class Membre extends Utilisateur{
 		
 	}
 
-	public HashMap<Integer, Notification> getLstNotifEnvoi() {
-		return lstNotifEnvoi;
-	}
-
-	public HashMap<Integer, Notification> getLstNotifRecept() {
-		return lstNotifRecept;
-	}
+	
 
 	@Override
 	public void delete() {
@@ -637,6 +632,21 @@ public class Membre extends Utilisateur{
 
 	public void addExpertise(Expertise e) {
 		this.lstExpertise.add(e);
+		bFillExpertise = true;
+	}
+	
+	public HashMap<Integer, Notification> getLstNotifEnvoi() {
+		if(!bFillNotif) {
+			fillNotification();
+		}
+		return lstNotifEnvoi;
+	}
+
+	public HashMap<Integer, Notification> getLstNotifRecept() {
+		if(!bFillNotif) {
+			fillNotification();
+		}
+		return lstNotifRecept;
 	}
 	
 	/*-------Methodes statiques--------*/

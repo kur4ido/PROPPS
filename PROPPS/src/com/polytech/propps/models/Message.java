@@ -61,6 +61,22 @@ public class Message implements IModel{
 			b.close();
 		}
 	}
+
+	public String getsMessage() {
+		return sMessage;
+	}
+
+	public int getID_Message() {
+		return ID_Message;
+	}
+
+	public int getID_Utilisateur() {
+		return ID_Utilisateur;
+	}
+
+	public Date getDtMessage() {
+		return dtMessage;
+	}
 	
 	
 }

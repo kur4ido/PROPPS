@@ -123,6 +123,11 @@ public abstract class Utilisateur implements IModel {
 	
 	public abstract void fill();
 	
+	public void addMessage(Message m) {
+		lstMessage.add(m);
+		m.insertOrUpdate();
+	}
+	
 	public int getID_Utilisateur() {
 		return ID_Utilisateur;
 	}
@@ -198,5 +203,7 @@ public abstract class Utilisateur implements IModel {
 	public void setbFill(boolean bFill) {
 		this.bFill = bFill;
 	}
+	
+	
 
 }
