@@ -379,6 +379,9 @@ public class Membre extends Utilisateur{
 	 * @param bAccept : la réponse formulée par le membre courant
 	 */
 	public void reponseDemande(int ID_Notif, boolean bAccept) {
+		if(!bFillNotif) {
+			fillNotification();
+		}
 		if(lstNotifRecept.containsKey(ID_Notif)) {
 			Notification n = lstNotifRecept.get(ID_Notif);
 			if(bAccept) {
@@ -404,6 +407,9 @@ public class Membre extends Utilisateur{
 	 * @param bAccept : la réponse formulée par le membre courant
 	 */
 	public void reponseDemande(Membre m, boolean bAccept) {
+		if(!bFillNotif) {
+			fillNotification();
+		}
 		Notification n = new Notification(-1,m,this,null,false,false,false);
 		for(Map.Entry<Integer, Notification> entre : lstNotifRecept.entrySet()) {
 			if(entre.getValue().getSource().getID_Utilisateur() == m.getID_Utilisateur()) {
