@@ -110,12 +110,15 @@ public class MembreTest {
 	}
 	
 	@Test
+	/**
+	 * Les tests fillExpertise(), fillContact(), fillNotification()
+	 * sont implicitement testés dans comparerDeuxRecruteurs
+	 */
 	public void fillTest() {
 		m1.insertOrUpdate();
 		Membre m4 = new Membre(m1.getID_Utilisateur());
 		m4.fill();
 		Comparaison.comparerDeuxMembres(m1, m4);
-		m4.delete();
 		
 	}
 	
@@ -134,7 +137,6 @@ public class MembreTest {
 		Membre m7 = new Membre(m1.getID_Utilisateur());
 		m7.fill();
 		Comparaison.comparerDeuxMembres(m1, m7);
-		m7.delete();
 		
 	}
 	
@@ -157,24 +159,22 @@ public class MembreTest {
 		Membre m7 = new Membre(indiceBase);
 		m7.fill();
 		Comparaison.membreEstVide(m7);
-		m7.delete();
 	}
 	
 	
 	
 	@Test
-	public void ajoutExperiencePro() {
+	public void ajoutExperienceProTest() {
 		m1.insertOrUpdate();
 		m1.addExperiencePro(xpPro);
 		m1.insertOrUpdate();
 		Membre m8 = new Membre(m1.getID_Utilisateur());
 		m8.fill();
 		Comparaison.comparerDeuxMembres(m1, m8);
-		m8.delete();
 	}
 	
 	@Test
-	public void ajoutExpertise() {
+	public void ajoutExpertiseTest() {
 		
 		m1.insertOrUpdate();
 		m1.addExpertise(expertise);
@@ -182,6 +182,6 @@ public class MembreTest {
 		Membre m7 = new Membre(m1.getID_Utilisateur());
 		m7.fill();
 		Comparaison.comparerDeuxMembres(m1, m7);
-		m7.delete();
 	}
+	
 }
