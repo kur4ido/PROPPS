@@ -20,4 +20,5 @@ public class ParametresServlet {
 	public static final String Ville = "ville";
 	public static final String demandeAccepte = "estAccepte";
 	public static final String ID_Notification = "ID_Notification";
+	public static final String NomSociete = "NomSociete";
 }
