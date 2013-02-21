@@ -10,6 +10,8 @@ public class ParametresServlet {
 	public static final String nom_Membre_Select = "nom_Membre_Select";
 	public static final String ville_Membre_Select = "ville_Membre_Select";
 	
+	public static final String ID_Destinataire = "ID_Destinataire";
+	
 	public static final String Nom = "nom";
 	public static final String Prenom = "prenom";
 	public static final String Email = "email";

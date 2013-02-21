@@ -63,6 +63,15 @@
     <url-pattern>/seeUserProfile</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>DemandeRelation</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.DemandeRelation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DemandeRelation</servlet-name>
+    <url-pattern>/relationAsk</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>

@@ -52,7 +52,7 @@
 					</form>
 					<ul class="nav">
 						<li><a href="#"><i class="icon-search"></i> Recherche
-								Avancée</a></li>
+								AvancÃ©e</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
@@ -62,7 +62,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prénom</br>
+											Nom, prÃ©nom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -72,7 +72,7 @@
 								<li>
 									<div id="notification">
 										<div id="notif_contact">
-											Nom, prénom</br>
+											Nom, prÃ©nom</br>
 											<button class="btn btn-mini btn-success" type="button">Accepter</button>
 											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
 										</div>
@@ -87,7 +87,7 @@
 								<li><a href="compte.html"><i class="icon-user"></i> Mon
 										compte</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										Paramètre</a></li>
+										ParamÃ¨tre</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -113,7 +113,7 @@
 
 					<form action="result_recherche_membre.html">
 						<fieldset>
-							<legend>Selectionnez vos critères de recherche</legend>
+							<legend>Selectionnez vos critÃ¨res de recherche</legend>
 							<div class="container">
 								<div class="row">
 									<div class="span3">
@@ -121,7 +121,7 @@
 											type="text" name="nom" id="inputNom" placeholder="">
 									</div>
 									<div class="span3">
-										<label class="control-label" for="inputPrenom">Prénom</label>
+										<label class="control-label" for="inputPrenom">PrÃ©nom</label>
 										<input type="text" name="prenom" id="inputPreom"
 											placeholder="">
 									</div>
@@ -130,7 +130,7 @@
 											type="text" name="email" id="inputEmail" placeholder="">
 									</div>
 									<div class="span3">
-										<label class="control-label" for="inputSociete">Société</label>
+										<label class="control-label" for="inputSociete">SociÃ©tÃ©</label>
 										<input type="text" name="societe" id="inputSociete"
 											placeholder="">
 									</div>
@@ -144,9 +144,9 @@
 						<thead>
 							<tr>
 								<th>Nom</th>
-								<th>Prénom</th>
+								<th>PrÃ©nom</th>
 								<th>Email</th>
-								<th>Société</th>
+								<th>SociÃ©tÃ©</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -154,7 +154,7 @@
 							<tr>
 								<td><form action="${pageContext.request.contextPath}/seeUserProfile" method="post">
 										<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %>>
-										<input type="hidden" name="ID_Membre_Demande" value=${member.ID_Utilisateur } >
+										<input type="hidden" name="ID_Membre_Select" value=${member.ID_Utilisateur } >
 										<a href="#" onclick="javascript:document.forms[2].submit();return false;" >${member.sNom }</a>
 									</form>
 								</td>
