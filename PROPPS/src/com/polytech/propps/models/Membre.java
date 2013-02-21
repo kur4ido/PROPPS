@@ -39,7 +39,7 @@ public class Membre extends Utilisateur{
 		bFillExpertise = false;
 		bFillContact = false;
 		bFillNotif = false;
-		lstContacts = null;
+		lstContacts = new ArrayList<Membre>();
 		lstExperiencePro = new ArrayList<ExperiencePro>();
 		lstExpertise = new ArrayList<Expertise>();
 		lstNotifEnvoi = new HashMap<Integer, Notification>();
