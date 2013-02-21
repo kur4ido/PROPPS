@@ -17,7 +17,7 @@ VALUES("Adresse2","Ville2","CodePostal2","Pays2");
 
 
 INSERT INTO Utilisateur(sNom,sPrenom,sEmail,sPassword,ID_Adresse)
-VALUES("Nom2","Prenom2","Email2@lol.fr","Password2",@@IDENTITY);
+VALUES("Nom2","Prenom2","Email2@lol.fr",SHA1("Password2"),@@IDENTITY);
 
 
 INSERT INTO Membre(ID_Utilisateur,ID_Profil,dtFinPresta,bPresta,bContrat)
@@ -30,7 +30,7 @@ VALUES("Adresse3","Ville3","CodePostal3","Pays3");
 
 
 INSERT INTO Utilisateur(sNom,sPrenom,sEmail,sPassword,ID_Adresse)
-VALUES("Nom3","Prenom3","Email3@lol.fr","Password3",@@IDENTITY);
+VALUES("Nom3","Prenom3","Email3@lol.fr",SHA1("Password3"),@@IDENTITY);
 
 
 INSERT INTO Membre(ID_Utilisateur,ID_Profil,dtFinPresta,bPresta,bContrat)
@@ -43,7 +43,7 @@ VALUES("Adresse4","Ville4","CodePostal4","Pays4");
 
 
 INSERT INTO Utilisateur(sNom,sPrenom,sEmail,sPassword,ID_Adresse)
-VALUES("Nom4","Prenom4","Email4@lol.fr","Password4",@@IDENTITY);
+VALUES("Nom4","Prenom4","Email4@lol.fr",SHA1("Password4"),@@IDENTITY);
 
 
 INSERT INTO Membre(ID_Utilisateur,ID_Profil,dtFinPresta,bPresta,bContrat)
