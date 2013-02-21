@@ -152,7 +152,12 @@
 						<tbody>
 						<c:forEach var="member" items="${requestScope.memberList}" > 
 							<tr>
-								<td>${member.sNom }</td>
+								<td><form action="${pageContext.request.contextPath}/seeUserProfile" method="post">
+										<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %>>
+										<input type="hidden" name="ID_Membre_Demande" value=${member.ID_Utilisateur } >
+										<a href="#" onclick="javascript:document.forms[2].submit();return false;" >${member.sNom }</a>
+									</form>
+								</td>
 								<td>${member.sPrenom }</td>
 								<td>${member.sEmail }</td>
 								<td></td>

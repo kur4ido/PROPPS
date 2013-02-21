@@ -32,7 +32,6 @@ public class InscriptionUtilisateur extends HttpServlet {
 			response ) throws ServletException, IOException{
 		Base base = new Base();
 		try {
-			base.initBase("jdbc:mysql://localhost:8889/PROPPS_DB", "propps#BDD!", "#aVjbBfTmJcT#");
 			base.connect();
 			
 			String name = request.getParameter(ParametresServlet.Nom);
