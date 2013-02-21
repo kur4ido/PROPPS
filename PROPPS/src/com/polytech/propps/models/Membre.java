@@ -196,7 +196,7 @@ public class Membre extends Utilisateur{
 				//Remplissage du profil
 				Profil p  = (result.getObject(Profil.colID) == null ? null : new Profil(result.getInt(Profil.colID)));
 				//Instanciation du membre source (celui qui a envoyé la notification)
-				Membre m = new Membre(result.getInt(Notification.colID_Source), result.getString(colNom),result.getString(colPrenom),
+				Membre m = new Membre(result.getInt(Notification.colID_Dest), result.getString(colNom),result.getString(colPrenom),
 						 result.getString(colEmail),p,result.getBoolean(colContrat),result.getBoolean(colPresta),result.getDate(colDtPresta));
 				//Instanciation de l'adresse du membre source
 				Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
