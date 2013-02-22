@@ -774,7 +774,7 @@ CREATE PROCEDURE `PROPPS_DB`.`Recruteur_rechercher` (IN _ID_Domaine INT, IN _ID_
 IN _dtDispo DATETIME)
 BEGIN
  
-        SELECT M.*,Expertise.*
+        SELECT M.*,E.*
         FROM Membre as M inner join ExpertiseMembre as E on M.ID_Utilisateur = E.ID_Utilisateur
         WHERE (_ID_Profil is null OR ID_Profil = _ID_Profil)
             AND ((not _bPresta AND not bContrat) OR (bContrat AND dtFinPresta < _dtDispo))
@@ -809,6 +809,9 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Membre_insertOrUpdate` (IN _ID_Utilisateur INT, IN _ID_Profil INT,
 IN _bContrat BOOL, IN _bPresta BOOL, IN _dtFinPresta DATETIME)
 BEGIN
+    DELETE FROM DomaineExperiencePro WHERE ID_ExperiencePro IN
+            (SELECT ID_ExperiencePro FROM ExperiencePro WHERE ID_Membre = _ID_Utilisateur);
+    DELETE FROM ExperiencePro WHERE ID_Membre = _ID_Utilisateur;
     DELETE FROM Membre WHERE ID_Utilisateur = _ID_Utilisateur;
     INSERT INTO Membre(ID_Utilisateur,ID_Profil,bContrat,bPresta,dtFinPresta)
     VALUES(_ID_Utilisateur,_ID_Profil,_bContrat,_bPresta,_dtFinPresta);
@@ -923,12 +926,15 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`rechercheRapide` (IN _Str VARCHAR(250))
 BEGIN
-    SELECT *
+    SELECT Distinct U.*,M.*,A.*
     FROM Utilisateur as U inner join Membre as M on U.ID_Utilisateur = M.ID_Utilisateur
         inner join Adresse as A on A.ID_Adresse = U.ID_Adresse
-    WHERE CONCAT(U.sNom, U.sPrenom) like CONCAT("%",_Str,"%")
-        OR CONCAT(U.sPrenom, U.sNom) like CONCAT("%",_Str,"%")
-        OR U.sEmail like _Str
+        left outer join ExperiencePro on M.ID_Utilisateur = ExperiencePro.ID_Membre
+        inner join Societe on Societe.ID_Societe = ExperiencePro.ID_Societe
+    WHERE CONCAT(U.sNom," ", U.sPrenom) like CONCAT("%",_Str,"%")
+        OR CONCAT(U.sPrenom, " ",U.sNom) like CONCAT("%",_Str,"%")
+        OR U.sEmail like CONCAT("%",_Str,"%")
+        OR Societe.sNom like CONCAT("%",_Str,"%")
     Order by U.sNom, U.sPrenom;
 END$$
 
@@ -1043,6 +1049,19 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`ExperiencePro_delete` (IN _ID_ExperiencePro INT)
 BEGIN
     DELETE FROM ExperiencePro WHERE ID_ExperiencePro = _ID_ExperiencePro;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Notification_delete
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Notification_delete` (IN _ID_Notification INT)
+BEGIN
+    DELETE FROM Notification WHERE ID_Notification = _ID_Notification;
 END$$
 
 DELIMITER ;
