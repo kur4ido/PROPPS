@@ -116,36 +116,6 @@
 						<img src="${pageContext.request.contextPath}/img/search.png" class="pull-left">
 						<h2>Recherche de membre</h2>
 					</div>
-
-					<form action="result_recherche_membre.html">
-						<fieldset>
-							<legend>Selectionnez vos critères de recherche</legend>
-							<div class="container">
-								<div class="row">
-									<div class="span3">
-										<label class="control-label" for="inputNom">Nom</label> <input
-											type="text" name="nom" id="inputNom" placeholder="">
-									</div>
-									<div class="span3">
-										<label class="control-label" for="inputPrenom">Prénom</label>
-										<input type="text" name="prenom" id="inputPreom"
-											placeholder="">
-									</div>
-									<div class="span3">
-										<label class="control-label" for="inputEmail">Email</label> <input
-											type="text" name="email" id="inputEmail" placeholder="">
-									</div>
-									<div class="span3">
-										<label class="control-label" for="inputSociete">Société</label>
-										<input type="text" name="societe" id="inputSociete"
-											placeholder="">
-									</div>
-								</div>
-							</div>
-
-						</fieldset>
-						<button type="submit" class="btn">Recherche</button>
-					</form>
 					<table class="table table-hover">
 						<thead>
 							<tr>

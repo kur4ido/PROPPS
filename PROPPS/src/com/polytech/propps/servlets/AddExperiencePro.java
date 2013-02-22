@@ -47,6 +47,7 @@ public class AddExperiencePro extends HttpServlet {
 		String dateFin = request.getParameter("dateFin");
 		java.sql.Date sqlDateFin;
 		java.sql.Date sqlDateDebut;
+		java.sql.Date sqlToday;
 
 		Base base = new Base();
 
@@ -59,6 +60,10 @@ public class AddExperiencePro extends HttpServlet {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				parsedDate = dateFormat.parse(dateDebut);
 				dateDebut = dateFormat.format(parsedDate);
+				
+				java.util.Date date = new java.util.Date();
+				String d = dateFormat.format( date );
+				sqlToday = java.sql.Date.valueOf(d);
 				System.out.println(dateDebut);
 				sqlDateDebut = java.sql.Date.valueOf(dateDebut);
 				if (dateFin.contentEquals("")) {
@@ -91,6 +96,8 @@ public class AddExperiencePro extends HttpServlet {
 				
 				Membre membre = new Membre(ID_Membre_Courant);
 				membre.fill();
+				if (dateFin.contentEquals("") || (sqlDateFin.after(sqlToday) && sqlDateDebut.before(sqlToday)))
+					membre.setHasContrat(true);
 				if(NumExpPro_Courante != -1){
 					membre.removeExperiencePro(NumExpPro_Courante-1);
 				}
