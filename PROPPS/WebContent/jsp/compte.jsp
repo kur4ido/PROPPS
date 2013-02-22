@@ -446,7 +446,7 @@
 							</div>
 
 						</div>
-						<c:forEach items="${requestScope.lstexpsPro}" var="expPro" >
+						<c:forEach items="${requestScope.lstExpsPro}" var="expPro" >
 						<div class="row">
 							<div class="span2">
 								<p>
@@ -454,17 +454,21 @@
 									<a data-toggle="collapse" data-target="#modifExperience2">
 										<i class="icon-pencil"></i>
 									</a>
-								<h4>{expPro.sPosteOccupe} (expPro.sPosteOccupe.profil.sNom)</h4>
-								{expPro.societe.sNom}
+								<h4>${expPro.sPosteOccupe} (${expPro.profil.sNom})</h4>
+								${expPro.societe.sNom}
 								</p>
-								<p class="muted">2002 - 2008 (6 ans)</p>
-								<p class="muted">Prestation</p>
+								<p class="muted">${expPro.dtDebut} - <c:if test="${not empty expPro.dtFin}"> ${expPro.dtFin}</c:if><c:if test="${empty expPro.dtFin}"> Aujourd'hui</c:if></p>
+<!-- 								<p class="muted">Prestation</p> -->
 								<p>
-									<span class="label label-info">Emission - Back Office</span>
+									<c:forEach items="${expPro.lstExpertise}" var="expert">
+										<span class="label label-info">
+											${expert.sDomaine } - ${expert.sType }
+										</span>
+									</c:forEach>
 								</p>
 							</div>
 							<div class="span7">
-								<p>Description du poste</p>
+								<p>${expPro.}</p>
 
 							</div>
 							<div class="span9">

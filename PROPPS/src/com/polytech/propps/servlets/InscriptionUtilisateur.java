@@ -65,7 +65,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 						HashMap<Integer,Profil> listProfils = Profil.getListOfProfil();
 						HashMap<Integer,String> listStringProfils = new HashMap<Integer,String>();
 						for(int i : listProfils.keySet()){
-							listStringProfils.put(i, listProfils.get(i).getSNom());
+							listStringProfils.put(i, listProfils.get(i).getsNom());
 						}
 						
 						request.setAttribute("mapProfils", listStringProfils);
@@ -73,7 +73,7 @@ public class InscriptionUtilisateur extends HttpServlet {
 						HashMap<Integer,Expertise> listExpertises = Expertise.getListOfExpertise();
 						HashMap<Integer,String> listStringExpertises = new HashMap<Integer,String>();
 						for(int i : listExpertises.keySet()){
-							listStringExpertises.put(i, listExpertises.get(i).getDomaine()+" - "+listExpertises.get(i).getType());
+							listStringExpertises.put(i, listExpertises.get(i).getsDomaine()+" - "+listExpertises.get(i).getsType());
 						}
 						
 						request.setAttribute("mapExpertises", listStringExpertises);

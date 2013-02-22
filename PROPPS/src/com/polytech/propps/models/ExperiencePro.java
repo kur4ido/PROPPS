@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.polytech.propps.bdd.Base;
 
@@ -39,6 +41,11 @@ public class ExperiencePro {
 		if(!lstExpertise.contains(e)) {
 			lstExpertise.add(e);
 		}
+	}
+	
+	public List getlstExpertise(){
+		System.out.println(lstExpertise.toString());
+		return Arrays.asList(lstExpertise.toArray());
 	}
 	
 	public void fill() {
@@ -116,7 +123,7 @@ public class ExperiencePro {
 		bFill = true;
 	}
 	
-	public String getSPosteOccupe() {
+	public String getsPosteOccupe() {
 		if(!bFill) {
 			fill();
 		}

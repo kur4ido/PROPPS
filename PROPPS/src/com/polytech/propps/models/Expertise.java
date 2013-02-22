@@ -23,8 +23,8 @@ public class Expertise {
 		ID_Expertise = ID;
 		if(listOfExpertise.containsKey(ID)) {
 			Expertise e = listOfExpertise.get(ID);
-			sDomaine = e.getDomaine();
-			sType = e.getType();
+			sDomaine = e.getsDomaine();
+			sType = e.getsType();
 		}
 	}
 	
@@ -53,11 +53,11 @@ public class Expertise {
 		}
 	}
 	
-	public String getType() {
+	public String getsType() {
 		return sType;
 	}
 	
-	public String getDomaine() {
+	public String getsDomaine() {
 		return sDomaine;
 	}
 
