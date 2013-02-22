@@ -572,6 +572,7 @@ public class Membre extends Utilisateur {
 		for(ExperiencePro e : lstExperiencePro) {
 			if(e.getSociete().getID() == s.ID_Societe) {
 				Date dtFin = (e.getDtFin() == null ? date : e.getDtFin());
+				dtFin = (date.getTime() > dtFin.getTime() ? dtFin : date);
 					
 				float temp = (float) (dtFin.getTime() - e.getDtDebut().getTime()) / dtFin.getTime();
 				resultat += (dtFin.getYear() -e.getDtDebut().getYear()) * 365.25 * temp;
