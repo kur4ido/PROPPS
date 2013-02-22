@@ -66,7 +66,7 @@ public class PROPPS {
 		try {
 			init();
 			ExperiencePro e = new ExperiencePro(9);
-			System.out.println(e.getDescription());
+			System.out.println(e.getSDescription());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

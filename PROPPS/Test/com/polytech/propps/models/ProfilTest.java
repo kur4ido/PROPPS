@@ -50,9 +50,9 @@ public class ProfilTest {
 		Assert.assertFalse("La liste est vide", Profil.listOfProfil.isEmpty());
 		Assert.assertEquals("La liste n'a pas le bon nombre de valeurs", 3, Profil.listOfProfil.size());
 		
-		Assert.assertEquals("La valeur associée à l'indice 1 n'est pas MOA",  "MOA", Profil.listOfProfil.get(1).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 2 n'est pas MOE",  "MOE", Profil.listOfProfil.get(2).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 3 n'est pas Double Compétence",  "Double Compétence", Profil.listOfProfil.get(3).getNom());
+		Assert.assertEquals("La valeur associée à l'indice 1 n'est pas MOA",  "MOA", Profil.listOfProfil.get(1).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 2 n'est pas MOE",  "MOE", Profil.listOfProfil.get(2).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 3 n'est pas Double Compétence",  "Double Compétence", Profil.listOfProfil.get(3).getSNom());
 		
 	}
 	
@@ -62,8 +62,8 @@ public class ProfilTest {
 		Assert.assertEquals("L'id n'est pas initialisé.", 1, p1.getID());
 		Assert.assertEquals("L'id n'est pas initialisé.", 100, p2.getID());
 		
-		Assert.assertEquals("La valeur associé à l'id connu n'a pas été récupérée.", "MOA", p1.getNom());
-		Assert.assertNull("La valeur associé à l'id inconnu n'a pas été mise à NULL.", p2.getNom());
+		Assert.assertEquals("La valeur associé à l'id connu n'a pas été récupérée.", "MOA", p1.getSNom());
+		Assert.assertNull("La valeur associé à l'id inconnu n'a pas été mise à NULL.", p2.getSNom());
 		
 	}
 	

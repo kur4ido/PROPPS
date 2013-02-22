@@ -300,9 +300,9 @@ public class Membre extends Utilisateur {
 				b.setParamInt("_" + Societe.colID, ep.getSociete().getID());
 				b.setParamDate("_" + ExperiencePro.colDtDebut, ep.getDtDebut());
 				b.setParamDate("_" +  ExperiencePro.colDtFin, ep.getDtFin());
-				b.setParamString("_" + ExperiencePro.colDescription, ep.getDescription());
-				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getPosteOccupe());
-				b.setParamString("_" + ExperiencePro.colDirection, ep.getDirection());
+				b.setParamString("_" + ExperiencePro.colDescription, ep.getSDescription());
+				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getSPosteOccupe());
+				b.setParamString("_" + ExperiencePro.colDirection, ep.getSDirection());
 				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
 				ResultSet result = b.executeQuery();
 				if(result.next()) {

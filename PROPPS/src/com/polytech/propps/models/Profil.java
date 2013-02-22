@@ -21,7 +21,7 @@ public class Profil {
 	public Profil(int ID) {
 		ID_Profil = ID;
 		if(listOfProfil.containsKey(ID)) {
-			sNom = listOfProfil.get(ID).getNom();
+			sNom = listOfProfil.get(ID).getSNom();
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class Profil {
 		}
 	}
 	
-	public String getNom() {
+	public String getSNom() {
 		return sNom;
 	}
 

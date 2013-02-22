@@ -116,7 +116,7 @@ public class ExperiencePro {
 		bFill = true;
 	}
 	
-	public String getPosteOccupe() {
+	public String getSPosteOccupe() {
 		if(!bFill) {
 			fill();
 		}
@@ -130,7 +130,7 @@ public class ExperiencePro {
 	}
 
 
-	public String getDescription() {
+	public String getSDescription() {
 		if(!bFill) {
 			fill();
 		}
@@ -144,7 +144,7 @@ public class ExperiencePro {
 	}
 
 
-	public String getDirection() {
+	public String getSDirection() {
 		if(!bFill) {
 			fill();
 		}

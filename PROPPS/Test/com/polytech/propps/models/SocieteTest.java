@@ -55,12 +55,12 @@ public class SocieteTest {
 		Assert.assertEquals("La liste n'a pas le bon nombre de valeurs", 6, Societe.listOfSociete.size());
 		Assert.assertEquals("La liste de string n'a pas le bon nombre de valeurs", 6, Societe.listOfSocieteString.size());
 		
-		Assert.assertEquals("La valeur associée à l'indice 1 n'est pas Nintendo",  "Nintendo", Societe.listOfSociete.get(1).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 2 n'est pas Microsoft",  "Microsoft", Societe.listOfSociete.get(2).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 3 n'est pas Apple",  "Apple", Societe.listOfSociete.get(3).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 4 n'est pas HSBC",  "HSBC", Societe.listOfSociete.get(4).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 5 n'est pas LCL Orsay",  "LCL Orsay", Societe.listOfSociete.get(5).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 6 n'est pas LCL la Sorbonne",  "LCL la Sorbonne", Societe.listOfSociete.get(6).getNom());
+		Assert.assertEquals("La valeur associée à l'indice 1 n'est pas Nintendo",  "Nintendo", Societe.listOfSociete.get(1).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 2 n'est pas Microsoft",  "Microsoft", Societe.listOfSociete.get(2).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 3 n'est pas Apple",  "Apple", Societe.listOfSociete.get(3).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 4 n'est pas HSBC",  "HSBC", Societe.listOfSociete.get(4).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 5 n'est pas LCL Orsay",  "LCL Orsay", Societe.listOfSociete.get(5).getSNom());
+		Assert.assertEquals("La valeur associée à l'indice 6 n'est pas LCL la Sorbonne",  "LCL la Sorbonne", Societe.listOfSociete.get(6).getSNom());
 		
 		Assert.assertEquals("La valeur associée à Nintendo n'est pas l'indice 1",  1, Societe.listOfSocieteString.get("Nintendo").getID());
 		Assert.assertEquals("La valeur associée à Microsoft n'est pas l'indice 2",  2, Societe.listOfSocieteString.get("Microsoft").getID());
@@ -77,8 +77,8 @@ public class SocieteTest {
 		Assert.assertEquals("L'id n'est pas initialisé.", 1, s1.getID());
 		Assert.assertEquals("L'id n'est pas initialisé.", 100, s2.getID());
 		
-		Assert.assertEquals("La valeur associé à l'id connu n'a pas été récupérée.", "Nintendo", s1.getNom());
-		Assert.assertNull("La valeur associé à l'id inconnu n'a pas été mise à NULL.", s2.getNom());
+		Assert.assertEquals("La valeur associé à l'id connu n'a pas été récupérée.", "Nintendo", s1.getSNom());
+		Assert.assertNull("La valeur associé à l'id inconnu n'a pas été mise à NULL.", s2.getSNom());
 		
 	}
 	
@@ -102,7 +102,7 @@ public class SocieteTest {
 		String name = "TEST";
 		Societe scte = Societe.addSociete(name);
 		
-		Assert.assertEquals("Le nom de la societe crée n'est pas bon", name,  scte.getNom());
+		Assert.assertEquals("Le nom de la societe crée n'est pas bon", name,  scte.getSNom());
 		Assert.assertEquals("L'ID de la société crée n'est celui attendu (7 pour ce test)", 7, scte.getID());
 		
 		Societe.deleteSociete(scte.getID());

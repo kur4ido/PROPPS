@@ -65,7 +65,7 @@ public class Connexion extends HttpServlet {
 				HashMap<Integer,Profil> listProfils = Profil.getListOfProfil();
 				HashMap<Integer,String> listStringProfils = new HashMap<Integer,String>();
 				for(int i : listProfils.keySet()){
-					listStringProfils.put(i, listProfils.get(i).getNom());
+					listStringProfils.put(i, listProfils.get(i).getSNom());
 				}
 				
 				request.setAttribute("mapProfils", listStringProfils);

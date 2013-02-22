@@ -30,14 +30,14 @@ public class Comparaison {
 		}
 		
 		for(Integer i = 0; i < mX.getLstExperiencePro().size(); i++) {
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Description).", mX.getLstExperiencePro().get(i).getDescription(), mY.getLstExperiencePro().get(i).getDescription());
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Direction).", mX.getLstExperiencePro().get(i).getDirection(), mY.getLstExperiencePro().get(i).getDirection());
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Poste occupé).", mX.getLstExperiencePro().get(i).getPosteOccupe(), mY.getLstExperiencePro().get(i).getPosteOccupe());
+			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Description).", mX.getLstExperiencePro().get(i).getSDescription(), mY.getLstExperiencePro().get(i).getSDescription());
+			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Direction).", mX.getLstExperiencePro().get(i).getSDirection(), mY.getLstExperiencePro().get(i).getSDirection());
+			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Poste occupé).", mX.getLstExperiencePro().get(i).getSPosteOccupe(), mY.getLstExperiencePro().get(i).getSPosteOccupe());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Date début).", mX.getLstExperiencePro().get(i).getDtDebut(), mY.getLstExperiencePro().get(i).getDtDebut());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Date fin).", mX.getLstExperiencePro().get(i).getDtFin(), mY.getLstExperiencePro().get(i).getDtFin());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Profil).", mX.getLstExperiencePro().get(i).getProfil(), mY.getLstExperiencePro().get(i).getProfil());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Société).", mX.getLstExperiencePro().get(i).getSociete().getID(), mY.getLstExperiencePro().get(i).getSociete().getID());
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Société).", mX.getLstExperiencePro().get(i).getSociete().getNom(), mY.getLstExperiencePro().get(i).getSociete().getNom());
+			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Société).", mX.getLstExperiencePro().get(i).getSociete().getSNom(), mY.getLstExperiencePro().get(i).getSociete().getSNom());
 		}
 		
 		for(Integer i = 0; i < mX.getLstExpertise().size(); i++) {
@@ -87,9 +87,9 @@ public class Comparaison {
 		
 		for(Integer i = 0; i < mX.getLstExperiencePro().size(); i++) {
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (ID).", mX.getLstExperiencePro().get(i).getID());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Description).", mX.getLstExperiencePro().get(i).getDescription());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Direction).", mX.getLstExperiencePro().get(i).getDirection());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Poste occupé).", mX.getLstExperiencePro().get(i).getPosteOccupe());
+			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Description).", mX.getLstExperiencePro().get(i).getSDescription());
+			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Direction).", mX.getLstExperiencePro().get(i).getSDirection());
+			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Poste occupé).", mX.getLstExperiencePro().get(i).getSPosteOccupe());
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Date début).", mX.getLstExperiencePro().get(i).getDtDebut());
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Date fin).", mX.getLstExperiencePro().get(i).getDtFin());
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Profil).", mX.getLstExperiencePro().get(i).getProfil());
@@ -141,7 +141,7 @@ public class Comparaison {
 		Assert.assertEquals("L'adresse du membre est mal insérée. (Pays)", rX.getAdresse().getPays(), rY.getAdresse().getPays());
 		Assert.assertEquals("L'adresse du membre est mal insérée. (Ville)", rX.getAdresse().getVille(), rY.getAdresse().getVille());
 		Assert.assertEquals("La société du recruteur est mal insérée. (ID)", rX.getSociete().getID(), rY.getSociete().getID());
-		Assert.assertEquals("La société du recruteur est mal insérée. (Nom)", rX.getSociete().getNom(), rY.getSociete().getNom());
+		Assert.assertEquals("La société du recruteur est mal insérée. (Nom)", rX.getSociete().getSNom(), rY.getSociete().getSNom());
 	}
 	
 	public static void RecruteurEstVide(Recruteur rX) {

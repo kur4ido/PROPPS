@@ -446,7 +446,7 @@
 							</div>
 
 						</div>
-
+						<c:forEach items="${requestScope.lstexpsPro}" var="expPro" >
 						<div class="row">
 							<div class="span2">
 								<p>
@@ -454,8 +454,8 @@
 									<a data-toggle="collapse" data-target="#modifExperience2">
 										<i class="icon-pencil"></i>
 									</a>
-								<h4>Developpeur (profil)</h4>
-								Amadeus
+								<h4>{expPro.sPosteOccupe} (expPro.sPosteOccupe.profil.sNom)</h4>
+								{expPro.societe.sNom}
 								</p>
 								<p class="muted">2002 - 2008 (6 ans)</p>
 								<p class="muted">Prestation</p>
@@ -588,6 +588,7 @@
 							</div>
 
 						</div>
+						</c:forEach>
 						<hr class="bs-docs-separator">
 						<div id="title">
 							<img src="${pageContext.request.contextPath}/img/expertise.png">

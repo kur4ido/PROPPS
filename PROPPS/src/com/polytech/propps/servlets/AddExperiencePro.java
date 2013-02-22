@@ -92,6 +92,8 @@ public class AddExperiencePro extends HttpServlet {
 				membre.fill();
 				membre.addExperiencePro(newExpPro);
 				membre.insertOrUpdate();
+				request.setAttribute(ParametresServlet.ID_Membre_Courant, ID_Membre_Courant);
+				getServletContext().getRequestDispatcher("/seeCurrentUserProfile").forward(request, response);
 
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block

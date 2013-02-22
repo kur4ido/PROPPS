@@ -27,7 +27,7 @@ public class Societe  {
 	public Societe(int ID) {
 		ID_Societe = ID;
 		if(listOfSociete.containsKey(ID)) {
-			sNom = listOfSociete.get(ID).getNom();
+			sNom = listOfSociete.get(ID).getSNom();
 		}
 	}
 	
@@ -119,7 +119,7 @@ public class Societe  {
 			b.execute();
 			Societe s = listOfSociete.get(ID);
 			listOfSociete.remove(ID);
-			listOfSocieteString.remove(s.getNom());
+			listOfSocieteString.remove(s.getSNom());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,7 +128,7 @@ public class Societe  {
 		}
 	}
 	
-	public String getNom() {
+	public String getSNom() {
 		return sNom;
 	}
 	
