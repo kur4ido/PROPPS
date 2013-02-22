@@ -133,7 +133,7 @@
 								</td>
 								<td>${member.sPrenom }</td>
 								<td>${member.sEmail }</td>
-								<td> ${member.societe.sNom } </td>
+								<td> </td>
 							</tr>
 						</c:forEach>
 						<!-- 
