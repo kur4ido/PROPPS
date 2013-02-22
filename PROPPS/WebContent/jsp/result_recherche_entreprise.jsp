@@ -95,7 +95,7 @@
 							<c:forEach var="member" items="${requestScope.memberList}" > 
 								<tr>
 									<td>
-										<a href="${pageContext.request.contextPath}/seeUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>&ID_Membre_Select=${member.ID_Utilisateur}" >${member.sNom }</a>
+										<a href="${pageContext.request.contextPath}/getMail?ID_Membre_Courant=<%=ID_Membre_Courant %>&ID_Membre_Select=${member.ID_Utilisateur}" >${member.sNom }</a>
 									</td>
 									<td>${member.sPrenom }</td>
 									<td>${member.sEmail }</td>

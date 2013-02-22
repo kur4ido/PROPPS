@@ -204,6 +204,8 @@ public abstract class Utilisateur implements IModel {
 		this.bFill = bFill;
 	}
 	
-	
+	public ArrayList<Message> getlstMessage(){
+		return lstMessage;
+	}
 
 }

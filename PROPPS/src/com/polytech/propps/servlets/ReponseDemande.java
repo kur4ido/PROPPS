@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Notification;
 
 @WebServlet("/ReponseDemande")
 public class ReponseDemande extends HttpServlet{
