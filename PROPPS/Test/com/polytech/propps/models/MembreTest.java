@@ -270,11 +270,41 @@ public class MembreTest {
 	@Test
 	public void aEnvoyeInvitTest() {
 		m1.insertOrUpdate();
-		Membre m14 = new Membre("Test", "Druno", "bruno.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		Membre m14 = new Membre("Test", "Bruno", "bruno.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
 		m14.insertOrUpdate();
 		m1.demanderContact(m14);
 		assertTrue("m1 n'a pas envoyé l'invitation à m14", m1.aEnvoyeInvit(m14));
 		
 		m14.delete();
+	}
+	
+	/*@Test
+	public void aEteInviteParTest() {
+		m1.insertOrUpdate();
+		Membre m15 = new Membre("Test", "Richard", "richard.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		m15.insertOrUpdate();
+		m1.demanderContact(m15);
+		assertTrue("m15 n'a pas été invité par m1", m15.aEteInvitePar(m1));
+		
+		m15.delete();
+	}*/
+	
+	@Test
+	public void getExperience() {
+		m1.insertOrUpdate();
+		m1.addExperiencePro(xpPro);
+		m1.insertOrUpdate();
+		Membre m16 = new Membre(m1.getID_Utilisateur());
+		m16.fill();
+		m16.getExperience();
+		Comparaison.comparerDeuxMembres(m1, m16);
+	}
+	
+	@Test
+	public void equalsTest() {
+		m1.insertOrUpdate();
+		Membre m17 = new Membre(m1.getID_Utilisateur());
+		m17.fill();
+		assertTrue("Les deux membres ne sont pas equals.", m1.equals(m17));
 	}
 }
