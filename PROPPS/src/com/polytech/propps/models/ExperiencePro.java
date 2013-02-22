@@ -77,6 +77,20 @@ public class ExperiencePro {
 		}
 	}
 	
+	public void delete() {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("ExperiencePro_delete", 1);
+			b.setParamInt("_" + colID, ID_ExpPro);
+			b.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if(o instanceof ExperiencePro) {

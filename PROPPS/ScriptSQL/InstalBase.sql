@@ -921,8 +921,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`rechercheRapide` (IN _Str VARCHAR(250))
 BEGIN
     SELECT *
@@ -930,6 +928,7 @@ BEGIN
         inner join Adresse as A on A.ID_Adresse = U.ID_Adresse
     WHERE CONCAT(U.sNom, U.sPrenom) like CONCAT("%",_Str,"%")
         OR CONCAT(U.sPrenom, U.sNom) like CONCAT("%",_Str,"%")
+        OR U.sEmail like _Str
     Order by U.sNom, U.sPrenom;
 END$$
 
@@ -1031,6 +1030,19 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Societe_delete` (IN _ID_Societe INT)
 BEGIN
     DELETE FROM Societe WHERE ID_Societe = _ID_Societe;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure ExperiencePro_delete
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`ExperiencePro_delete` (IN _ID_ExperiencePro INT)
+BEGIN
+    DELETE FROM ExperiencePro WHERE ID_ExperiencePro = _ID_ExperiencePro;
 END$$
 
 DELIMITER ;
