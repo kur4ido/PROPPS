@@ -99,8 +99,8 @@ html,body {
 	margin: 5px 0px;
 }
 
-#parcours form{
-	background-color:#F1F1F1;
+#parcours form {
+	background-color: #F1F1F1;
 	padding: 5px 5px;
 }
 
@@ -126,6 +126,10 @@ html,body {
 	padding: 5px 5px;
 }
 
+#notif_contact form{
+	margin-bottom:0px;
+}
+
 #invit {
 	float: left;
 	width: 100%;
@@ -135,6 +139,13 @@ html,body {
 #last-Add {
 	float: left;
 	width: 100%;
+}
+
+#listContact {
+	float: left;
+	width: 100%;
+	height: 300px;
+	overflow: auto;
 }
 
 #contact {
