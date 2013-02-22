@@ -30,8 +30,8 @@ public class Comparaison {
 		}
 		
 		for(Integer i = 0; i < mX.getLstExperiencePro().size(); i++) {
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Description).", mX.getLstExperiencePro().get(i).getSDescription(), mY.getLstExperiencePro().get(i).getSDescription());
-			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Direction).", mX.getLstExperiencePro().get(i).getSDirection(), mY.getLstExperiencePro().get(i).getSDirection());
+			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Description).", mX.getLstExperiencePro().get(i).getsDescription(), mY.getLstExperiencePro().get(i).getsDescription());
+			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Direction).", mX.getLstExperiencePro().get(i).getsDirection(), mY.getLstExperiencePro().get(i).getsDirection());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Poste occupé).", mX.getLstExperiencePro().get(i).getsPosteOccupe(), mY.getLstExperiencePro().get(i).getsPosteOccupe());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Date début).", mX.getLstExperiencePro().get(i).getDtDebut(), mY.getLstExperiencePro().get(i).getDtDebut());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Date fin).", mX.getLstExperiencePro().get(i).getDtFin(), mY.getLstExperiencePro().get(i).getDtFin());
@@ -87,8 +87,8 @@ public class Comparaison {
 		
 		for(Integer i = 0; i < mX.getLstExperiencePro().size(); i++) {
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (ID).", mX.getLstExperiencePro().get(i).getID());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Description).", mX.getLstExperiencePro().get(i).getSDescription());
-			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Direction).", mX.getLstExperiencePro().get(i).getSDirection());
+			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Description).", mX.getLstExperiencePro().get(i).getsDescription());
+			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Direction).", mX.getLstExperiencePro().get(i).getsDirection());
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Poste occupé).", mX.getLstExperiencePro().get(i).getsPosteOccupe());
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Date début).", mX.getLstExperiencePro().get(i).getDtDebut());
 			Assert.assertNull("La liste d'expérience pro du membre a mal été supprimée (Date fin).", mX.getLstExperiencePro().get(i).getDtFin());

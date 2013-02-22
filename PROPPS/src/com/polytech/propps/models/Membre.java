@@ -300,14 +300,20 @@ public class Membre extends Utilisateur {
 				b.setParamInt("_" + Societe.colID, ep.getSociete().getID());
 				b.setParamDate("_" + ExperiencePro.colDtDebut, ep.getDtDebut());
 				b.setParamDate("_" +  ExperiencePro.colDtFin, ep.getDtFin());
-				b.setParamString("_" + ExperiencePro.colDescription, ep.getSDescription());
+				b.setParamString("_" + ExperiencePro.colDescription, ep.getsDescription());
 				b.setParamString("_" + ExperiencePro.colPosteOccupe, ep.getsPosteOccupe());
-				b.setParamString("_" + ExperiencePro.colDirection, ep.getSDirection());
+				b.setParamString("_" + ExperiencePro.colDirection, ep.getsDirection());
 				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
 				ResultSet result = b.executeQuery();
 				if(result.next()) {
 					int ID = result.getInt(ExperiencePro.colID);
 					ep.setID(ID);
+					for(Expertise e : ep.getlistExpertise()) {
+						b.procedureInit("ExperiencePro_ajouterExpertise", 2);
+						b.setParamInt("_" + ExperiencePro.colID, ep.getID());
+						b.setParamInt("_" + Expertise.colID,e.getID());
+						b.execute();
+					}
 					lstExpProTemp.add(ep);
 				}
 			}

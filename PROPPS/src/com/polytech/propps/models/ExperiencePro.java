@@ -137,7 +137,7 @@ public class ExperiencePro {
 	}
 
 
-	public String getSDescription() {
+	public String getsDescription() {
 		if(!bFill) {
 			fill();
 		}
@@ -151,7 +151,7 @@ public class ExperiencePro {
 	}
 
 
-	public String getSDirection() {
+	public String getsDirection() {
 		if(!bFill) {
 			fill();
 		}
@@ -218,5 +218,10 @@ public class ExperiencePro {
 	public void setSociete(Societe societe) {
 		this.societe = societe;
 		bFill = true;
+	}
+
+
+	public ArrayList<Expertise> getlistExpertise() {
+		return lstExpertise;
 	}
 }
