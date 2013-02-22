@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.junit.*;
 
 import com.polytech.propps.appli.PROPPS;
@@ -278,16 +275,17 @@ public class MembreTest {
 		m14.delete();
 	}
 	
-	/*@Test
+	@Test
 	public void aEteInviteParTest() {
 		m1.insertOrUpdate();
 		Membre m15 = new Membre("Test", "Richard", "richard.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
 		m15.insertOrUpdate();
 		m1.demanderContact(m15);
+		m15.fillNotification();
 		assertTrue("m15 n'a pas été invité par m1", m15.aEteInvitePar(m1));
 		
 		m15.delete();
-	}*/
+	}
 	
 	@Test
 	public void getExperience() {
