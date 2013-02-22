@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.Expertise;
 import com.polytech.propps.models.Membre;
 import com.polytech.propps.models.Notification;
+import com.polytech.propps.models.Profil;
 import com.polytech.propps.models.Recruteur;
 
 import java.io.IOException;
@@ -46,6 +48,23 @@ public class CurrentUserProfileServlet extends HttpServlet {
 			HashMap<Integer,Notification> lstNotifRecept = membre.getLstNotifRecept();
 			System.out.println(lstNotifRecept.toString());
 			HashMap<String,Integer> mapNotifRecept = new HashMap<String,Integer>();
+
+			HashMap<Integer,Profil> listProfils = Profil.getListOfProfil();
+			HashMap<Integer,String> listStringProfils = new HashMap<Integer,String>();
+			for(int i : listProfils.keySet()){
+				listStringProfils.put(i, listProfils.get(i).getNom());
+			}
+			
+			request.setAttribute("mapProfils", listStringProfils);
+			
+			HashMap<Integer,Expertise> listExpertises = Expertise.getListOfExpertise();
+			HashMap<Integer,String> listStringExpertises = new HashMap<Integer,String>();
+			for(int i : listExpertises.keySet()){
+				listStringExpertises.put(i, listExpertises.get(i).getDomaine()+" - "+listExpertises.get(i).getType());
+			}
+			
+			request.setAttribute("mapExpertises", listStringExpertises);
+			
 			for(Notification n : lstNotifRecept.values()){
 				Membre tmp = n.getSource();
 				System.out.println(tmp.getsPrenom() + " "+ tmp.getsNom());
