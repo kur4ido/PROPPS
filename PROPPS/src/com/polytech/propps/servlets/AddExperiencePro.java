@@ -34,7 +34,7 @@ public class AddExperiencePro extends HttpServlet {
 		String direction = request.getParameter("direction");
 		String poste = request.getParameter("poste");
 		String description = request.getParameter("description");
-		//On rŽcupŽre l'ensemble des domaines d'expertise
+		//On rï¿½cupï¿½re l'ensemble des domaines d'expertise
 		String[] res = request.getParameterValues("expertise");
 		for (int i = 0; i < res.length; ++i) {
 			System.out.println(res[i]);
@@ -68,7 +68,7 @@ public class AddExperiencePro extends HttpServlet {
 					System.out.println(dateFin);
 					sqlDateFin = java.sql.Date.valueOf(dateFin);
 				}
-				Societe societeAjoutee = new Societe(nomSociete); // ID SOCIETE
+				Societe societeAjoutee = Societe.addSociete(nomSociete); // ID SOCIETE
 																	// AJOUTEE
 				Profil profilAjoute = new Profil(-1); // ID PROFIL AJOUTE
 
