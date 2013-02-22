@@ -129,6 +129,9 @@ html,body {
 #notif_contact form{
 	margin-bottom:0px;
 }
+.dropdown-menu li p{
+	padding:5px 10px;
+}
 
 #invit {
 	float: left;
