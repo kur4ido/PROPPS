@@ -255,4 +255,15 @@ public class MembreTest {
 		m12.delete();
 		
 	}
+	
+	@Test
+	public void aCommeAmiTest() {
+		m1.insertOrUpdate();
+		Membre m13 = new Membre("Test", "Da", "albert.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		m13.insertOrUpdate();
+		m1.addContact(m13);
+		assertTrue("m1 a comme amis 13", m1.aCommeAmi(m13));
+		
+		m13.delete();
+	}
 }
