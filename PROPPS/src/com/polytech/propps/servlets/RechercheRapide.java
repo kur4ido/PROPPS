@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.polytech.propps.bdd.Base;
 import com.polytech.propps.models.Adresse;
 import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Notification;
 import com.polytech.propps.models.Utilisateur;
 
 import java.awt.Desktop;
@@ -20,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet("/RechercheRapide")
@@ -53,6 +55,21 @@ public class RechercheRapide extends HttpServlet {
 			request.setAttribute(ParametresServlet.prenom_Membre_Courant, prenomCourant);
 			request.setAttribute(ParametresServlet.nom_Membre_Courant, nomCourant);
 			request.setAttribute("stringList", servStringList);
+			
+
+			HashMap<Integer,Notification> lstNotifRecept = membreCourant.getLstNotifRecept();
+			System.out.println(lstNotifRecept.toString());
+			HashMap<String,Integer> mapNotifRecept = new HashMap<String,Integer>();
+			for(Notification n : lstNotifRecept.values()){
+				Membre tmp = n.getSource();
+				System.out.println(tmp.getsPrenom() + " "+ tmp.getsNom());
+				mapNotifRecept.put(tmp.getsPrenom() + " "+ tmp.getsNom(), n.getID());
+			}
+			request.setAttribute("mapNotifRecept", mapNotifRecept);
+			request.setAttribute("nbNotif", Integer.toString(lstNotifRecept.size()));
+			request.setAttribute("lstNotifRecept", lstNotifRecept);
+			
+			
 			request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(idCourant));
 			getServletContext().getRequestDispatcher("/jsp/result_recherche_membre.jsp").forward(request, response);			
 		}catch(Exception e) {

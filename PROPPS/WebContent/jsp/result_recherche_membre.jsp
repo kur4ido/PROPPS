@@ -57,27 +57,33 @@
 					<ul class="nav pull-right">
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-list-alt"></i>
-								Invitations <span class="badge badge-info">2</span> </a>
+								Invitations <c:if test="${requestScope.nbNotif>'0'}" ><span class="badge badge-info">${requestScope.nbNotif}</span></c:if> </a>
 							<ul class="dropdown-menu">
-								<li>
-									<div id="notification">
-										<div id="notif_contact">
-											Nom, prénom</br>
-											<button class="btn btn-mini btn-success" type="button">Accepter</button>
-											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
+								<c:if test="${requestScope.nbNotif>0}">
+								<c:set var="count" value="0" scope="page" />
+								<c:forEach items="${requestScope.mapNotifRecept}" var="entry">
+									<c:set var="count" value="${count + 1}" scope="page"/>
+									<li>
+										<div id="notification">
+											<div id="notif_contact">
+												<form action="${pageContext.request.contextPath}/relationAnswer" method="post">
+													${entry.key}</br>
+													<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
+													<input type="hidden" name="ID_Notification" value="${entry.value}" >
+													<button class="btn btn-mini btn-success" name="estAccepte"  value="true" type="submit">Accepter</button>
+													<button class="btn btn-mini btn-danger" name="estAccepte"  value="false" type="submit">Refuser</button>
+												</form>
+											</div>
 										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div id="notification">
-										<div id="notif_contact">
-											Nom, prénom</br>
-											<button class="btn btn-mini btn-success" type="button">Accepter</button>
-											<button class="btn btn-mini btn-danger" type="button">Refuser</button>
-										</div>
-									</div>
-								</li>
+									</li>
+									<c:if test="${count <  requestScope.nbNotif}">
+										<li class="divider"></li>
+									</c:if>
+								</c:forEach>
+							</c:if>
+							<c:if test="${requestScope.nbNotif==0}">
+								<li><p>Pas de nouvelles notifications.</p></li>
+							</c:if>
 							</ul></li>
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"

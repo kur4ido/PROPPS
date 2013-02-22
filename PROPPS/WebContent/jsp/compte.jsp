@@ -58,8 +58,9 @@
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-list-alt"></i>
 								Invitations 
-								<c:if test="${requestScope.nbNotif>'0'}" ><span class="badge badge-info">${requestScope.nbNotif}</span></c:if> </b></a>
+								<c:if test="${requestScope.nbNotif>'0'}" ><span class="badge badge-info">${requestScope.nbNotif}</span></c:if> </a>
 							<ul class="dropdown-menu">
+							<c:if test="${requestScope.nbNotif>0}">
 								<c:set var="count" value="0" scope="page" />
 								<c:forEach items="${requestScope.mapNotifRecept}" var="entry">
 									<c:set var="count" value="${count + 1}" scope="page"/>
@@ -80,15 +81,10 @@
 										<li class="divider"></li>
 									</c:if>
 								</c:forEach>
-<!-- 								<li> -->
-<!-- 									<div id="notification"> -->
-<!-- 										<div id="notif_contact"> -->
-<!-- 											Nom, prénom</br> -->
-<!-- 											<button class="btn btn-mini btn-success" type="button">Accepter</button> -->
-<!-- 											<button class="btn btn-mini btn-danger" type="button">Refuser</button> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</li> -->
+							</c:if>
+							<c:if test="${requestScope.nbNotif==0}">
+								<li>Pas de nouvelles notifications.</li>
+							</c:if>
 							</ul></li>
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"

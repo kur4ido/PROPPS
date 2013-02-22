@@ -28,6 +28,7 @@ public class CurrentUserProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doPost( HttpServletRequest request, HttpServletResponse	response ) throws ServletException, IOException{
+		System.out.println(request.getParameter(ParametresServlet.ID_Membre_Courant));
 		int ID_Membre_Courant = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
 		Base base = new Base();
 		try {
