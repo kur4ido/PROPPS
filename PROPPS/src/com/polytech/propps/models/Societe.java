@@ -87,7 +87,6 @@ public class Societe  {
 	 */
 	public static Societe addSociete(String nomSociete) {
 		Base b = new Base();
-		Societe s = null;
 		try {
 			b.connect();
 			b.procedureInit("Societe_insertOrUpdate", 1);
@@ -103,7 +102,25 @@ public class Societe  {
 		}finally {
 			b.close();
 		}
-		return null;
+		return listOfSocieteString.get(nomSociete);
+	}
+	
+	public static void deleteSociete(int ID) {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Societe_delete", 1);
+			b.setParamInt(colID, ID);
+			b.execute();
+			Societe s = listOfSociete.get(ID);
+			listOfSociete.remove(ID);
+			listOfSocieteString.remove(s.getNom());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
 	}
 	
 	public String getNom() {

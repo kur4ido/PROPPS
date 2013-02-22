@@ -384,8 +384,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Societe_insertOrUpdate` (IN _ID_Societe INT, IN _sNom VARCHAR(250))
 BEGIN
     IF(_ID_Societe = -1) THEN
@@ -468,7 +466,8 @@ BEGIN
     FROM Contact inner join Membre on Contact.ID_Contact = Membre.ID_Utilisateur
             inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur
             inner join Adresse on Adresse.ID_Adresse = Utilisateur.ID_Utilisateur
-    WHERE Contact.ID_Membre = _ID_Membre;
+    WHERE Contact.ID_Membre = _ID_Membre
+    ORDER BY dtRelation DESC;
 END$$
 
 DELIMITER ;
@@ -773,22 +772,15 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Recruteur_rechercher` (IN _ID_Domaine INT, IN _ID_Profil INT,IN _bPresta BOOL,
 IN _dtDispo DATETIME)
 BEGIN
-    IF _bPresta THEN
-        SELECT M.*
-        FROM Membre
-        WHERE ID_Profil = _ID_Profil
-            AND dtFinPresta < _dtDispo;
-    ELSE
-        SELECT M.*
-        FROM Membre
-        WHERE ID_Profil = _ID_Profil
-            AND bPresta = _bPresta;
-    END IF;
+ 
+        SELECT M.*,Expertise.*
+        FROM Membre as M inner join ExpertiseMembre as E on M.ID_Utilisateur = E.ID_Utilisateur
+        WHERE (_ID_Profil is null OR ID_Profil = _ID_Profil)
+            AND ((not _bPresta AND not bContrat) OR (bContrat AND dtFinPresta < _dtDispo))
+            AND E.ID_Domaine = _ID_Domaine;
 END$$
 
 DELIMITER ;
@@ -1026,6 +1018,19 @@ USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`Message_delete` (IN _ID_Message INT)
 BEGIN
     DELETE FROM Message WHERE ID_Message = _ID_Message;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure Societe_delete
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `PROPPS_DB`$$
+CREATE PROCEDURE `PROPPS_DB`.`Societe_delete` (IN _ID_Societe INT)
+BEGIN
+    DELETE FROM Societe WHERE ID_Societe = _ID_Societe;
 END$$
 
 DELIMITER ;

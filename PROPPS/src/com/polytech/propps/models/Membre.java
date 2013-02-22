@@ -11,11 +11,11 @@ import java.util.Map;
 import com.polytech.propps.bdd.Base;
 import com.polytech.propps.utils.Pair;
 
-public class Membre extends Utilisateur{
-	private final static String colPresta = "bPresta";
-	private final static String colDtPresta = "dtFinPresta";
-	private final static String colContrat = "bContrat";
-	private final static String colNbExp = "nbExp";
+public class Membre extends Utilisateur {
+	public final static String colPresta = "bPresta";
+	public final static String colDtPresta = "dtFinPresta";
+	public final static String colContrat = "bContrat";
+	public final static String colNbExp = "nbExp";
 	public final static String colIDMembre = "ID_Membre";
 	public final static String colIDContact = "ID_Contact";
 	

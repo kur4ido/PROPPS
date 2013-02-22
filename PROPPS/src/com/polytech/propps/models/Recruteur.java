@@ -1,13 +1,20 @@
 package com.polytech.propps.models;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.TreeSet;
+
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.utilsTest.Comparaison;
 
 public class Recruteur extends Utilisateur {
 	
 	private final static String colID = "ID_Utilisateur";
-
+	private final static String colDureeMin = "dtDispo"; 
 	
 	protected Societe societe;
 
@@ -97,6 +104,50 @@ public class Recruteur extends Utilisateur {
 			bFill = true;
 		}
 		
+	}
+	
+	public ArrayList<Membre> rechercheAvancee(ArrayList<Expertise> lstExpertise, Profil p, boolean bPresta,Date dureeMin) {
+		Base b = new Base();
+		ArrayList<Membre> lstMembre = new ArrayList<Membre>();
+		try {
+			b.connect();
+			
+			for(int i = 0 ; i < lstExpertise.size() ; i++) {
+				ArrayList<Membre> lstTemp = new ArrayList<Membre>();
+				Expertise e = lstExpertise.get(i);
+				b.procedureInit("Recruteur_rechercher", 4);
+				b.setParamInt("_" + Expertise.colID, e.getID());
+				b.setParamInt("_" + Profil.colID, (p == null ? null : p.getID()));
+				b.setParamDate("_" + colDureeMin, dureeMin);
+				b.setParamBool("_" + Membre.colPresta, bPresta);
+				ResultSet r = b.executeQuery();
+				while(r.next()) {
+					Membre m = new Membre(r.getInt(Utilisateur.colID));
+					if(i == 0) {
+						lstMembre.add(m);
+					}
+					lstTemp.add(m);
+				}
+				for(Membre m : lstMembre) {
+					if(!lstTemp.contains(m)) {
+						lstMembre.remove(m);
+					}
+				}
+			}
+			Collections.sort(lstMembre, new Comparator<Membre>() {
+				@Override
+				public int compare(Membre arg0, Membre arg1) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+			});
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}finally {
+			b.close();
+		}
+		return lstMembre;
 	}
 
 }
