@@ -214,65 +214,45 @@ public class MembreTest {
 		m9.delete();
 	}
 
-	public void reponseDemandeTestMembre() {
+	@Test
+	public void reponseDemandeTestMembreTrue() {
 		m1.insertOrUpdate();
 		
-		// True
 		Membre m10 = new Membre("Test", "Arnaud", "arnaud.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
 		m10.insertOrUpdate();
 		m1.demanderContact(m10);
 		m10.reponseDemande(m1, true);
 		
-		// verifier si la notif est là
-		ArrayList<Notification> arraylist = new ArrayList<Notification>();
-		HashMap<Integer,Notification> hashmap = new HashMap<Integer,Notification>();
-		hashmap = m10.getLstNotifRecept();
-		for(Map.Entry<Integer, Notification> e : hashmap.entrySet()) {
-			arraylist.add(e.getValue());
-		}
-		
-		assertEquals("La notification de réception de contact n'est pas unique.", arraylist.size(), 1);
-		Notification n = arraylist.get(0);
-		assertEquals("Le destinataire de la demande de contact est erroné.", n.getDestinataire(), m1);
-		assertEquals("La source de la notification de demande de contact est erronée.", n.getSource(), m10);
-		Assert.assertFalse("L'ID de la notification de demande de contact est erroné.", n.getID() == -1);
-		assertNotNull("La date de demande de contact est erroné.", n.getDtDemande());
-		assertTrue("isbAccept n'est pas à True", n.isbAccept());
-		assertTrue("isbVuDest n'est pas à True", n.isbVuDest());
-		assertFalse("isbVuSource n'est pas à False.", n.isbVuSource());
-		
 		// doit se retrouver dans ta liste d'amis
 		assertTrue("m1 ne se trouve pas dans la liste d'amis de m10.", m10.getLstContacts().contains(m1));
+
+		m10.delete();
+	}
+	
+	@Test
+	public void reponseDemandeTestMembreFalse() {
+		m1.insertOrUpdate();
 		
-		// False
 		Membre m11 = new Membre("Test", "Alexandre", "alexandre.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
 		m11.insertOrUpdate();
 		m1.demanderContact(m11);
-		m11.reponseDemande(m11, false);
+		m11.reponseDemande(m1, false);
 		
-		// verifier si la notif est là
-		ArrayList<Notification> arraylist2 = new ArrayList<Notification>();
-		HashMap<Integer,Notification> hashmap2 = new HashMap<Integer,Notification>();
-		hashmap = m10.getLstNotifRecept();
-		for(Map.Entry<Integer, Notification> e : hashmap2.entrySet()) {
-			arraylist2.add(e.getValue());
-		}
-		
-		assertEquals("La notification de réception de contact n'est pas unique.", arraylist.size(), 1);
-		Notification n2 = arraylist.get(0);
-		assertEquals("Le destinataire de la demande de contact est erroné.", n2.getDestinataire(), m1);
-		assertEquals("La source de la notification de demande de contact est erronée.", n2.getSource(), m10);
-		Assert.assertFalse("L'ID de la notification de demande de contact est erroné.", n2.getID() == -1);
-		assertNotNull("La date de demande de contact est erroné.", n2.getDtDemande());
-		assertFalse("isbAccept n'est pas à False", n2.isbAccept());
-		assertTrue("isbVuDest n'est pas à True", n2.isbVuDest());
-		assertFalse("isbVuSource n'est pas à False.", n2.isbVuSource());
-				
 		// ne doit pas se retrouver dans sa liste d'amis
 		assertFalse("m1 se trouve dans l'amis de m11 alors qu'il ne devrait pas.", m11.getLstContacts().contains(m1));
 		
-		m10.delete();
 		m11.delete();
 	}
 	
+	/*@Test
+	public void addContactTest() {
+		m1.insertOrUpdate();
+		Membre m12 = new Membre("Test", "Albert", "albert.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		m12.insertOrUpdate();
+		m1.addContact(m12);
+		assertTrue("m12 ne se trouve dans l'amis de m1.", m1.getLstContacts().contains(m12));
+		
+		m12.delete();
+		
+	}*/
 }
