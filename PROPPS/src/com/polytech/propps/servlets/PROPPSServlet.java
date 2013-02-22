@@ -3,12 +3,15 @@ package com.polytech.propps.servlets;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +25,7 @@ import com.polytech.propps.models.Recruteur;
 import com.polytech.propps.models.Societe;
 
 @WebServlet("/PROPPSServlet")
-public class PROPPSServlet extends HttpServlet {
+public class PROPPSServlet implements ServletContextListener {
 	private static final String fileConfig = "propps.conf";
 	private static final String TOKEN_COMMENTAIRE = ";";
 	private static final String TOKEN_SPEC = "-";
@@ -33,23 +36,28 @@ public class PROPPSServlet extends HttpServlet {
 	private static String MYSQL_PW_APPLI = "pw";
 	private static String MYSQL_URL = "url";
 	
-	public void doGet(HttpServletRequest request, 
-		      		  HttpServletResponse response) throws ServletException, IOException {
-		ServletContext context = getServletContext();
+	@Override
+	public void contextInitialized(ServletContextEvent arg0) {
+		System.out.println("ServletContextListener started");
         BufferedReader buff;
         InputStream ips;
-        ips = new FileInputStream(context.getRealPath(fileConfig));
-        InputStreamReader ipsr=new InputStreamReader(ips);
-        buff = new BufferedReader(ipsr);
 		try {
+			ips = new FileInputStream(arg0.getServletContext().getRealPath(fileConfig));
+			InputStreamReader ipsr=new InputStreamReader(ips);
+			buff = new BufferedReader(ipsr);
 			String line;
 			while((line = buff.readLine()) != null) {
 				if(!(line.startsWith(TOKEN_COMMENTAIRE)) && !line.isEmpty()) {
 					traiterLigne(line);
 				}
 			}
-		}finally {
 			buff.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		try {
 			Base.initBase();
@@ -60,7 +68,10 @@ public class PROPPSServlet extends HttpServlet {
 		Profil.fillList();
 		Expertise.fillList();
 		Societe.fillList();
-		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/index.html"));
+	}
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+		System.out.println("ServletContextListener destroyed");
 	}
 	
 	private static void traiterLigne(String line) {

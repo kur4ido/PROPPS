@@ -192,6 +192,11 @@
 		$(function() {
 			$("[rel='tooltip']").tooltip();
 		});
+		var list = "${requestScope.stringList}";
+		$("#inputSociete").typeahead({
+			minLength : 2,
+			source : list
+		});
 	</script>
 </body>
 </html>
