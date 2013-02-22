@@ -32,8 +32,7 @@ public class Membre extends Utilisateur {
 	protected HashMap<Integer,Notification> lstNotifRecept;
 	
 	
-	private int derniereProximiteCalc = -1,derniereExpCalc = 0;
-	private float dernierScoreCalcule = 1.0f;
+	private int derniereProximiteCalc = -1,derniereExpCalc = 0, dernierScoreCalcule = 1;
 	private boolean bFillExpertise,bFillContact,bFillExperiencePro,bFillNotif; 
 	
 	
@@ -329,7 +328,10 @@ public class Membre extends Utilisateur {
 	}
 
 	
-
+	/**
+	 * Méthode permettant de supprimer un membre et tous les objets s'y
+	 * référant.
+	 */
 	@Override
 	public void delete() {
 		Base b = new Base();
@@ -566,6 +568,15 @@ public class Membre extends Utilisateur {
 		
 	}
 	
+	/**
+	 * Méthode permettant de calculer le score de proximité d'un membre
+	 * par rapport à la société donnée en paramètre. Le score est calculé
+	 * en pondérant la durée passée dans l'entreprise par rapport à l'éloignement
+	 * temporel de cette expérience vis à vis de la date du jour.
+	 * 
+	 * @param s la société dont on veut calculer la proximité
+	 * @return
+	 */
 	public int getScore(Societe s) {
 		float resultat = 0;
 		Date date = new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
@@ -705,6 +716,18 @@ public class Membre extends Utilisateur {
 	public float getScoreCalcule() {
 		return dernierScoreCalcule;
 	}
+	
+	/**
+	 * Méthode permettant de calculer la distance dans le graphe des relations entre un membre
+	 * et le membre courant.
+	 * 
+	 * @param m : le membre dont on veut calculer la distance avec le membre courant
+	 * @param profondeur la profondeur maximale dans l'horizon de recherche
+	 * @param membresVus les membres déjà explorés par l'algorithme
+	 * 
+	 * @return la distance entre 2 membres ou -1 si les 2 membres ne sont pas connecté dans l'horizon
+	 * de recherche.
+	 */
 	public int proximiteGraphe(Membre m,int profondeur,ArrayList<Membre> membresVus) {	
 		lstContacts = getLstContacts();
 		if(lstContacts.contains(m)) {
