@@ -1,6 +1,6 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +13,15 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/datepicker.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/css/bootstrap-responsive.css"
+	rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -24,18 +29,31 @@
     <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="icon" href="${pageContext.request.contextPath}/img/propps.ico">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/propps.ico">
 </head>
 
 <body>
-  <!-- Navbar
+	<!-- Navbar
     ================================================== -->
-<% String nom= (String) request.getAttribute("nom"); %>
-<% String prenom= (String) request.getAttribute("prenom"); %>
-<% String ville= (String) request.getAttribute("ville"); %>
-<% String adresse= (String) request.getAttribute("adresse"); %>
-<% String codePostal= (String) request.getAttribute("codePostal"); %>
-<% String NomSociete= (String) request.getAttribute("NomSociete"); %>
+	<%
+		String nom = (String) request.getAttribute("nom");
+	%>
+	<%
+		String prenom = (String) request.getAttribute("prenom");
+	%>
+	<%
+		String ville = (String) request.getAttribute("ville");
+	%>
+	<%
+		String adresse = (String) request.getAttribute("adresse");
+	%>
+	<%
+		String codePostal = (String) request.getAttribute("codePostal");
+	%>
+	<%
+		String NomSociete = (String) request.getAttribute("NomSociete");
+	%>
 
 
 	<div class="navbar navbar-fixed-top">
@@ -46,7 +64,8 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="${pageContext.request.contextPath}/index.html">ProPPS</a>
+				<a class="brand"
+					href="${pageContext.request.contextPath}/index.html">ProPPS</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 
 
@@ -55,17 +74,14 @@
 					<ul class="nav pull-right">
 
 						<li class="dropdown"><a data-toggle="dropdown"
-							class="dropdown-toggle" href="#"><i class="icon-home"></i>
-								<%=NomSociete %> <b class="caret"></b></a>
+							class="dropdown-toggle" href="#"><i class="icon-home"></i> <%=NomSociete%>
+								<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="entreprise.html"><i class="icon-user"></i>
 										Mon compte</a></li>
 								<li><a href="messagerie.html"><i class="icon-inbox"></i>
 										Inbox</a></li>
-								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										Param�tres</a></li>
 								<li class="divider"></li>
-								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
 							</ul></li>
 					</ul>
@@ -80,14 +96,19 @@
 			<div class="row">
 				<div class="span12">
 					<div id="fiche_entreprise">
-						<img src="${pageContext.request.contextPath}/img/entreprise.jpg" class="img-polaroid">
+						<img src="${pageContext.request.contextPath}/img/entreprise.jpg"
+							class="img-polaroid">
 						<div id="detail_entreprise">
 
-							<h2><%=NomSociete %></h2>
-							<h3><%=nom %>, <%=prenom %></h3>
+							<h2><%=NomSociete%></h2>
+							<h3><%=nom%>,
+								<%=prenom%></h3>
 							<br>
 							<p class="lead">
-								<i class="icon-home"></i> <%=adresse %><br> <%=ville %>, <%=codePostal %><br>	
+								<i class="icon-home"></i>
+								<%=adresse%><br>
+								<%=ville%>,
+								<%=codePostal%><br>
 							</p>
 						</div>
 					</div>
@@ -102,7 +123,8 @@
 			<div class="row">
 				<div class="span12">
 					<div class="page-header">
-						<img src="${pageContext.request.contextPath}/img/search.png" class="pull-left">
+						<img src="${pageContext.request.contextPath}/img/search.png"
+							class="pull-left">
 						<h2>Fonction de recrutement</h2>
 					</div>
 					<form class="form-horizontal"
@@ -122,8 +144,8 @@
 										name="expertise3" value="CommercantFront"> Commerçant
 										- Front office
 									</label> <label class="checkbox"> <input type="checkbox"
-										name="expertise4" value="CommercantBack"> Commerçant -
-										Back office
+										name="expertise4" value="CommercantBack"> Commerçant
+										- Back office
 									</label> <label class="checkbox"> <input type="checkbox"
 										name="expertise5" value="AutomatesFront"> Automates -
 										Front office
@@ -189,7 +211,7 @@
 										data-date-format="dd/mm/yyyy">
 										<input class="span2" size="16" type="text" value="04/02/2013">
 										<span class="add-on"><i class="icon-calendar"></i></span>
-										
+
 									</div>
 									<a href="#" rel="tooltip" data-placement="right"
 										title="Ne renseigner une date que si vous recherchez un poste de type : Prestation"><i
@@ -222,7 +244,8 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-1.9.0.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
 	<script>
 		$('.date').datepicker();
 		$(document).off('touchstart.dropdown.data-api');

@@ -218,15 +218,6 @@
 		$(function() {
 			$("[rel='tooltip']").tooltip();
 		});
-		<c:forEach var="entry" items="${requestScope.stringList}">
-		var test = <c:out value="${entry}" />;
-		alert(test);
-		</c:forEach>
-		alert(list.length);
-		$("#inputSociete").typeahead({
-
-			source : list
-		})
 	</script>
 </body>
 </html>
