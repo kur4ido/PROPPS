@@ -14,7 +14,7 @@ import com.polytech.propps.utilsTest.Comparaison;
 public class Recruteur extends Utilisateur {
 	
 	private final static String colID = "ID_Utilisateur";
-	private final static String colDureeMin = "dtDispo"; 
+	private final static String colDtDispo = "dtDispo"; 
 	
 	protected Societe societe;
 
@@ -106,7 +106,7 @@ public class Recruteur extends Utilisateur {
 		
 	}
 	
-	public ArrayList<Membre> rechercheAvancee(ArrayList<Expertise> lstExpertise, Profil p, boolean bPresta,Date dureeMin) {
+	public ArrayList<Membre> rechercheAvancee(ArrayList<Expertise> lstExpertise, Profil p, boolean bPresta,Date dtDispo,int dureeMin) {
 		Base b = new Base();
 		ArrayList<Membre> lstMembre = new ArrayList<Membre>();
 		try {
@@ -118,12 +118,12 @@ public class Recruteur extends Utilisateur {
 				b.procedureInit("Recruteur_rechercher", 4);
 				b.setParamInt("_" + Expertise.colID, e.getID());
 				b.setParamInt("_" + Profil.colID, (p == null ? null : p.getID()));
-				b.setParamDate("_" + colDureeMin, dureeMin);
+				b.setParamDate("_" + colDtDispo, dtDispo);
 				b.setParamBool("_" + Membre.colPresta, bPresta);
 				ResultSet r = b.executeQuery();
 				while(r.next()) {
 					Membre m = new Membre(r.getInt(Utilisateur.colID));
-					if(i == 0) {
+					if(i == 0 && m.getExperience() >= dureeMin) {
 						lstMembre.add(m);
 					}
 					lstTemp.add(m);
