@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
 import com.polytech.propps.models.Adresse;
+import com.polytech.propps.models.Expertise;
 import com.polytech.propps.models.Membre;
+import com.polytech.propps.models.Profil;
 import com.polytech.propps.models.Utilisateur;
 
 import java.awt.Desktop;
@@ -19,6 +21,7 @@ import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @WebServlet("/InscriptionUtilisateur")
 public class InscriptionUtilisateur extends HttpServlet {
@@ -57,6 +60,24 @@ public class InscriptionUtilisateur extends HttpServlet {
 						newUser.setAdresse(new Adresse(ville, null, null, null));
 						System.out.println(newUser.getAdresse().getVille());
 						newUser.insertOrUpdate();
+						
+
+						HashMap<Integer,Profil> listProfils = Profil.getListOfProfil();
+						HashMap<Integer,String> listStringProfils = new HashMap<Integer,String>();
+						for(int i : listProfils.keySet()){
+							listStringProfils.put(i, listProfils.get(i).getNom());
+						}
+						
+						request.setAttribute("mapProfils", listStringProfils);
+						
+						HashMap<Integer,Expertise> listExpertises = Expertise.getListOfExpertise();
+						HashMap<Integer,String> listStringExpertises = new HashMap<Integer,String>();
+						for(int i : listExpertises.keySet()){
+							listStringExpertises.put(i, listExpertises.get(i).getDomaine()+" - "+listExpertises.get(i).getType());
+						}
+						
+						request.setAttribute("mapExpertises", listStringExpertises);
+						
 						request.setAttribute(ParametresServlet.Email, email);
 						request.setAttribute(ParametresServlet.Nom, name);
 						request.setAttribute(ParametresServlet.Prenom, prenom);

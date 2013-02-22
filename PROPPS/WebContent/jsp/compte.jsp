@@ -162,55 +162,39 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="expertise"> <b>Domaines
-														d'expertise</b></label>
-												<div class="controls">
-													<label class="checkbox"> <input type="checkbox"
-														name="expertise" value="EmissionFront"> Emission
-														- Front office
-													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise" value="EmissionBack" checked>
-														Emission - Back office
-													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise" value="CommercantFront">
-														Commerçant - Front office
-													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise" value="CommercantBack">
-														Commerçant - Back office
-													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise" value="AutomatesFront">
-														Automates - Front office
-													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise" value="AutomatesBack"> Automates
-														- Back office
-													</label>
-												</div>
-											</div>
-											<div class="control-group">
-												<label class="control-label" for="profil"><b>Profil</b>
-												</label>
-												<div class="controls">
-													<label class="radio inline"> <input type="radio"
-														name="profil" id="optionsRadios1" value="MOA" checked>
-														MOA
-													</label> <label class="radio inline"> <input type="radio"
-														name="profil" id="optionsRadios2" value="MOE"> MOE
-													</label> <label class="radio"> <input type="radio"
-														name="profil" id="optionsRadios3" value="DCompetence">
-														Double Compétence
-													</label>
-												</div>
-											</div>
+														<label class="control-label" for="expertise"> <b>Domaines
+																d'expertise</b></label>
+														<div class="controls">
+															<c:forEach items="${requestScope.mapExpertises}" var="entry" >
+																<label class="checkbox"> <input type="checkbox"
+																	name="expertise" value="${entry.key}">
+																	${entry.value}
+																</label> 
+															</c:forEach>
+														</div>
+													</div>
+													<div class="control-group">
+														<label class="control-label" for="profil"><b>Profil</b>
+														</label>
+														<div class="controls">
+															<c:forEach items="${requestScope.mapProfils}" var="entry" >
+																<label class="radio inline"> <input type="radio"
+																	name="profil" id="optionsRadios" value="${entry.key}" checked>
+																	${entry.value}
+																</label> 
+															</c:forEach>
+														</div>
+													</div>
 
 											<div class="control-group">
 												<label class="control-label" for="dispo"><b>Disponibilité</b>
 												</label>
 												<div class="controls">
 													<label class="radio inline"> <input type="radio"
-														name="dispo" id="optionsRadios1" value="Prestation">
+														name="dispo" id="optionsRadios1" value="true">
 														Prestation
 													</label> <label class="radio inline"> <input type="radio"
-														name="dispo" id="optionsRadios2" value="Contrat" checked>
+														name="dispo" id="optionsRadios2" value="false" checked>
 														Contrat
 													</label>
 												</div>
@@ -270,6 +254,7 @@
 														placeholder="Description"></textarea>
 												</div>
 											</div>
+											<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
 											<div class="control-group">
 												<div class="controls">
 													<button type="submit" class="btn btn-primary">Ajouter</button>
@@ -500,41 +485,24 @@
 														<label class="control-label" for="expertise"> <b>Domaines
 																d'expertise</b></label>
 														<div class="controls">
-															<label class="checkbox"> <input type="checkbox"
-																name="expertise1" value="EmissionFront">
-																Emission - Front office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise2" value="EmissionBack" checked>
-																Emission - Back office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise3" value="CommercantFront">
-																Commerçant - Front office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise4" value="CommercantBack">
-																Commerçant - Back office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise5" value="AutomatesFront">
-																Automates - Front office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise6" value="AutomatesBack">
-																Automates - Back office
-															</label>
+															<c:forEach items="${requestScope.mapExpertises}" var="entry" >
+																<label class="checkbox"> <input type="checkbox"
+																	name="expertise" value="${entry.key}">
+																	${entry.value}
+																</label> 
+															</c:forEach>
 														</div>
 													</div>
 													<div class="control-group">
 														<label class="control-label" for="profil"><b>Profil</b>
 														</label>
 														<div class="controls">
-															<label class="radio inline"> <input type="radio"
-																name="profil" id="optionsRadios1" value="MOA" checked>
-																MOA
-															</label> <label class="radio inline"> <input type="radio"
-																name="profil" id="optionsRadios2" value="MOE">
-																MOE
-															</label> <label class="radio"> <input type="radio"
-																name="profil" id="optionsRadios3" value="DCompetence">
-																Double Compétence
-															</label>
+															<c:forEach items="${requestScope.mapProfils}" var="entry" >
+																<label class="radio inline"> <input type="radio"
+																	name="profil" id="optionsRadios" value="${entry.key}" checked>
+																	${entry.value}
+																</label> 
+															</c:forEach>
 														</div>
 													</div>
 

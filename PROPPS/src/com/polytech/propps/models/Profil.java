@@ -14,6 +14,9 @@ public class Profil {
 	protected int ID_Profil;
 	protected String sNom;
 	
+	public static HashMap<Integer,Profil> getListOfProfil(){
+		return listOfProfil;
+	}
 	
 	public Profil(int ID) {
 		ID_Profil = ID;

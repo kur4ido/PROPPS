@@ -15,6 +15,9 @@ public class Expertise {
 	protected int ID_Expertise;
 	protected String sDomaine, sType;
 	
+	public static HashMap<Integer,Expertise> getListOfExpertise(){
+		return listOfExpertise;
+	}
 	
 	public Expertise(int ID) {
 		ID_Expertise = ID;
