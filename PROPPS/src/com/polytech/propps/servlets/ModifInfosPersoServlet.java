@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/ModifInfosPerso")
-public class ModifInfosPerso extends HttpServlet {
+public class ModifInfosPersoServlet extends HttpServlet {
 
 	/**
 	 * 
