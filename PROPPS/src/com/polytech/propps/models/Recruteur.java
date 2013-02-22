@@ -124,6 +124,8 @@ public class Recruteur extends Utilisateur {
 				while(r.next()) {
 					Membre m = new Membre(r.getInt(Utilisateur.colID));
 					if(i == 0 && m.getExperience() >= dureeMin) {
+						m.calculerExperience();
+						m.calculerProximite(societe);
 						lstMembre.add(m);
 					}
 					lstTemp.add(m);
@@ -137,8 +139,8 @@ public class Recruteur extends Utilisateur {
 			Collections.sort(lstMembre, new Comparator<Membre>() {
 				@Override
 				public int compare(Membre m1, Membre m2) {
-					return (int) (COEFF_EXP * (m1.getExperience() - m2.getExperience() )
-							+  COEFF_PROXI * (m1.getScore(societe)  - m2.getScore(societe)));
+					return (int) (COEFF_EXP * (m1.getExperienceCalculee() - m2.getExperienceCalculee() )
+							+  COEFF_PROXI * (m1.getScoreCalcule()  - m2.getScoreCalcule()));
 				}
 				
 			});

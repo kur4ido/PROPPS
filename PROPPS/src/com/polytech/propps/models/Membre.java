@@ -32,7 +32,8 @@ public class Membre extends Utilisateur {
 	protected HashMap<Integer,Notification> lstNotifRecept;
 	
 	
-	private int derniereProximiteCalc = -1;
+	private int derniereProximiteCalc = -1,derniereExpCalc = 0;
+	private float dernierScoreCalcule = 1.0f;
 	private boolean bFillExpertise,bFillContact,bFillExperiencePro,bFillNotif; 
 	
 	
@@ -556,6 +557,15 @@ public class Membre extends Utilisateur {
 		
 	}
 	
+	public void calculerProximite(Societe societe) {
+		dernierScoreCalcule = getScore(societe);
+	}
+	
+	public void calculerExperience() {
+		derniereExpCalc = getExperience();
+		
+	}
+	
 	public int getScore(Societe s) {
 		float resultat = 0;
 		Date date = new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
@@ -687,6 +697,13 @@ public class Membre extends Utilisateur {
 		return derniereProximiteCalc;
 	}
 	
+	public int getExperienceCalculee() {
+		return derniereExpCalc;
+	}
+
+	public float getScoreCalcule() {
+		return dernierScoreCalcule;
+	}
 	public int proximiteGraphe(Membre m,int profondeur,ArrayList<Membre> membresVus) {	
 		lstContacts = getLstContacts();
 		if(lstContacts.contains(m)) {
@@ -750,6 +767,11 @@ public class Membre extends Utilisateur {
 		});
 		return resultat;
 	}
+
+	
+
+	
+
 
 	
 
