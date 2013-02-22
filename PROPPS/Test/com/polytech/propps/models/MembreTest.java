@@ -4,7 +4,13 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.junit.*;
 
 import com.polytech.propps.appli.PROPPS;
@@ -161,8 +167,6 @@ public class MembreTest {
 		Comparaison.membreEstVide(m7);
 	}
 	
-	
-	
 	@Test
 	public void ajoutExperienceProTest() {
 		m1.insertOrUpdate();
@@ -183,5 +187,32 @@ public class MembreTest {
 		m7.fill();
 		Comparaison.comparerDeuxMembres(m1, m7);
 	}
+	
+	@Test
+	public void demanderContactTest() {
+		m1.insertOrUpdate();
+		Membre m9 = new Membre("Test", "Jean", "jean.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		m9.insertOrUpdate();
+		m1.demanderContact(m9);
+		
+		ArrayList<Notification> arraylist = new ArrayList<Notification>();
+		HashMap<Integer,Notification> hashmap = new HashMap<Integer,Notification>();
+		hashmap = m1.getLstNotifEnvoi();
+		for(Map.Entry<Integer, Notification> e : hashmap.entrySet()) {
+			arraylist.add(e.getValue());
+		}
+		
+		assertEquals("La notification de demande de contact n'est pas unique.", arraylist.size(), 1);
+		Notification n = arraylist.get(0);
+		assertEquals("Le destinataire de la demande de contact est erroné.", n.getDestinataire(), m9);
+		assertEquals("La source de la notification de demande de contact est erronée.", n.getSource(), m1);
+		Assert.assertFalse("L'ID de la notification de demande de contact est erroné.", n.getID() == -1);
+		assertNotNull("La date de demande de contact est erroné.", n.getDtDemande());
+		assertFalse("isbAccept n'est pas à la False.", n.isbAccept());
+		assertFalse("isbVuDest n'est pas à False.", n.isbVuDest());
+		assertFalse("isbVuSource n'est pas à False.", n.isbVuSource());
+		m9.delete();
+	}
+
 	
 }
