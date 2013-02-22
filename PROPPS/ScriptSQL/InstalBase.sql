@@ -262,7 +262,7 @@ ENGINE = InnoDB;
 -- Table `PROPPS_DB`.`Message`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Message` (
-  `ID_Message` INT NOT NULL ,
+  `ID_Message` INT NOT NULL AUTO_INCREMENT ,
   `ID_Utilisateur` INT NOT NULL ,
   `dtMessage` DATETIME NOT NULL ,
   `sMessage` TEXT NOT NULL ,
@@ -615,8 +615,6 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_modifier` (IN _ID_Membre INT, IN _ID_Profil INT,IN _bPresta BOOL,
     IN _bEstSousContrat BOOL, IN _dtFinPresta DATETIME)
 
@@ -878,6 +876,8 @@ BEGIN
     DELETE FROM ExperiencePro WHERE ID_Membre = _ID_Utilisateur;
     DELETE FROM Notification WHERE ID_Source = _ID_Utilisateur;
     DELETE FROM Notification WHERE ID_Destinataire = _ID_Utilisateur;
+    DELETE FROM Contact WHERE ID_Contact = _ID_Utilisateur;
+    DELETE FROM Contact WHERE ID_Membre = _ID_Utilisateur;
 
     DELETE FROM ExpertiseMembre WHERE ID_Utilisateur = _ID_Utilisateur;
     DELETE FROM Membre WHERE ID_Utilisateur = _ID_Utilisateur;

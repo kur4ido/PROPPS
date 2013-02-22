@@ -158,11 +158,8 @@
 						<tbody>
 						<c:forEach var="member" items="${requestScope.memberList}" > 
 							<tr>
-								<td><form action="${pageContext.request.contextPath}/seeUserProfile" method="post">
-										<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %>>
-										<input type="hidden" name="ID_Membre_Select" value=${member.ID_Utilisateur } >
-										<a href="#" onclick="javascript:document.forms[2].submit();return false;" >${member.sNom }</a>
-									</form>
+								<td>
+									<a href="${pageContext.request.contextPath}/seeUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>&ID_Membre_Select=${member.ID_Utilisateur}" >${member.sNom }</a>
 								</td>
 								<td>${member.sPrenom }</td>
 								<td>${member.sEmail }</td>
