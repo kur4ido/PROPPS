@@ -76,7 +76,6 @@ public class CurrentUserProfileServlet extends HttpServlet {
 			ArrayList<ExperiencePro> expsPro = membre.getLstExperiencePro();
 			List lstexpsPro = Arrays.asList(expsPro.toArray());
 			for(ExperiencePro ep : expsPro){
-				System.out.println("ok");
 			}
 			
 			request.setAttribute("mapNotifRecept", mapNotifRecept);

@@ -357,12 +357,16 @@ public class Membre extends Utilisateur {
 	}
 
 	public void addExperiencePro(ExperiencePro e) {
+		System.out.println(e);
 		if(lstExperiencePro.contains(e)) {
 			lstExperiencePro.remove(e);
-			lstExperiencePro.add(e);
 		}
 		lstExperiencePro.add(e);
 		bFillExperiencePro = true;
+	}
+
+	public void removeExperiencePro(int index) {
+		lstExperiencePro.remove(index);
 	}
 	
 	/**

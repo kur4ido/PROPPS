@@ -33,6 +33,7 @@ public class AddExperiencePro extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		int ID_Membre_Courant = Integer.parseInt(request.getParameter(ParametresServlet.ID_Membre_Courant));
+		int NumExpPro_Courante = Integer.parseInt(request.getParameter("NumExpPro_Courante"));
 		String nomSociete = request.getParameter("societe");
 		System.out.println(nomSociete);
 		int idProfil = Integer.parseInt(request.getParameter("profil"));
@@ -53,20 +54,20 @@ public class AddExperiencePro extends HttpServlet {
 			try {
 				base.connect();
 
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 				java.util.Date parsedDate;
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				parsedDate = dateFormat.parse(dateDebut);
-				dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				dateDebut = dateFormat.format(parsedDate);
 				System.out.println(dateDebut);
 				sqlDateDebut = java.sql.Date.valueOf(dateDebut);
 				if (dateFin.contentEquals("")) {
 					sqlDateFin = null;
 				} else {
-					dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//					dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					java.util.Date parsedDateFin;
-					parsedDateFin = dateFormat.parse(dateFin);
 					dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					parsedDateFin = dateFormat.parse(dateFin);
 					dateFin = dateFormat.format(parsedDateFin);
 					System.out.println(dateFin);
 					sqlDateFin = java.sql.Date.valueOf(dateFin);
@@ -90,6 +91,9 @@ public class AddExperiencePro extends HttpServlet {
 				
 				Membre membre = new Membre(ID_Membre_Courant);
 				membre.fill();
+				if(NumExpPro_Courante != -1){
+					membre.removeExperiencePro(NumExpPro_Courante-1);
+				}
 				membre.addExperiencePro(newExpPro);
 				membre.insertOrUpdate();
 				request.setAttribute(ParametresServlet.ID_Membre_Courant, ID_Membre_Courant);

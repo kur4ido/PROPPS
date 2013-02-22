@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.ExperiencePro;
 import com.polytech.propps.models.Expertise;
 import com.polytech.propps.models.Membre;
 import com.polytech.propps.models.Notification;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -76,12 +78,21 @@ public class Connexion extends HttpServlet {
 					listStringExpertises.put(i, listExpertises.get(i).getsDomaine()+" - "+listExpertises.get(i).getsType());
 				}
 				
+
+				
+				ArrayList<ExperiencePro> expsPro = membre.getLstExperiencePro();
+				List lstexpsPro = Arrays.asList(expsPro.toArray());
+				for(ExperiencePro ep : expsPro){
+				}
+				
+				
 				request.setAttribute("mapExpertises", listStringExpertises);
 				
 				request.setAttribute("mapNotifRecept", mapNotifRecept);
 				request.setAttribute("nbNotif", Integer.toString(lstNotifRecept.size()));
 				request.setAttribute("lstNotifRecept", lstNotifRecept);
 				request.setAttribute("LstContacts", lstContacts);
+				request.setAttribute("lstExpsPro", lstexpsPro);
 				getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
 				
 			}else{

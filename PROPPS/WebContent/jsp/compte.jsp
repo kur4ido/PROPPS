@@ -206,7 +206,7 @@
 												<label class="control-label" for="dateDebut"><b>De</b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
-														data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+														data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
 														class="span1">
 														<input class="span2" name="dateDebut" size="16" type="text"
 															value="04/02/2013"> <span class="add-on"><i
@@ -219,7 +219,7 @@
 												<label class="control-label" for="dateFin"><b>à </b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
-														data-date="04/02/2013" data-date-format="dd/mm/yyyy"
+														data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
 														class="span1">
 														<input class="span2" size="16" name="dateFin" type="text" value="">
 														<span class="add-on"><i class="icon-calendar"></i></span>
@@ -255,6 +255,7 @@
 												</div>
 											</div>
 											<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
+											<input type="hidden" name="NumExpPro_Courante" value="-1" >
 											<div class="control-group">
 												<div class="controls">
 													<button type="submit" class="btn btn-primary">Ajouter</button>
@@ -266,332 +267,157 @@
 							</form>
 						</div>
 
-						<div class="row">
-							<div class="span2">
-								<p>
-									<!-- Bouton pour déclencher l'ouverture du div -->
-									<a data-toggle="collapse" data-target="#modifExperience1">
-										<i class="icon-pencil"></i>
-									</a>
-								<h4>Chef de projet (profil)</h4>
-								Dassault
-								</p>
-								<p class="muted">2008 - Aujourd'hui (4 ans)</p>
-								<p class="muted">CDI</p>
-								<p>
-									<span class="label label-info">Emission - Back Office</span>
-								</p>
-							</div>
-							<div class="span7">
-
-								<p>
-									Lorem ipsum dolor <br> <br>sit amet, consectetur
-									adipiscing elit. Maecenas nec rhoncus mi. Donec nec enim
-									lectus. Donec est ipsum, luctus nec eleifend ut, mattis
-									fringilla arcu. Fusce placerat pretium elit eget egestas. In
-									ultricies dictum erat non hendrerit. Nunc convallis feugiat
-									ante, eget lacinia tellus aliquet et. Nulla mollis accumsan
-									metus, non semper risus commodo sed. Nulla ornare mauris sit
-									amet ligula hendrerit volutpat. Praesent mollis justo vitae
-									ante tempor iaculis. Praesent eget turpis diam, a volutpat
-									ipsum. Nunc id dapibus tortor. Maecenas pharetra ornare
-									condimentum. Phasellus venenatis sodales justo vehicula
-									laoreet. Morbi sapien nunc, blandit et imperdiet non, tincidunt
-									et nulla. Donec consectetur, erat sed viverra fringilla, leo
-									libero ultrices erat, sit amet tincidunt arcu lorem at nunc.
-									Praesent euismod lacinia fermentum. Maecenas dictum interdum
-									lectus convallis luctus. Aliquam erat volutpat. Donec a
-									vulputate enim. Duis feugiat dignissim nisl a placerat. Sed
-									purus felis, volutpat laoreet pretium vitae, feugiat at justo.
-									Fusce viverra risus ut enim malesuada id porttitor elit tempus.
-									Sed tellus elit, sodales at facilisis in, scelerisque sed orci.
-								</p>
-
-							</div>
-							<div class="span9">
-								<!-- Le div permet de modifier l'expérience pro sélectionné, il faut rajouter un numéro pour chaque div pour le différencier des autres -->
-								<div id="modifExperience1" class="modifExperience collapse in">
-									<form id="formAddExp" class="" action="">
-										<fieldset>
-											<div class="row">
-												<div class="span4">
-													<div class="control-group">
-														<label class="control-label" for="inputSociété"><b>Société</b></label>
-														<div class="controls">
-															<input type="text" name="societe" id="inputSociété"
-																value="Dassault">
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="expertise"> <b>Domaines
-																d'expertise</b></label>
-														<div class="controls">
-															<label class="checkbox"> <input type="checkbox"
-																name="expertise1" value="EmissionFront">
-																Emission - Front office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise2" value="EmissionBack" checked>
-																Emission - Back office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise3" value="CommercantFront">
-																Commerçant - Front office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise4" value="CommercantBack">
-																Commerçant - Back office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise5" value="AutomatesFront">
-																Automates - Front office
-															</label> <label class="checkbox"> <input type="checkbox"
-																name="expertise6" value="AutomatesBack">
-																Automates - Back office
-															</label>
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="profil"><b>Profil</b>
-														</label>
-														<div class="controls">
-															<label class="radio inline"> <input type="radio"
-																name="profil" id="optionsRadios1" value="MOA" checked>
-																MOA
-															</label> <label class="radio inline"> <input type="radio"
-																name="profil" id="optionsRadios2" value="MOE">
-																MOE
-															</label> <label class="radio"> <input type="radio"
-																name="profil" id="optionsRadios3" value="DCompetence">
-																Double Compétence
-															</label>
-														</div>
-													</div>
-
-													<div class="control-group">
-														<label class="control-label" for="dispo"><b>Disponibilité</b>
-														</label>
-														<div class="controls">
-															<label class="radio inline"> <input type="radio"
-																name="dispo" id="optionsRadios1" value="Prestation">
-																Prestation
-															</label> <label class="radio inline"> <input type="radio"
-																name="dispo" id="optionsRadios2" value="Contrat" checked>
-																Contrat
-															</label>
-														</div>
-													</div>
-												</div>
-
-												<div class="span4">
-													<div class="control-group">
-														<label class="control-label" for="dateDebut"><b>De</b></label>
-														<div class="controls">
-															<div class="input-append date" id="dp3"
-																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
-																class="span1">
-																<input class="span2" size="16" type="text"
-																	value="04/02/2013"> <span class="add-on"><i
-																	class="icon-calendar"></i></span>
-															</div>
-
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="dateFin"><b>à </b></label>
-														<div class="controls">
-															<div class="input-append date" id="dp3"
-																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
-																class="span1">
-																<input class="span2" size="16" type="text" value="">
-																<span class="add-on"><i class="icon-calendar"></i></span>
-															</div>
-															<a href="#" rel="tooltip" data-placement="right"
-																title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
-																class="icon-info-sign"></i></a>
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="inputDirection"><b>Direction
-																au sein de la société</b></label>
-														<div class="controls">
-															<input type="text" name="direction" id="inputDirection"
-																placeholder="...">
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="inputPoste"><b>Poste
-																occupé</b></label>
-														<div class="controls">
-															<input type="email" name="poste" id="inputPoste"
-																placeholder="Ingénieur d'étude">
-														</div>
-
-													</div>
-
-													<div class="control-group">
-														<label class="control-label" for="inputDescription"><b>Description</b></label>
-														<div class="controls">
-															<textarea row="3" name="description"
-																id="inputDescription" placeholder="Description"></textarea>
-														</div>
-													</div>
-													<div class="control-group">
-														<div class="controls">
-															<button type="submit" class="btn btn-primary">Modifier</button>
-															<a href="" type="button" class="btn">Supprimer</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</fieldset>
-									</form>
-								</div>
-							</div>
-
-						</div>
+						
+						<c:set var="countExp" value="0" scope="page" />
 						<c:forEach items="${requestScope.lstExpsPro}" var="expPro" >
-						<div class="row">
-							<div class="span2">
-								<p>
-									<!-- Bouton pour déclencher l'ouverture du div -->
-									<a data-toggle="collapse" data-target="#modifExperience2">
-										<i class="icon-pencil"></i>
-									</a>
-								<h4>${expPro.sPosteOccupe} (${expPro.profil.sNom})</h4>
-								${expPro.societe.sNom}
-								</p>
-								<p class="muted">${expPro.dtDebut} - <c:if test="${not empty expPro.dtFin}"> ${expPro.dtFin}</c:if><c:if test="${empty expPro.dtFin}"> Aujourd'hui</c:if></p>
-<!-- 								<p class="muted">Prestation</p> -->
-								<p>
-									<c:forEach items="${expPro.lstExpertise}" var="expert">
-										<span class="label label-info">
-											${expert.sDomaine } - ${expert.sType }
-										</span>
-									</c:forEach>
-								</p>
-							</div>
-							<div class="span7">
-								<p>${expPro.}</p>
-
-							</div>
-							<div class="span9">
-								<!-- Le div permet de modifier l'expérience pro sélectionné, il faut rajouter un numéro pour chaque div pour le différencier des autres -->
-								<div id="modifExperience2" class="modifExperience collapse in">
-									<form id="formAddExp" class="" action="">
-										<fieldset>
-											<div class="row">
-												<div class="span4">
-													<div class="control-group">
-														<label class="control-label" for="inputSociété"><b>Société</b></label>
-														<div class="controls">
-															<input type="text" name="societe" id="inputSociété"
-																value="Dassault">
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="expertise"> <b>Domaines
-																d'expertise</b></label>
-														<div class="controls">
-															<c:forEach items="${requestScope.mapExpertises}" var="entry" >
-																<label class="checkbox"> <input type="checkbox"
-																	name="expertise" value="${entry.key}">
-																	${entry.value}
-																</label> 
-															</c:forEach>
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="profil"><b>Profil</b>
-														</label>
-														<div class="controls">
-															<c:forEach items="${requestScope.mapProfils}" var="entry" >
-																<label class="radio inline"> <input type="radio"
-																	name="profil" id="optionsRadios" value="${entry.key}" checked>
-																	${entry.value}
-																</label> 
-															</c:forEach>
-														</div>
-													</div>
-
-													<div class="control-group">
-														<label class="control-label" for="dispo"><b>Disponibilité</b>
-														</label>
-														<div class="controls">
-															<label class="radio inline"> <input type="radio"
-																name="dispo" id="optionsRadios1" value="Prestation">
-																Prestation
-															</label> <label class="radio inline"> <input type="radio"
-																name="dispo" id="optionsRadios2" value="Contrat" checked>
-																Contrat
-															</label>
-														</div>
-													</div>
-												</div>
-
-												<div class="span4">
-													<div class="control-group">
-														<label class="control-label" for="dateDebut"><b>De</b></label>
-														<div class="controls">
-															<div class="input-append date" id="dp3"
-																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
-																class="span1">
-																<input class="span2" size="16" type="text"
-																	value="04/02/2013"> <span class="add-on"><i
-																	class="icon-calendar"></i></span>
-															</div>
-
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="dateFin"><b>à </b></label>
-														<div class="controls">
-															<div class="input-append date" id="dp3"
-																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
-																class="span1">
-																<input class="span2" size="16" type="text" value="">
-																<span class="add-on"><i class="icon-calendar"></i></span>
-															</div>
-															<a href="#" rel="tooltip" data-placement="right"
-																title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
-																class="icon-info-sign"></i></a>
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="inputDirection"><b>Direction
-																au sein de la société</b></label>
-														<div class="controls">
-															<input type="text" name="direction" id="inputDirection"
-																placeholder="...">
-														</div>
-													</div>
-													<div class="control-group">
-														<label class="control-label" for="inputPoste"><b>Poste
-																occupé</b></label>
-														<div class="controls">
-															<input type="email" name="poste" id="inputPoste"
-																placeholder="Ingénieur d'étude">
-														</div>
-
-													</div>
-
-													<div class="control-group">
-														<label class="control-label" for="inputDescription"><b>Description</b></label>
-														<div class="controls">
-															<textarea row="3" name="description"
-																id="inputDescription" placeholder="Description"></textarea>
-														</div>
-													</div>
-													<div class="control-group">
-														<div class="controls">
-															<button type="submit" class="btn btn-primary">Ajouter</button>
-															<a href="" type="button" class="btn">Supprimer</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</fieldset>
-									</form>
+							<c:set var="countExp" value="${countExp + 1}" scope="page"/>
+							<div class="row">
+								<div class="span2">
+									<p>
+										<!-- Bouton pour déclencher l'ouverture du div -->
+										<a data-toggle="collapse" data-target="#modifExperience${countExp}">
+											<i class="icon-pencil"></i>
+										</a>
+									<h4>${expPro.sPosteOccupe} (${expPro.profil.sNom})</h4>
+									${expPro.societe.sNom}
+									</p>
+									<p class="muted">${expPro.dtDebut} - <c:if test="${not empty expPro.dtFin}"> ${expPro.dtFin}</c:if><c:if test="${empty expPro.dtFin}"> Aujourd'hui</c:if></p>
+	<!-- 								<p class="muted">Prestation</p> -->
+									<p>
+										<c:forEach items="${expPro.lstExpertise}" var="expert">
+											<span class="label label-info">
+												${expert.sDomaine } - ${expert.sType }
+											</span>
+										</c:forEach>
+									</p>
 								</div>
+								<div class="span7">
+									<p>${expPro.sDescription}</p>
+	
+								</div>
+								<div class="span9">
+									<!-- Le div permet de modifier l'expérience pro sélectionné, il faut rajouter un numéro pour chaque div pour le différencier des autres -->
+									<div id="modifExperience${countExp}" class="modifExperience collapse in">
+										<form id="formAddExp" class="" action="${pageContext.request.contextPath}/addExpPro" method="post">
+											<fieldset>
+												<div class="row">
+													<div class="span4">
+														<div class="control-group">
+															<label class="control-label" for="inputSociété"><b>Société</b></label>
+															<div class="controls">
+																<input type="text" name="societe" id="inputSociété"
+																	value="${expPro.societe.sNom}">
+															</div>
+														</div>
+														<div class="control-group">
+															<label class="control-label" for="expertise"> <b>Domaines
+																	d'expertise</b></label>
+															<div class="controls">
+																<c:forEach items="${requestScope.mapExpertises}" var="entry" >
+																	<label class="checkbox"> <input type="checkbox"
+																		name="expertise" value="${entry.key}">
+																		${entry.value}
+																	</label> 
+																</c:forEach>
+															</div>
+														</div>
+														<div class="control-group">
+															<label class="control-label" for="profil"><b>Profil</b>
+															</label>
+															<div class="controls">
+																<c:forEach items="${requestScope.mapProfils}" var="entry" >
+																	<label class="radio inline"> <input type="radio"
+																		name="profil" id="optionsRadios" value="${entry.key}" checked>
+																		${entry.value}
+																	</label> 
+																</c:forEach>
+															</div>
+														</div>
+	
+														<div class="control-group">
+															<label class="control-label" for="dispo"><b>Disponibilité</b>
+															</label>
+															<div class="controls">
+																<label class="radio inline"> <input type="radio"
+																	name="dispo" id="optionsRadios1" value="Prestation">
+																	Prestation
+																</label> <label class="radio inline"> <input type="radio"
+																	name="dispo" id="optionsRadios2" value="Contrat" checked>
+																	Contrat
+																</label>
+															</div>
+														</div>
+													</div>
+	
+													<div class="span4">
+														<div class="control-group">
+															<label class="control-label" for="dateDebut"><b>De</b></label>
+															<div class="controls">
+																<div class="input-append date" id="dp3"
+																	data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
+																	class="span1">
+																	<input class="span2" name="dateDebut" size="16" type="text"
+																		value="${expPro.dtDebut}"> <span class="add-on"><i
+																		class="icon-calendar"></i></span>
+																</div>
+	
+															</div>
+														</div>
+														<div class="control-group">
+															<label class="control-label" for="dateFin"><b>à </b></label>
+															<div class="controls">
+																<div class="input-append date" id="dp3"
+																	data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
+																	class="span1">
+																	<input class="span2" size="16" name="dateFin" type="text" value="${expPro.dtFin}">
+																	<span class="add-on"><i class="icon-calendar"></i></span>
+																</div>
+																<a href="#" rel="tooltip" data-placement="right"
+																	title="Ne renseigner une date de fin que si l'expérience professionnelle est terminée"><i
+																	class="icon-info-sign"></i></a>
+															</div>
+														</div>
+														<div class="control-group">
+															<label class="control-label" for="inputDirection"><b>Direction
+																	au sein de la société</b></label>
+															<div class="controls">
+																<input type="text" name="direction" id="inputDirection"
+																	placeholder="..." value="${expPro.sDirection}">
+															</div>
+														</div>
+														<div class="control-group">
+															<label class="control-label" for="inputPoste"><b>Poste
+																	occupé</b></label>
+															<div class="controls">
+																<input type="text" name="poste" id="inputPoste"
+																	placeholder="Ingénieur d'étude" value="${expPro.sPosteOccupe}">
+															</div>
+	
+														</div>
+	
+														<div class="control-group">
+															<label class="control-label" for="inputDescription"><b>Description</b></label>
+															<div class="controls">
+																<textarea row="3" name="description"
+																	id="inputDescription" placeholder="Description" >${expPro.sDescription}</textarea>
+															</div>
+														</div>
+														<div class="control-group">
+															<div class="controls">
+																<button type="submit" class="btn btn-primary">Ajouter</button>
+																<a href="" type="button" class="btn">Supprimer</a>
+															</div>
+														</div>
+														<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
+														<input type="hidden" name="NumExpPro_Courante" value="${countExp}" >
+													</div>
+												</div>
+											</fieldset>
+										</form>
+									</div>
+								</div>
+	
 							</div>
-
-						</div>
 						</c:forEach>
 						<hr class="bs-docs-separator">
 						<div id="title">
