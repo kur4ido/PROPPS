@@ -100,6 +100,9 @@ public class ExperiencePro {
 	
 	@Override
 	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		}
 		if(o instanceof ExperiencePro) {
 			ExperiencePro e = (ExperiencePro) o;
 			if(ID_ExpPro > 0) {
