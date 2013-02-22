@@ -79,9 +79,7 @@
 						<c:if test="${request.getAttribute('error')!=''}">
 							<span class="text-error"><%=error%></span>
 						</c:if>
-						<label class="checkbox"> <input type="checkbox"
-							name="remember" value="1"> Rester connecté <!--- <a href="#">Mot de passe oublié?</a>-->
-						</label>
+
 						<button class="btn btn-large btn-primary" type="submit">Connexion</button>
 					</form>
 					<div class="page-header">

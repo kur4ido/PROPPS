@@ -17,6 +17,7 @@ public class AutoCompletionServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		List<String> servStringList = Arrays.asList(Societe.getArrayOfAll());
 
 		request.setAttribute(ParametresServlet.StringList, servStringList);

@@ -358,8 +358,8 @@
 			days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
 			daysShort: ["Dim", "Lun", "Mar", "Mer", "Jeud", "Vend", "Sam", "Dim"],
 			daysMin: ["Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"],
-			months: ["Janvier", "F√©vrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Ao√ªt", "Septembre", "Octobre", "Novembre", "D√©cembre"],
-			monthsShort: ["Jan", "F√©v", "Mar", "Avr", "Mai", "Juin", "Jui", "Ao√ª", "Sep", "Oct", "Nov", "Dec"]
+			months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+			monthsShort: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Jui", "Aoû", "Sep", "Oct", "Nov", "Dec"]
 		},
 		isLeapYear: function (year) {
 			return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))

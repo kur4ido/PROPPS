@@ -78,21 +78,17 @@
 				<div class="span12">
 					<div class="page-header">
 						<h1>
-							Réseau Professionnel Paris-Sud<small> Inscription
-								entreprise</small>
+							Réseau Professionnel Polytech Paris-Sud<small>
+								Inscription entreprise</small>
 						</h1>
 					</div>
 					<div id="contents">
-						<p>
-							En inscrivant votre entreprise sur notre site, vous aurez la
-							possibilité de poster à  tout moment des informations à  propos
-							de celle ci (évènements, offres d'emplois, etc...)<br> Afin
-							d'inscrire votre entreprise sur ce site, il vous suffit de
-							renseigner son nom et une adresse mail/compte utilisateur à 
-							laquelle nous pourrons vous contacter.<br> Il vous est
-							également possible d'ajouter toutes informations vous semblant
-							utiles (domaine d'activté, localisation de l'entreprise,etc...)
-						</p>
+						<p>En représentant votre entreprise sur le réseau, vous aurez
+							accès à une grande base de données de candidats qui correspondent
+							le mieux à vos besoins. Grâce à notre outil de fonction de
+							recrutement, vous pourrez ajuster votre recherche avec précision.
+							Pour bénéficier de ce service, il vous suffit de renseigner les
+							informations du formulaire ci-dessous.</p>
 
 						<form class="form-horizontal"
 							action="${pageContext.request.contextPath}/registRecruiter"
@@ -131,7 +127,7 @@
 									<div class="controls">
 										<input type="password" id="inputPassword" name="inputPassword"
 											placeholder="Mot de passe"> <a href="#" rel="tooltip"
-											data-placement="top"
+											data-placement="right"
 											title="Le mot de passe doit contenir au minimum une majuscule 
 									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 											class="icon-info-sign"></i></a>
@@ -222,8 +218,10 @@
 		$(function() {
 			$("[rel='tooltip']").tooltip();
 		});
-		var list = "${requestScope.stringList}";
-
+		<c:forEach var="entry" items="${requestScope.stringList}">
+		var test = <c:out value="${entry}" />;
+		alert(test);
+		</c:forEach>
 		alert(list.length);
 		$("#inputSociete").typeahead({
 

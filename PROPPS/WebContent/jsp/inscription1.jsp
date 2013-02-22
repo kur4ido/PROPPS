@@ -1,6 +1,6 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +11,15 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/datepicker.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/css/bootstrap-responsive.css"
+	rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -22,19 +27,35 @@
     <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="icon" href="${pageContext.request.contextPath}/img/propps.ico">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/propps.ico">
 </head>
-<% String prenom= (String) request.getAttribute("prenom"); %>
-<% String nom= (String) request.getAttribute("nom"); %>
-<% String email= (String) request.getAttribute("email"); %>
-<% String ville= (String) request.getAttribute("ville"); %>
-<% String errorMdp= (String) request.getAttribute("errorMdp"); %>
-<% String errorMail= (String) request.getAttribute("errorMail"); %>
-<% String errorMdpInvalide= (String) request.getAttribute("errorMdpInvalide"); %>
+<%
+	String prenom = (String) request.getAttribute("prenom");
+%>
+<%
+	String nom = (String) request.getAttribute("nom");
+%>
+<%
+	String email = (String) request.getAttribute("email");
+%>
+<%
+	String ville = (String) request.getAttribute("ville");
+%>
+<%
+	String errorMdp = (String) request.getAttribute("errorMdp");
+%>
+<%
+	String errorMail = (String) request.getAttribute("errorMail");
+%>
+<%
+	String errorMdpInvalide = (String) request
+			.getAttribute("errorMdpInvalide");
+%>
 
 <body data-spy="scroll">
 
-  <div id="header">
+	<div id="header">
 		<div class="container">
 			<h1>ProPPS</h1>
 		</div>
@@ -46,15 +67,20 @@
 				<div class="span12">
 					<div class="page-header">
 						<h1>
-							Réseau Professionnel Paris-Sud<small> Inscription membre</small>
+							Réseau Professionnel Polytech Paris-Sud<small>
+								Inscription membre</small>
 						</h1>
 					</div>
 					<div id="contents">
-						<p>En vous inscrivant à  ce site, vous aurez accès à  tous les
-							postes ouverts par les recruteurs membre de ce site. Ceux-ci
-							pourront accéder librement à  votre profil.</p>
+						<p>En vous inscrivant à ce réseau, vous indiquerez votre
+							disponibilité professionnelle qui sera visible par une grande
+							base de données de recruteurs. Ces chasseurs de tête pourront
+							accéder librement à votre profil et vous contacterons pour vos
+							qualités. Inscrivez-vous dès maintenant.</p>
 
-						<form id="formInscription" class="form-horizontal" action="${pageContext.request.contextPath}/registUser" method="post">
+						<form id="formInscription" class="form-horizontal"
+							action="${pageContext.request.contextPath}/registUser"
+							method="post">
 							<fieldset>
 								<div class="alert alert-info">
 
@@ -64,14 +90,15 @@
 								<div class="control-group">
 									<label class="control-label" for="inputNom">Nom</label>
 									<div class="controls">
-										<input type="text" name="nom" id="inputNom" placeholder="Doe" value=<%=nom %>>
+										<input type="text" name="nom" id="inputNom" placeholder="Doe"
+											value=<%=nom%>>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputPrenom">Prénom</label>
 									<div class="controls">
 										<input type="text" name="prenom" id="inputPrenom"
-											placeholder="John" value=<%=prenom %>>
+											placeholder="John" value=<%=prenom%>>
 									</div>
 								</div>
 								<div class="control-group">
@@ -79,10 +106,10 @@
 										e-mail</label>
 									<div class="controls">
 										<input type="email" name="email" id="inputEmail"
-											placeholder="johndoe@yahoo.fr" value=<%=email %>>
-											<!-- Message d'erreur -->
-											<c:if test="${request.getAttribute('errorMail')!=''}">
-										<span class="text-error"><%=errorMail %></span>
+											placeholder="johndoe@yahoo.fr" value=<%=email%>>
+										<!-- Message d'erreur -->
+										<c:if test="${request.getAttribute('errorMail')!=''}">
+											<span class="text-error"><%=errorMail%></span>
 										</c:if>
 									</div>
 
@@ -97,8 +124,8 @@
 											title="Le mot de passe doit contenir au minimum une majuscule 
 									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 											class="icon-info-sign"></i></a>
-											<c:if test="${request.getAttribute('errorMdpInvalide')!=''}">
-										<span class="text-error"><%=errorMdpInvalide %></span>
+										<c:if test="${request.getAttribute('errorMdpInvalide')!=''}">
+											<span class="text-error"><%=errorMdpInvalide%></span>
 										</c:if>
 									</div>
 								</div>
@@ -108,10 +135,10 @@
 									<div class="controls">
 										<input type="password" name="confirmPassword"
 											id="inputConfirmPassword" placeholder="Password">
-									</div>										
-										<!-- Message d'erreur -->
+									</div>
+									<!-- Message d'erreur -->
 									<c:if test="${request.getAttribute('errorMdp')!=''}">
-										<span class="text-error"><%=errorMdp %></span>
+										<span class="text-error"><%=errorMdp%></span>
 									</c:if>
 								</div>
 
@@ -119,7 +146,7 @@
 									<label class="control-label" for="inputVille">Ville</label>
 									<div class="controls">
 										<input type="text" name="ville" id="inputVille"
-											placeholder="Orsay" value=<%=ville %>>
+											placeholder="Orsay" value=<%=ville%>>
 									</div>
 								</div>
 								<div class="control-group">
