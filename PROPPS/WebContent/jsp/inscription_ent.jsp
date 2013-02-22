@@ -1,6 +1,6 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +11,13 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/css/bootstrap-responsive.css"
+	rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -21,24 +25,48 @@
     <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="icon" href="${pageContext.request.contextPath}/img/propps.ico">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/propps.ico">
 </head>
 
-<% String email= (String) request.getAttribute("email"); %>
-<% String nom= (String) request.getAttribute("nom"); %>
-<% String prenom= (String) request.getAttribute("prenom"); %>
-<% String ville= (String) request.getAttribute("ville"); %>
-<% String adresse= (String) request.getAttribute("adresse"); %>
-<% String codePostal= (String) request.getAttribute("codePostal"); %>
-<% String pays= (String) request.getAttribute("pays"); %>
-<% String NomSociete= (String) request.getAttribute("NomSociete"); %>
-<% String errorMdp= (String) request.getAttribute("errorMdp"); %>
-<% String errorMdpInvalide= (String) request.getAttribute("errorMdpInvalide"); %>
-<% String errorMail= (String) request.getAttribute("errorMail"); %>
+<%
+	String email = (String) request.getAttribute("email");
+%>
+<%
+	String nom = (String) request.getAttribute("nom");
+%>
+<%
+	String prenom = (String) request.getAttribute("prenom");
+%>
+<%
+	String ville = (String) request.getAttribute("ville");
+%>
+<%
+	String adresse = (String) request.getAttribute("adresse");
+%>
+<%
+	String codePostal = (String) request.getAttribute("codePostal");
+%>
+<%
+	String pays = (String) request.getAttribute("pays");
+%>
+<%
+	String NomSociete = (String) request.getAttribute("NomSociete");
+%>
+<%
+	String errorMdp = (String) request.getAttribute("errorMdp");
+%>
+<%
+	String errorMdpInvalide = (String) request
+			.getAttribute("errorMdpInvalide");
+%>
+<%
+	String errorMail = (String) request.getAttribute("errorMail");
+%>
 
 <body data-spy="scroll">
 
-  <div id="header">
+	<div id="header">
 		<div class="container">
 			<h1>ProPPS</h1>
 		</div>
@@ -57,8 +85,8 @@
 					<div id="contents">
 						<p>
 							En inscrivant votre entreprise sur notre site, vous aurez la
-							possibilité de poster à  tout moment des informations à  propos de
-							celle ci (évènements, offres d'emplois, etc...)<br> Afin
+							possibilité de poster à  tout moment des informations à  propos
+							de celle ci (évènements, offres d'emplois, etc...)<br> Afin
 							d'inscrire votre entreprise sur ce site, il vous suffit de
 							renseigner son nom et une adresse mail/compte utilisateur à 
 							laquelle nous pourrons vous contacter.<br> Il vous est
@@ -66,7 +94,8 @@
 							utiles (domaine d'activté, localisation de l'entreprise,etc...)
 						</p>
 
-						<form class="form-horizontal" action="${pageContext.request.contextPath}/registRecruiter"
+						<form class="form-horizontal"
+							action="${pageContext.request.contextPath}/registRecruiter"
 							method="post">
 							<fieldset>
 								<legend>Formulaire d'inscription</legend>
@@ -74,14 +103,14 @@
 									<label class="control-label" for="inputNom">Nom</label>
 									<div class="controls">
 										<input type="text" name="inputNom" id="inputNom"
-											placeholder="Nom" value=<%=nom %>>
+											placeholder="Nom" value=<%=nom%>>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputPrenom">Prénom</label>
 									<div class="controls">
 										<input type="text" name="inputPrenom" id="inputPrenom"
-											placeholder="Prénom" value=<%=prenom %>>
+											placeholder="Prénom" value=<%=prenom%>>
 									</div>
 								</div>
 								<div class="control-group">
@@ -89,10 +118,10 @@
 										e-mail</label>
 									<div class="controls">
 										<input type="text" id="inputEmail" name="inputEmail"
-											placeholder="recrutement@polytech.fr" value=<%=email %>>
-											<!-- Message d'erreur -->
-											<c:if test="${request.getAttribute('errorMail')!=''}">
-										<span class="text-error"><%=errorMail %></span>
+											placeholder="recrutement@polytech.fr" value=<%=email%>>
+										<!-- Message d'erreur -->
+										<c:if test="${request.getAttribute('errorMail')!=''}">
+											<span class="text-error"><%=errorMail%></span>
 										</c:if>
 									</div>
 								</div>
@@ -106,9 +135,9 @@
 											title="Le mot de passe doit contenir au minimum une majuscule 
 									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 											class="icon-info-sign"></i></a>
-											<c:if test="${request.getAttribute('errorMdpInvalide')!=''}">
-											<span class="text-error"><%=errorMdpInvalide %></span>
-											</c:if>
+										<c:if test="${request.getAttribute('errorMdpInvalide')!=''}">
+											<span class="text-error"><%=errorMdpInvalide%></span>
+										</c:if>
 									</div>
 								</div>
 								<div class="control-group">
@@ -117,10 +146,10 @@
 									<div class="controls">
 										<input type="password" id="inputConfirmPassword"
 											name="inputConfirmPassword" placeholder="Mot de passe">
-									</div>										
-										<!-- Message d'erreur -->
-									<c:if test="${request.getAttribute('errorMdp')!='' }" >
-										<span class="text-error"><%=errorMdp %></span>
+									</div>
+									<!-- Message d'erreur -->
+									<c:if test="${request.getAttribute('errorMdp')!='' }">
+										<span class="text-error"><%=errorMdp%></span>
 									</c:if>
 								</div>
 								<div class="control-group">
@@ -128,7 +157,8 @@
 										la société</label>
 									<div class="controls">
 										<input type="text" id="inputSociete" name="inputSociete"
-											placeholder="Polytech" data-provide="typeahead" value=<%=NomSociete %>>
+											placeholder="Polytech" data-provide="typeahead"
+											value=<%=NomSociete%>>
 									</div>
 								</div>
 								<div class="control-group">
@@ -136,14 +166,14 @@
 										de facturation</label>
 									<div class="controls">
 										<input type="text" id="inputAdressFact" name="inputAdressFact"
-											placeholder="...." value=<%=adresse %>>
+											placeholder="...." value=<%=adresse%>>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputPays">Pays</label>
 									<div class="controls">
 										<input type="text" id="inputPays" name="inputPays"
-											placeholder="France" value=<%=pays %>>
+											placeholder="France" value=<%=pays%>>
 									</div>
 								</div>
 								<div class="control-group">
@@ -151,14 +181,14 @@
 										postal</label>
 									<div class="controls">
 										<input type="text" id="inputCodePostal" name="inputCodePostal"
-											placeholder="91305" value=<%=codePostal %>>
+											placeholder="91305" value=<%=codePostal%>>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="inputVille">Ville</label>
 									<div class="controls">
 										<input type="text" id="inputVille" name="inputVille"
-											placeholder="Orsay" value=<%=ville %>>
+											placeholder="Orsay" value=<%=ville%>>
 									</div>
 								</div>
 								<div class="control-group">
@@ -193,10 +223,12 @@
 			$("[rel='tooltip']").tooltip();
 		});
 		var list = "${requestScope.stringList}";
+
+		alert(list.length);
 		$("#inputSociete").typeahead({
-			minLength : 2,
+
 			source : list
-		});
+		})
 	</script>
 </body>
 </html>
