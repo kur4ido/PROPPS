@@ -154,66 +154,36 @@
 							<img src="${pageContext.request.contextPath}/img/experience.png">
 							<h3>Expériences professionnelles</h3>
 						</div>
-
-						<div class="row">
-							<div class="span2">
-								<p>
-								<h4>Chef de projet (profil)</h4>
-								Dassault
-								</p>
-								<p class="muted">2008 - Aujourd'hui (4 ans)</p>
-								<p class="muted">CDI</p>
-								<p>
-									<span class="label label-info">Emission - Back Office</span>
-								</p>
+						
+						<c:forEach items="${requestScope.lstExpsPro}" var="expPro" >
+							<div class="row">
+								<div class="span2">
+										<p>
+											<!-- Bouton pour déclencher l'ouverture du div -->
+											<a data-toggle="collapse" data-target="#modifExperience${countExp}">
+												<i class="icon-pencil"></i>
+											</a>
+										<h4>${expPro.sPosteOccupe} (${expPro.profil.sNom})</h4>
+										${expPro.societe.sNom}
+										</p>
+										<p class="muted">${expPro.dtDebut} - <c:if test="${not empty expPro.dtFin}"> ${expPro.dtFin}</c:if><c:if test="${empty expPro.dtFin}"> Aujourd'hui</c:if></p>
+		<!-- 								<p class="muted">Prestation</p> -->
+										<p>
+											<c:forEach items="${expPro.lstExpertise}" var="expert">
+												<span class="label label-info">
+													${expert.sDomaine } - ${expert.sType }
+												</span>
+											</c:forEach>
+										</p>
+									</div>
+									<div class="span7">
+										<p>${expPro.sDescription}</p>
+		
+									</div>
+	
 							</div>
-							<div class="span7">
+						</c:forEach>
 
-								<p>
-									Lorem ipsum dolor <br> <br>sit amet, consectetur
-									adipiscing elit. Maecenas nec rhoncus mi. Donec nec enim
-									lectus. Donec est ipsum, luctus nec eleifend ut, mattis
-									fringilla arcu. Fusce placerat pretium elit eget egestas. In
-									ultricies dictum erat non hendrerit. Nunc convallis feugiat
-									ante, eget lacinia tellus aliquet et. Nulla mollis accumsan
-									metus, non semper risus commodo sed. Nulla ornare mauris sit
-									amet ligula hendrerit volutpat. Praesent mollis justo vitae
-									ante tempor iaculis. Praesent eget turpis diam, a volutpat
-									ipsum. Nunc id dapibus tortor. Maecenas pharetra ornare
-									condimentum. Phasellus venenatis sodales justo vehicula
-									laoreet. Morbi sapien nunc, blandit et imperdiet non, tincidunt
-									et nulla. Donec consectetur, erat sed viverra fringilla, leo
-									libero ultrices erat, sit amet tincidunt arcu lorem at nunc.
-									Praesent euismod lacinia fermentum. Maecenas dictum interdum
-									lectus convallis luctus. Aliquam erat volutpat. Donec a
-									vulputate enim. Duis feugiat dignissim nisl a placerat. Sed
-									purus felis, volutpat laoreet pretium vitae, feugiat at justo.
-									Fusce viverra risus ut enim malesuada id porttitor elit tempus.
-									Sed tellus elit, sodales at facilisis in, scelerisque sed orci.
-								</p>
-
-							</div>
-
-						</div>
-
-						<div class="row">
-							<div class="span2">
-								<p>
-								<h4>Developpeur (profil)</h4>
-								Amadeus
-								</p>
-								<p class="muted">2002 - 2008 (6 ans)</p>
-								<p class="muted">Prestation</p>
-								<p>
-									<span class="label label-info">Emission - Back Office</span>
-								</p>
-							</div>
-							<div class="span7">
-								<p>Description du poste</p>
-
-							</div>
-
-						</div>
 						<hr class="bs-docs-separator">
 						<div id="title">
 							<img src="${pageContext.request.contextPath}/img/expertise.png">

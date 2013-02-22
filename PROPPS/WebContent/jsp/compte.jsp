@@ -206,10 +206,10 @@
 												<label class="control-label" for="dateDebut"><b>De</b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
-														data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
+														data-date="2013-02-04" data-date-format="yyyy-mm-dd"
 														class="span1">
 														<input class="span2" name="dateDebut" size="16" type="text"
-															value="04/02/2013"> <span class="add-on"><i
+															value="2013-02-04"> <span class="add-on"><i
 															class="icon-calendar"></i></span>
 													</div>
 
@@ -219,7 +219,7 @@
 												<label class="control-label" for="dateFin"><b>ра</b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
-														data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
+														data-date="2013-02-04" data-date-format="yyyy-mm-dd"
 														class="span1">
 														<input class="span2" size="16" name="dateFin" type="text" value="">
 														<span class="add-on"><i class="icon-calendar"></i></span>
@@ -354,7 +354,7 @@
 															<label class="control-label" for="dateDebut"><b>De</b></label>
 															<div class="controls">
 																<div class="input-append date" id="dp3"
-																	data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
+																	data-date="2013-02-04" data-date-format="yyyy-mm-dd"
 																	class="span1">
 																	<input class="span2" name="dateDebut" size="16" type="text"
 																		value="${expPro.dtDebut}"> <span class="add-on"><i
@@ -367,7 +367,7 @@
 															<label class="control-label" for="dateFin"><b>ра</b></label>
 															<div class="controls">
 																<div class="input-append date" id="dp3"
-																	data-date="2013-02-04" data-date-format="yyyyy-MM-dd"
+																	data-date="2013-02-04" data-date-format="yyyy-mm-dd"
 																	class="span1">
 																	<input class="span2" size="16" name="dateFin" type="text" value="${expPro.dtFin}">
 																	<span class="add-on"><i class="icon-calendar"></i></span>

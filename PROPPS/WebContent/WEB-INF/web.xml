@@ -122,15 +122,6 @@
     <url-pattern>/autoCompletion</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>ModifExperiencePro</servlet-name>
-    <servlet-class>com.polytech.propps.servlets.ModifExperiencePro</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ModifExperiencePro</servlet-name>
-    <url-pattern>/modifProExp</url-pattern>
-  </servlet-mapping>
-  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>

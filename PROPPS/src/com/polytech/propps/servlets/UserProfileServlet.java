@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.polytech.propps.bdd.Base;
+import com.polytech.propps.models.ExperiencePro;
 import com.polytech.propps.models.Membre;
 import com.polytech.propps.models.Notification;
 import com.polytech.propps.models.Recruteur;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -72,10 +74,15 @@ public class UserProfileServlet extends HttpServlet {
 					System.out.println(tmp.getsPrenom() + " "+ tmp.getsNom());
 					mapNotifRecept.put(tmp.getsPrenom() + " "+ tmp.getsNom(), n.getID());
 				}
+				
+				ArrayList<ExperiencePro> expsPro = membreDemande.getLstExperiencePro();
+				List lstexpsPro = Arrays.asList(expsPro.toArray());
+				
 				request.setAttribute("mapNotifRecept", mapNotifRecept);
 				request.setAttribute("nbNotif", Integer.toString(lstNotifRecept.size()));
 				request.setAttribute("lstNotifRecept", lstNotifRecept);
 				request.setAttribute("LstContacts", lstContacts);
+				request.setAttribute("lstExpsPro", lstexpsPro);
 				
 				request.setAttribute("isContact", isContact);
 				getServletContext().getRequestDispatcher("/jsp/user.jsp").forward(request, response);
