@@ -511,12 +511,12 @@ public class Membre extends Utilisateur {
 	 * 
 	 * @return un objet Date.sql correspondant à la durée passéd à travailler
 	 */
-	public Date getExperience() {
+	public int getExperience() {
 		if(!bFillExperiencePro) {
 			fill();
 		}
 		ArrayList<Pair<Date,Date>> lstIntervalles = new ArrayList<Pair<Date,Date>>();
-		long date = 0;
+		int resultat = 0;
 		for(ExperiencePro e : lstExperiencePro) {
 			Date tmp = (e.getDtFin() == null ? new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH) : e.getDtFin());
 			lstIntervalles.add(new Pair<Date, Date>(e.getDtDebut(), tmp));
@@ -540,9 +540,28 @@ public class Membre extends Utilisateur {
 			}
 		}
 		for(Pair<Date,Date> p : lstIntervalles) {
-			date += p.second.getTime() - p.first.getTime();
+			resultat += (p.second.getYear() - p.first.getYear()) * 365.25;
+			resultat += (p.second.getMonth() - p.first.getMonth()) * 30;
+			resultat += (p.second.getDay() - p.first.getDay());
 		}
-		return new Date(date);
+		return resultat;
+		 
+	}
+	
+	public int getScore(Societe s) {
+		float resultat = 0;
+		Date date = new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
+		for(ExperiencePro e : lstExperiencePro) {
+			if(e.getSociete().getID() == s.ID_Societe) {
+				Date dtFin = (e.getDtFin() == null ? date : e.getDtFin());
+					
+				float temp = (float) (dtFin.getTime() - e.getDtDebut().getTime()) / dtFin.getTime();
+				resultat += (dtFin.getYear() -e.getDtDebut().getYear()) * 365.25 * temp;
+				resultat += (dtFin.getYear() -e.getDtDebut().getYear()) * 30 * temp;
+				resultat += (dtFin.getYear() -e.getDtDebut().getYear()) * temp;
+			}
+		}
+		return (int) resultat;
 	}
 	
 	@Override

@@ -136,9 +136,8 @@ public class Recruteur extends Utilisateur {
 			}
 			Collections.sort(lstMembre, new Comparator<Membre>() {
 				@Override
-				public int compare(Membre arg0, Membre arg1) {
-					// TODO Auto-generated method stub
-					return 0;
+				public int compare(Membre m1, Membre m2) {
+					return m1.getExperience() + m1.getScore(societe) - m2.getExperience() - m2.getScore(societe);
 				}
 				
 			});
