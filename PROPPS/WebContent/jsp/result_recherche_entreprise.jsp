@@ -87,7 +87,6 @@
 							<tr>
 								<th>Nom</th>
 								<th>Prénom</th>
-								<th>Email</th>
 								<th>Société</th>
 							</tr>
 						</thead>
@@ -98,8 +97,7 @@
 										<a href="${pageContext.request.contextPath}/getMail?ID_Membre_Courant=<%=ID_Membre_Courant %>&ID_Membre_Select=${member.ID_Utilisateur}" >${member.sNom }</a>
 									</td>
 									<td>${member.sPrenom }</td>
-									<td>${member.sEmail }</td>
-									<td></td>
+									<td> ${member.societe.sNom } </td>
 								</tr>
 							</c:forEach>
 <!-- 							<tr> -->

@@ -133,7 +133,7 @@
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
 										Paramètres</a></li>
 								<li class="divider"></li>
-								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
+								<li><a href="${pageContext.request.contextPath}/getMessages?ID_Membre_Courant=<%=ID_Membre_Courant %>"><i class="icon-envelope"></i> Messagerie</a></li>
 								<li><a href="${pageContext.request.contextPath}/index.html"><i class="icon-off"></i> Deconnexion</a></li>
 							</ul></li>
 					</ul>
