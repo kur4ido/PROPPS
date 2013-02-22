@@ -91,7 +91,7 @@ public class Societe  {
 			try {
 				b.connect();
 				b.procedureInit("Societe_insertOrUpdate", 1);
-				b.setParamString(colNom, nomSociete);
+				b.setParamString("_" + colNom, nomSociete);
 				ResultSet result = b.executeQuery();
 				if(result.next()) {
 					int ID = result.getInt(colID);
