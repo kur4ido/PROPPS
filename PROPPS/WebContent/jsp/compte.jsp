@@ -83,7 +83,7 @@
 								</c:forEach>
 							</c:if>
 							<c:if test="${requestScope.nbNotif==0}">
-								<li>Pas de nouvelles notifications.</li>
+								<li><p>Pas de nouvelles notifications.</p></li>
 							</c:if>
 							</ul></li>
 						<li class="divider-vertical"></li>
