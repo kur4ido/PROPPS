@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +32,7 @@ public class Membre extends Utilisateur {
 	protected HashMap<Integer,Notification> lstNotifRecept;
 	
 	
+	private int derniereProximiteCalc = -1;
 	private boolean bFillExpertise,bFillContact,bFillExperiencePro,bFillNotif; 
 	
 	
@@ -548,6 +551,11 @@ public class Membre extends Utilisateur {
 		 
 	}
 	
+	private void calculerProximite(Membre current, int profondeur) {
+		derniereProximiteCalc = proximiteGraphe(current, profondeur, new ArrayList<Membre>());
+		
+	}
+	
 	public int getScore(Societe s) {
 		float resultat = 0;
 		Date date = new Date(Calendar.YEAR,Calendar.MONTH,Calendar.DAY_OF_MONTH);
@@ -675,8 +683,36 @@ public class Membre extends Utilisateur {
 		return lstNotifRecept;
 	}
 	
+	public int getDerniereProxiCalc() {
+		return derniereProximiteCalc;
+	}
+	
+	public int proximiteGraphe(Membre m,int profondeur,ArrayList<Membre> membresVus) {	
+		lstContacts = getLstContacts();
+		if(lstContacts.contains(m)) {
+			return 1;
+		}
+		else if(profondeur > 0) {
+			Membre temp = null;
+			int distanceMin = Integer.MAX_VALUE;
+			for(Membre contact : lstContacts) {
+				if(!membresVus.contains(contact) && !contact.equals(this)) {
+					ArrayList<Membre> lstMembre = new ArrayList<Membre>(membresVus);
+					lstMembre.add(contact);
+					int tmp = proximiteGraphe(m, profondeur - 1,lstMembre);
+					if(tmp < distanceMin && tmp > 0) {
+						distanceMin = tmp;
+						temp = contact;
+					}
+				}
+			}
+			return (temp == null ? -1 : distanceMin + 1); 
+		}
+		return -1;
+	}
+	
 	/*-------Methodes statiques--------*/
-	public static ArrayList<Membre> rechercheRapide(String s) {
+	public static ArrayList<Membre> rechercheRapide(Membre current,String s) {
 		ArrayList<Membre> resultat = new ArrayList<Membre>();
 		Base b = new Base();
 		try {
@@ -694,7 +730,9 @@ public class Membre extends Utilisateur {
 				Adresse a = new Adresse(result.getString(Adresse.colVille), result.getString(Adresse.colCP),
 						result.getString(Adresse.colAdresse), result.getString(Adresse.colPays));
 				m.setAdresse(a);
+				m.calculerProximite(current,5);
 				resultat.add(m);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -703,7 +741,16 @@ public class Membre extends Utilisateur {
 		}finally {
 			b.close();
 		}
+		Collections.sort(resultat, new Comparator<Membre>() {
+
+			@Override
+			public int compare(Membre o1, Membre o2) {
+				return o1.getDerniereProxiCalc() - o2.getDerniereProxiCalc();
+			}
+		});
 		return resultat;
 	}
+
+	
 
 }

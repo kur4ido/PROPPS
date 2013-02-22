@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import com.polytech.propps.bdd.Base;
 
-public class Notification {
+public class Notification implements IModel{
 	public static final String colBRecue = "bNotifRecues";
 	public static final String colVuSource = "bVuSource";
 	public static final String colVuDest = "bVuDest";
@@ -73,6 +73,7 @@ public class Notification {
 		return ID_Notification;
 	}
 	
+	@Override
 	public void insertOrUpdate() {
 		Base b = new Base();
 		try {
@@ -97,5 +98,20 @@ public class Notification {
 			b.close();
 		}
 		
+	}
+
+	@Override
+	public void delete() {
+		Base b = new Base();
+		try {
+			b.connect();
+			b.procedureInit("Notification_delete", 1);
+			b.setParamInt(colID_Notif, ID_Notification);
+			b.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			b.close();
+		}
 	}
 }
