@@ -54,6 +54,7 @@
 	<%
 		String NomSociete = (String) request.getAttribute("NomSociete");
 	%>
+	<% String ID_Membre_Courant = (String) request.getAttribute("ID_Membre_Courant"); %>
 
 
 	<div class="navbar navbar-fixed-top">
@@ -74,7 +75,7 @@
 					<ul class="nav pull-right">
 
 						<li class="dropdown"><a data-toggle="dropdown"
-							class="dropdown-toggle" href="#"><i class="icon-home"></i> <%=NomSociete%>
+							class="dropdown-toggle" href="#"><i class="icon-home"></i> ${requestScope.NomSociete}
 								<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="entreprise.html"><i class="icon-user"></i>
@@ -107,8 +108,7 @@
 							<p class="lead">
 								<i class="icon-home"></i>
 								<%=adresse%><br>
-								<%=ville%>,
-								<%=codePostal%><br>
+								<%=ville%>, <%=codePostal%><br>
 							</p>
 						</div>
 					</div>
@@ -128,44 +128,29 @@
 						<h2>Fonction de recrutement</h2>
 					</div>
 					<form class="form-horizontal"
-						action="result_recherche_entreprise.html">
+						action="${pageContext.request.contextPath}/recrut" method="post">
 						<fieldset>
 							<div class="control-group">
 								<label class="control-label" for="expertise"> Domaines
 									d'intervention </label>
 								<div class="controls">
-									<label class="checkbox"> <input type="checkbox"
-										name="expertise1" value="EmissionFront" checked>
-										Emission - Front office
-									</label> <label class="checkbox"> <input type="checkbox"
-										name="expertise2" value="EmissionBack"> Emission -
-										Back office
-									</label> <label class="checkbox"> <input type="checkbox"
-										name="expertise3" value="CommercantFront"> CommerÃ§ant
-										- Front office
-									</label> <label class="checkbox"> <input type="checkbox"
-										name="expertise4" value="CommercantBack"> CommerÃ§ant
-										- Back office
-									</label> <label class="checkbox"> <input type="checkbox"
-										name="expertise5" value="AutomatesFront"> Automates -
-										Front office
-									</label> <label class="checkbox"> <input type="checkbox"
-										name="expertise6" value="AutomatesBack"> Automates -
-										Back office
-									</label>
+									<c:forEach items="${requestScope.mapExpertises}" var="entry" >
+										<label class="checkbox"> <input type="checkbox"
+											name="expertise" value="${entry.key}">
+											${entry.value}
+										</label> 
+									</c:forEach>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="profil"> Profil </label>
 								<div class="controls">
-									<label class="radio"> <input type="radio" name="profil"
-										id="optionsRadios1" value="MOA" checked> MOA
-									</label> <label class="radio"> <input type="radio"
-										name="profil" id="optionsRadios2" value="MOE"> MOE
-									</label> <label class="radio"> <input type="radio"
-										name="profil" id="optionsRadios3" value="DCompetence">
-										Double Compétence
-									</label>
+									<c:forEach items="${requestScope.mapProfils}" var="entry" >
+										<label class="radio inline"> <input type="radio"
+											name="profil" id="optionsRadios" value="${entry.key}" checked>
+											${entry.value}
+										</label> 
+									</c:forEach>
 								</div>
 							</div>
 							<div class="control-group">
@@ -186,10 +171,10 @@
 									de recrutement </label>
 								<div class="controls">
 									<label class="radio"> <input type="radio" name="mode"
-										id="optionsRadios1" value="prestation" checked>
+										id="optionsRadios1" value="true" checked>
 										Prestation
 									</label> <label class="radio"> <input type="radio" name="mode"
-										id="optionsRadios2" value="cdi"> Contrat permanent
+										id="optionsRadios2" value="false"> Contrat permanent
 									</label>
 								</div>
 							</div>
@@ -197,9 +182,9 @@
 								<label class="control-label" for="dateDebut">Date de
 									début</label>
 								<div class="controls">
-									<div class="input-append date" id="dp3" data-date="04/02/2013"
-										data-date-format="dd/mm/yyyy">
-										<input class="span2" size="16" type="text" value="04/02/2013">
+									<div class="input-append date" id="dp3" data-date="2013-02-04"
+										data-date-format="yyyy-mm-dd">
+										<input class="span2" size="16" name="dateDebut" type="text" value="2013-02-04">
 										<span class="add-on"><i class="icon-calendar"></i></span>
 									</div>
 								</div>
@@ -207,9 +192,9 @@
 							<div class="control-group">
 								<label class="control-label" for="dateFin">Date de fin</label>
 								<div class="controls">
-									<div class="input-append date" id="dp3" data-date="04/02/2013"
-										data-date-format="dd/mm/yyyy">
-										<input class="span2" size="16" type="text" value="04/02/2013">
+									<div class="input-append date" id="dp3" data-date="2013-02-04"
+										data-date-format="yyyy-mm-dd">
+										<input class="span2" size="16" name="dateFin" type="text">
 										<span class="add-on"><i class="icon-calendar"></i></span>
 
 									</div>
@@ -218,6 +203,7 @@
 										class="icon-info-sign"></i></a>
 								</div>
 							</div>
+							<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
 							<div class="control-group">
 								<div class="controls">
 									<button type="submit" class="btn btn-primary">Lancer

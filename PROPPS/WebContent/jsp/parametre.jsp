@@ -178,6 +178,33 @@
 										placeholder="Orsay" value=<%=ville%>>
 								</div>
 							</div>
+							
+							<div class="control-group">
+								<label class="control-label" for="mode"> Choix du mode
+									de recrutement </label>
+								<div class="controls">
+									<label class="radio"> <input type="radio" name="mode"
+										id="optionsRadios1" value="true" checked>
+										Prestation
+									</label> <label class="radio"> <input type="radio" name="mode"
+										id="optionsRadios2" value="false"> Contrat permanent
+									</label>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="dateFin">Date de fin</label>
+								<div class="controls">
+									<div class="input-append date" id="dp3" data-date="2013-02-04"
+										data-date-format="yyyy-mm-dd">
+										<input class="span2" size="16" name="dateFin" type="text">
+										<span class="add-on"><i class="icon-calendar"></i></span>
+
+									</div>
+									<a href="#" rel="tooltip" data-placement="right"
+										title="Ne renseigner une date que si vous recherchez un poste de type : Prestation"><i
+										class="icon-info-sign"></i></a>
+								</div>
+							</div>
 							<input type="hidden" name="ID_Membre_Courant"
 								value=<%=ID_Membre_Courant%>>
 

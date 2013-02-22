@@ -102,6 +102,32 @@ public class Connexion extends HttpServlet {
 				result = base.executeQuery();
 				if(result.next()){
 					Recruteur recruteur = new Recruteur(result.getInt("ID_Utilisateur"));
+					recruteur.fill();
+					 request.setAttribute("nom", recruteur.getsNom());
+					 request.setAttribute("prenom", recruteur.getsPrenom());
+					 request.setAttribute("ville", recruteur.getAdresse().getVille());
+					 request.setAttribute("adresse", recruteur.getAdresse().getAdresse());
+					 request.setAttribute("codePostal", recruteur.getAdresse().getCodePostal());
+					 request.setAttribute(ParametresServlet.NomSociete, recruteur.getSociete().getsNom());
+					 request.setAttribute(ParametresServlet.ID_Membre_Courant,Integer.toString(recruteur.getID_Utilisateur()));
+					 
+					 HashMap<Integer,Profil> listProfils = Profil.getListOfProfil();
+						HashMap<Integer,String> listStringProfils = new HashMap<Integer,String>();
+						for(int i : listProfils.keySet()){
+							listStringProfils.put(i, listProfils.get(i).getsNom());
+						}
+						
+						request.setAttribute("mapProfils", listStringProfils);
+						
+						HashMap<Integer,Expertise> listExpertises = Expertise.getListOfExpertise();
+						HashMap<Integer,String> listStringExpertises = new HashMap<Integer,String>();
+						for(int i : listExpertises.keySet()){
+							listStringExpertises.put(i, listExpertises.get(i).getsDomaine()+" - "+listExpertises.get(i).getsType());
+						}
+						
+						request.setAttribute("mapExpertises", listStringExpertises);
+					 
+					getServletContext().getRequestDispatcher("/jsp/entreprise.jsp").forward(request, response);
 				}else{
 					String error = "Mot de passe ou login incorrect";
 					request.setAttribute("error", error);

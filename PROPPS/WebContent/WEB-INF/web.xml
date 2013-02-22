@@ -122,6 +122,24 @@
     <url-pattern>/autoCompletion</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Recrutement</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.Recrutement</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Recrutement</servlet-name>
+    <url-pattern>/recrut</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RecruteurCourant</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.RecruteurCourant</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecruteurCourant</servlet-name>
+    <url-pattern>/currentRecruiter</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>

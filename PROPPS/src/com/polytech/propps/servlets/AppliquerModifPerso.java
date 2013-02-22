@@ -1,6 +1,8 @@
 package com.polytech.propps.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,12 +21,30 @@ public class AppliquerModifPerso extends HttpServlet{
 		String name = request.getParameter(ParametresServlet.Nom);
 		String prenom = request.getParameter(ParametresServlet.Prenom);
 		String ville = request.getParameter(ParametresServlet.Ville);
+		boolean mode = Boolean.parseBoolean(request.getParameter("mode"));
+		String dateFin = request.getParameter("dateFin");
 		
 		Membre membre = new Membre(ID_Membre_Courant);
 		membre.fill();
 		membre.setsNom(name);
 		membre.setsPrenom(prenom);
 		membre.setAdresse(new Adresse(ville, null, null, null));
+		membre.setIsPresta(mode);
+		if(mode){
+			java.sql.Date sqlDateFin;
+			try {
+				java.util.Date parsedDate;
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				parsedDate = dateFormat.parse(dateFin);
+				dateFin = dateFormat.format(parsedDate);
+				System.out.println(dateFin);
+				sqlDateFin = java.sql.Date.valueOf(dateFin);
+				membre.setDtFinPresta(sqlDateFin);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		membre.insertOrUpdate();
 		request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(ID_Membre_Courant));
