@@ -86,21 +86,23 @@ public class Societe  {
 	 * @return l'objet correspondant à la nouvelle société.
 	 */
 	public static Societe addSociete(String nomSociete) {
-		Base b = new Base();
-		try {
-			b.connect();
-			b.procedureInit("Societe_insertOrUpdate", 1);
-			b.setParamString(colNom, nomSociete);
-			ResultSet result = b.executeQuery();
-			if(result.next()) {
-				int ID = result.getInt(colID);
-				listOfSociete.put(ID, new Societe(ID,result.getString(colNom)));
+		if(!listOfSocieteString.containsKey(nomSociete)) {
+			Base b = new Base();
+			try {
+				b.connect();
+				b.procedureInit("Societe_insertOrUpdate", 1);
+				b.setParamString(colNom, nomSociete);
+				ResultSet result = b.executeQuery();
+				if(result.next()) {
+					int ID = result.getInt(colID);
+					listOfSociete.put(ID, new Societe(ID,result.getString(colNom)));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				b.close();
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			b.close();
 		}
 		return listOfSocieteString.get(nomSociete);
 	}
