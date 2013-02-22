@@ -512,7 +512,7 @@ CREATE PROCEDURE `PROPPS_DB`.`Notification_insertOrUpdate` (IN _ID_Notification 
 BEGIN
     declare varID_Notif INT DEFAULT _ID_Notification;
     IF(_ID_Notification < 0) THEN
-        SET varID_Notif = (SELECT ID_Notification FROM Notification WHERE ID_Source = _ID_Source AND ID_Destinataire = _ID_Destinaire);
+        SET varID_Notif = (SELECT ID_Notification FROM Notification WHERE ID_Source = _ID_Source AND ID_Destinataire = _ID_Destinataire);
         
         IF varID_Notif is NULL THEN
             INSERT INTO Notification(ID_Source,ID_Destinataire,dtNotif,bVuSource,bVuDest,bAccept)
