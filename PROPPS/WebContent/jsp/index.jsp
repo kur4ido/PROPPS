@@ -1,6 +1,6 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@
 
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
-  href="./ico/apple-touch-icon-144-precomposed.png">
+	href="./ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
 	href="./ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
@@ -35,8 +35,12 @@
 <body data-spy="scroll">
 	<!-- Navbar
     ================================================== -->
-<% String email= (String) request.getAttribute("email"); %>
-<% String error= (String) request.getAttribute("error"); %>
+	<%
+		String email = (String) request.getAttribute("email");
+	%>
+	<%
+		String error = (String) request.getAttribute("error");
+	%>
 
 
 	<div id="header">
@@ -54,26 +58,29 @@
 			<div class="row">
 				<div class="span8">
 					<div class="page-header">
-						<h1>Réseau Professionnel Paris-Sud</h1>
+						<h1>Réseau Professionnel Polytech Paris-Sud</h1>
 					</div>
 					<p class="lead">Bienvenue sur le réseau Professionnel de
 						Polytech Paris-Sud.</p>
-					<p class="lead">Il s'agit d'un réseau social permettant de
-						recenser des contacts professionnels dans le but d'obtenir un
-						emploi ou de la main d'oeuvre compétente.</p>
+					<p class="lead">Il s'agit du réseau social mis à votre
+						disposition pour booster votre carrière ou constituer un
+						recrutement de qualité. En tant que membre, il permet de recenser
+						les contacts professionnels qui vous permettront d'obtenir un
+						emploi, et en tant que recruteur ce réseau vous met à disposition
+						des candidats compétents et correspondant à vos besoins.</p>
 				</div>
 				<div class="span4">
 					<form class="form-signin" action="connect" method="post">
 						<h2 class="form-signin-heading">Connectez-vous</h2>
 						<input type="text" class="input-block-level" name="email"
-							placeholder="Adresse email" value=<%=email %>> <input type="password"
-							class="input-block-level" name="password"
+							placeholder="Adresse email" value=<%=email%>> <input
+							type="password" class="input-block-level" name="password"
 							placeholder="Mot de passe">
-							<c:if test="${request.getAttribute('error')!=''}">
-								<span class="text-error"><%=error %></span>
-							</c:if> <label class="checkbox">
-							<input type="checkbox" name="remember" value="1"> Rester
-							connecté <!--- <a href="#">Mot de passe oublié?</a>-->
+						<c:if test="${request.getAttribute('error')!=''}">
+							<span class="text-error"><%=error%></span>
+						</c:if>
+						<label class="checkbox"> <input type="checkbox"
+							name="remember" value="1"> Rester connecté <!--- <a href="#">Mot de passe oublié?</a>-->
 						</label>
 						<button class="btn btn-large btn-primary" type="submit">Connexion</button>
 					</form>

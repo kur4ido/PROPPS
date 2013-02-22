@@ -21,30 +21,35 @@ import com.polytech.propps.models.Societe;
 @WebServlet("/AddExperiencePro")
 public class AddExperiencePro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		String nomSociete = request.getParameter("societe");
 		String typeProfil = request.getParameter("profil");
-		String dispo = request.getParameter("dispo"); //INUTILE?
+		String dispo = request.getParameter("dispo"); // INUTILE?
 		String direction = request.getParameter("direction");
 		String poste = request.getParameter("poste");
 		String description = request.getParameter("description");
-
+		//On récupére l'ensemble des domaines d'expertise
+		String[] res = request.getParameterValues("expertise");
+		for (int i = 0; i < res.length; ++i) {
+			System.out.println(res[i]);
+		}
 		String dateDebut = request.getParameter("dateDebut");
 		String dateFin = request.getParameter("dateFin");
 		java.sql.Date sqlDateFin;
 		java.sql.Date sqlDateDebut;
-		
+
 		Base base = new Base();
-		
-		if(!dateDebut.contentEquals("")){
+
+		if (!dateDebut.contentEquals("")) {
 			try {
 				base.connect();
-				
+
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 				java.util.Date parsedDate;
 				parsedDate = dateFormat.parse(dateDebut);
@@ -52,9 +57,9 @@ public class AddExperiencePro extends HttpServlet {
 				dateDebut = dateFormat.format(parsedDate);
 				System.out.println(dateDebut);
 				sqlDateDebut = java.sql.Date.valueOf(dateDebut);
-				if(dateFin.contentEquals("")){
+				if (dateFin.contentEquals("")) {
 					sqlDateFin = null;
-				}else{
+				} else {
 					dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 					java.util.Date parsedDateFin;
 					parsedDateFin = dateFormat.parse(dateFin);
@@ -63,25 +68,26 @@ public class AddExperiencePro extends HttpServlet {
 					System.out.println(dateFin);
 					sqlDateFin = java.sql.Date.valueOf(dateFin);
 				}
-				Societe societeAjoutee = new Societe(nomSociete); //ID SOCIETE AJOUTEE
-				Profil profilAjoute = new Profil(-1); //ID PROFIL AJOUTE	
-				
-				
+				Societe societeAjoutee = new Societe(nomSociete); // ID SOCIETE
+																	// AJOUTEE
+				Profil profilAjoute = new Profil(-1); // ID PROFIL AJOUTE
+
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{
+			} finally {
 				base.close();
 			}
-		}else{
+		} else {
 			String erreurDateDebut = "Veuillez renseigner une date de debut";
 		}
 	}
-	
-	public void doGet( HttpServletRequest request, HttpServletResponse	response ) throws ServletException, IOException{
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 

@@ -166,22 +166,22 @@
 														d'expertise</b></label>
 												<div class="controls">
 													<label class="checkbox"> <input type="checkbox"
-														name="expertise1" value="EmissionFront"> Emission
+														name="expertise" value="EmissionFront"> Emission
 														- Front office
 													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise2" value="EmissionBack" checked>
+														name="expertise" value="EmissionBack" checked>
 														Emission - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise3" value="CommercantFront">
+														name="expertise" value="CommercantFront">
 														Commerçant - Front office
 													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise4" value="CommercantBack">
+														name="expertise" value="CommercantBack">
 														Commerçant - Back office
 													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise5" value="AutomatesFront">
+														name="expertise" value="AutomatesFront">
 														Automates - Front office
 													</label> <label class="checkbox"> <input type="checkbox"
-														name="expertise6" value="AutomatesBack"> Automates
+														name="expertise" value="AutomatesBack"> Automates
 														- Back office
 													</label>
 												</div>
