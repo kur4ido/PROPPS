@@ -62,6 +62,7 @@ public class Connexion extends HttpServlet {
 				request.setAttribute("mapNotifRecept", mapNotifRecept);
 				request.setAttribute("nbNotif", Integer.toString(lstNotifRecept.size()));
 				request.setAttribute("lstNotifRecept", lstNotifRecept);
+				request.setAttribute("LstContacts", lstContacts);
 				getServletContext().getRequestDispatcher("/jsp/compte.jsp").forward(request, response);
 				
 			}else{
