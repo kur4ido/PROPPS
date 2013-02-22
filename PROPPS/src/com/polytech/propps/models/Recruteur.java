@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.TreeSet;
-
 import com.polytech.propps.bdd.Base;
-import com.polytech.propps.utilsTest.Comparaison;
 
 public class Recruteur extends Utilisateur {
+	
+	private final static float COEFF_PROXI = 0.4f;
+	private final static float COEFF_EXP = 0.6f;
 	
 	private final static String colID = "ID_Utilisateur";
 	private final static String colDtDispo = "dtDispo"; 
@@ -137,7 +137,8 @@ public class Recruteur extends Utilisateur {
 			Collections.sort(lstMembre, new Comparator<Membre>() {
 				@Override
 				public int compare(Membre m1, Membre m2) {
-					return m1.getExperience() + m1.getScore(societe) - m2.getExperience() - m2.getScore(societe);
+					return (int) (COEFF_EXP * (m1.getExperience() - m2.getExperience() )
+							+  COEFF_PROXI * (m1.getScore(societe)  - m2.getScore(societe)));
 				}
 				
 			});
