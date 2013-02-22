@@ -462,11 +462,9 @@ DELIMITER ;
 
 DELIMITER $$
 USE `PROPPS_DB`$$
-
-
 CREATE PROCEDURE `PROPPS_DB`.`Membre_getContactByID` (IN _ID_Membre INT)
 BEGIN
-    SELECT Membre.*
+    SELECT Membre.*,Utilisateur.*,Adresse.*
     FROM Contact inner join Membre on Contact.ID_Contact = Membre.ID_Utilisateur
             inner join Utilisateur on Membre.ID_Utilisateur = Utilisateur.ID_Utilisateur
             inner join Adresse on Adresse.ID_Adresse = Utilisateur.ID_Utilisateur
