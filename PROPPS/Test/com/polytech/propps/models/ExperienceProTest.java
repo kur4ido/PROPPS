@@ -4,14 +4,10 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.*;
 
 import com.polytech.propps.appli.PROPPS;
-import com.polytech.propps.utilsTest.Comparaison;
 
 public class ExperienceProTest {
 	private Date datedebut4;
@@ -30,6 +26,7 @@ public class ExperienceProTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		datedebut4 = new Date(2013, 02, 19);

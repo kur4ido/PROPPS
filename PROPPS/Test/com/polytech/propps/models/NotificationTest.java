@@ -31,6 +31,7 @@ public class NotificationTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		
@@ -48,6 +49,7 @@ public class NotificationTest {
 	
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void ConstructeurNotificationTest(){
 		

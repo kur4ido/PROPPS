@@ -29,6 +29,7 @@ public class UtilisateurTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		date = new Date(2013, 2, 22);

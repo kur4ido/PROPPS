@@ -29,6 +29,7 @@ public class MessageTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		date = new Date(2013, 02, 21);
@@ -40,6 +41,7 @@ public class MessageTest {
 	
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void ConstructeurMessageTest(){
 		

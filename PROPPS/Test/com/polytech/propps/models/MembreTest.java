@@ -34,6 +34,7 @@ public class MembreTest {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() {
 		date = new Date(2013, 02, 19);

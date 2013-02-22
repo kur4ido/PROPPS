@@ -1,14 +1,12 @@
 package com.polytech.propps.models;
 
-import static org.junit.Assert.*;
+
 
 import java.io.IOException;
-import java.sql.Date;
+
 
 import org.junit.*;
 
-import com.polytech.propps.appli.PROPPS;
-import com.polytech.propps.utilsTest.Comparaison;
 
 public class AdresseTest {
 	private Adresse adr;

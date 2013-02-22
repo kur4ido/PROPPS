@@ -1,7 +1,6 @@
 package com.polytech.propps.models;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import junit.framework.Assert;
 

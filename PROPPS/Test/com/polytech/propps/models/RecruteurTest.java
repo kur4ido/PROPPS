@@ -1,9 +1,8 @@
 package com.polytech.propps.models;
 
-import static org.junit.Assert.*;
+
 
 import java.io.IOException;
-import java.sql.Date;
 
 import org.junit.*;
 
@@ -12,7 +11,6 @@ import com.polytech.propps.utilsTest.Comparaison;
 
 public class RecruteurTest {
 	private Recruteur r1;
-	private Date date;
 	private Societe societe;
 	
 	@BeforeClass
@@ -27,7 +25,7 @@ public class RecruteurTest {
 	
 	@Before
 	public void setUp() {
-		date = new Date(2013, 02, 19);
+		
 		societe = new Societe(1);
 		r1 = new Recruteur("Test", "Mathieu", "mathieu.test@u-psud.fr", "kubor", societe);
 		

@@ -1,7 +1,6 @@
 package com.polytech.propps.models;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import junit.framework.Assert;
 
@@ -47,13 +46,13 @@ public class ProfilTest {
 	@Test
 	public void InstanciationListOfProfilTest(){
 		
-		Assert.assertNotNull(p1.listOfProfil);
-		Assert.assertFalse("La liste est vide", p1.listOfProfil.isEmpty());
-		Assert.assertEquals("La liste n'a pas le bon nombre de valeurs", 3, p1.listOfProfil.size());
+		Assert.assertNotNull(Profil.listOfProfil);
+		Assert.assertFalse("La liste est vide", Profil.listOfProfil.isEmpty());
+		Assert.assertEquals("La liste n'a pas le bon nombre de valeurs", 3, Profil.listOfProfil.size());
 		
-		Assert.assertEquals("La valeur associée à l'indice 1 n'est pas MOA",  "MOA", p1.listOfProfil.get(1).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 2 n'est pas MOE",  "MOE", p1.listOfProfil.get(2).getNom());
-		Assert.assertEquals("La valeur associée à l'indice 3 n'est pas Double Compétence",  "Double Compétence", p1.listOfProfil.get(3).getNom());
+		Assert.assertEquals("La valeur associée à l'indice 1 n'est pas MOA",  "MOA", Profil.listOfProfil.get(1).getNom());
+		Assert.assertEquals("La valeur associée à l'indice 2 n'est pas MOE",  "MOE", Profil.listOfProfil.get(2).getNom());
+		Assert.assertEquals("La valeur associée à l'indice 3 n'est pas Double Compétence",  "Double Compétence", Profil.listOfProfil.get(3).getNom());
 		
 	}
 	
@@ -71,11 +70,11 @@ public class ProfilTest {
 	@Test
 	public void FillListProfilTest(){
 		
-		p1.listOfProfil = null;
+		Profil.listOfProfil = null;
 		
-		Assert.assertNull("La listOfProfil n'a pas été forcée à Null.", p1.listOfProfil);
+		Assert.assertNull("La listOfProfil n'a pas été forcée à Null.", Profil.listOfProfil);
 		
-		p1.fillList();
+		Profil.fillList();
 		
 		InstanciationListOfProfilTest();
 		
