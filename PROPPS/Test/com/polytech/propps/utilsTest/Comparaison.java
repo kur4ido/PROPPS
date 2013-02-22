@@ -9,6 +9,7 @@ import com.polytech.propps.models.Recruteur;
 
 public class Comparaison {
 	
+	@SuppressWarnings("deprecation")
 	public static void comparerDeuxMembres(Membre mX, Membre mY) {
 		Assert.assertEquals("L'ID du membre est mal insérée.", mX, mY);
 		Assert.assertEquals("L'email du membre est mal insérée.", mX.getsEmail(), mY.getsEmail());
@@ -66,6 +67,7 @@ public class Comparaison {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void membreEstVide(Membre mX) {
 		Assert.assertNull("L'email du membre a mal été supprimée.", mX.getsEmail());
 		Assert.assertNull("Le nom du membre a mal été supprimé.", mX.getsNom());
@@ -123,6 +125,7 @@ public class Comparaison {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void comparerDates(Date d1, Date d2) {
 		Assert.assertEquals("Les dates sont différentes (jour)",d1.getDay(), d2.getDay());
 		Assert.assertEquals("Les dates sont différentes (mois)",d1.getMonth(), d2.getMonth());

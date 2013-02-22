@@ -7,7 +7,6 @@ import org.junit.runners.Suite.SuiteClasses;
 import com.polytech.propps.models.AdresseTest;
 import com.polytech.propps.models.MembreTest;
 import com.polytech.propps.models.MessageTest;
-import com.polytech.propps.models.Notification;
 import com.polytech.propps.models.NotificationTest;
 import com.polytech.propps.models.ProfilTest;
 import com.polytech.propps.models.RecruteurTest;
