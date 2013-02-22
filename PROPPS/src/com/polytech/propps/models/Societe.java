@@ -95,7 +95,9 @@ public class Societe  {
 				ResultSet result = b.executeQuery();
 				if(result.next()) {
 					int ID = result.getInt(colID);
-					listOfSociete.put(ID, new Societe(ID,result.getString(colNom)));
+					String nom = result.getString(colNom);
+					listOfSociete.put(ID, new Societe(ID,nom));
+					listOfSocieteString.put(nom,new Societe(ID,nom));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
