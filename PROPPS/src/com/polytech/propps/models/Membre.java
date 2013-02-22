@@ -745,7 +745,7 @@ public class Membre extends Utilisateur {
 
 			@Override
 			public int compare(Membre o1, Membre o2) {
-				return o1.getDerniereProxiCalc() - o2.getDerniereProxiCalc();
+				return o2.getDerniereProxiCalc() - o1.getDerniereProxiCalc();
 			}
 		});
 		return resultat;
