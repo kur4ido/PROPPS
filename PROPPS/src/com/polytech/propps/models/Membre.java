@@ -126,7 +126,7 @@ public class Membre extends Utilisateur{
 			try {
 				b.connect();
 				b.procedureInit("Membre_getContactByID", 1);
-				b.setParamInt("_" + colIDMembre, super.ID_Utilisateur);
+				b.setParamInt("_" + colID, super.ID_Utilisateur);
 				ResultSet result = b.executeQuery();
 				lstContacts = new ArrayList<Membre>();
 				while(result.next()) {
