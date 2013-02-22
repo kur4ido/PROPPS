@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +13,10 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/datepicker.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -21,12 +24,18 @@
     <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="icon" href="../img/propps.ico">
+<link rel="icon" href="${pageContext.request.contextPath}/img/propps.ico">
 </head>
 
 <body>
   <!-- Navbar
     ================================================== -->
+<% String nom= (String) request.getAttribute("nom"); %>
+<% String prenom= (String) request.getAttribute("prenom"); %>
+<% String ville= (String) request.getAttribute("ville"); %>
+<% String adresse= (String) request.getAttribute("adresse"); %>
+<% String codePostal= (String) request.getAttribute("codePostal"); %>
+<% String NomSociete= (String) request.getAttribute("NomSociete"); %>
 
 
 	<div class="navbar navbar-fixed-top">
@@ -37,7 +46,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="../index.html">ProPPS</a>
+				<a class="brand" href="${pageContext.request.contextPath}/index.html">ProPPS</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 
 
@@ -47,14 +56,14 @@
 
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
-								Entreprise <b class="caret"></b></a>
+								<%=NomSociete %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="entreprise.html"><i class="icon-user"></i>
 										Mon compte</a></li>
 								<li><a href="messagerie.html"><i class="icon-inbox"></i>
 										Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										Param√®tres</a></li>
+										ParamËtres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
 								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
@@ -71,14 +80,14 @@
 			<div class="row">
 				<div class="span12">
 					<div id="fiche_entreprise">
-						<img src="../img/entreprise.jpg" class="img-polaroid">
+						<img src="${pageContext.request.contextPath}/img/entreprise.jpg" class="img-polaroid">
 						<div id="detail_entreprise">
 
-							<h2>Entreprise, Inc.</h2>
-							<h3>Nom, Pr√©nom</h3>
+							<h2><%=NomSociete %></h2>
+							<h3><%=nom %>, <%=prenom %></h3>
 							<br>
 							<p class="lead">
-								<i class="icon-home"></i> Adresse<br> Ville, Code postal<br>	
+								<i class="icon-home"></i> <%=adresse %><br> <%=ville %>, <%=codePostal %><br>	
 							</p>
 						</div>
 					</div>
@@ -93,7 +102,7 @@
 			<div class="row">
 				<div class="span12">
 					<div class="page-header">
-						<img src="../img/search.png" class="pull-left">
+						<img src="${pageContext.request.contextPath}/img/search.png" class="pull-left">
 						<h2>Fonction de recrutement</h2>
 					</div>
 					<form class="form-horizontal"
@@ -133,13 +142,13 @@
 										name="profil" id="optionsRadios2" value="MOE"> MOE
 									</label> <label class="radio"> <input type="radio"
 										name="profil" id="optionsRadios3" value="DCompetence">
-										Double Comp√©tence
+										Double CompÈtence
 									</label>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="experience">
-									Exp√©rience minimum requise : (ann√©es) </label>
+									ExpÈrience minimum requise : (annÈes) </label>
 								<div class="controls">
 									<select class="span1" name="experience">
 										<option value="1">1</option>
@@ -164,7 +173,7 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="dateDebut">Date de
-									d√©but</label>
+									dÈbut</label>
 								<div class="controls">
 									<div class="input-append date" id="dp3" data-date="04/02/2013"
 										data-date-format="dd/mm/yyyy">
@@ -210,10 +219,10 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="http://platform.twitter.com/widgets.js"
 		type="text/javascript"></script>
-	<script src="../js/jquery-1.9.0.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.0.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
 	<script>
 		$('.date').datepicker();
 		$(document).off('touchstart.dropdown.data-api');

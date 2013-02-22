@@ -62,16 +62,16 @@ public class InscriptionRecruteur extends HttpServlet {
 						System.out.println("Le mail est disponible");
 						 Societe s = new Societe(societe);
 						 Recruteur recruteur = new Recruteur(nom,prenom,email,mdp,s);
-						 recruteur.setAdresse(new Adresse(ville, codePostal, null,
+						 recruteur.setAdresse(new Adresse(ville, codePostal, adresse,
 						 pays));
 						 System.out.println(recruteur.getAdresse().getVille());
 						 recruteur.insertOrUpdate();
-						 request.setAttribute("email", email);
 						 request.setAttribute("nom", nom);
 						 request.setAttribute("prenom", prenom);
 						 request.setAttribute("ville", ville);
+						 request.setAttribute("adresse", adresse);
 						 request.setAttribute("codePostal", codePostal);
-						 request.setAttribute("pays", pays);
+						 request.setAttribute(ParametresServlet.NomSociete, societe);
 						 request.setAttribute(ParametresServlet.ID_Membre_Courant,Integer.toString(recruteur.getID_Utilisateur()));
 						getServletContext().getRequestDispatcher("/jsp/entreprise.jsp").forward(request, response);
 					}else{
@@ -79,6 +79,7 @@ public class InscriptionRecruteur extends HttpServlet {
 						request.setAttribute("nom", nom);
 						request.setAttribute("prenom", prenom);
 						request.setAttribute("ville", ville);
+						request.setAttribute("adresse", adresse);
 						request.setAttribute("codePostal", codePostal);
 						request.setAttribute("pays", pays);
 						request.setAttribute(ParametresServlet.NomSociete, societe);
@@ -95,6 +96,7 @@ public class InscriptionRecruteur extends HttpServlet {
 					request.setAttribute("nom", nom);
 					request.setAttribute("prenom", prenom);
 					request.setAttribute("ville", ville);
+					request.setAttribute("adresse", adresse);
 					request.setAttribute("codePostal", codePostal);
 					request.setAttribute("pays", pays);
 					request.setAttribute(ParametresServlet.NomSociete, societe);
@@ -109,8 +111,10 @@ public class InscriptionRecruteur extends HttpServlet {
 				request.setAttribute("nom", nom);
 				request.setAttribute("prenom", prenom);
 				request.setAttribute("ville", ville);
+				request.setAttribute("adresse", adresse);
 				request.setAttribute("codePostal", codePostal);
 				request.setAttribute("pays", pays);
+				request.setAttribute(ParametresServlet.NomSociete, societe);
 				request.setAttribute("errorMdpInvalide", error);
 				request.setAttribute("errorMdp", "");
 				request.setAttribute("errorMail", "");

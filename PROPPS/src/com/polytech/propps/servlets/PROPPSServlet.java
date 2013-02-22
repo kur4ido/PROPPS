@@ -19,6 +19,7 @@ import com.polytech.propps.bdd.Base;
 import com.polytech.propps.models.Expertise;
 import com.polytech.propps.models.Profil;
 import com.polytech.propps.models.Recruteur;
+import com.polytech.propps.models.Societe;
 
 @WebServlet("/PROPPSServlet")
 public class PROPPSServlet extends HttpServlet {
@@ -58,6 +59,7 @@ public class PROPPSServlet extends HttpServlet {
 		}
 		Profil.fillList();
 		Expertise.fillList();
+		Societe.fillList();
 		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/index.html"));
 	}
 	

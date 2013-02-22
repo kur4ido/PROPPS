@@ -81,7 +81,7 @@
 										<input type="email" name="email" id="inputEmail"
 											placeholder="johndoe@yahoo.fr" value=<%=email %>>
 											<!-- Message d'erreur -->
-											<c:if test="${request.getAttribute("errorMail")!=''}">
+											<c:if test="${request.getAttribute('errorMail')!=''}">
 										<span class="text-error"><%=errorMail %></span>
 										</c:if>
 									</div>
@@ -97,7 +97,7 @@
 											title="Le mot de passe doit contenir au minimum une majuscule 
 									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 											class="icon-info-sign"></i></a>
-											<c:if test="${request.getAttribute("errorMdpInvalide")!=''}">
+											<c:if test="${request.getAttribute('errorMdpInvalide')!=''}">
 										<span class="text-error"><%=errorMdpInvalide %></span>
 										</c:if>
 									</div>
@@ -110,7 +110,7 @@
 											id="inputConfirmPassword" placeholder="Password">
 									</div>										
 										<!-- Message d'erreur -->
-									<c:if test="${request.getAttribute("errorMdp")!=''}">
+									<c:if test="${request.getAttribute('errorMdp')!=''}">
 										<span class="text-error"><%=errorMdp %></span>
 									</c:if>
 								</div>
