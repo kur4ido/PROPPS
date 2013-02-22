@@ -222,6 +222,9 @@ public class ExperiencePro {
 
 
 	public ArrayList<Expertise> getlistExpertise() {
+		if(!bFill) {
+			fill();
+		}
 		return lstExpertise;
 	}
 }
