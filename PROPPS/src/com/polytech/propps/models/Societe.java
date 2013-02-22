@@ -130,5 +130,11 @@ public class Societe  {
 	public int getID() {
 		return ID_Societe;
 	}
+
+	public static String[] getArrayOfAll() {
+		String[] tab = new String[listOfSociete.keySet().size()];
+		tab = listOfSocieteString.keySet().toArray(tab);
+		return tab;
+	}
 	
 }
