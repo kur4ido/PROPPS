@@ -262,7 +262,7 @@ ENGINE = InnoDB;
 -- Table `PROPPS_DB`.`Message`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `PROPPS_DB`.`Message` (
-  `ID_Message` INT NOT NULL ,
+  `ID_Message` INT NOT NULL AUTO_INCREMENT ,
   `ID_Utilisateur` INT NOT NULL ,
   `dtMessage` DATETIME NOT NULL ,
   `sMessage` TEXT NOT NULL ,
