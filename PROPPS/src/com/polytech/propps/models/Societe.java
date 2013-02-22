@@ -35,7 +35,7 @@ public class Societe  {
 		ID_Societe = - 1;
 		sNom = nom;
 		if(listOfSocieteString.containsKey(nom)) {
-			ID_Societe = listOfSociete.get(nom).getID();
+			ID_Societe = listOfSocieteString.get(nom).getID();
 		}
 	}
 	/**
