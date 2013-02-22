@@ -42,7 +42,7 @@ public class RechercheRapide extends HttpServlet {
 			Membre membreCourant = new Membre(idCourant);
 			String prenomCourant = membreCourant.getsPrenom();
 			String nomCourant = membreCourant.getsNom();
-			ArrayList<Membre> resultList = Membre.rechercheRapide(recherche);
+			ArrayList<Membre> resultList = Membre.rechercheRapide(new Membre(idCourant), recherche);
 			ArrayList<String> stringList = new ArrayList<String>();
 			List servResultList = Arrays.asList(resultList.toArray());
 			for(Membre m : resultList){

@@ -94,7 +94,7 @@
 								<li><a href="${pageContext.request.contextPath}/seeCurrentUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>" ></i> Mon
 										compte</a></li>
 								<li><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
-								<li><a href="parametre.html"><i class="icon-wrench"></i>
+								<li><a href="${pageContext.request.contextPath}/modifPersonalInfo?ID_Membre_Courant=<%=ID_Membre_Courant %>"><i class="icon-wrench"></i>
 										Paramètres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
@@ -123,7 +123,7 @@
 									class="icon-home"></i> <%=ville %>
 
 							</p>
-							<a href="parametre.html#profil" class="btn btn-primary btn-small"
+							<a href="${pageContext.request.contextPath}/modifPersonalInfo?ID_Membre_Courant=<%=ID_Membre_Courant %>" class="btn btn-primary btn-small"
 								type="button"><i class="icon-plus icon-white"></i> Editer
 								mon profil</a>
 						</div>
