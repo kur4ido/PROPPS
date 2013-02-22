@@ -98,7 +98,7 @@
 										Paramètres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
-								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
+								<li><a href="${pageContext.request.contextPath}/index.html"><i class="icon-off"></i> Deconnexion</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -119,7 +119,7 @@
 							<br>
 							<p class="lead">
 								<i class="icon-briefcase"></i> Poste (profil), Entreprise<br>
-								<i class="icon-calendar"></i> Disponibilité <br> <i
+								<i class="icon-calendar"></i> ${requestScope.dispo} <br> <i
 									class="icon-home"></i> <%=ville %>
 
 							</p>

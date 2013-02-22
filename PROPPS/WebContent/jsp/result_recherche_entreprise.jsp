@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +13,9 @@
 <meta name="author" content="">
 
 <!-- Le styles -->
-<link href="../css/bootstrap.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/bootstrap-responsive.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap-responsive.css" rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -20,12 +23,14 @@
     <![endif]-->
 
 <!-- Fav and touch icons -->
-<link rel="icon" href="../img/propps.ico">
+<link rel="icon" href="${pageContext.request.contextPath}/img/propps.ico">
 </head>
 
 <body>
   <!-- Navbar
     ================================================== -->
+<% String ID_Membre_Courant = (String) request.getAttribute("ID_Membre_Courant"); %>
+<% String societeCourante = (String) request.getAttribute("societeCourante"); %>
 
 
 	<div class="navbar navbar-fixed-top">
@@ -36,7 +41,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="brand" href="../index.html">ProPPS</a>
+				<a class="brand" href="${pageContext.request.contextPath}/index.html">ProPPS</a>
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 
 
@@ -48,17 +53,17 @@
 						<li class="divider-vertical"></li>
 						<li class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
-								Entreprise <b class="caret"></b></a>
+								<%=societeCourante %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="entreprise.html"><i class="icon-user"></i>
+								<li><a href="${pageContext.request.contextPath}/currentRecruiter?ID_Membre_Courant=<%=ID_Membre_Courant %>" ><i class="icon-user"></i>
 										Mon compte</a></li>
 								<li><a href="messagerie.html"><i class="icon-inbox"></i>
 										Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
-										ParamÃ¨tres</a></li>
+										Paramètres</a></li>
 								<li class="divider"></li>
 								<!--<li><a href="messagerie.html"><i class="icon-envelope"></i> Messagerie</a></li>-->
-								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
+								<li><a href="${pageContext.request.contextPath}/index.html"><i class="icon-off"></i> Deconnexion</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -74,43 +79,47 @@
 						<h2>Recherche de membre</h2>
 					</div>
 					<ul class="pager">
-						<li class="previous"><a href="recrutement.html">&larr;
-								Modifier les critÃ¨res</a></li>
+						<li class="previous"><a href="${pageContext.request.contextPath}/currentRecruiter?ID_Membre_Courant=<%=ID_Membre_Courant %>" >
+								Modifier les critères</a></li>
 					</ul>
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th>Nom</th>
-								<th>PrÃ©nom</th>
+								<th>Prénom</th>
 								<th>Email</th>
-								<th>SociÃ©tÃ©</th>
+								<th>Société</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><a href="user.html">Guilizzoni</a></td>
-								<td>Giacomo</td>
-								<td>giacomo.guilizzoni@microsoft.com</td>
-								<td>Microsoft</td>
-							</tr>
-							<tr>
-								<td><a href="#">Botton</a></td>
-								<td>Marco</td>
-								<td>marcob@aol.fr</td>
-								<td>Amadeus</td>
-							</tr>
-							<tr>
-								<td><a href="#">Maclachlan</a></td>
-								<td>Mariah</td>
-								<td>mmaclachlan@yahoo.com</td>
-								<td>Dassaults</td>
-							</tr>
-							<tr>
-								<td><a href="#">Liberty</a></td>
-								<td>Valerie</td>
-								<td>val.liberty@gmail.com</td>
-								<td>-</td>
-							</tr>
+							<c:forEach var="member" items="${requestScope.memberList}" > 
+								<tr>
+									<td>
+										<a href="${pageContext.request.contextPath}/seeUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>&ID_Membre_Select=${member.ID_Utilisateur}" >${member.sNom }</a>
+									</td>
+									<td>${member.sPrenom }</td>
+									<td>${member.sEmail }</td>
+									<td></td>
+								</tr>
+							</c:forEach>
+<!-- 							<tr> -->
+<!-- 								<td><a href="#">Botton</a></td> -->
+<!-- 								<td>Marco</td> -->
+<!-- 								<td>marcob@aol.fr</td> -->
+<!-- 								<td>Amadeus</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td><a href="#">Maclachlan</a></td> -->
+<!-- 								<td>Mariah</td> -->
+<!-- 								<td>mmaclachlan@yahoo.com</td> -->
+<!-- 								<td>Dassaults</td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<td><a href="#">Liberty</a></td> -->
+<!-- 								<td>Valerie</td> -->
+<!-- 								<td>val.liberty@gmail.com</td> -->
+<!-- 								<td>-</td> -->
+<!-- 							</tr> -->
 						</tbody>
 					</table>
 
@@ -129,9 +138,9 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="http://platform.twitter.com/widgets.js"
 		type="text/javascript"></script>
-	<script src="../js/jquery-1.9.0.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.0.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
 	<script>
 		$(document).off('touchstart.dropdown.data-api');

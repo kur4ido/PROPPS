@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,12 +62,24 @@ public class Recrutement extends HttpServlet {
 			}
 			Profil p = new Profil(idProfil);
 			ArrayList<Membre> result = recruteurCourant.rechercheAvancee(lstExpertise, p, mode, sqlDateDebut, experience);
+			ArrayList<String> stringList = new ArrayList<String>();
+			List servResultList = Arrays.asList(result.toArray());
 			
 			for(Membre m : result){
-				System.out.println("ok");
+				System.out.println(m.getsNom()+"\t"+m.getsPrenom()+"\t"+m.getsEmail());
+				stringList.add(m.getsNom());
 			}
-			request.setAttribute(ParametresServlet.ID_Membre_Courant, ID_Membre_Courant);
-			getServletContext().getRequestDispatcher("/currentRecruiter").forward(request, response);
+
+			List servStringList = Arrays.asList(stringList.toArray());
+
+			request.setAttribute("memberList", servResultList);
+			request.setAttribute("stringList", servStringList);
+			Recruteur recruteur = new Recruteur(ID_Membre_Courant);
+			
+			request.setAttribute("societeCourante", recruteur.getSociete().getsNom());
+			
+			request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(ID_Membre_Courant));
+			getServletContext().getRequestDispatcher("/jsp/result_recherche_entreprise.jsp").forward(request, response);
 		
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

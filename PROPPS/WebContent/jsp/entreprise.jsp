@@ -83,7 +83,7 @@
 								<li><a href="messagerie.html"><i class="icon-inbox"></i>
 										Inbox</a></li>
 								<li class="divider"></li>
-								<li><a href="#"><i class="icon-off"></i> Deconnexion</a></li>
+								<li><a href="${pageContext.request.contextPath}/index.html"><i class="icon-off"></i> Deconnexion</a></li>
 							</ul></li>
 					</ul>
 				</div>
