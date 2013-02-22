@@ -244,7 +244,7 @@ public class MembreTest {
 		m11.delete();
 	}
 	
-	/*@Test
+	@Test
 	public void addContactTest() {
 		m1.insertOrUpdate();
 		Membre m12 = new Membre("Test", "Albert", "albert.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
@@ -254,5 +254,5 @@ public class MembreTest {
 		
 		m12.delete();
 		
-	}*/
+	}
 }
