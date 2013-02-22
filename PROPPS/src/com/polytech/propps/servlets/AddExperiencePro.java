@@ -80,5 +80,9 @@ public class AddExperiencePro extends HttpServlet {
 			String erreurDateDebut = "Veuillez renseigner une date de debut";
 		}
 	}
+	
+	public void doGet( HttpServletRequest request, HttpServletResponse	response ) throws ServletException, IOException{
+		doPost(request, response);
+	}
 
 }

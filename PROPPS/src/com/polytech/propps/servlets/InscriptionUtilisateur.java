@@ -110,6 +110,10 @@ public class InscriptionUtilisateur extends HttpServlet {
 			base.close();
 		}
 	}
+	
+	public void doGet( HttpServletRequest request, HttpServletResponse	response ) throws ServletException, IOException{
+		doPost(request, response);
+	}
 
 }
 

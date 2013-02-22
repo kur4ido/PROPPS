@@ -91,7 +91,7 @@
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
 								<%=prenom %> <%=nom %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="compte.html"><i class="icon-user"></i> Mon
+								<li><a href="${pageContext.request.contextPath}/seeCurrentUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>" ></i> Mon
 										compte</a></li>
 								<li><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
@@ -232,7 +232,7 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label class="control-label" for="dateFin"><b>├а</b></label>
+												<label class="control-label" for="dateFin"><b>ра</b></label>
 												<div class="controls">
 													<div class="input-append date" id="dp3"
 														data-date="04/02/2013" data-date-format="dd/mm/yyyy"
@@ -409,7 +409,7 @@
 														</div>
 													</div>
 													<div class="control-group">
-														<label class="control-label" for="dateFin"><b>├а</b></label>
+														<label class="control-label" for="dateFin"><b>ра</b></label>
 														<div class="controls">
 															<div class="input-append date" id="dp3"
 																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
@@ -568,7 +568,7 @@
 														</div>
 													</div>
 													<div class="control-group">
-														<label class="control-label" for="dateFin"><b>├а</b></label>
+														<label class="control-label" for="dateFin"><b>ра</b></label>
 														<div class="controls">
 															<div class="input-append date" id="dp3"
 																data-date="04/02/2013" data-date-format="dd/mm/yyyy"
@@ -656,7 +656,7 @@
 									</div>
 								</fieldset>
 								<legend>Modifier vos domaines d'expertise</legend>
-								<!-- L'adresse du lien contient l'identifiant du domaine d'expertise ├а supprimer -->
+								<!-- L'adresse du lien contient l'identifiant du domaine d'expertise ра supprimer -->
 								<table>
 									<tbody>
 										<tr>
@@ -702,31 +702,11 @@
 								<div id="contact">
 									<img src="${pageContext.request.contextPath}/img/people.png" width="64">
 									<div id="description_contact">
-										${member.sPrenom } ${member.sNom }<br> Profession, Entreprise
+										<a href="${pageContext.request.contextPath}/seeUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>&ID_Membre_Select=${member.ID_Utilisateur }" >${member.sPrenom } ${member.sNom }</a><br> Profession, Entreprise
 									</div>
 								</div>
 							</c:forEach>
-<!-- 						<div id="contact"> -->
-<!-- 							<img src="${pageContext.request.contextPath}/img/people.png" width="64"> -->
-<!-- 							<div id="description_contact"> -->
-<!-- 								Contact 1<br> Profession, Entreprise -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-
-<!-- 						<div id="contact"> -->
-<!-- 							<img src="${pageContext.request.contextPath}/img/people.png" width="64"> -->
-<!-- 							<div id="description_contact"> -->
-<!-- 								Contact 2<br> Profession, Entreprise -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-
-<!-- 						<div id="contact"> -->
-<!-- 							<img src="${pageContext.request.contextPath}/img/people.png" width="64"> -->
-<!-- 							<div id="description_contact"> -->
-<!-- 								Contact 3<br> Profession, Entreprise -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-					</div>
+						</div>
 				</div>
 			</div>
 		</div>

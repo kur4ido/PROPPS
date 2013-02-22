@@ -24,4 +24,8 @@ public class ReponseDemande extends HttpServlet{
 		getServletContext().getRequestDispatcher("/seeCurrentUserProfile").forward(request, response);
 		
 	}
+	
+	public void doGet( HttpServletRequest request, HttpServletResponse	response ) throws ServletException, IOException{
+		doPost(request, response);
+	}
 }

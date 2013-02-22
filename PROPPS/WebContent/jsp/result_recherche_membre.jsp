@@ -90,7 +90,7 @@
 							class="dropdown-toggle" href="#"><i class="icon-home"></i>
 								<%=prenom_Membre_Courant %> <%=nom_Membre_Courant %> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="compte.html"><i class="icon-user"></i> Mon
+								<li><a href="${pageContext.request.contextPath}/seeCurrentUserProfile?ID_Membre_Courant=<%=ID_Membre_Courant %>" ><i class="icon-user"></i> Mon
 										compte</a></li>
 								<li><a href="parametre.html"><i class="icon-wrench"></i>
 										Paramètre</a></li>
