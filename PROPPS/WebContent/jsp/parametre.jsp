@@ -119,7 +119,7 @@
 					</div>
 
 
-					<form id="modificationIdentite" class="form-horizontal" action="">
+					<form id="modificationIdentite" class="form-horizontal" action="${pageContext.request.contextPath}/applyModifsPerso" method="post">
 						<fieldset>
 							<legend>Modification des informations personnelles</legend>
 							<div class="control-group">
@@ -163,7 +163,7 @@
 									<input type="email" name="email" id="inputEmail"
 										placeholder="johndoe@yahoo.fr" value=<%=email %>>
 											<!-- Message d'erreur -->
-											<c:if test="${request.getAttribute('errorMail')!=''}">
+											<c:if test="${requestScope.errorMail!=''}">
 										<span class="text-error"><%=errorMail %></span>
 										</c:if>
 								</div>
@@ -173,11 +173,11 @@
 								<label class="control-label" for="inputOldPassword">Ancien
 									mot de passe</label>
 								<div class="controls">
-									<input type="password" name="password" id="inputOldPassword"
+									<input type="password" name="oldPassword" id="inputOldPassword"
 										placeholder="Password">										
 										<!-- Message d'erreur -->
-									<c:if test="${request.getAttribute('errorOldMdp')!=''}">
-										<span class="text-error"><%=errorMdp %></span>
+									<c:if test="${requestScope.errorOldMdp!=''}">
+										<span class="text-error"><%=errorOldMdp %></span>
 									</c:if>
 								</div>
 							</div>
@@ -191,7 +191,7 @@
 										title="Le mot de passe doit contenir au minimum une majuscule 
 									et un chiffre. Le mot de passe doit avoir une longueur minimum de 8 caractères"><i
 										class="icon-info-sign"></i></a>
-											<c:if test="${request.getAttribute('errorMdpInvalide')!=''}">
+											<c:if test="${requestScope.errorMdpInvalide!=''}">
 										<span class="text-error"><%=errorMdpInvalide %></span>
 										</c:if>
 								</div>
@@ -201,12 +201,12 @@
 									le mot de passe</label>
 								<div class="controls">
 									<input type="password" name="confirmPassword"
-										id="inputConfirmPassword" placeholder="Password">
-								</div>										
+										id="inputConfirmPassword" placeholder="Password">									
 										<!-- Message d'erreur -->
-									<c:if test="${request.getAttribute('errorMdp')!=''}">
+									<c:if test="${requestScope.errorMdp!=''}">
 										<span class="text-error"><%=errorMdp %></span>
 									</c:if>
+								</div>	
 							</div>
 							<input type="hidden" name="ID_Membre_Courant" value=<%=ID_Membre_Courant %> >
 

@@ -35,6 +35,7 @@ public class AppliquerModifsConnexion extends HttpServlet {
 			base.connect();
 			Membre membre = new Membre(ID_Membre_Courant);
 			membre.fill();
+			System.out.println(membre.getsPassword());
 			String error = "";
 			if(!email.contentEquals(membre.getsEmail())){
 				base.procedureInit("Utilisateur_getUtilisateurByEmail", 1);
@@ -50,8 +51,17 @@ public class AppliquerModifsConnexion extends HttpServlet {
 					request.setAttribute("errorOldMdp", "");
 				}
 			}
-			if(!vieuxMdp.contentEquals("")){
-				if(!vieuxMdp.contentEquals(membre.getsPassword())){
+			
+			else if(!vieuxMdp.contentEquals("")){
+				base.procedureInit("Membre_getIDByLoginPW", 2);
+				base.setParamString("_sEmail", email);
+				base.setParamString("_sPassword", vieuxMdp);
+				ResultSet result = base.executeQuery();
+				int idtmp = -1;
+				if(result.next()){
+					idtmp=result.getInt("ID_Utilisateur");
+				}
+				if(idtmp==-1){
 					error = "Mot de passe incorrect";
 					
 					request.setAttribute("errorMdpInvalide", "");
@@ -79,7 +89,7 @@ public class AppliquerModifsConnexion extends HttpServlet {
 				}
 			}
 			if(!error.contentEquals("")){
-				
+				System.out.println(error);
 				request.setAttribute(ParametresServlet.Nom, membre.getsNom());
 				request.setAttribute(ParametresServlet.Prenom, membre.getsPrenom());
 				request.setAttribute(ParametresServlet.Email, membre.getsEmail());
@@ -96,20 +106,21 @@ public class AppliquerModifsConnexion extends HttpServlet {
 				request.setAttribute("mapNotifRecept", mapNotifRecept);
 				request.setAttribute("nbNotif", Integer.toString(lstNotifRecept.size()));
 				request.setAttribute("lstNotifRecept", lstNotifRecept);
+				request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(ID_Membre_Courant));
 				
 				getServletContext().getRequestDispatcher("/jsp/parametre.jsp").forward(request, response);
 			}
 //			membre.setsNom(name);
 //			membre.setsPrenom(prenom);
 //			membre.setAdresse(new Adresse(ville, null, null, null));
-			membre.setsEmail(email);
-			if(!vieuxMdp.contentEquals("")){
+			if(error.contentEquals("")){
+				membre.setsEmail(email);
 				membre.setPassword(mdp);
 				membre.updatePassWord();
+//				membre.insertOrUpdate();
+				request.setAttribute(ParametresServlet.ID_Membre_Courant, Integer.toString(ID_Membre_Courant));
+				getServletContext().getRequestDispatcher("/seeCurrentUserProfile").forward(request, response);
 			}
-			membre.insertOrUpdate();
-			request.setAttribute(ParametresServlet.ID_Membre_Courant, ID_Membre_Courant);
-			getServletContext().getRequestDispatcher("/seeCurrentUserProfile").forward(request, response);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

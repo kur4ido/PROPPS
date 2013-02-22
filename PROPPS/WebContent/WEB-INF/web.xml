@@ -108,6 +108,15 @@
     <url-pattern>/applyModifsConnect</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>AppliquerModifPerso</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.AppliquerModifPerso</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AppliquerModifPerso</servlet-name>
+    <url-pattern>/applyModifsPerso</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
