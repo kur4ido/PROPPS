@@ -259,11 +259,22 @@ public class MembreTest {
 	@Test
 	public void aCommeAmiTest() {
 		m1.insertOrUpdate();
-		Membre m13 = new Membre("Test", "Da", "albert.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		Membre m13 = new Membre("Test", "Da", "da.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
 		m13.insertOrUpdate();
 		m1.addContact(m13);
-		assertTrue("m1 a comme amis 13", m1.aCommeAmi(m13));
+		assertTrue("m1 n'a pas comme ami m13", m1.aCommeAmi(m13));
 		
 		m13.delete();
+	}
+	
+	@Test
+	public void aEnvoyeInvitTest() {
+		m1.insertOrUpdate();
+		Membre m14 = new Membre("Test", "Druno", "bruno.test@u-psud.fr", "kubor", new Profil(1), true, false, date);
+		m14.insertOrUpdate();
+		m1.demanderContact(m14);
+		assertTrue("m1 n'a pas envoyé l'invitation à m14", m1.aEnvoyeInvit(m14));
+		
+		m14.delete();
 	}
 }
