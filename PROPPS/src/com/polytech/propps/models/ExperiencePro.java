@@ -105,8 +105,11 @@ public class ExperiencePro {
 			if(ID_ExpPro > 0) {
 				return e.getID() == this.ID_ExpPro;
 			}else {
-				return (societe.getID() == e.societe.getID()) && (e.profil.equals(profil)) && (e.sPosteOccupe.equals(sPosteOccupe))
-						&& (e.sDirection.equals(sDirection)) && (e.dtDebut.equals(dtDebut)) && (e.dtFin.equals(dtFin));
+				boolean resultat = societe.getID() == e.societe.getID() && (e.profil.equals(profil)) && (e.sPosteOccupe.equals(sPosteOccupe))
+						&& (e.sDirection.equals(sDirection)) && (e.dtDebut.equals(dtDebut)) ;
+				
+				return resultat && ((dtFin == null && e.getDtFin() == null) ||
+						((dtFin != null && e.getDtFin() != null) && e.dtFin.equals(dtFin)));
 			}
 		}
 		return false;
