@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import org.junit.Assert;
 
+import com.polytech.propps.models.Expertise;
 import com.polytech.propps.models.Membre;
 import com.polytech.propps.models.Recruteur;
 
@@ -38,6 +39,9 @@ public class Comparaison {
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Profil).", mX.getLstExperiencePro().get(i).getProfil(), mY.getLstExperiencePro().get(i).getProfil());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Société).", mX.getLstExperiencePro().get(i).getSociete().getID(), mY.getLstExperiencePro().get(i).getSociete().getID());
 			Assert.assertEquals("La liste d'expérience pro du membre est mal insérée (Société).", mX.getLstExperiencePro().get(i).getSociete().getsNom(), mY.getLstExperiencePro().get(i).getSociete().getsNom());
+			 for (Expertise e : mX.getLstExperiencePro().get(i).getlistExpertise()){
+				 Assert.assertTrue("Les expertise de experience pro ne sont pas bien gérées", mY.getLstExperiencePro().get(i).getlistExpertise().contains(e));
+			 }
 		}
 		
 		for(Integer i = 0; i < mX.getLstExpertise().size(); i++) {

@@ -52,6 +52,8 @@ public class MembreTest {
 		xpPro.setPosteOccupe("Post occupé test.");
 		xpPro.setProfil(profilTest);
 		xpPro.setSociete(societeTest);
+		xpPro.addExpertise(new Expertise(1));
+		xpPro.addExpertise(new Expertise(2));
 	}
 	
 	@After
@@ -168,6 +170,7 @@ public class MembreTest {
 	@Test
 	public void ajoutExperienceProTest() {
 		m1.insertOrUpdate();
+		//xpPro.addExpertise(new Expertise(1));
 		m1.addExperiencePro(xpPro);
 		m1.insertOrUpdate();
 		Membre m8 = new Membre(m1.getID_Utilisateur());
