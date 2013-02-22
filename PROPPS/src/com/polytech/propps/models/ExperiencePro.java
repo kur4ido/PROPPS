@@ -108,7 +108,7 @@ public class ExperiencePro {
 			if(ID_ExpPro > 0) {
 				return e.getID() == this.ID_ExpPro;
 			}else {
-				boolean resultat = societe.getID() == e.societe.getID() && (e.profil.equals(profil)) && (e.sPosteOccupe.equals(sPosteOccupe))
+				boolean resultat = getSociete().getID() == e.getSociete().getID() && (e.profil.equals(profil)) && (e.sPosteOccupe.equals(sPosteOccupe))
 						&& (e.sDirection.equals(sDirection)) && (e.dtDebut.equals(dtDebut)) ;
 				
 				return resultat && ((dtFin == null && e.getDtFin() == null) ||
