@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  
+  <listener>
+		<listener-class>com.polytech.propps.servlets.PROPPSServlet</listener-class>
+	</listener>
+  
   <servlet>
     <servlet-name>Connexion</servlet-name>
     <servlet-class>com.polytech.propps.servlets.Connexion</servlet-class>
@@ -8,7 +13,6 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connect</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>InscriptionUtilisateur</servlet-name>
     <servlet-class>com.polytech.propps.servlets.InscriptionUtilisateur</servlet-class>
@@ -17,7 +21,6 @@
     <servlet-name>InscriptionUtilisateur</servlet-name>
     <url-pattern>/registUser</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>InscriptionRecruteur</servlet-name>
     <servlet-class>com.polytech.propps.servlets.InscriptionRecruteur</servlet-class>
@@ -26,7 +29,6 @@
     <servlet-name>InscriptionRecruteur</servlet-name>
     <url-pattern>/registRecruiter</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>RechercheRapide</servlet-name>
     <servlet-class>com.polytech.propps.servlets.RechercheRapide</servlet-class>
@@ -35,16 +37,14 @@
     <servlet-name>RechercheRapide</servlet-name>
     <url-pattern>/quickSearch</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>PROPPSServlet</servlet-name>
-    <servlet-class>com.polytech.propps.servlets.PROPPSServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PROPPSServlet</servlet-name>
-    <url-pattern>/init</url-pattern>
-  </servlet-mapping>
-  
+<!--   <servlet> -->
+<!--     <servlet-name>PROPPSServlet</servlet-name> -->
+<!--     <servlet-class>com.polytech.propps.servlets.PROPPSServlet</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>PROPPSServlet</servlet-name> -->
+<!--     <url-pattern>/init</url-pattern> -->
+<!--   </servlet-mapping> -->
   <servlet>
     <servlet-name>AddExperiencePro</servlet-name>
     <servlet-class>com.polytech.propps.servlets.AddExperiencePro</servlet-class>
@@ -53,7 +53,6 @@
     <servlet-name>AddExperiencePro</servlet-name>
     <url-pattern>/addExpPro</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UserProfileServlet</servlet-name>
     <servlet-class>com.polytech.propps.servlets.UserProfileServlet</servlet-class>
@@ -62,7 +61,6 @@
     <servlet-name>UserProfileServlet</servlet-name>
     <url-pattern>/seeUserProfile</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>CurrentUserProfileServlet</servlet-name>
     <servlet-class>com.polytech.propps.servlets.CurrentUserProfileServlet</servlet-class>
@@ -71,7 +69,6 @@
     <servlet-name>CurrentUserProfileServlet</servlet-name>
     <url-pattern>/seeCurrentUserProfile</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DemandeRelation</servlet-name>
     <servlet-class>com.polytech.propps.servlets.DemandeRelation</servlet-class>
@@ -80,7 +77,6 @@
     <servlet-name>DemandeRelation</servlet-name>
     <url-pattern>/relationAsk</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ReponseDemande</servlet-name>
     <servlet-class>com.polytech.propps.servlets.ReponseDemande</servlet-class>
@@ -89,7 +85,6 @@
     <servlet-name>ReponseDemande</servlet-name>
     <url-pattern>/relationAnswer</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ModifInfosPersoServlet</servlet-name>
     <servlet-class>com.polytech.propps.servlets.ModifInfosPersoServlet</servlet-class>
@@ -98,7 +93,6 @@
     <servlet-name>ModifInfosPersoServlet</servlet-name>
     <url-pattern>/modifPersonalInfo</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AppliquerModifsConnexion</servlet-name>
     <servlet-class>com.polytech.propps.servlets.AppliquerModifsConnexion</servlet-class>
@@ -107,7 +101,6 @@
     <servlet-name>AppliquerModifsConnexion</servlet-name>
     <url-pattern>/applyModifsConnect</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AppliquerModifPerso</servlet-name>
     <servlet-class>com.polytech.propps.servlets.AppliquerModifPerso</servlet-class>
@@ -115,6 +108,14 @@
   <servlet-mapping>
     <servlet-name>AppliquerModifPerso</servlet-name>
     <url-pattern>/applyModifsPerso</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AutoCompletionServlet</servlet-name>
+    <servlet-class>com.polytech.propps.servlets.AutoCompletionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutoCompletionServlet</servlet-name>
+    <url-pattern>/autoCompletion</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

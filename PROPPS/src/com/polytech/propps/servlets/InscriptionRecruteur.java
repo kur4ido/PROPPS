@@ -60,7 +60,7 @@ public class InscriptionRecruteur extends HttpServlet {
 					boolean EmailAlreadyExists = testEmailAlreadyExists.first();
 					if(!EmailAlreadyExists){
 						System.out.println("Le mail est disponible");
-						 Societe s = new Societe(societe);
+						 Societe s = Societe.addSociete(societe);
 						 Recruteur recruteur = new Recruteur(nom,prenom,email,mdp,s);
 						 recruteur.setAdresse(new Adresse(ville, codePostal, adresse,
 						 pays));

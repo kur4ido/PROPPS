@@ -128,7 +128,7 @@
 										la société</label>
 									<div class="controls">
 										<input type="text" id="inputSociete" name="inputSociete"
-											placeholder="Polytech" value=<%=NomSociete %>>
+											placeholder="Polytech" data-provide="typeahead" value=<%=NomSociete %>>
 									</div>
 								</div>
 								<div class="control-group">
@@ -191,6 +191,11 @@
 	<script type="text/javascript">
 		$(function() {
 			$("[rel='tooltip']").tooltip();
+		});
+		var list = "${requestScope.stringList}";
+		$("#inputSociete").typeahead({
+			minLength : 2,
+			source : list
 		});
 	</script>
 </body>
