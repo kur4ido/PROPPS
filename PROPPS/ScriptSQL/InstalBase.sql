@@ -926,11 +926,11 @@ DELIMITER $$
 USE `PROPPS_DB`$$
 CREATE PROCEDURE `PROPPS_DB`.`rechercheRapide` (IN _Str VARCHAR(250))
 BEGIN
-    SELECT Distinct U.*,M.*,A.*
+    SELECT DISTINCT U.*,M.*,A.*
     FROM Utilisateur as U inner join Membre as M on U.ID_Utilisateur = M.ID_Utilisateur
         inner join Adresse as A on A.ID_Adresse = U.ID_Adresse
         left outer join ExperiencePro on M.ID_Utilisateur = ExperiencePro.ID_Membre
-        inner join Societe on Societe.ID_Societe = ExperiencePro.ID_Societe
+        left outer join Societe on Societe.ID_Societe = ExperiencePro.ID_Societe
     WHERE CONCAT(U.sNom," ", U.sPrenom) like CONCAT("%",_Str,"%")
         OR CONCAT(U.sPrenom, " ",U.sNom) like CONCAT("%",_Str,"%")
         OR U.sEmail like CONCAT("%",_Str,"%")
